@@ -64,6 +64,8 @@ import permintaan.DlgPermintaanPelayananInformasiObat;
 import permintaan.DlgPermintaanRadiologi;
 import rekammedis.MasterCariTemplatePemeriksaan;
 import rekammedis.RMCari5SOAPTerakhir;
+import rekammedis.RMCariHasilLaborat;
+import rekammedis.RMCariHasilRadiologi;
 import rekammedis.RMCatatanADIMEGizi;
 import rekammedis.RMCatatanPersalinan;
 import rekammedis.RMChecklistKriteriaMasukHCU;
@@ -156,6 +158,7 @@ import rekammedis.RMTimeOutSebelumInsisi;
 import rekammedis.RMTransferPasienAntarRuang;
 import rekammedis.RMTriaseIGD;
 import rekammedis.RMUjiFungsiKFR;
+import widget.Button;
 
 /**
  *
@@ -188,6 +191,10 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
     private boolean sukses=false;
     private double ttljmdokter=0,ttljmperawat=0,ttlkso=0,ttljasasarana=0,ttlbhp=0,ttlmenejemen=0,ttlpendapatan=0;
     private Jurnal jur=new Jurnal();
+    private RMCariHasilRadiologi cariradiologi=new RMCariHasilRadiologi(null,false);//tambah chan
+    private RMCariHasilLaborat carilaborat=new RMCariHasilLaborat(null,false);//tambah chan
+    private Button BtnDokter3;
+    private Button BtnDokter2;
 
     /** Creates new form DlgPerawatan
      * @param parent
@@ -914,18 +921,18 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         KdPeg.setDocument(new batasInput((byte)20).getKata(KdPeg));
         TSuhu.setDocument(new batasInput((byte)5).getKata(TSuhu));
         TTensi.setDocument(new batasInput((byte)8).getKata(TTensi));
-        TKeluhan.setDocument(new batasInput((int)2000).getKata(TKeluhan));
-        TPemeriksaan.setDocument(new batasInput((int)2000).getKata(TPemeriksaan));
-        TPenilaian.setDocument(new batasInput((int)2000).getKata(TPenilaian));    
-        TInstruksi.setDocument(new batasInput((int)2000).getKata(TInstruksi));     
+        TKeluhan.setDocument(new batasInput((int)10000).getKata(TKeluhan));//tambah chan
+        TPemeriksaan.setDocument(new batasInput((int)10000).getKata(TPemeriksaan));//tambah chan
+        TPenilaian.setDocument(new batasInput((int)10000).getKata(TPenilaian));    //tambah chan
+        TInstruksi.setDocument(new batasInput((int)10000).getKata(TInstruksi));     //tambah chan    
         TAlergi.setDocument(new batasInput((int)50).getKata(TAlergi));        
         TCari.setDocument(new batasInput((int)100).getKata(TCari));       
         TGCS.setDocument(new batasInput((byte)10).getKata(TGCS));
         TTinggi.setDocument(new batasInput((byte)5).getKata(TTinggi));
         LingkarPerut.setDocument(new batasInput((byte)5).getKata(LingkarPerut));
         TBerat.setDocument(new batasInput((byte)5).getKata(TBerat));
-        TindakLanjut.setDocument(new batasInput((int)2000).getKata(TindakLanjut));
-        TEvaluasi.setDocument(new batasInput((int)2000).getKata(TEvaluasi));
+        TindakLanjut.setDocument(new batasInput((int)10000).getKata(TindakLanjut));//tambah chan
+        TEvaluasi.setDocument(new batasInput((int)10000).getKata(TEvaluasi));//tambah chan
         TNadi.setDocument(new batasInput((byte)3).getOnlyAngka(TNadi));
         SpO2.setDocument(new batasInput((byte)3).getOnlyAngka(SpO2));
         TRespirasi.setDocument(new batasInput((byte)3).getOnlyAngka(TRespirasi));
@@ -1438,6 +1445,8 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         LingkarPerut = new widget.TextBox();
         Btn5Soap = new widget.Button();
         BtnTemplatePemeriksaan = new widget.Button();
+        BtnDokter3 = new widget.Button();//tambah chan
+        BtnDokter2 = new widget.Button();//tambah chan
         internalFrame6 = new widget.InternalFrame();
         Scroll4 = new widget.ScrollPane();
         tbPemeriksaanObstetri = new widget.Table();
@@ -2664,6 +2673,34 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
         panelGlass12.add(BtnTemplatePemeriksaan);
         BtnTemplatePemeriksaan.setBounds(405, 40, 28, 23);
+
+        BtnDokter3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/TestTubes.png"))); // NOI18N //tambah chan
+        BtnDokter3.setMnemonic('2');//tambah chan
+        BtnDokter3.setText("Intip Laborat");//tambah chan
+        BtnDokter3.setToolTipText("Alt+2");//tambah chan
+        BtnDokter3.setName("BtnDokter3"); // NOI18N//tambah chan
+        BtnDokter3.setPreferredSize(new java.awt.Dimension(28, 23));//tambah chan
+        BtnDokter3.addActionListener(new java.awt.event.ActionListener() {//tambah chan
+            public void actionPerformed(java.awt.event.ActionEvent evt) {//tambah chan
+                BtnDokter3ActionPerformed(evt);//tambah chan
+            }//tambah chan
+        });//tambah chan
+        panelGlass12.add(BtnDokter3);//tambah chan
+        BtnDokter3.setBounds(910, 50, 150, 23);//tambah chan
+
+        BtnDokter2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Radioactive.png"))); // NOI18N //tambah chan
+        BtnDokter2.setMnemonic('2');//tambah chan
+        BtnDokter2.setText("Intip Radiologi");//tambah chan
+        BtnDokter2.setToolTipText("Alt+2");//tambah chan
+        BtnDokter2.setName("BtnDokter2"); // NOI18N//tambah chan
+        BtnDokter2.setPreferredSize(new java.awt.Dimension(28, 23));//tambah chan
+        BtnDokter2.addActionListener(new java.awt.event.ActionListener() {//tambah chan
+            public void actionPerformed(java.awt.event.ActionEvent evt) {//tambah chan
+                BtnDokter2ActionPerformed(evt);//tambah chan
+            }//tambah chan
+        });//tambah chan
+        panelGlass12.add(BtnDokter2);//tambah chan
+        BtnDokter2.setBounds(910, 80, 150, 30);//tambah chan
 
         PanelInput.add(panelGlass12, java.awt.BorderLayout.CENTER);
 
@@ -5605,7 +5642,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                             Sequel.menyimpan("tampjurnal","'"+HPP_BHP_Tindakan_Ralan+"','HPP BHP Tindakan Ralan','0','"+ttlbhp+"'","kredit=kredit+'"+(ttlbhp)+"'","kd_rek='"+HPP_BHP_Tindakan_Ralan+"'");    
                             Sequel.menyimpan("tampjurnal","'"+Persediaan_BHP_Tindakan_Ralan+"','Persediaan BHP Tindakan Ralan','"+ttlbhp+"','0'","debet=debet+'"+(ttlbhp)+"'","kd_rek='"+Persediaan_BHP_Tindakan_Ralan+"'");                            
                         }
-                        sukses=jur.simpanJurnal(TNoRw.getText(),"U","PEMBATALAN TINDAKAN RAWAT JALAN PASIEN "+TNoRM.getText()+" "+TPasien.getText()+" OLEH "+akses.getkode());
+                        sukses=jur.simpanJurnal(TNoRw.getText(),"U","K128 PEMBATALAN TINDAKAN RAWAT JALAN PASIEN "+TNoRM.getText()+" "+TPasien.getText()+" OLEH "+akses.getkode());//tambah chan
                     }
                       
                     if(sukses==true){
@@ -5683,7 +5720,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                             Sequel.menyimpan("tampjurnal","'"+HPP_BHP_Tindakan_Ralan+"','HPP BHP Tindakan Ralan','0','"+ttlbhp+"'","kredit=kredit+'"+(ttlbhp)+"'","kd_rek='"+HPP_BHP_Tindakan_Ralan+"'");    
                             Sequel.menyimpan("tampjurnal","'"+Persediaan_BHP_Tindakan_Ralan+"','Persediaan BHP Tindakan Ralan','"+ttlbhp+"','0'","debet=debet+'"+(ttlbhp)+"'","kd_rek='"+Persediaan_BHP_Tindakan_Ralan+"'");                            
                         }
-                        sukses=jur.simpanJurnal(TNoRw.getText(),"U","PEMBATALAN TINDAKAN RAWAT JALAN PASIEN "+TNoRM.getText()+" "+TPasien.getText()+" OLEH "+akses.getkode());
+                        sukses=jur.simpanJurnal(TNoRw.getText(),"U","K129 PEMBATALAN TINDAKAN RAWAT JALAN PASIEN "+TNoRM.getText()+" "+TPasien.getText()+" OLEH "+akses.getkode());//tambah chan
                     }
                         
                     if(sukses==true){
@@ -5767,7 +5804,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                             Sequel.menyimpan("tampjurnal","'"+HPP_BHP_Tindakan_Ralan+"','HPP BHP Tindakan Ralan','0','"+ttlbhp+"'","kredit=kredit+'"+(ttlbhp)+"'","kd_rek='"+HPP_BHP_Tindakan_Ralan+"'");    
                             Sequel.menyimpan("tampjurnal","'"+Persediaan_BHP_Tindakan_Ralan+"','Persediaan BHP Tindakan Ralan','"+ttlbhp+"','0'","debet=debet+'"+(ttlbhp)+"'","kd_rek='"+Persediaan_BHP_Tindakan_Ralan+"'");                            
                         }
-                        sukses=jur.simpanJurnal(TNoRw.getText(),"U","PEMBATALAN TINDAKAN RAWAT JALAN PASIEN "+TNoRM.getText()+" "+TPasien.getText()+" OLEH "+akses.getkode());
+                        sukses=jur.simpanJurnal(TNoRw.getText(),"U","K130 PEMBATALAN TINDAKAN RAWAT JALAN PASIEN "+TNoRM.getText()+" "+TPasien.getText()+" OLEH "+akses.getkode());//tambah chan
                     }
                         
                     if(sukses==true){
@@ -9039,6 +9076,30 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnSkorStewardPascaAnestesiActionPerformed
+    
+    private void BtnDokter3ActionPerformed(java.awt.event.ActionEvent evt) {           //tambah chan                                
+        if(TNoRw.getText().equals("")&&TNoRM.getText().equals("")){//tambah chan
+            JOptionPane.showMessageDialog(null,"Pasien masih kosong...!!!");//tambah chan
+        }else{//tambah chan
+            carilaborat.setNoRawat(TNoRw.getText());//tambah chan
+            carilaborat.tampil();//tambah chan
+            carilaborat.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);//tambah chan
+            carilaborat.setLocationRelativeTo(internalFrame1);//tambah chan
+            carilaborat.setVisible(true);//tambah chan
+        }//tambah chan
+    }       //tambah chan                                   
+
+    private void BtnDokter2ActionPerformed(java.awt.event.ActionEvent evt) {    //tambah chan                                       
+        if(TNoRw.getText().equals("")&&TNoRM.getText().equals("")){//tambah chan
+            JOptionPane.showMessageDialog(null,"Pasien masih kosong...!!!");//tambah chan
+        }else{//tambah chan
+            cariradiologi.setNoRawat(TNoRw.getText());//tambah chan
+            cariradiologi.tampil();//tambah chan
+            cariradiologi.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);//tambah chan
+            cariradiologi.setLocationRelativeTo(internalFrame1);//tambah chan
+            cariradiologi.setVisible(true);//tambah chan
+        }//tambah chan
+    } //tambah chan
 
     private void BtnSkorBromagePascaAnestesiActionPerformed(java.awt.event.ActionEvent evt) {                                                            
         if(TPasien.getText().trim().equals("")||TNoRw.getText().trim().equals("")){
@@ -11288,7 +11349,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     Sequel.menyimpan("tampjurnal","'"+Beban_Jasa_Menejemen_Tindakan_Ralan+"','Beban Jasa Menejemen Tindakan Ralan','"+ttlmenejemen+"','0'","debet=debet+'"+(ttlmenejemen)+"'","kd_rek='"+Beban_Jasa_Menejemen_Tindakan_Ralan+"'");       
                     Sequel.menyimpan("tampjurnal","'"+Utang_Jasa_Menejemen_Tindakan_Ralan+"','Utang Jasa Menejemen Tindakan Ralan','0','"+ttlmenejemen+"'","kredit=kredit+'"+(ttlmenejemen)+"'","kd_rek='"+Utang_Jasa_Menejemen_Tindakan_Ralan+"'");                            
                 }
-                sukses=jur.simpanJurnal(TNoRw.getText(),"U","TINDAKAN RAWAT JALAN PASIEN "+TNoRM.getText()+" "+TPasien.getText()+", DIPOSTING OLEH "+akses.getkode());                                                
+                sukses=jur.simpanJurnal(TNoRw.getText(),"U","K131 TINDAKAN RAWAT JALAN PASIEN "+TNoRM.getText()+" "+TPasien.getText()+", DIPOSTING OLEH "+akses.getkode());    //tambah chan                                              
             }
             
             if(sukses==true){
@@ -11360,7 +11421,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     Sequel.menyimpan("tampjurnal","'"+Beban_Jasa_Menejemen_Tindakan_Ralan+"','Beban Jasa Menejemen Tindakan Ralan','"+ttlmenejemen+"','0'","debet=debet+'"+(ttlmenejemen)+"'","kd_rek='"+Beban_Jasa_Menejemen_Tindakan_Ralan+"'");       
                     Sequel.menyimpan("tampjurnal","'"+Utang_Jasa_Menejemen_Tindakan_Ralan+"','Utang Jasa Menejemen Tindakan Ralan','0','"+ttlmenejemen+"'","kredit=kredit+'"+(ttlmenejemen)+"'","kd_rek='"+Utang_Jasa_Menejemen_Tindakan_Ralan+"'");                            
                 }
-                sukses=jur.simpanJurnal(TNoRw.getText(),"U","TINDAKAN RAWAT JALAN PASIEN "+TNoRM.getText()+" "+TPasien.getText()+", DIPOSTING OLEH "+akses.getkode());                                                
+                sukses=jur.simpanJurnal(TNoRw.getText(),"U","K132 TINDAKAN RAWAT JALAN PASIEN "+TNoRM.getText()+" "+TPasien.getText()+", DIPOSTING OLEH "+akses.getkode());      //tambah chan                                              
             }
             
             if(sukses==true){
@@ -11438,7 +11499,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     Sequel.menyimpan("tampjurnal","'"+Beban_Jasa_Menejemen_Tindakan_Ralan+"','Beban Jasa Menejemen Tindakan Ralan','"+ttlmenejemen+"','0'","debet=debet+'"+(ttlmenejemen)+"'","kd_rek='"+Beban_Jasa_Menejemen_Tindakan_Ralan+"'");       
                     Sequel.menyimpan("tampjurnal","'"+Utang_Jasa_Menejemen_Tindakan_Ralan+"','Utang Jasa Menejemen Tindakan Ralan','0','"+ttlmenejemen+"'","kredit=kredit+'"+(ttlmenejemen)+"'","kd_rek='"+Utang_Jasa_Menejemen_Tindakan_Ralan+"'");                            
                 }
-                sukses=jur.simpanJurnal(TNoRw.getText(),"U","TINDAKAN RAWAT JALAN PASIEN "+TNoRM.getText()+" "+TPasien.getText()+", DIPOSTING OLEH "+akses.getkode());                                                
+                sukses=jur.simpanJurnal(TNoRw.getText(),"U","K133 TINDAKAN RAWAT JALAN PASIEN "+TNoRM.getText()+" "+TPasien.getText()+", DIPOSTING OLEH "+akses.getkode());    //tambah chan                                                
             }
             
             if(sukses==true){

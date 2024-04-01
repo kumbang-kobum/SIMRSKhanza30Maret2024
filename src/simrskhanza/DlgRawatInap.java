@@ -50,8 +50,8 @@ import permintaan.DlgPermintaanLaboratorium;
 import permintaan.DlgPermintaanPelayananInformasiObat;
 import permintaan.DlgPermintaanRadiologi;
 import rekammedis.RMCari5SOAPTerakhir;
-import rekammedis.RMCariHasilLaborat;//tambah chan
-import rekammedis.RMCariHasilRadiologi;//tambah chan
+import rekammedis.RMCariHasilLaborat;
+import rekammedis.RMCariHasilRadiologi;
 import rekammedis.RMCatatanADIMEGizi;
 import rekammedis.RMCatatanPersalinan;
 import rekammedis.RMChecklistKriteriaKeluarHCU;
@@ -126,6 +126,8 @@ import rekammedis.RMSkriningNutrisiDewasa;
 import rekammedis.RMSkriningNutrisiLansia;
 import rekammedis.RMTimeOutSebelumInsisi;
 import rekammedis.RMTransferPasienAntarRuang;
+import widget.Button;
+import widget.ComboBox;
 
 /**
  *
@@ -154,6 +156,9 @@ public final class DlgRawatInap extends javax.swing.JDialog {
             HPP_BHP_Tindakan_Ranap="",Persediaan_BHP_Tindakan_Ranap="",kode_poli="",kamar="",jenisbayar="";
     private RMCariHasilRadiologi cariradiologi=new RMCariHasilRadiologi(null,false);//tambah chan
     private RMCariHasilLaborat carilaborat=new RMCariHasilLaborat(null,false);//tambah chan
+    private ComboBox cmbOksigenasi;
+    private Button BtnDokter3;
+    private Button BtnDokter2;
 
     /** Creates new form DlgRawatInap
      * @param parent
@@ -665,14 +670,14 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         TPenilaian.setDocument(new batasInput((int)10000).getKata(TPenilaian));  //tambah chan  
         TEvaluasi.setDocument(new batasInput((int)2000).getKata(TEvaluasi));
         TindakLanjut.setDocument(new batasInput((int)10000).getKata(TindakLanjut));  //tambah chan
-        TInstruksi.setDocument(new batasInput((int)10000).getKata(TInstruksi));      //tambah chan     
+        TInstruksi.setDocument(new batasInput((int)10000).getKata(TInstruksi));      //tambah chan    
         TTinggi.setDocument(new batasInput((byte)5).getKata(TTinggi));
         TBerat.setDocument(new batasInput((byte)5).getKata(TBerat));
         SpO2.setDocument(new batasInput((byte)3).getOnlyAngka(SpO2));
         TNadi.setDocument(new batasInput((byte)3).getOnlyAngka(TNadi));
         TRespirasi.setDocument(new batasInput((byte)3).getOnlyAngka(TRespirasi));      
         TGCS.setDocument(new batasInput((byte)10).getKata(TGCS)); //tambah chan
-        TSNyeri.setDocument(new batasInput((byte)10).getKata(TSNyeri));//tambah chan 
+        TSNyeri.setDocument(new batasInput((byte)10).getKata(TSNyeri));//tambah chan  
         TAlergi.setDocument(new batasInput((int)50).getKata(TAlergi));        
         TCari.setDocument(new batasInput((int)100).getKata(TCari));       
         TInspeksi.setDocument(new batasInput((byte)50).getKata(TInspeksi));
@@ -1187,6 +1192,12 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         TEvaluasi = new widget.TextArea();
         jLabel59 = new widget.Label();
         Btn5Soap = new widget.Button();
+        cmbOksigenasi = new widget.ComboBox();//tambah chan
+        jLabel61 = new widget.Label();//tambah chan
+        TSNyeri = new widget.TextBox();//tambah chan
+        jLabel41 = new widget.Label();//tambah chan
+        BtnDokter3 = new widget.Button();//tambah chan
+        BtnDokter2 = new widget.Button();//tambah chan
         jLabel7 = new widget.Label();
         TSuhu = new widget.TextBox();
         jLabel17 = new widget.Label();
@@ -2145,66 +2156,6 @@ public final class DlgRawatInap extends javax.swing.JDialog {
                 TAlergiKeyPressed(evt);
             }
         });
-        panelGlass12.add(Btn5Soap);//tambah chan
-        Btn5Soap.setBounds(405, 40, 28, 23);
-
-        cmbOksigenasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Udara Bebas", "Nasal Kanul", "Non Rebreathing Mask", "Rebreathing Mask", "CPAP" }));
-        cmbOksigenasi.setName("cmbOksigenasi"); // NOI18N
-        cmbOksigenasi.setPreferredSize(new java.awt.Dimension(62, 28));
-        cmbOksigenasi.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cmbOksigenasiKeyPressed(evt);
-            }
-        });
-        panelGlass12.add(cmbOksigenasi);
-        cmbOksigenasi.setBounds(210, 250, 126, 23);
-
-        jLabel61.setText("Oksigenasi :");
-        jLabel61.setName("jLabel61"); // NOI18N
-        panelGlass12.add(jLabel61);
-        jLabel61.setBounds(130, 250, 70, 23);
-
-        TSNyeri.setFocusTraversalPolicyProvider(true);
-        TSNyeri.setName("TSNyeri"); // NOI18N
-        TSNyeri.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TSNyeriKeyPressed(evt);
-            }
-        });
-        panelGlass12.add(TSNyeri);
-        TSNyeri.setBounds(70, 250, 50, 23);
-
-        jLabel41.setText("Sekala Nyeri :");
-        jLabel41.setName("jLabel41"); // NOI18N
-        panelGlass12.add(jLabel41);
-        jLabel41.setBounds(0, 250, 70, 23);
-
-        BtnDokter3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/TestTubes.png"))); // NOI18N
-        BtnDokter3.setMnemonic('2');
-        BtnDokter3.setText("Intip Laborat");
-        BtnDokter3.setToolTipText("Alt+2");
-        BtnDokter3.setName("BtnDokter3"); // NOI18N
-        BtnDokter3.setPreferredSize(new java.awt.Dimension(28, 23));
-        BtnDokter3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnDokter3ActionPerformed(evt);
-            }
-        });
-        panelGlass12.add(BtnDokter3);
-        BtnDokter3.setBounds(910, 50, 150, 23);
-
-        BtnDokter2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Radioactive.png"))); // NOI18N
-        BtnDokter2.setMnemonic('2');
-        BtnDokter2.setText("Intip Radiologi");
-        BtnDokter2.setToolTipText("Alt+2");
-        BtnDokter2.setName("BtnDokter2"); // NOI18N
-        BtnDokter2.setPreferredSize(new java.awt.Dimension(28, 23));
-        BtnDokter2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnDokter2ActionPerformed(evt);
-            }
-        });
-        //tambah chan batas
         panelGlass12.add(TAlergi);
         TAlergi.setBounds(543, 10, 360, 23);
 
@@ -2442,6 +2393,65 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         panelGlass12.add(Btn5Soap);
         Btn5Soap.setBounds(405, 40, 28, 23);
 
+        cmbOksigenasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Udara Bebas", "Nasal Kanul", "Non Rebreathing Mask", "Rebreathing Mask", "CPAP" }));//tambah chan
+        cmbOksigenasi.setName("cmbOksigenasi"); // NOI18N//tambah chan
+        cmbOksigenasi.setPreferredSize(new java.awt.Dimension(62, 28));//tambah chan
+        cmbOksigenasi.addKeyListener(new java.awt.event.KeyAdapter() {//tambah chan
+            public void keyPressed(java.awt.event.KeyEvent evt) {//tambah chan
+                cmbOksigenasiKeyPressed(evt);//tambah chan
+            }//tambah chan
+        });//tambah chan
+        panelGlass12.add(cmbOksigenasi);//tambah chan
+        cmbOksigenasi.setBounds(210, 250, 126, 23);//tambah chan
+
+        jLabel61.setText("Oksigenasi :");//tambah chan
+        jLabel61.setName("jLabel61"); // NOI18N//tambah chan
+        panelGlass12.add(jLabel61);
+        jLabel61.setBounds(130, 250, 70, 23);//tambah chan
+
+        TSNyeri.setFocusTraversalPolicyProvider(true);//tambah chan
+        TSNyeri.setName("TSNyeri"); // NOI18N//tambah chan
+        TSNyeri.addKeyListener(new java.awt.event.KeyAdapter() {//tambah chan
+            public void keyPressed(java.awt.event.KeyEvent evt) {//tambah chan
+                TSNyeriKeyPressed(evt);//tambah chan
+            }//tambah chan
+        });//tambah chan
+        panelGlass12.add(TSNyeri);//tambah chan
+        TSNyeri.setBounds(70, 250, 50, 23);//tambah chan
+
+        jLabel41.setText("Sekala Nyeri :");//tambah chan
+        jLabel41.setName("jLabel41"); // NOI18N//tambah chan
+        panelGlass12.add(jLabel41);//tambah chan
+        jLabel41.setBounds(0, 250, 70, 23);//tambah chan
+
+        BtnDokter3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/TestTubes.png"))); // NOI18N//tambah chan
+        BtnDokter3.setMnemonic('2');//tambah chan
+        BtnDokter3.setText("Intip Laborat");//tambah chan
+        BtnDokter3.setToolTipText("Alt+2");//tambah chan
+        BtnDokter3.setName("BtnDokter3"); // NOI18N//tambah chan
+        BtnDokter3.setPreferredSize(new java.awt.Dimension(28, 23));//tambah chan
+        BtnDokter3.addActionListener(new java.awt.event.ActionListener() {//tambah chan
+            public void actionPerformed(java.awt.event.ActionEvent evt) {//tambah chan
+                BtnDokter3ActionPerformed(evt);//tambah chan
+            }//tambah chan
+        });//tambah chan
+        panelGlass12.add(BtnDokter3);//tambah chan
+        BtnDokter3.setBounds(910, 50, 150, 23);//tambah chan
+
+        BtnDokter2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Radioactive.png"))); // NOI18N//tambah chan
+        BtnDokter2.setMnemonic('2');//tambah chan
+        BtnDokter2.setText("Intip Radiologi");//tambah chan
+        BtnDokter2.setToolTipText("Alt+2");//tambah chan
+        BtnDokter2.setName("BtnDokter2"); // NOI18N//tambah chan
+        BtnDokter2.setPreferredSize(new java.awt.Dimension(28, 23));//tambah chan
+        BtnDokter2.addActionListener(new java.awt.event.ActionListener() {//tambah chan
+            public void actionPerformed(java.awt.event.ActionEvent evt) {//tambah chan
+                BtnDokter2ActionPerformed(evt);//tambah chan
+            }//tambah chan
+        });//tambah chan
+        panelGlass12.add(BtnDokter2);//tambah chan
+        BtnDokter2.setBounds(910, 80, 150, 30);//tambah chan
+        
         jLabel7.setText("Suhu (°C) :");
         jLabel7.setName("jLabel7"); // NOI18N
         panelGlass12.add(jLabel7);
@@ -5385,7 +5395,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
                                 tabModePemeriksaan.removeRow(i);
                                 i--;
                             }else{
-                                if(akses.getkode().equals(tbPemeriksaan.getValueAt(i,24).toString())){//tambah chan
+                                if(akses.getkode().equals(tbPemeriksaan.getValueAt(i,24).toString())){ //tambah chan
                                     Sequel.queryu("delete from pemeriksaan_ranap where no_rawat='"+tbPemeriksaan.getValueAt(i,1).toString()+
                                             "' and tgl_perawatan='"+tbPemeriksaan.getValueAt(i,4).toString()+
                                             "' and jam_rawat='"+tbPemeriksaan.getValueAt(i,5).toString()+"' ");
@@ -6227,7 +6237,7 @@ private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                                         "nadi='"+TNadi.getText()+"',respirasi='"+TRespirasi.getText()+"',tinggi='"+TTinggi.getText()+"',berat='"+TBerat.getText()+"',"+
                                         "gcs='"+TGCS.getText()+"',kesadaran='"+cmbKesadaran.getSelectedItem()+"',alergi='"+TAlergi.getText()+"',tgl_perawatan='"+Valid.SetTgl(DTPTgl.getSelectedItem()+"")+"',"+
                                         "jam_rawat='"+cmbJam.getSelectedItem()+":"+cmbMnt.getSelectedItem()+":"+cmbDtk.getSelectedItem()+"',"+
-                                        "rtl='"+TindakLanjut.getText()+"',penilaian='"+TPenilaian.getText()+"',instruksi='"+TInstruksi.getText()+"',oksigenasi='"+cmbOksigenasi.getSelectedItem()+"',nyeri='"+TSNyeri.getText()+"',nip='"+KdPeg.getText()+"'")==true){ //tambah chan
+                                         "rtl='"+TindakLanjut.getText()+"',penilaian='"+TPenilaian.getText()+"',instruksi='"+TInstruksi.getText()+"',oksigenasi='"+cmbOksigenasi.getSelectedItem()+"',nyeri='"+TSNyeri.getText()+"',nip='"+KdPeg.getText()+"'")==true){ //tambah chan
                                         tbPemeriksaan.setValueAt(TNoRw.getText(),tbPemeriksaan.getSelectedRow(), 1);
                                         tbPemeriksaan.setValueAt(TNoRM.getText(),tbPemeriksaan.getSelectedRow(), 2);
                                         tbPemeriksaan.setValueAt(TPasien.getText(),tbPemeriksaan.getSelectedRow(), 3);
@@ -6248,7 +6258,7 @@ private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                                         tbPemeriksaan.setValueAt(TPenilaian.getText(),tbPemeriksaan.getSelectedRow(), 18);
                                         tbPemeriksaan.setValueAt(TindakLanjut.getText(),tbPemeriksaan.getSelectedRow(), 19);
                                         tbPemeriksaan.setValueAt(TInstruksi.getText(),tbPemeriksaan.getSelectedRow(), 20);
-                                        tbPemeriksaan.setValueAt(TEvaluasi.getText(),tbPemeriksaan.getSelectedRow(),21);
+                                        tbPemeriksaan.setValueAt(TEvaluasi.getText(),tbPemeriksaan.getSelectedRow(), 21);
                                         tbPemeriksaan.setValueAt(cmbOksigenasi.getSelectedItem().toString(),tbPemeriksaan.getSelectedRow(), 22); //tambah chan
                                         tbPemeriksaan.setValueAt(TSNyeri.getText(),tbPemeriksaan.getSelectedRow(), 23); //tambah chan
                                         tbPemeriksaan.setValueAt(KdPeg.getText(),tbPemeriksaan.getSelectedRow(), 24); //tambah chan
@@ -8445,7 +8455,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
     private void TSNyeriKeyPressed(java.awt.event.KeyEvent evt) {                                   
         Valid.pindah(evt,cmbOksigenasi,BtnSimpan);//tambah chan
-    }   
+    }
+    
     private void BtnDokter3ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         if(TNoRw.getText().equals("")&&TNoRM.getText().equals("")){//tambah chan
             JOptionPane.showMessageDialog(null,"Pasien masih kosong...!!!");
@@ -8456,8 +8467,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             carilaborat.setLocationRelativeTo(internalFrame1);
             carilaborat.setVisible(true);
         }
-    }                                          
-
+    } 
+    
     private void BtnDokter2ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         if(TNoRw.getText().equals("")&&TNoRM.getText().equals("")){//tambah chan
             JOptionPane.showMessageDialog(null,"Pasien masih kosong...!!!");
@@ -8468,7 +8479,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             cariradiologi.setLocationRelativeTo(internalFrame1);
             cariradiologi.setVisible(true);
         }
-    }
+    }    
 
     private void TSuhuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TSuhuKeyPressed
         Valid.pindah(evt,TPemeriksaan,TTensi);
@@ -8719,8 +8730,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Button BtnChecklistPreOperasi;
     private widget.Button BtnCopyResep;
     private widget.Button BtnDiagnosa;
-    private widget.Button BtnDokter2;//tambah chan
-    private widget.Button BtnDokter3;//tambah chan
     private widget.Button BtnDokumentasiESWL;
     private widget.Button BtnEdit;
     private widget.Button BtnFollowUpDBD;
@@ -8862,7 +8871,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.TextBox TPortioDalam;
     private widget.TextBox TPortioInspekulo;
     private widget.TextBox TRespirasi;
-    private widget.TextBox TSNyeri;//tambah chan
+    private widget.TextBox TSNyeri;
     private widget.TextBox TSondage;
     private widget.TextBox TSuhu;
     private widget.TextBox TTebal;
@@ -8898,7 +8907,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.ComboBox cmbMnt;
     private widget.ComboBox cmbMobilitas;
     private widget.ComboBox cmbNyeriTekan;
-    private widget.ComboBox cmbOksigenasi;//tambah chan
     private widget.ComboBox cmbPanggul;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame2;
