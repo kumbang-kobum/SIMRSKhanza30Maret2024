@@ -8622,7 +8622,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "III. STATUS LOKALIS"+  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>"+
                                           "<tr>"+
-                                               "<td width='100%' border='0' align='center'><img alt='Gambar Lokalis' src='"+(getClass().getResource("/picture/semua.png"))+"' width='100%' height='400'/></td>"+
+                                               "<td width='100%' border='0' align='center'><img alt='Gambar Lokalis' src='"+(getClass().getResource("/picture/LokalisOrtho.png"))+"' width='100%' height='400'/></td>"+//tambah chan
                                           "</tr>"+
                                           "<tr>"+
                                                "<td width='100%' border='0'>Keterangan : "+rs2.getString("ket_lokalis").replaceAll("(\r\n|\r|\n|\n\r)","<br>")+"</td>"+
