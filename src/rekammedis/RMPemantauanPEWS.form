@@ -340,7 +340,7 @@
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="17-05-2023"/>
+                        <StringItem index="0" value="06-04-2024"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -368,7 +368,7 @@
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="17-05-2023"/>
+                        <StringItem index="0" value="06-04-2024"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -527,7 +527,7 @@
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="17-05-2023"/>
+                        <StringItem index="0" value="06-04-2024"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -871,7 +871,7 @@
                 <Component class="widget.Label" name="jLabel14">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="2"/>
-                    <Property name="text" type="java.lang.String" value="1.  Skor Perilaku"/>
+                    <Property name="text" type="java.lang.String" value="1.  Keadaan Umum"/>
                     <Property name="name" type="java.lang.String" value="jLabel14" noResource="true"/>
                   </Properties>
                   <Constraints>
@@ -884,10 +884,10 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="4">
-                        <StringItem index="0" value="Sadar / Bermain"/>
-                        <StringItem index="1" value="Tidur / Perubahan Perilaku"/>
-                        <StringItem index="2" value="Gelisah"/>
-                        <StringItem index="3" value="Tidak Merespon Terhadap Nyeri Penurunan Kesadaran"/>
+                        <StringItem index="0" value="Interaksi Biasa"/>
+                        <StringItem index="1" value="Samnolen/Rewel dapat ditenagkan"/>
+                        <StringItem index="2" value="Iritable/Tidak dapat ditenagkan"/>
+                        <StringItem index="3" value="Letagri/Gelisah/Penurusan Respon terhadap nyeri"/>
                       </StringArray>
                     </Property>
                     <Property name="name" type="java.lang.String" value="cmbSkor1" noResource="true"/>
@@ -905,7 +905,7 @@
                 <Component class="widget.Label" name="jLabel17">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="2"/>
-                    <Property name="text" type="java.lang.String" value="2.  Skor CRT / Warna Kulit"/>
+                    <Property name="text" type="java.lang.String" value="2.  Kardiovaskuler"/>
                     <Property name="name" type="java.lang.String" value="jLabel17" noResource="true"/>
                   </Properties>
                   <Constraints>
@@ -918,10 +918,10 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="4">
-                        <StringItem index="0" value="1 - 2 dtk / Pink"/>
-                        <StringItem index="1" value="3 dtk / Pucat"/>
-                        <StringItem index="2" value="4 dtk / Sianosis"/>
-                        <StringItem index="3" value="&gt;=5 dtk / Mottle"/>
+                        <StringItem index="0" value="Tidak Sianosis/Pengisian kapiler &lt;2 detik"/>
+                        <StringItem index="1" value="Tampak Pucat/Pengisian kapiler 2 detik"/>
+                        <StringItem index="2" value="Tampak Sianotik/Pengisian kapiler &gt;2 detik/Takidari &gt; 20x diatas RR Sesuai Usia"/>
+                        <StringItem index="3" value="Sianotik dan Motlet/Pengisian kapiler &gt;5 detik/Takidaro &gt;30x diatas RR sesuai Usia"/>
                       </StringArray>
                     </Property>
                     <Property name="name" type="java.lang.String" value="cmbSkor2" noResource="true"/>
@@ -1015,9 +1015,9 @@
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="4">
                         <StringItem index="0" value="Tidak Ada Retraksi"/>
-                        <StringItem index="1" value="Cuping Hidung / O2 1-3 Lpm"/>
-                        <StringItem index="2" value="Retraksi Dada / O2 4-6 Lpm"/>
-                        <StringItem index="3" value="Stridor / O2 7-8 Lpm"/>
+                        <StringItem index="1" value="Respirasi &gt;10x Diatas RR seusia/Menggunakan FiO2 &gt;30%"/>
+                        <StringItem index="2" value="Respirasi &gt;20x Diatas RR seusia/Menggunakan FiO2 &gt;40%"/>
+                        <StringItem index="3" value="Respirasi &gt;30x Diatas RR seusia/Menggunakan FiO2&gt;50%"/>
                       </StringArray>
                     </Property>
                     <Property name="name" type="java.lang.String" value="cmbSkor3" noResource="true"/>

@@ -2989,7 +2989,13 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                         "<td valign='top' width='18%'>Status</td>"+
                         "<td valign='top' width='1%' align='center'>:</td>"+
                         "<td valign='top' width='79%'>"+rs.getString("status_lanjut")+"</td>"+
-                      "</tr>"
+                      "</tr>"+
+                      "<tr class='isi'>"+ //tambah chan
+                        "<td valign='top' width='2%'></td>"+   //tambah chan     
+                        "<td valign='top' width='18%'>Nomor SEP</td>"+ //tambah chan
+                        "<td valign='top' width='1%' align='center'>:</td>"+//tambha chan
+                        "<td valign='top' width='79%'>"+rs.getString("no_sep")+" / Kelas Rawat : "+rs.getString("klsrawat")+"</td>"+//tambah chan
+                      "</tr>"//tambah chan        
                     );                            
                     urut++;
                     
@@ -4640,7 +4646,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                             "<td valign='top' colspan='7'>Tindakan/Operasi Selama Perawatan :<br>"+rs2.getString("tindakan_dan_operasi").replaceAll("(\r\n|\r|\n|\n\r)","<br>")+"</td>"+
                                          "</tr>"+
                                          "<tr>"+
-                                            "<td valign='top' colspan='7'>Obat-obatan Selama Perawatan :<br>"+rs2.getString("obat_di_rs").replaceAll("(\r\n|\r|\n|\n\r)","<br>")+"</td>"+
+                                            "<td valign='top' colspan='7'>Obat-obatan :<br>"+rs2.getString("obat_di_rs").replaceAll("(\r\n|\r|\n|\n\r)","<br>")+"</td>"+ //tambah chan
                                          "</tr>"+
                                          "<tr>"+
                                             "<td valign='top' colspan='7'>Diagnosa Akhir :<br>"+
