@@ -2393,7 +2393,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         panelGlass12.add(Btn5Soap);
         Btn5Soap.setBounds(405, 40, 28, 23);
 
-        cmbOksigenasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Udara Bebas", "Nasal Kanul", "Non Rebreathing Mask", "Rebreathing Mask", "CPAP" }));//tambah chan
+        cmbOksigenasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Udara Bebas", "Nasal Kanul", "Non Rebreathing Mask", "Rebreathing Mask", "CPAP", "Ventilator" }));//tambah chan
         cmbOksigenasi.setName("cmbOksigenasi"); // NOI18N//tambah chan
         cmbOksigenasi.setPreferredSize(new java.awt.Dimension(62, 28));//tambah chan
         cmbOksigenasi.addKeyListener(new java.awt.event.KeyAdapter() {//tambah chan
