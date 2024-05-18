@@ -119,6 +119,8 @@ public class DlgUbahPemesanan extends javax.swing.JDialog {
                 column.setPreferredWidth(85);
             }else if(i==13){
                 column.setPreferredWidth(80);
+            }else if(i==25){
+                column.setPreferredWidth(80);    //tambah chan
             }else{
                 column.setMinWidth(0);
                 column.setMaxWidth(0);                   
