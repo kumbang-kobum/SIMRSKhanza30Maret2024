@@ -10457,7 +10457,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                 }
             }
             
-            //menampilkan catatan observasi Induksi Persalinan
+        /*    //menampilkan catatan observasi Induksi Persalinan
              if(chkCatatanObservasiInduksiPersalinan.isSelected()==true){
                  try {
                      rs2=koneksi.prepareStatement(
@@ -10518,7 +10518,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                          rs2.close();
                      }
                  }
-             }
+             }*/
             
             //menampilkan catatan Cek GDS
             if(chkCatatanCekGDS.isSelected()==true){
@@ -10576,7 +10576,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                 }
             }
             
-            //menampilkan catatan Keseimbangan Cairan
+        /*    //menampilkan catatan Keseimbangan Cairan
             if(chkCatatanKeseimbanganCairan.isSelected()==true){
                 try {
                     rs2=koneksi.prepareStatement(
@@ -10645,7 +10645,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                         rs2.close();
                     }
                 }
-            }
+            }*/
             
             //menampilkan penilaian ulang nyeri
             if(chkPenilaianUlangNyeri.isSelected()==true){
