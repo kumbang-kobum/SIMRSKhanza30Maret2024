@@ -12,6 +12,7 @@
 
 package simrskhanza;
 
+import bridging.ICareRiwayatPerawatan;
 import surat.SuratKontrol;
 import kepegawaian.DlgCariDokter;
 import kepegawaian.DlgCariPetugas;
@@ -1445,6 +1446,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         LingkarPerut = new widget.TextBox();
         Btn5Soap = new widget.Button();
         BtnTemplatePemeriksaan = new widget.Button();
+        BtnIcare = new widget.Button();//tambah chan
         BtnDokter3 = new widget.Button();//tambah chan
         BtnDokter2 = new widget.Button();//tambah chan
         BtnCari1 = new widget.Button();//tambah chan
@@ -2689,7 +2691,21 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });//tambah chan
         panelGlass12.add(BtnDokter3);//tambah chan
         BtnDokter3.setBounds(910, 50, 150, 23);//tambah chan
-
+        
+        BtnIcare.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/SWF24.png"))); // NOI18N
+        BtnIcare.setMnemonic('2');
+        BtnIcare.setText("History Icare");
+        BtnIcare.setToolTipText("Alt+2");
+        BtnIcare.setName("BtnIcare"); // NOI18N
+        BtnIcare.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnIcare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnIcareActionPerformed(evt);
+            }
+        });
+        panelGlass12.add(BtnIcare);
+        BtnIcare.setBounds(920, 160, 150, 30);
+        
         BtnDokter2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Radioactive.png"))); // NOI18N //tambah chan
         BtnDokter2.setMnemonic('2');//tambah chan
         BtnDokter2.setText("Intip Radiologi");//tambah chan
@@ -9142,6 +9158,29 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             cariradiologi.setVisible(true);//tambah chan
         }//tambah chan
     } //tambah chan
+    
+    private void BtnIcareActionPerformed(java.awt.event.ActionEvent evt) {       //tambah chan                                  
+        if(TNoRw.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
+            TCari.requestFocus();
+        }else{
+            if(tbPemeriksaan.getSelectedRow()!= -1){
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                String variabel = Sequel.cariIsi("select maping_dokter_dpjpvclaim.kd_dokter_bpjs from maping_dokter_dpjpvclaim where maping_dokter_dpjpvclaim.kd_dokter=?",tbPemeriksaan.getValueAt(tbPemeriksaan.getSelectedRow(),23).toString());
+                if(!variabel.equals("")){
+                    akses.setform("DlgReg");
+                    ICareRiwayatPerawatan dlgki=new ICareRiwayatPerawatan(null,false);
+                    dlgki.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                    dlgki.setLocationRelativeTo(internalFrame1);
+                    dlgki.setPasien(Sequel.cariIsi("select pasien.no_ktp from pasien inner join reg_periksa on pasien.no_rkm_medis = reg_periksa.no_rkm_medis where pasien.no_rkm_medis=?",TNoRM.getText()),variabel);
+                    dlgki.setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(null,"Maaf, Dokter tidak terdaftar di mapping dokter BPJS...!!!");
+                }
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        }
+    } //tambah chan akhir
 
     private void BtnCari1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         //Menampilkan Keperawatan Ralan //edit-novan
@@ -9574,6 +9613,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Button BtnEdukasiPasienKeluarga;
     private widget.Button BtnHapus;
     private widget.Button BtnHasilPemeriksaanUSG;
+    private widget.Button BtnIcare;//tambah chan
     private widget.Button BtnInformasiObat;
     private widget.Button BtnInputObat;
     private widget.Button BtnJadwalOperasi;
