@@ -2497,7 +2497,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
         chkAsuhanKeperawatanRanapNeonatus.setSelected(false);
         chkAsuhanKeperawatanRalanPsikiatri.setSelected(false);
         chkAsuhanMedisRalan.setSelected(false);
-        chkAsuhanMedisIGD.setSelected(false);
+        chkAsuhanMedisIGD.setSelected(true); 
         chkAsuhanMedisRalanKandungan.setSelected(false);
         chkAsuhanMedisRalanBayi.setSelected(false);
         chkAsuhanMedisRalanTHT.setSelected(false);
@@ -2512,14 +2512,14 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
         chkProsedurTindakan.setSelected(false);
         chkCatatanDokter.setSelected(false);
         chkHemodialisa.setSelected(false);
-        chkPemeriksaanRalan.setSelected(false);
+        chkPemeriksaanRalan.setSelected(true);
         chkPemeriksaanObstetriRalan.setSelected(false);
         chkPemeriksaanGenekologiRalan.setSelected(false);
         chkPemeriksaanRanap.setSelected(false);
         chkPemeriksaanObstetriRanap.setSelected(false);
         chkPemeriksaanGenekologiRanap.setSelected(false);
         chkSkriningGiziLanjut.setSelected(false);
-        chkAsuhanGizi.setSelected(false);
+        chkAsuhanGizi.setSelected(true);
         chkMonitoringGizi.setSelected(false);
         chkTindakanRalanDokter.setSelected(true);
         chkTindakanRalanParamedis.setSelected(true);
@@ -2528,7 +2528,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
         chkTindakanRanapParamedis.setSelected(true);
         chkTindakanRanapDokterParamedis.setSelected(true);
         chkPenggunaanKamar.setSelected(false);
-        chkOperasiVK.setSelected(false);
+        chkOperasiVK.setSelected(true);
         chkPemeriksaanRadiologi.setSelected(true);
         chkPemeriksaanLaborat.setSelected(true);
         chkPemberianObat.setSelected(true);
@@ -2536,9 +2536,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
         chkResepPulang.setSelected(true);
         chkTambahanBiaya.setSelected(false);
         chkPotonganBiaya.setSelected(false);
-        chkResume.setSelected(false);
+        chkResume.setSelected(true);
         chkBerkasDigital.setSelected(true);
-        chkUjiFungsiKFR.setSelected(false);
+        chkUjiFungsiKFR.setSelected(true);
         chkAsuhanKeperawatanIGD.setSelected(false);
         chkCatatanObservasiIGD.setSelected(false);
         chkCatatanObservasiRanap.setSelected(false);
@@ -2649,9 +2649,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
         chkPemeriksaanRanap.setSelected(false);
         chkPemeriksaanObstetriRanap.setSelected(false);
         chkPemeriksaanGenekologiRanap.setSelected(false);
-        chkSkriningGiziLanjut.setSelected(false);
+        chkSkriningGiziLanjut.setSelected(true);
         chkAsuhanGizi.setSelected(true);
-        chkMonitoringGizi.setSelected(false);
+        chkMonitoringGizi.setSelected(true);
         chkTindakanRalanDokter.setSelected(true);
         chkTindakanRalanParamedis.setSelected(true);
         chkTindakanRalanDokterParamedis.setSelected(true);
@@ -2700,7 +2700,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
         chkTimeOutSebelumInsisi.setSelected(false);
         chkSignOutSebelumMenutupLuka.setSelected(false);
         chkChecklistPostOperasi.setSelected(false);
-        chkRekonsiliasiObat.setSelected(false);
+        chkRekonsiliasiObat.setSelected(true);
         chkPenilaianPasienTerminal.setSelected(false);
         chkMonitoringReaksiTranfusi.setSelected(false);
         chkPenilaianKorbanKekerasan.setSelected(false);
@@ -2714,7 +2714,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
         chkPenilaianPasienKeracunan.setSelected(false);
         chkAsuhanMedisRalanBedahMulut.setSelected(false);
         chkPemantauanMOEWSObstetri.setSelected(false);
-        chkCatatanADIMEGizi.setSelected(false);
+        chkCatatanADIMEGizi.setSelected(true);
         chkAsuhanKeperawatanRalanGeriatri.setSelected(false);
         chkChecklistKriteriaMasukHCU.setSelected(false);
         chkChecklistKriteriaKeluarHCU.setSelected(false);
