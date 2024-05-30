@@ -6241,7 +6241,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         }
 }//GEN-LAST:event_BtnPrintKeyPressed
 
-    private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
+    private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {   //tambah novan                                       
         petugas.dispose();
         dokter.dispose();
         pasien.dispose();
@@ -6249,6 +6249,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             i=JOptionPane.showConfirmDialog(null, "Mau skalian update status pasien sudah diperiksa ????","Konfirmasi",JOptionPane.YES_NO_OPTION);
             if(i==JOptionPane.YES_OPTION){
                 Sequel.mengedit("reg_periksa","no_rawat=?","stts=?",2,new String[]{"Sudah",TNoRw.getText()});
+                Sequel.menyimpan("mutasi_berkas","'"+TNoRw.getText()+"','Sudah Periksa',now(),now(),NOW() + INTERVAL 2 MINUTE,'0000-00-00 00:00:00','0000-00-00 00:00:00','0000-00-00 00:00:00'","status='Sudah Periksa',sudah=NOW() + INTERVAL 1 MINUTE","no_rawat='"+TNoRw.getText()+"'"); //novan kebutuhan mjkn ketika simpan soap = sudah pelayanan poli
             }
         } catch (Exception e) {
         }
