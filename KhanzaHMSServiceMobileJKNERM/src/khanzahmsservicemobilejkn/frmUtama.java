@@ -457,7 +457,7 @@ public class frmUtama extends javax.swing.JFrame {
                                 }
                                 
                                 if(task3.equals("")){
-                                    datajam=Sequel.cariIsi("select referensi_mobilejkn_bpjs.validasi from referensi_mobilejkn_bpjs where referensi_mobilejkn_bpjs.no_rawat=?",rs.getString("no_rawat"));
+                                    datajam=Sequel.cariIsi("select concat(pemeriksaan_ralan.tgl_perawatan,' ',pemeriksaan_ralan.jam_rawat) from pemeriksaan_ralan where pemeriksaan_ralan.no_rawat='"+rs.getString("no_rawat")+"'and pemeriksaan_ralan.nip NOT LIKE '"+rs.getString("kd_dokter")+"'ORDER BY pemeriksaan_ralan.jam_rawat ASC"); //tambah chan
                                     if(!datajam.equals("")){
                                         if(Sequel.menyimpantf2("referensi_mobilejkn_bpjs_taskid","?,?,?","task id",3,new String[]{rs.getString("no_rawat"),"3",datajam})==true){
                                             parsedDate = dateFormat.parse(datajam);
@@ -494,7 +494,7 @@ public class frmUtama extends javax.swing.JFrame {
                                 }
                                 
                                 if(task4.equals("")){
-                                    datajam=Sequel.cariIsi("select concat(pemeriksaan_ralan.tgl_perawatan,' ',pemeriksaan_ralan.jam_rawat) from pemeriksaan_ralan where pemeriksaan_ralan.no_rawat=?",rs.getString("no_rawat"));
+                                    datajam=Sequel.cariIsi("select concat(pemeriksaan_ralan.tgl_perawatan,' ',pemeriksaan_ralan.jam_rawat) from pemeriksaan_ralan where pemeriksaan_ralan.no_rawat='"+rs.getString("no_rawat")+"'and pemeriksaan_ralan.nip LIKE '"+rs.getString("kd_dokter")+"'ORDER BY pemeriksaan_ralan.jam_rawat ASC"); //tambah chan
                                     if(!datajam.equals("")){
                                         if(Sequel.menyimpantf2("referensi_mobilejkn_bpjs_taskid","?,?,?","task id",3,new String[]{rs.getString("no_rawat"),"4",datajam})==true){
                                             parsedDate = dateFormat.parse(datajam);
