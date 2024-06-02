@@ -3037,8 +3037,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                 ps=koneksi.prepareStatement(
                     "select reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg,reg_periksa.status_lanjut,"+
                     "reg_periksa.kd_dokter,dokter.nm_dokter,reg_periksa.umurdaftar,reg_periksa.sttsumur,"+
-                    "poliklinik.kd_poli,poliklinik.nm_poli,penjab.png_jawab from reg_periksa inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter "+
-                    "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab  on reg_periksa.kd_pj=penjab.kd_pj  "+
+                    "poliklinik.kd_poli,poliklinik.nm_poli,penjab.png_jawab,bridging_sep.no_sep from reg_periksa inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter "+ //novan penambahan no SEP "bridging_sep.no_sep"
+                    "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab on reg_periksa.kd_pj=penjab.kd_pj left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat  "+ //novan penambahan no SEP "left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat"
                     "where reg_periksa.stts<>'Batal' and reg_periksa.no_rkm_medis=? order by reg_periksa.tgl_registrasi");
             }else if(R3.isSelected()==true){
                 ps=koneksi.prepareStatement(
