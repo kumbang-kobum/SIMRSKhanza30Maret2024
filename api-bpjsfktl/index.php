@@ -599,7 +599,7 @@
                                                                 }else{
                                                                     $response = array(
                                                                         'metadata' => array(
-                                                                            'message' => 'Kuota penuuuh...!',
+                                                                            'message' => 'Kuota MJKN penuh!! silahkan lakukan pendaftaran di RS',
                                                                             'code' => 201
                                                                         )
                                                                     ); 
