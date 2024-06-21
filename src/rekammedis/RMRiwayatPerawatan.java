@@ -2487,7 +2487,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     }//GEN-LAST:event_tbRegistrasiMouseClicked
 //tambah chan
     private void BtnCariBpjsRalanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariBpjsRalanActionPerformed
-        chkTriase.setSelected(false);
+        chkTriase.setSelected(true);
         chkAsuhanKeperawatanRalan.setSelected(false);
         chkAsuhanKeperawatanRalanGigi.setSelected(false);
         chkAsuhanKeperawatanRalanBayi.setSelected(false);
@@ -3030,15 +3030,15 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                 ps=koneksi.prepareStatement(
                     "select reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg,reg_periksa.status_lanjut,"+
                     "reg_periksa.kd_dokter,dokter.nm_dokter,reg_periksa.umurdaftar,reg_periksa.sttsumur,"+
-                    "poliklinik.kd_poli,poliklinik.nm_poli,penjab.png_jawab,bridging_sep.no_sep from reg_periksa inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter "+ //novan penambahan no SEP "bridging_sep.no_sep"
-                    "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab on reg_periksa.kd_pj=penjab.kd_pj left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat  "+ //novan penambahan no SEP "left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat"
+                    "poliklinik.kd_poli,poliklinik.nm_poli,penjab.png_jawab,bridging_sep.no_sep from reg_periksa inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter "+ //tambah chan penambahan no SEP "bridging_sep.no_sep"
+                    "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab on reg_periksa.kd_pj=penjab.kd_pj left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat  "+ //tambah chan penambahan no SEP "left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat"
                     "where reg_periksa.stts<>'Batal' and reg_periksa.no_rkm_medis=? order by reg_periksa.tgl_registrasi desc limit 5"); //novan pilih no rawat dri riwayat kunjungan
             }else if(R2.isSelected()==true){
                 ps=koneksi.prepareStatement(
                     "select reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg,reg_periksa.status_lanjut,"+
                     "reg_periksa.kd_dokter,dokter.nm_dokter,reg_periksa.umurdaftar,reg_periksa.sttsumur,"+
-                    "poliklinik.kd_poli,poliklinik.nm_poli,penjab.png_jawab,bridging_sep.no_sep from reg_periksa inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter "+ //novan penambahan no SEP "bridging_sep.no_sep"
-                    "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab on reg_periksa.kd_pj=penjab.kd_pj left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat  "+ //novan penambahan no SEP "left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat"
+                    "poliklinik.kd_poli,poliklinik.nm_poli,penjab.png_jawab,bridging_sep.no_sep from reg_periksa inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter "+ //tambah chan penambahan no SEP "bridging_sep.no_sep"
+                    "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab on reg_periksa.kd_pj=penjab.kd_pj left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat  "+ //tambah chan penambahan no SEP "left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat"
                     "where reg_periksa.stts<>'Batal' and reg_periksa.no_rkm_medis=? order by reg_periksa.tgl_registrasi");
             }else if(R3.isSelected()==true){
                 ps=koneksi.prepareStatement(
@@ -3052,8 +3052,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                 ps=koneksi.prepareStatement(
                     "select reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg,reg_periksa.status_lanjut,"+
                     "reg_periksa.kd_dokter,dokter.nm_dokter,reg_periksa.umurdaftar,reg_periksa.sttsumur,"+
-                    "poliklinik.kd_poli,poliklinik.nm_poli,penjab.png_jawab,bridging_sep.no_sep from reg_periksa inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter "+ //novan penambahan no SEP "bridging_sep.no_sep"
-                    "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab  on reg_periksa.kd_pj=penjab.kd_pj left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat "+ //novan penambahan no SEP "left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat"
+                    "poliklinik.kd_poli,poliklinik.nm_poli,penjab.png_jawab,bridging_sep.no_sep from reg_periksa inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter "+ //tambah chan penambahan no SEP "bridging_sep.no_sep"
+                    "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab  on reg_periksa.kd_pj=penjab.kd_pj left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat "+ //tambah chanpenambahan no SEP "left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat"
                     "where reg_periksa.stts<>'Batal' and reg_periksa.no_rkm_medis=? order by reg_periksa.tgl_registrasi desc"); //novan pilih no rawat dri riwayat kunjungan
             }
             
@@ -3077,7 +3077,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                     tabModeRegistrasi.addRow(new String[]{
                         i+"",rs.getString("no_rawat"),rs.getString("tgl_registrasi"),rs.getString("jam_reg"),
                         rs.getString("kd_dokter"),rs.getString("nm_dokter"),rs.getString("umurdaftar")+" "+rs.getString("sttsumur"),
-                        rs.getString("kd_poli")+" "+rs.getString("nm_poli"),rs.getString("png_jawab"),rs.getString("no_sep") //novan penambahan no SEP ",rs.getString("png_jawab")"
+                        rs.getString("kd_poli")+" "+rs.getString("nm_poli"),rs.getString("png_jawab"),rs.getString("no_sep") //tambah chan penambahan no SEP ",rs.getString("png_jawab")"
                     });
                     ps2=koneksi.prepareStatement(
                             "select rujukan_internal_poli.kd_dokter,dokter.nm_dokter,"+
@@ -3185,11 +3185,11 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                 ps=koneksi.prepareStatement(
                     "select reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg,"+
                     "reg_periksa.kd_dokter,dokter.nm_dokter,poliklinik.nm_poli,reg_periksa.p_jawab,reg_periksa.almt_pj,"+
-                    "reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.status_lanjut,penjab.png_jawab,"+
+                    "reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.status_lanjut,penjab.png_jawab,bridging_sep.no_sep,bridging_sep.klsrawat,"+//tambah chan
                     "reg_periksa.umurdaftar,reg_periksa.sttsumur "+
                     "from reg_periksa inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter "+
                     "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli "+
-                    "inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
+                    "inner join penjab on reg_periksa.kd_pj=penjab.kd_pj left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat "+//tambah chan
                     "where reg_periksa.stts<>'Batal' and reg_periksa.no_rkm_medis=? order by reg_periksa.tgl_registrasi");
             }else if(R3.isSelected()==true){
                 ps=koneksi.prepareStatement(
