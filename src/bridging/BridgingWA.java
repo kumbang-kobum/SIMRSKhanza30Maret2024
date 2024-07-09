@@ -469,14 +469,17 @@ public class BridgingWA {
 }
 
 //informasi dokter tidak buka poli
-    public String sendWaPoliTutup(String no_rawat){
+    public String sendWaPoliTutup(String no_rawat, String tanggal, String poli, String no_reg){
         try {
-            message = "Mengingatkan kembali, kepada saudara/i 📢\n👔 Nama: *__*\n🗃️ No.RM: \n"
-                    + "📆 Tgl booking:\n🚪 poliklinik: \n📆 Tgl periksa: \n🎯 No antrian: .\n\n"
-                    + "Untuk konfirmasi kehadiran, cukup membalas pesan ini dengan iya/tidak.\n\n\nCustomer Service "+akses.getkode();
-            number = Sequel.cariIsi("SELECT pasien.no_tlp FROM pasien " +
-                        "INNER JOIN reg_periksa ON pasien.no_rkm_medis = reg_periksa.no_rkm_medis " +
-                        "WHERE reg_periksa.no_rawat = " + no_rawat);
+            String no_rkm_medis = Sequel.cariIsi("SELECT no_rkm_medis FROM reg_periksa WHERE no_rawat = '" + no_rawat + "'");
+            String nama = Sequel.cariIsi("SELECT nm_pasien FROM pasien WHERE no_rkm_medis = '" + no_rkm_medis + "'");
+            message = "kepada saudara/i 📢\n👔 Nama: *_"+nama+"_*\n"
+                    + "🗃️ No.RM: "+no_rkm_medis+"\n"
+                    + "📆 Tgl periksa:"+tanggal+"\n"
+                    + "🚪 poliklinik: *"+poli+"*\n"
+                    + "🎯 No antrian: *"+no_reg+"*.\n"
+                    + "> Customer Service "+akses.getnamars();
+            number = Sequel.cariIsi("SELECT no_tlp FROM pasien WHERE no_rkm_medis = "+no_rkm_medis);
             sender = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'sender'");
             api_key = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'api_key'");
             urlApi = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'urlapi'");
@@ -497,7 +500,7 @@ public class BridgingWA {
             root = mapper.readTree(response.getBody());
             System.out.println(root);
             if(root.path("status").asText().equals("true")){
-                //JOptionPane.showMessageDialog(null,root.path("msg").asText());
+                JOptionPane.showMessageDialog(null,root.path("msg").asText());
                 reurn = root.path("msg").asText();
             }else {
                 JOptionPane.showMessageDialog(null,root.path("msg").asText());
@@ -509,7 +512,155 @@ public class BridgingWA {
                 JOptionPane.showMessageDialog(null,"Koneksi ke server watzap.vnsimple.com terputus...!");
             }
         }
-        return token;
-    }    
+        return api_key; 
+    }  
+    
+    //kirim hasil baca lab ke pasien
+        public String SendHasilBacaLab(String no_rawat) {
+   
+    try {
+        String no_rkm_medis = Sequel.cariIsi("SELECT no_rkm_medis FROM reg_periksa WHERE no_rawat = '" + no_rawat + "'");
+        String nama = Sequel.cariIsi("SELECT nm_pasien FROM pasien WHERE no_rkm_medis = '" + no_rkm_medis + "'");
+        String hasillab = Sequel.cariIsi("SELECT nilai FROM detail_periksa_lab WHERE no_rawat = '" + no_rawat + "'");
+        String nilairujuk = Sequel.cariIsi("SELECT nilai_rujukan FROM detail_periksa_lab WHERE no_rawat = '" + no_rawat + "'");
+//        String pemeriksaan = Sequel.cariIsi("SELECT nm_perawatan.jns_perawatan_lab inner join detail_periksa_lab FROM detail_periksa_lab WHERE no_rawat = '" + no_rawat + "'");
+        String pemeriksaan = Sequel.cariIsi("SELECT jns_perawatan_lab.nm_perawatan " +
+                                    "FROM jns_perawatan_lab " +
+                                    "INNER JOIN detail_periksa_lab " +
+                                    "ON jns_perawatan_lab.kd_jenis_prw = detail_periksa_lab.kd_jenis_prw " +
+                                    "WHERE detail_periksa_lab.no_rawat = '" + no_rawat + "'");
+        number = Sequel.cariIsi("SELECT no_tlp FROM pasien WHERE no_rkm_medis = '" + no_rkm_medis + "'");
+
+        message = "kepada saudara/i 📢\n👔 Nomor Rawat: *_" + no_rawat + "_*\n🗃️ No.RM: " + no_rkm_medis + "\n Pemeriksaan :"+ pemeriksaan +"\n Nama: " + nama + "\n Hasil Lab: " + hasillab + "\n Nilai Rujuk :" +nilairujuk+
+                         "\nTerimakasih telah berkunjung semoga selalu sehat.\n\n\nUnit Laboratorium Petugas : " +Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",akses.getkode());
+        
+        sender = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'sender'");
+         api_key = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'api_key'");
+         urlApi = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'urlapi'");
+         url = urlApi + "/send-message";
+        
+        HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+            MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();map.add("api_key", api_key);
+            map.add("sender", sender);
+            map.add("number", number);
+            map.add("message", message);
+
+            HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
+
+            ResponseEntity<String> response = new RestTemplate().postForEntity( url, request , String.class );
+            root = mapper.readTree(response.getBody());
+            System.out.println(root);
+            if(root.path("status").asText().equals("true")){
+            reurn = root.path("msg").asText();
+            }else {
+                JOptionPane.showMessageDialog(null,root.path("msg").asText());
+            }
+        } catch (Exception ex) {
+            System.out.println("Notifikasi : "+ex);
+            System.out.println(url);
+            if(ex.toString().contains("UnknownHostException")){
+                JOptionPane.showMessageDialog(null,"Koneksi ke server watzap.vnsimple.com terputus...!");
+            }
+        }
+        return token;   
+}
+//hasil baca laboratorium kirim ke dokter perujuk
+    public String SendHasilBacaLabdr(String no_rawat) {
+   
+    try {
+        String no_rkm_medis = Sequel.cariIsi("SELECT no_rkm_medis FROM reg_periksa WHERE no_rawat = '" + no_rawat + "'");
+        String nama = Sequel.cariIsi("SELECT nm_pasien FROM pasien WHERE no_rkm_medis = '" + no_rkm_medis + "'");
+        String hasilrad = Sequel.cariIsi("SELECT nilai FROM detail_periksa_lab WHERE no_rawat = '" + no_rawat + "'");
+        //String mediarad = Sequel.cariIsi("SELECT lokasi_gambar FROM gambar_radiologi WHERE no_rawat = '" + no_rawat + "'");
+        String querydrperujuk = "SELECT dokter.no_telp FROM dokter " +
+               "INNER JOIN periksa_lab ON dokter.kd_dokter = periksa_lab.dokter_perujuk " +
+               "INNER JOIN detail_periksa_lab ON periksa_lab.no_rawat = periksa_lab.no_rawat " +
+               "WHERE detail_periksa_lab.no_rawat = '" + no_rawat + "'";
+        number = Sequel.cariIsi(querydrperujuk);
+
+        message = "Berikut dokter hasil Laborat : 📢\n👔 Nomor Rawat: *_" + no_rawat + "_*\n🗃️ No.RM: " + no_rkm_medis + "\n Nama: " + nama + "\n Hasil Baca: " + hasilrad + 
+                         "\nTerimakasih telah berkunjung semoga selalu sehat.\n\n\nUnit Radiologi Unit Radiologi Petugas : " +Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",akses.getkode());
+        
+        sender = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'sender'");
+         api_key = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'api_key'");
+         urlApi = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'urlapi'");
+         url = urlApi + "/send-message";
+        
+        HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+            MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();map.add("api_key", api_key);
+            map.add("sender", sender);
+            map.add("number", number);
+            map.add("message", message);
+
+            HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
+
+            ResponseEntity<String> response = new RestTemplate().postForEntity( url, request , String.class );
+            root = mapper.readTree(response.getBody());
+            System.out.println(root);
+            if(root.path("status").asText().equals("true")){
+            reurn = root.path("msg").asText();
+            }else {
+                JOptionPane.showMessageDialog(null,root.path("msg").asText());
+            }
+        } catch (Exception ex) {
+            System.out.println("Notifikasi : "+ex);
+            System.out.println(url);
+            if(ex.toString().contains("UnknownHostException")){
+                JOptionPane.showMessageDialog(null,"Koneksi ke server watzap.vnsimple.com terputus...!");
+            }
+        }
+        return token;   
+}
+    //kirim pesan dinamis dlgre
+    public String sendWaDlgReg(String no_rawat, String tanggal, String poli, String no_reg, String pesan_dinamis){
+        try {
+            String no_rkm_medis = Sequel.cariIsi("SELECT no_rkm_medis FROM reg_periksa WHERE no_rawat = '" + no_rawat + "'");
+            String nama = Sequel.cariIsi("SELECT nm_pasien FROM pasien WHERE no_rkm_medis = '" + no_rkm_medis + "'");
+            message = "kepada saudara/i 📢\n👔 Nama: *_"+nama+"_*\n"
+                    + "🗃️ No.RM: "+no_rkm_medis+"\n"
+                    + "📆 Tgl periksa:"+tanggal+"\n"
+                    + "🚪 poliklinik: *"+poli+"*\n"
+                    + "🎯 No antrian: *"+no_reg+"*.\n"
+                    + "*"+pesan_dinamis+"*\n\n"
+                    + "> Customer Service "+akses.getnamars();
+            number = Sequel.cariIsi("SELECT no_tlp FROM pasien WHERE no_rkm_medis = "+no_rkm_medis);
+            sender = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'sender'");
+            api_key = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'api_key'");
+            urlApi = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'urlapi'");
+            url = urlApi+"/send-message";
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+            MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
+//            map.add("type", "text");
+            map.add("api_key", api_key);
+            map.add("sender", sender);
+            map.add("number", number);
+            map.add("message", message);
+
+            HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
+
+            ResponseEntity<String> response = new RestTemplate().postForEntity( url, request , String.class );
+            root = mapper.readTree(response.getBody());
+            System.out.println(root);
+            if(root.path("status").asText().equals("true")){
+                JOptionPane.showMessageDialog(null,root.path("msg").asText());
+                reurn = root.path("msg").asText();
+            }else {
+                JOptionPane.showMessageDialog(null,root.path("msg").asText());
+            }
+        } catch (Exception ex) {
+            System.out.println("Notifikasi : "+ex);
+            System.out.println(url);
+            if(ex.toString().contains("UnknownHostException")){
+                JOptionPane.showMessageDialog(null,"Koneksi ke server watzap.vnsimple.com terputus...!");
+            }
+        }
+        return api_key;
+    }
 
 }

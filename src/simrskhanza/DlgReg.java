@@ -205,6 +205,10 @@ import surat.SuratPulangAtasPermintaanSendiri;
 import surat.SuratSakit;
 import surat.SuratSakitPihak2;
 import surat.SuratTidakHamil;
+import bridging.BridgingWA;//tambah chan watzap
+//import widget.Button;
+//import widget.ScrollPane;
+//import widget.TextArea;
 /**
  *
  * @author dosen
@@ -220,6 +224,7 @@ public final class DlgReg extends javax.swing.JDialog {
     private DlgCariPoli poli=new DlgCariPoli(null,false);
     private DlgCariPoli2 poli2=new DlgCariPoli2(null,false);
     public  DlgRujukMasuk rujukmasuk=new DlgRujukMasuk(null,false);
+    private BridgingWA kirimwa=new BridgingWA();//tambah chan watzap
     private PreparedStatement ps,ps3,pscaripiutang;
     private ResultSet rs;
     private int pilihan=0,i=0,kuota=0,jmlparsial=0;
@@ -275,6 +280,10 @@ public final class DlgReg extends javax.swing.JDialog {
     private char[] UNIT_1_360 = {ESC,40, 'U', '1', '0'};
     // move vertical print position
     private char[] VERTICAL_PRINT_POSITION = {ESC, 'J', '1'};
+////    private Button BtnKirimWA;
+//    private ScrollPane scrollPane4;
+//    private TextArea PesanWaDinamis;
+//    private Button BtnKirimWADinamis;
     
 
     /** Creates new form DlgReg
@@ -1284,6 +1293,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel10 = new widget.Label();
         LCount = new widget.Label();
         BtnKeluar = new widget.Button();
+        BtnKirimWA = new widget.Button();//tambah chan
         panelGlass7 = new widget.panelisi();
         jLabel15 = new widget.Label();
         DTPCari1 = new widget.Tanggal();
@@ -1343,6 +1353,10 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel31 = new widget.Label();
         NoKa = new widget.TextBox();
         btnCekBridging = new widget.Button();
+        scrollPane4 = new widget.ScrollPane(); //tambah chan watzap
+        PesanWaDinamis = new widget.TextArea(); //tambah chan watzap
+        BtnKirimWADinamis = new widget.Button(); //tambah chan watzap
+        jLabel25 = new widget.Label(); //tambah chan watzap
         ChkInput = new widget.CekBox();
         TabRawat = new javax.swing.JTabbedPane();
         Scroll = new widget.ScrollPane();
@@ -6426,7 +6440,30 @@ public final class DlgReg extends javax.swing.JDialog {
             }
         });
         panelGlass6.add(BtnKeluar);
+        //tambha chan
+        BtnKirimWA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/whatsapp.png"))); // NOI18N
+        BtnKirimWA.setMnemonic('Z');
+        BtnKirimWA.setText("Kirim WA");
+        BtnKirimWA.setToolTipText("Alt+Z");
+        BtnKirimWA.setName("BtnKirimWA"); // NOI18N
+        BtnKirimWA.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnKirimWA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnKirimWAActionPerformed(evt);
+            }
+        });
+        BtnKirimWA.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnKirimWAKeyPressed(evt);
+            }
 
+            private void BtnKirimWAKeyPressed(KeyEvent evt) {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+        });
+        panelGlass6.add(BtnKirimWA);
+
+//akhir tambah chan
         jPanel2.add(panelGlass6, java.awt.BorderLayout.PAGE_END);
 
         panelGlass7.setName("panelGlass7"); // NOI18N
@@ -6891,6 +6928,52 @@ public final class DlgReg extends javax.swing.JDialog {
         });
         FormInput.add(btnCekBridging);
         btnCekBridging.setBounds(852, 102, 28, 23);
+        
+        scrollPane4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))); //tambah chan
+        PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
+        
+         scrollPane4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))); //novan watzap buka
+         scrollPane4.setName("scrollPane4"); // NOI18N
+
+         PesanWaDinamis.setBorder(null);
+         PesanWaDinamis.setColumns(20);
+         PesanWaDinamis.setRows(5);
+         PesanWaDinamis.setName("PesanWaDinamis"); // NOI18N
+         PesanWaDinamis.addKeyListener(new java.awt.event.KeyAdapter() {
+             public void keyPressed(java.awt.event.KeyEvent evt) {
+                 PesanWaDinamisKeyPressed(evt);
+             }
+         });
+         scrollPane4.setViewportView(PesanWaDinamis);
+
+         FormInput.add(scrollPane4);
+         scrollPane4.setBounds(887, 28, 240, 110);
+
+         BtnKirimWADinamis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/whatsapp.png"))); // NOI18N
+         BtnKirimWADinamis.setMnemonic('H');
+         BtnKirimWADinamis.setText("Kirim WA");
+         BtnKirimWADinamis.setToolTipText("Alt+H");
+         BtnKirimWADinamis.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+         BtnKirimWADinamis.setName("BtnKirimWADinamis"); // NOI18N
+         BtnKirimWADinamis.setPreferredSize(new java.awt.Dimension(100, 30));
+         BtnKirimWADinamis.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 BtnKirimWADinamisActionPerformed(evt);
+             }
+         });
+         BtnKirimWADinamis.addKeyListener(new java.awt.event.KeyAdapter() {
+             public void keyPressed(java.awt.event.KeyEvent evt) {
+                 BtnKirimWADinamisKeyPressed(evt);
+             }
+         });
+         FormInput.add(BtnKirimWADinamis);
+         BtnKirimWADinamis.setBounds(890, 140, 240, 20);
+
+         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+         jLabel25.setText("Pesan Whatsapp :");
+         jLabel25.setName("jLabel25"); // NOI18N
+         FormInput.add(jLabel25);
+         jLabel25.setBounds(890, 10, 140, 20); //novan watzap tutup
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -13910,6 +13993,31 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         }
     }//GEN-LAST:event_MnCheckListKriteriaMasukHCUActionPerformed
 
+    private void PesanWaDinamisKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PesanWaDinamisKeyPressed //novan watzap buka
+
+     }//GEN-LAST:event_PesanWaDinamisKeyPressed
+
+     private void sendWaDlgReg(){
+         for(i=0;i<tbPetugas.getRowCount();i++){
+             if(tbPetugas.getValueAt(i,0).toString().equals("true")){
+                 kirimwa.sendWaDlgReg(tbPetugas.getValueAt(i,2).toString(),tbPetugas.getValueAt(i,3).toString(),tbPetugas.getValueAt(i,11).toString(),tbPetugas.getValueAt(i,1).toString(),PesanWaDinamis.getText().toString());
+             }
+         } //edit-novan untuk WaGateway
+     }
+     private void BtnKirimWADinamisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKirimWADinamisActionPerformed
+         if(PesanWaDinamis.getText().trim().equals("")){
+         JOptionPane.showMessageDialog(rootPane,"Maaf, Tidak bisa kirim WhatsApp jika pesan kosong.. !!");
+         }else{
+             i=JOptionPane.showConfirmDialog(null, "Apakah yakin isi pesan yang akan di kirim sudah sesuai...!!!\n","Konfirmasi",JOptionPane.YES_NO_OPTION);
+             if(i==JOptionPane.YES_OPTION){
+                 sendWaDlgReg();
+             }
+         }
+     }//GEN-LAST:event_BtnKirimWADinamisActionPerformed
+
+     private void BtnKirimWADinamisKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKirimWADinamisKeyPressed
+         // TODO add your handling code here:
+     }//GEN-LAST:event_BtnKirimWADinamisKeyPressed //novan watzap tutup
     private void MnPenolakanAnjuranMedisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPenolakanAnjuranMedisActionPerformed
         if(tabMode.getRowCount()==0){
             JOptionPane.showMessageDialog(null,"Maaf, data registrasi sudah habis...!!!!");
@@ -14519,6 +14627,15 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         }
     }//GEN-LAST:event_MnSkorStewardPascaAnestesiActionPerformed
     
+    //tambah chan
+        private void BtnKirimWAActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        for(i=0;i<tbPetugas.getRowCount();i++){
+             if(tbPetugas.getValueAt(i,0).toString().equals("true")){
+                 kirimwa.sendWaPoliTutup(tbPetugas.getValueAt(i,2).toString(),tbPetugas.getValueAt(i,3).toString(),tbPetugas.getValueAt(i,11).toString(),tbPetugas.getValueAt(i,1).toString());
+             }
+         }//akhir tambah chan
+    }
+    
     private void MnSkorBromagePascaAnestesiActionPerformed(java.awt.event.ActionEvent evt) {                                                           
         if(tabMode.getRowCount()==0){
             JOptionPane.showMessageDialog(null,"Maaf, data registrasi sudah habis...!!!!");
@@ -14780,6 +14897,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private widget.Button BtnKeluar;
     private widget.Button BtnKeluar3;
     private widget.Button BtnKeluar4;
+    private widget.Button BtnKirimWADinamis; //novan watzap
     private widget.Button BtnPasien;
     private widget.Button BtnPrint;
     private widget.Button BtnPrint3;
@@ -14798,6 +14916,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private widget.ComboBox CmbMenit;
     private widget.TextBox CrDokter;
     private widget.TextBox CrDokter3;
+    private widget.Button BtnKirimWA;//tambah chan
     private widget.TextBox CrPoli;
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
@@ -15076,6 +15195,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private widget.TextBox NoTelp;
     private widget.TextBox NomorSurat;
     private javax.swing.JPanel PanelInput;
+    private widget.TextArea PesanWaDinamis; //novan watzap
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
     private widget.TextBox TAlmt;
@@ -15114,6 +15234,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private widget.Label jLabel22;
     private widget.Label jLabel23;
     private widget.Label jLabel24;
+    private widget.Label jLabel25; //novan watzap
     private widget.Label jLabel3;
     private widget.Label jLabel30;
     private widget.Label jLabel31;
@@ -15183,6 +15304,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private javax.swing.JMenuItem ppSuplesiJasaRaharja;
     private javax.swing.JMenuItem ppSuratKontrol;
     private javax.swing.JMenuItem ppSuratPRI;
+    private widget.ScrollPane scrollPane4; //novan watzap
     private widget.Table tbPetugas;
     private widget.Table tbPetugas2;
     // End of variables declaration//GEN-END:variables

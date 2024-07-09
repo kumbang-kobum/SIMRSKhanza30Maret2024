@@ -1,4 +1,5 @@
 package simrskhanza;
+import bridging.BridgingWA;//tambah chan
 import kepegawaian.DlgCariPetugas;
 import keuangan.Jurnal;
 import fungsi.WarnaTable;
@@ -46,6 +47,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
     private int i,jmlkunjungan=0,jmlpemeriksaan=0,jmlsubpemeriksaan=0;
     private PreparedStatement ps,ps2,ps3,ps4,psrekening,ps5,pspermintaan;
     private ResultSet rs,rs2,rs3,rs5,rsrekening,rspermintaan;
+    private BridgingWA kirimwa=new BridgingWA(); //tambah chan
     private String kamar,namakamar,datapasien="",finger="";
     private boolean sukses=false;
     private double ttl=0,item=0;
@@ -398,6 +400,8 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         BtnAll = new widget.Button();
         BtnPrint = new widget.Button();
         BtnKeluar = new widget.Button();
+        BtnKirimWA = new widget.Button();
+        BtnKirimWA1 = new widget.Button();
         TabRawat = new javax.swing.JTabbedPane();
         scrollPane1 = new widget.ScrollPane();
         tbDokter = new widget.Table();
@@ -1202,6 +1206,42 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
             }
         });
         panelisi1.add(BtnKeluar);
+
+        BtnKirimWA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/whatsapp.png"))); // NOI18N
+        BtnKirimWA.setMnemonic('H');
+        BtnKirimWA.setText("k pasien");
+        BtnKirimWA.setToolTipText("Alt+H");
+        BtnKirimWA.setName("BtnKirimWA"); // NOI18N
+        BtnKirimWA.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnKirimWA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnKirimWAActionPerformed(evt);
+            }
+        });
+        BtnKirimWA.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnKirimWAKeyPressed(evt);
+            }
+        });
+        panelisi1.add(BtnKirimWA);
+
+        BtnKirimWA1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/whatsapp.png"))); // NOI18N
+        BtnKirimWA1.setMnemonic('H');
+        BtnKirimWA1.setText("dr perujuk");
+        BtnKirimWA1.setToolTipText("Alt+H");
+        BtnKirimWA1.setName("BtnKirimWA1"); // NOI18N
+        BtnKirimWA1.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnKirimWA1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnKirimWA1ActionPerformed(evt);
+            }
+        });
+        BtnKirimWA1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnKirimWA1KeyPressed(evt);
+            }
+        });
+        panelisi1.add(BtnKirimWA1);
 
         internalFrame1.add(panelisi1, java.awt.BorderLayout.PAGE_END);
 
@@ -5972,6 +6012,30 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         }
     }//GEN-LAST:event_ppRiwayatBtnPrintActionPerformed
 
+    private void BtnKirimWAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKirimWAActionPerformed
+        if(tbDokter.getSelectedRow() > -1) {
+            String no_rawat = tbDokter.getValueAt(tbDokter.getSelectedRow(), 0).toString();
+
+            kirimwa.SendHasilBacaLab(no_rawat);
+        }
+    }//GEN-LAST:event_BtnKirimWAActionPerformed
+
+    private void BtnKirimWAKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKirimWAKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnKirimWAKeyPressed
+
+    private void BtnKirimWA1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKirimWA1ActionPerformed
+        if(tbDokter.getSelectedRow() > -1) {
+            String no_rawat = tbDokter.getValueAt(tbDokter.getSelectedRow(), 0).toString();
+
+            kirimwa.SendHasilBacaLabdr(no_rawat);
+        }    // TODO add your handling code here:
+    }//GEN-LAST:event_BtnKirimWA1ActionPerformed
+
+    private void BtnKirimWA1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKirimWA1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnKirimWA1KeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -5994,6 +6058,8 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     private widget.Button BtnCloseIn5;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
+    private widget.Button BtnKirimWA;
+    private widget.Button BtnKirimWA1;
     private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
     private widget.TextBox Kd2;
