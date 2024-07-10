@@ -387,7 +387,8 @@ public class BridgingWA {
                 + "Nomor Rawat: *_" + no_rawat + "_*\n"
                 + "🗃️ No.RM: " + no_rkm_medis + "\n "
                 + "Nama: " + nama + "\n "
-                + "Hasil Baca: " + hasilrad + "\n\n"
+                + "Hasil Baca Radiologi: \n"
+                +  hasilrad + "\n\n"
                 + "Terimakasih telah berkunjung semoga selalu sehat.\n\n\n"
                 + "Unit Radiologi Petugas : " +Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",akses.getkode());
         
@@ -441,7 +442,8 @@ public class BridgingWA {
                 + "Nomor Rawat: *_" + no_rawat + "_*\n🗃️ "
                 + "No.RM: " + no_rkm_medis + "\n "
                 + "Nama: " + nama + "\n "
-                + "Hasil Baca: " + hasilrad +""
+                + "Hasil Baca Radiologi: \n"
+                +  hasilrad +""
                 + "\nTerimakasih telah berkunjung semoga selalu sehat."
                 + "\n\n\nUnit Radiologi Petugas : " +Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",akses.getkode());
         
@@ -488,8 +490,8 @@ public class BridgingWA {
                     + "📆 Tgl periksa:"+tanggal+"\n"
                     + "🚪 poliklinik: *"+poli+"*\n"
                     + "🎯 No antrian: *"+no_reg+"*.\n"
-                    + "Diinformasika bahwa poli *"+poli+"* tidak buka/cuti peserta yang telah terdaftar akan dibatalkan"
-                    + "silangkan konfirmasi agar didaftarkan kembali disaat poli telah buka kembali. terimakasih"
+                    + "Diinformasika bahwa poli *"+poli+"* tidak buka/cuti peserta yang telah terdaftar akan dibatalkan "
+                    + "silangkan konfirmasi agar didaftarkan kembali disaat poli telah buka kembali. terimakasih\n"
                     + "Customer Service :  " +Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",akses.getkode())
                     + ""+akses.getnamars();
             number = Sequel.cariIsi("SELECT no_tlp FROM pasien WHERE no_rkm_medis = "+no_rkm_medis);
