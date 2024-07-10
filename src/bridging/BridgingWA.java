@@ -383,8 +383,13 @@ public class BridgingWA {
         String mediarad = Sequel.cariIsi("SELECT lokasi_gambar FROM gambar_radiologi WHERE no_rawat = '" + no_rawat + "'");
         number = Sequel.cariIsi("SELECT no_tlp FROM pasien WHERE no_rkm_medis = '" + no_rkm_medis + "'");
 
-        message = "kepada saudara/i 📢\n👔 Nomor Rawat: *_" + no_rawat + "_*\n🗃️ No.RM: " + no_rkm_medis + "\n Nama: " + nama + "\n Hasil Baca: " + hasilrad + 
-                         "\nTerimakasih telah berkunjung semoga selalu sehat.\n\n\nUnit Radiologi Petugas : " +Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",akses.getkode());
+        message = "kepada saudara/i 📢\n👔 "
+                + "Nomor Rawat: *_" + no_rawat + "_*\n"
+                + "🗃️ No.RM: " + no_rkm_medis + "\n "
+                + "Nama: " + nama + "\n "
+                + "Hasil Baca: " + hasilrad + "\n\n"
+                + "Terimakasih telah berkunjung semoga selalu sehat.\n\n\n"
+                + "Unit Radiologi Petugas : " +Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",akses.getkode());
         
         sender = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'sender'");
          api_key = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'api_key'");
@@ -432,8 +437,13 @@ public class BridgingWA {
                "WHERE hasil_radiologi.no_rawat = '" + no_rawat + "'";
         number = Sequel.cariIsi(querydrperujuk);
 
-        message = "Berikut dokter hasil radiologi : 📢\n👔 Nomor Rawat: *_" + no_rawat + "_*\n🗃️ No.RM: " + no_rkm_medis + "\n Nama: " + nama + "\n Hasil Baca: " + hasilrad + 
-                         "\nTerimakasih telah berkunjung semoga selalu sehat.\n\n\nUnit Radiologi Unit Radiologi Petugas : " +Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",akses.getkode());
+        message = "Berikut dokter hasil radiologi : 📢\n👔 "
+                + "Nomor Rawat: *_" + no_rawat + "_*\n🗃️ "
+                + "No.RM: " + no_rkm_medis + "\n "
+                + "Nama: " + nama + "\n "
+                + "Hasil Baca: " + hasilrad +""
+                + "\nTerimakasih telah berkunjung semoga selalu sehat."
+                + "\n\n\nUnit Radiologi Petugas : " +Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",akses.getkode());
         
         sender = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'sender'");
          api_key = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'api_key'");
@@ -478,7 +488,10 @@ public class BridgingWA {
                     + "📆 Tgl periksa:"+tanggal+"\n"
                     + "🚪 poliklinik: *"+poli+"*\n"
                     + "🎯 No antrian: *"+no_reg+"*.\n"
-                    + "> Customer Service "+akses.getnamars();
+                    + "Diinformasika bahwa poli *"+poli+"* tidak buka/cuti peserta yang telah terdaftar akan dibatalkan"
+                    + "silangkan konfirmasi agar didaftarkan kembali disaat poli telah buka kembali. terimakasih"
+                    + "Customer Service :  " +Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",akses.getkode())
+                    + ""+akses.getnamars();
             number = Sequel.cariIsi("SELECT no_tlp FROM pasien WHERE no_rkm_medis = "+no_rkm_medis);
             sender = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'sender'");
             api_key = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'api_key'");
@@ -523,7 +536,6 @@ public class BridgingWA {
         String nama = Sequel.cariIsi("SELECT nm_pasien FROM pasien WHERE no_rkm_medis = '" + no_rkm_medis + "'");
         String hasillab = Sequel.cariIsi("SELECT nilai FROM detail_periksa_lab WHERE no_rawat = '" + no_rawat + "'");
         String nilairujuk = Sequel.cariIsi("SELECT nilai_rujukan FROM detail_periksa_lab WHERE no_rawat = '" + no_rawat + "'");
-//        String pemeriksaan = Sequel.cariIsi("SELECT nm_perawatan.jns_perawatan_lab inner join detail_periksa_lab FROM detail_periksa_lab WHERE no_rawat = '" + no_rawat + "'");
         String pemeriksaan = Sequel.cariIsi("SELECT jns_perawatan_lab.nm_perawatan " +
                                     "FROM jns_perawatan_lab " +
                                     "INNER JOIN detail_periksa_lab " +
@@ -531,8 +543,15 @@ public class BridgingWA {
                                     "WHERE detail_periksa_lab.no_rawat = '" + no_rawat + "'");
         number = Sequel.cariIsi("SELECT no_tlp FROM pasien WHERE no_rkm_medis = '" + no_rkm_medis + "'");
 
-        message = "kepada saudara/i 📢\n👔 Nomor Rawat: *_" + no_rawat + "_*\n🗃️ No.RM: " + no_rkm_medis + "\n Pemeriksaan :"+ pemeriksaan +"\n Nama: " + nama + "\n Hasil Lab: " + hasillab + "\n Nilai Rujuk :" +nilairujuk+
-                         "\nTerimakasih telah berkunjung semoga selalu sehat.\n\n\nUnit Laboratorium Petugas : " +Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",akses.getkode());
+        message = "kepada saudara/i 📢\n👔 "
+                + "Nomor Rawat: *_" + no_rawat + "_*\n"
+                + "🗃️ No.RM: " + no_rkm_medis + "\n "
+                + "Pemeriksaan :"+ pemeriksaan +"\n "
+                + "Nama: " + nama + "\n "
+                + "Hasil Lab: " + hasillab + "\n "
+                + "Nilai Rujuk :" +nilairujuk+"\n"
+                + "Terimakasih telah berkunjung semoga selalu sehat.\n\n\n"
+                + "Unit Laboratorium Petugas : " +Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",akses.getkode());
         
         sender = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'sender'");
          api_key = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'api_key'");
@@ -580,8 +599,13 @@ public class BridgingWA {
                "WHERE detail_periksa_lab.no_rawat = '" + no_rawat + "'";
         number = Sequel.cariIsi(querydrperujuk);
 
-        message = "Berikut dokter hasil Laborat : 📢\n👔 Nomor Rawat: *_" + no_rawat + "_*\n🗃️ No.RM: " + no_rkm_medis + "\n Nama: " + nama + "\n Hasil Baca: " + hasilrad + 
-                         "\nTerimakasih telah berkunjung semoga selalu sehat.\n\n\nUnit Radiologi Unit Radiologi Petugas : " +Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",akses.getkode());
+        message = "Berikut dokter hasil Laborat : 📢\n👔 "
+                + "Nomor Rawat: *_" + no_rawat + "_*\n"
+                + "🗃️ No.RM: " + no_rkm_medis + "\n "
+                + "Nama: " + nama + "\n "
+                + "Hasil Baca: " + hasilrad 
+                +"\nTerimakasih telah berkunjung semoga selalu sehat."
+                + "\n\n\nUnit Radiologi Unit Petugas : " +Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",akses.getkode());
         
         sender = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'sender'");
          api_key = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'api_key'");
@@ -626,7 +650,8 @@ public class BridgingWA {
                     + "🚪 poliklinik: *"+poli+"*\n"
                     + "🎯 No antrian: *"+no_reg+"*.\n"
                     + "*"+pesan_dinamis+"*\n\n"
-                    + "> Customer Service "+akses.getnamars();
+                    + "> Customer Service :  " +Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",akses.getkode())
+                    + ""+akses.getnamars();
             number = Sequel.cariIsi("SELECT no_tlp FROM pasien WHERE no_rkm_medis = "+no_rkm_medis);
             sender = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'sender'");
             api_key = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'api_key'");
