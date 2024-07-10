@@ -2483,7 +2483,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     private void tbRegistrasiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbRegistrasiMouseClicked
         if(tabModeRegistrasi.getRowCount()!=0){
                  getNoRawat();
-         }//novan pilih no rawat riwayat perawatan
+         }//tambah chan novan pilih no rawat riwayat perawatan
     }//GEN-LAST:event_tbRegistrasiMouseClicked
 //tambah chan
     private void BtnCariBpjsRalanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariBpjsRalanActionPerformed
@@ -3032,7 +3032,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                     "reg_periksa.kd_dokter,dokter.nm_dokter,reg_periksa.umurdaftar,reg_periksa.sttsumur,"+
                     "poliklinik.kd_poli,poliklinik.nm_poli,penjab.png_jawab,bridging_sep.no_sep from reg_periksa inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter "+ //tambah chan penambahan no SEP "bridging_sep.no_sep"
                     "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab on reg_periksa.kd_pj=penjab.kd_pj left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat  "+ //tambah chan penambahan no SEP "left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat"
-                    "where reg_periksa.stts<>'Batal' and reg_periksa.no_rkm_medis=? order by reg_periksa.tgl_registrasi desc limit 5"); //novan pilih no rawat dri riwayat kunjungan
+                    "where reg_periksa.stts<>'Batal' and reg_periksa.no_rkm_medis=? order by reg_periksa.tgl_registrasi desc limit 5"); //tambah chan novan pilih no rawat dri riwayat kunjungan
             }else if(R2.isSelected()==true){
                 ps=koneksi.prepareStatement(
                     "select reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg,reg_periksa.status_lanjut,"+
@@ -3054,7 +3054,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                     "reg_periksa.kd_dokter,dokter.nm_dokter,reg_periksa.umurdaftar,reg_periksa.sttsumur,"+
                     "poliklinik.kd_poli,poliklinik.nm_poli,penjab.png_jawab,bridging_sep.no_sep from reg_periksa inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter "+ //tambah chan penambahan no SEP "bridging_sep.no_sep"
                     "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab  on reg_periksa.kd_pj=penjab.kd_pj left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat "+ //tambah chanpenambahan no SEP "left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat"
-                    "where reg_periksa.stts<>'Batal' and reg_periksa.no_rkm_medis=? order by reg_periksa.tgl_registrasi desc"); //novan pilih no rawat dri riwayat kunjungan
+                    "where reg_periksa.stts<>'Batal' and reg_periksa.no_rkm_medis=? order by reg_periksa.tgl_registrasi desc"); //tambah chan novan pilih no rawat dri riwayat kunjungan
             }
             
             try {
@@ -3069,7 +3069,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                     ps.setString(3,Valid.SetTgl(Tgl2.getSelectedItem()+""));
                 }else if(R4.isSelected()==true){
                     ps.setString(1,NoRM.getText().trim());
-//                    ps.setString(2,NoRawat.getText().trim()); //novan pilih no rawat dri riwayat kunjungan
+//                    ps.setString(2,NoRawat.getText().trim()); //tambah chan novan pilih no rawat dri riwayat kunjungan
                 }                     
                 rs=ps.executeQuery();
                 while(rs.next()){
@@ -3176,10 +3176,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                 ps=koneksi.prepareStatement(
                     "select reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg,"+
                     "reg_periksa.kd_dokter,dokter.nm_dokter,poliklinik.nm_poli,reg_periksa.p_jawab,reg_periksa.almt_pj,"+
-                    "reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.status_lanjut,penjab.png_jawab,bridging_sep.no_sep,bridging_sep.klsrawat,"+ //novan Penambahan Nomor SEP
+                    "reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.status_lanjut,penjab.png_jawab,bridging_sep.no_sep,bridging_sep.klsrawat,"+ //tambah chan novan Penambahan Nomor SEP
                     "reg_periksa.umurdaftar,reg_periksa.sttsumur "+
                     "from reg_periksa inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter "+
-                    "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab on reg_periksa.kd_pj=penjab.kd_pj left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat "+ //novan Penambahan Nomor SEP "left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat"
+                    "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab on reg_periksa.kd_pj=penjab.kd_pj left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat "+ //tambah chan novan Penambahan Nomor SEP "left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat"
                     "where reg_periksa.stts<>'Batal' and reg_periksa.no_rkm_medis=? order by reg_periksa.tgl_registrasi desc limit 5");
             }else if(R2.isSelected()==true){
                 ps=koneksi.prepareStatement(
@@ -3206,11 +3206,11 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                 ps=koneksi.prepareStatement(
                     "select reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg,"+
                     "reg_periksa.kd_dokter,dokter.nm_dokter,poliklinik.nm_poli,reg_periksa.p_jawab,reg_periksa.almt_pj,"+
-                    "reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.status_lanjut,penjab.png_jawab,bridging_sep.no_sep,bridging_sep.klsrawat,"+ //novan Penambahan Nomor SEP ,bridging_sep.no_sep,bridging_sep.klsrawat"+
+                    "reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.status_lanjut,penjab.png_jawab,bridging_sep.no_sep,bridging_sep.klsrawat,"+ //tambah chan novan Penambahan Nomor SEP ,bridging_sep.no_sep,bridging_sep.klsrawat"+
                     "reg_periksa.umurdaftar,reg_periksa.sttsumur "+
                     "from reg_periksa inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter "+
                     "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli "+
-                    "inner join penjab on reg_periksa.kd_pj=penjab.kd_pj left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat "+ //novan Penambahan Nomor SEP "left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat"
+                    "inner join penjab on reg_periksa.kd_pj=penjab.kd_pj left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat "+ //tambah chan novan Penambahan Nomor SEP "left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat"
                     "where reg_periksa.stts<>'Batal' and reg_periksa.no_rkm_medis=? and reg_periksa.no_rawat=?");
             }
             
@@ -3355,7 +3355,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                          "<td valign='top' width='18%'>Nomor SEP</td>"+
                          "<td valign='top' width='1%' align='center'>:</td>"+
                          "<td valign='top' width='79%'>"+rs.getString("no_sep")+" / Kelas Rawat : "+rs.getString("klsrawat")+"</td>"+
-                       "</tr>" //novan Penambahan Nomor SEP
+                       "</tr>" //tambah chan novan Penambahan Nomor SEP
                     );                            
                     urut++;
                     
@@ -3959,7 +3959,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                     if(chkOperasiVK.isSelected()==true){
                         try{
                             rs2=koneksi.prepareStatement(
-                                    "select operasi.tgl_operasi,operasi.jenis_anasthesi,operasi.kategori,operasi.operator1, operasi.operator2, operasi.operator3, operasi.asisten_operator1,"+ //novan Penambahan kategori Operasi/VK dan Menghilangkan biaya "operasi.kategori"
+                                    "select operasi.tgl_operasi,operasi.jenis_anasthesi,operasi.kategori,operasi.operator1, operasi.operator2, operasi.operator3, operasi.asisten_operator1,"+ //tambah chan novan Penambahan kategori Operasi/VK dan Menghilangkan biaya "operasi.kategori"
                                     "operasi.asisten_operator2,operasi.asisten_operator3,operasi.biayaasisten_operator3, operasi.instrumen, operasi.dokter_anak, operasi.perawaat_resusitas, "+
                                     "operasi.dokter_anestesi, operasi.asisten_anestesi, operasi.asisten_anestesi2,operasi.asisten_anestesi2, operasi.bidan, operasi.bidan2, operasi.bidan3, operasi.perawat_luar, operasi.omloop,"+
                                     "operasi.omloop2,operasi.omloop3,operasi.omloop4,operasi.omloop5,operasi.dokter_pjanak,operasi.dokter_umum, "+
@@ -3980,14 +3980,14 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             if(rs2.next()){                                    
                                 htmlContent.append(  
                                   "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
-                                    "<tr><td valign='top' colspan='7'>Operasi/VK :</td></tr>"+ //novan Penambahan kategori Operasi/VK dan Menghilangkan biaya         
+                                    "<tr><td valign='top' colspan='7'>Operasi/VK :</td></tr>"+ //tambah chan novan Penambahan kategori Operasi/VK dan Menghilangkan biaya         
                                     "<tr align='center'>"+
                                       "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>"+
                                       "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal</td>"+
                                       "<td valign='top' width='10%' bgcolor='#FFFAF8'>Kode</td>"+
                                       "<td valign='top' width='51%' bgcolor='#FFFAF8'>Nama Tindakan</td>"+
                                       "<td valign='top' width='10%' bgcolor='#FFFAF8'>Anastesi</td>"+
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Kategori</td>"+ //novan Menghilangkan biaya dan penambahan kategori Operasi
+                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Kategori</td>"+ //tambah chan novan Menghilangkan biaya dan penambahan kategori Operasi
                                     "</tr>");
                                 rs2.beforeFirst();
                                 w=1;
@@ -4070,7 +4070,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     htmlContent.append(
                                             ")</td>"+
                                             "<td valign='top'>"+rs2.getString("jenis_anasthesi")+"</td>"+
-                                            "<td valign='top'>"+rs2.getString("kategori")+"</td>"+ //novan Menghilangkan biaya dan penambahan kategori Operasi
+                                            "<td valign='top'>"+rs2.getString("kategori")+"</td>"+ //tambah chan novan Menghilangkan biaya dan penambahan kategori Operasi
                                          "</tr>"); 
                                     w++;
                                     biayaperawatan=biayaperawatan+rs2.getDouble("total");
@@ -4859,7 +4859,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                 htmlContent.append(
                                   "<tr class='isi'>"+ 
                                     "<td valign='top' width='2%'></td>"+        
-                                    "<td valign='top' width='18%'>Resume Pasien Rawat Jalan</td>"+ //novan Penambahan Judul Resume Pasien
+                                    "<td valign='top' width='18%'>Resume Pasien Rawat Jalan</td>"+ //tambah chan novan Penambahan Judul Resume Pasien
                                     "<td valign='top' width='1%' align='center'>:</td>"+
                                     "<td valign='top' width='79%'>"+
                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
@@ -4957,7 +4957,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                 htmlContent.append(
                                   "<tr class='isi'>"+ 
                                     "<td valign='top' width='2%'></td>"+        
-                                    "<td valign='top' width='18%'>Resume Pasien Rawat Inap</td>"+ //novan Penambahan Judul Resume Pasien Ranap
+                                    "<td valign='top' width='18%'>Resume Pasien Rawat Inap</td>"+ //tambah chan novan Penambahan Judul Resume Pasien Ranap
                                     "<td valign='top' width='1%' align='center'>:</td>"+
                                     "<td valign='top' width='79%'>"+
                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
@@ -13540,7 +13540,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                         "<td valign='top' align='center'></td>"+
                                         "<td valign='top' align='center'></td>"+
                                         "<td valign='top' colspan='2'>Evaluasi</td>"+
-                                        "<td valign='top' colspan='7'>  "+rs2.getString("evaluasi").replaceAll("(\r\n|\r|\n|\n\r)","<br>").replaceAll("(\t)","&emsp ")+"</td>"+ //edit-novan Rapihkan evaluasi riwayat perawatan
+                                        "<td valign='top' colspan='7'>  "+rs2.getString("evaluasi").replaceAll("(\r\n|\r|\n|\n\r)","<br>").replaceAll("(\t)","&emsp ")+"</td>"+ //tambah chan edit-novan Rapihkan evaluasi riwayat perawatan
                                        "</tr>");
                             }
 
@@ -24073,7 +24073,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
         if(tbRegistrasi.getSelectedRow()!= -1){
             NoRawat.setText(tbRegistrasi.getValueAt(tbRegistrasi.getSelectedRow(),1).toString());
             R4.setSelected(true);
-        } //novan pilih no rawat riwayat perawatan
+        } //tambah chan novan pilih no rawat riwayat perawatan
     }
     
     private void menampilkanHasilEndoskopiHidung(String norawat) {

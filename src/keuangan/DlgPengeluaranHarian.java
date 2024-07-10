@@ -11,6 +11,7 @@
 
 package keuangan;
 import kepegawaian.DlgCariPetugas;
+import bridging.BridgingWA;//tambah chan
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -48,6 +49,7 @@ public final class DlgPengeluaranHarian extends javax.swing.JDialog {
     private validasi Valid=new validasi();
     private Jurnal jur=new Jurnal();
     private PreparedStatement ps,psakun;
+    private BridgingWA kirimwa=new BridgingWA(); // tambah chan edit-novan untuk WaGateway...
     private ResultSet rs;
     private DlgCariPetugas petugas=new DlgCariPetugas(null,false);
     private DlgCariKategoriPengeluaran kategori=new DlgCariKategoriPengeluaran(null,false);
@@ -805,6 +807,12 @@ public final class DlgPengeluaranHarian extends javax.swing.JDialog {
                 if(sukses==true){
                     tampil();
                     emptTeks();
+                    //jika menghapus pengeluaran
+//            for(i=0tbResep.getRowCount();i++){
+//            if(tbResep.getValueAt(i,0).toString().equals("true")){
+//                kirimwa.sendWaHapusPengeluaran(tbResep.getValueAt(i,3).toString(),tbResep.getValueAt(i,4).toString(),tbResep.getValueAt(i,5).toString(),tbResep.getValueAt(i,9).toString(),tbResep.getValueAt(i,1).toString());
+//            }
+//        }     
                 }
             }                
         }

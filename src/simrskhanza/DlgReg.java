@@ -6932,7 +6932,7 @@ public final class DlgReg extends javax.swing.JDialog {
         scrollPane4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))); //tambah chan
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
         
-         scrollPane4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))); //novan watzap buka
+         scrollPane4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))); //tambah chan novan watzap buka
          scrollPane4.setName("scrollPane4"); // NOI18N
 
          PesanWaDinamis.setBorder(null);
@@ -6973,7 +6973,7 @@ public final class DlgReg extends javax.swing.JDialog {
          jLabel25.setText("Pesan Whatsapp :");
          jLabel25.setName("jLabel25"); // NOI18N
          FormInput.add(jLabel25);
-         jLabel25.setBounds(890, 10, 140, 20); //novan watzap tutup
+         jLabel25.setBounds(890, 10, 140, 20); //tambah chan novan watzap tutup
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -13993,7 +13993,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         }
     }//GEN-LAST:event_MnCheckListKriteriaMasukHCUActionPerformed
 
-    private void PesanWaDinamisKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PesanWaDinamisKeyPressed //novan watzap buka
+    private void PesanWaDinamisKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PesanWaDinamisKeyPressed //tambah chan novan watzap buka
 
      }//GEN-LAST:event_PesanWaDinamisKeyPressed
 
@@ -14002,7 +14002,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
              if(tbPetugas.getValueAt(i,0).toString().equals("true")){
                  kirimwa.sendWaDlgReg(tbPetugas.getValueAt(i,2).toString(),tbPetugas.getValueAt(i,3).toString(),tbPetugas.getValueAt(i,11).toString(),tbPetugas.getValueAt(i,1).toString(),PesanWaDinamis.getText().toString());
              }
-         } //edit-novan untuk WaGateway
+         } //tambah chan edit-novan untuk WaGateway
      }
      private void BtnKirimWADinamisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKirimWADinamisActionPerformed
          if(PesanWaDinamis.getText().trim().equals("")){
@@ -14017,7 +14017,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
 
      private void BtnKirimWADinamisKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKirimWADinamisKeyPressed
          // TODO add your handling code here:
-     }//GEN-LAST:event_BtnKirimWADinamisKeyPressed //novan watzap tutup
+     }//GEN-LAST:event_BtnKirimWADinamisKeyPressed //tambah chan novan watzap tutup
     private void MnPenolakanAnjuranMedisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPenolakanAnjuranMedisActionPerformed
         if(tabMode.getRowCount()==0){
             JOptionPane.showMessageDialog(null,"Maaf, data registrasi sudah habis...!!!!");
@@ -14897,7 +14897,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private widget.Button BtnKeluar;
     private widget.Button BtnKeluar3;
     private widget.Button BtnKeluar4;
-    private widget.Button BtnKirimWADinamis; //novan watzap
+    private widget.Button BtnKirimWADinamis; //tambah chan novan watzap
     private widget.Button BtnPasien;
     private widget.Button BtnPrint;
     private widget.Button BtnPrint3;
@@ -15195,7 +15195,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private widget.TextBox NoTelp;
     private widget.TextBox NomorSurat;
     private javax.swing.JPanel PanelInput;
-    private widget.TextArea PesanWaDinamis; //novan watzap
+    private widget.TextArea PesanWaDinamis; //tambah chan novan watzap
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
     private widget.TextBox TAlmt;
@@ -15234,7 +15234,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private widget.Label jLabel22;
     private widget.Label jLabel23;
     private widget.Label jLabel24;
-    private widget.Label jLabel25; //novan watzap
+    private widget.Label jLabel25; //tambah chan novan watzap
     private widget.Label jLabel3;
     private widget.Label jLabel30;
     private widget.Label jLabel31;
@@ -15304,7 +15304,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private javax.swing.JMenuItem ppSuplesiJasaRaharja;
     private javax.swing.JMenuItem ppSuratKontrol;
     private javax.swing.JMenuItem ppSuratPRI;
-    private widget.ScrollPane scrollPane4; //novan watzap
+    private widget.ScrollPane scrollPane4; //tambah chan novan watzap
     private widget.Table tbPetugas;
     private widget.Table tbPetugas2;
     // End of variables declaration//GEN-END:variables

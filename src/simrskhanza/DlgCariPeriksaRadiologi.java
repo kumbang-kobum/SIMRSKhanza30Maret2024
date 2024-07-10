@@ -42,7 +42,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
     private Jurnal jur=new Jurnal();
-    private BridgingWA kirimwa=new BridgingWA(); //edit-novan untuk WaGateway...
+    private BridgingWA kirimwa=new BridgingWA(); //tambah chan edit-novan untuk WaGateway...
     private Connection koneksi=koneksiDB.condb();
     private DlgCariPasien member=new DlgCariPasien(null,false);
     private DlgCariDokter dokter=new DlgCariDokter(null,false);

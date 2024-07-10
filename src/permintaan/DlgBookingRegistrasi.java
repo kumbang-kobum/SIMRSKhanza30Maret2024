@@ -1,6 +1,6 @@
 package permintaan;
 
-import bridging.BridgingWA;
+import bridging.BridgingWA;//tambah chan
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -44,7 +44,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
     private Connection koneksi=koneksiDB.condb();
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
-    private BridgingWA kirimwa=new BridgingWA(); //edit-novan untuk WaGateway...
+    private BridgingWA kirimwa=new BridgingWA(); //tambah chan edit-novan untuk WaGateway...
     private PreparedStatement ps;
     private ResultSet rs;
     private int i=0,kuota=0;
@@ -1593,7 +1593,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             if(tbObat.getValueAt(i,0).toString().equals("true")){
                 kirimwa.sendWa(tbObat.getValueAt(i,3).toString(),tbObat.getValueAt(i,4).toString(),tbObat.getValueAt(i,5).toString(),tbObat.getValueAt(i,9).toString(),tbObat.getValueAt(i,1).toString(),tbObat.getValueAt(i,2).toString(),tbObat.getValueAt(i,10).toString());
             }
-        } //edit-novan untuk WaGateway
+        } //tambah chan edit-novan untuk WaGateway
     }//GEN-LAST:event_BtnKirimWAActionPerformed
 
     private void BtnKirimWAKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKirimWAKeyPressed
@@ -1760,14 +1760,14 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             case "dokter":
                 Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from booking_registrasi where kd_dokter='"+KdDokter.getText()+"' and tanggal_periksa='"+Valid.SetTgl(TanggalPeriksa.getSelectedItem()+"")+"'","",3,NoReg);
                 break;
-            case "dokter + poli":  //edit-novan untuk autobooking dari ranap agar no antrian tidak bentrok
+            case "dokter + poli":  // tambah chan edit-novan untuk autobooking dari ranap agar no antrian tidak bentrok
                 if(Sequel.cariInteger("select ifnull(MAX(CONVERT(no_reg,signed)),0) from booking_registrasi where kd_dokter='"+KdDokter.getText()+"' and kd_poli='"+KdPoli.getText()+"' and tanggal_periksa='"+Valid.SetTgl(TanggalPeriksa.getSelectedItem()+"")+"'")>=
                             Sequel.cariInteger("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_dokter='"+KdDokter.getText()+"' and kd_poli='"+KdPoli.getText()+"' and tgl_registrasi='"+Valid.SetTgl(TanggalPeriksa.getSelectedItem()+"")+"'")){
                         Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from booking_registrasi where kd_dokter='"+KdDokter.getText()+"' and kd_poli='"+KdPoli.getText()+"' and tanggal_periksa='"+Valid.SetTgl(TanggalPeriksa.getSelectedItem()+"")+"'","",3,NoReg);
                     }else{
                         Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_dokter='"+KdDokter.getText()+"' and kd_poli='"+KdPoli.getText()+"' and tgl_registrasi='"+Valid.SetTgl(TanggalPeriksa.getSelectedItem()+"")+"'","",3,NoReg);
                     }                    
-                    break; //edit-novan untuk autobooking dari ranap agar no antrian tidak bentrok
+                    break; //tambah chan edit-novan untuk autobooking dari ranap agar no antrian tidak bentrok
             default:
                 Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from booking_registrasi where kd_dokter='"+KdDokter.getText()+"' and tanggal_periksa='"+Valid.SetTgl(TanggalPeriksa.getSelectedItem()+"")+"'","",3,NoReg);
                 break;
