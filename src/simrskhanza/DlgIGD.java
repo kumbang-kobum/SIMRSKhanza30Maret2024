@@ -776,6 +776,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         ppGrafikDemografi = new javax.swing.JMenuItem();
         MnSuratSurat = new javax.swing.JMenu();
         SuratKontrol = new javax.swing.JMenuItem();
+        MnTBFinger = new javax.swing.JMenuItem();//tambah chan
         MnSuratButaWarna = new javax.swing.JMenuItem();
         MnSuratBebasTato = new javax.swing.JMenuItem();
         MnSuratKewaspadaanKesehatan = new javax.swing.JMenuItem();
@@ -2686,6 +2687,23 @@ public final class DlgIGD extends javax.swing.JDialog {
             }
         });
         MnSuratSurat.add(SuratKontrol);
+        
+        MnTBFinger.setBackground(new java.awt.Color(255, 255, 254));//tambah chan
+        MnTBFinger.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTBFinger.setForeground(new java.awt.Color(50, 50, 50));
+        MnTBFinger.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnTBFinger.setText("Surat TB Finger");
+        MnTBFinger.setToolTipText("");
+        MnTBFinger.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTBFinger.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTBFinger.setName("MnTBFinger"); // NOI18N
+        MnTBFinger.setPreferredSize(new java.awt.Dimension(250, 26));
+        MnTBFinger.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTBFingerActionPerformed(evt);
+            }
+        });
+        MnSuratSurat.add(MnTBFinger);//tambah chan
 
         MnSuratButaWarna.setBackground(new java.awt.Color(255, 255, 254));
         MnSuratButaWarna.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -10908,6 +10926,29 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
             }
         }
     }//GEN-LAST:event_MnSkorBromagePascaAnestesiActionPerformed
+    
+        private void MnTBFingerActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        if(TPasien.getText().trim().equals("")){//tambah chan surat tidak bisa finger
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu pasien...!!!");
+        }else{
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars",akses.getnamars());
+            param.put("alamatrs",akses.getalamatrs());
+            param.put("kotars",akses.getkabupatenrs());
+            param.put("propinsirs",akses.getpropinsirs());
+            param.put("kontakrs",akses.getkontakrs());
+            param.put("emailrs",akses.getemailrs());
+            param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
+            Valid.MyReportqry("rptSuratTidabBisaFinger.jasper","report","::[ Surat Keterangan Sehat ]::",
+                "select reg_periksa.no_rawat,dokter.nm_dokter,pasien.tgl_lahir,pasien.jk,reg_periksa.tgl_registrasi,pasien.no_tlp,pasien.no_ktp,"+
+                " pasien.nm_pasien,pasien.jk,concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur)as umur,pasien.pekerjaan,pasien.alamat "+
+                " from reg_periksa inner join pasien inner join dokter "+
+                " on reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_dokter=dokter.kd_dokter  "+
+                "where pasien.no_rkm_medis='"+TNoRM.getText()+"' ",param);
+            this.setCursor(Cursor.getDefaultCursor());
+        }        // TODO add your handling code here: tambah chan surat tidak bisa finger
+    }
 
     private void MnPenilaianPreInduksiActionPerformed(java.awt.event.ActionEvent evt) {                                                       
         if(tabMode.getRowCount()==0){
@@ -11187,6 +11228,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private javax.swing.JMenuItem MnSuratJaminanPelayananIGD;
     private javax.swing.JMenuItem MnSuratKewaspadaanKesehatan;
     private javax.swing.JMenu MnSuratSurat;
+    private javax.swing.JMenuItem MnTBFinger;
     private javax.swing.JMenuItem MnTeridentifikasiTB;
     private javax.swing.JMenuItem MnTimeOutSebelumInsisi;
     private javax.swing.JMenu MnTindakan;
