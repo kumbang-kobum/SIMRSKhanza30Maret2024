@@ -234,17 +234,17 @@
 				<textFieldExpression><![CDATA[$F{alamat}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="4" y="257" width="393" height="16" uuid="370893ba-328f-4cec-bcc9-a8344f79db33">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
+				<reportElement x="6" y="311" width="539" height="40" uuid="370893ba-328f-4cec-bcc9-a8344f79db33"/>
 				<textElement>
 					<font fontName="Tahoma" size="11"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[Demikian surat ini dibuat, Atas perhatiannya kami ucapkan terimakasih]]></text>
+				<text><![CDATA[Demikian surat keterangan ini dibuat dan untuk dipergunakan dengan sebenar-benarnya.
+
+Atas perhatian dan kerjasamanya kami ucapkan terimakasih.]]></text>
 			</staticText>
 			<textField pattern="" isBlankWhenNull="true">
-				<reportElement x="340" y="284" width="213" height="12" uuid="cc4a4647-775a-488b-8017-773fd1429222"/>
+				<reportElement x="338" y="368" width="213" height="12" uuid="cc4a4647-775a-488b-8017-773fd1429222"/>
 				<textElement textAlignment="Center">
 					<font fontName="Tahoma" size="9"/>
 					<paragraph lineSpacing="Single"/>
@@ -252,7 +252,7 @@
 				<textFieldExpression><![CDATA[$P{kotars}+", "+$F{tgl_registrasi}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="340" y="357" width="205" height="12" uuid="7744606d-759b-43e1-8b07-39b91714f03b"/>
+				<reportElement x="338" y="441" width="205" height="12" uuid="7744606d-759b-43e1-8b07-39b91714f03b"/>
 				<textElement textAlignment="Center">
 					<font fontName="Tahoma" size="9" isBold="true" isUnderline="true"/>
 					<paragraph lineSpacing="Single"/>
@@ -260,7 +260,7 @@
 				<textFieldExpression><![CDATA[$F{nm_dokter}]]></textFieldExpression>
 			</textField>
 			<componentElement>
-				<reportElement x="372" y="297" width="130" height="61" isRemoveLineWhenBlank="true" uuid="70f56b9c-8c93-4950-9545-34d426fdf0f0">
+				<reportElement x="370" y="381" width="129" height="60" isRemoveLineWhenBlank="true" uuid="70f56b9c-8c93-4950-9545-34d426fdf0f0">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" errorCorrectionLevel="H">
@@ -273,7 +273,7 @@
 					<font fontName="Tahoma" size="11"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[Bersama ini kami terangkan bahwa dengan data sebagai berikut :]]></text>
+				<text><![CDATA[Bersama ini kami terangkan bahwa pasien dengan data sebagai berikut :]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="41" y="204" width="83" height="15" uuid="95955376-7d95-4cae-bf46-4531589df1cc">
@@ -372,7 +372,7 @@
 				<imageExpression><![CDATA["/naira/kars4bintang.png"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="3" y="287" width="177" height="16" uuid="92ba3e54-5bec-4f95-89ab-87660aa6769d">
+				<reportElement x="1" y="371" width="177" height="16" uuid="92ba3e54-5bec-4f95-89ab-87660aa6769d">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -382,7 +382,7 @@
 				<text><![CDATA[Pasien/Keluarga Pasien]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="3" y="354" width="173" height="15" uuid="71f634ab-883e-421e-a493-6a2315ec571c">
+				<reportElement x="1" y="438" width="173" height="15" uuid="71f634ab-883e-421e-a493-6a2315ec571c">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -392,7 +392,7 @@
 				<textFieldExpression><![CDATA[$F{nm_pasien}+"/...................."]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="196" y="287" width="109" height="16" uuid="82235228-41e9-4112-9284-7dfe28363008">
+				<reportElement x="194" y="371" width="109" height="16" uuid="82235228-41e9-4112-9284-7dfe28363008">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -402,7 +402,7 @@
 				<text><![CDATA[Adminision]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="190" y="357" width="109" height="16" uuid="2d7a9a47-f18b-4f3a-84ef-95927c572406">
+				<reportElement x="188" y="441" width="109" height="16" uuid="2d7a9a47-f18b-4f3a-84ef-95927c572406">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -412,13 +412,13 @@
 				<text><![CDATA[(_________________)]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="5" y="390" width="14" height="14" uuid="79ea83ab-7795-4c95-9452-cbda5467d5ba"/>
+				<reportElement x="3" y="474" width="14" height="14" uuid="79ea83ab-7795-4c95-9452-cbda5467d5ba"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="30" y="390" width="101" height="14" uuid="190e20db-fa1d-4cc6-8d56-e2cb0ca5e0c4">
+				<reportElement x="28" y="474" width="101" height="14" uuid="190e20db-fa1d-4cc6-8d56-e2cb0ca5e0c4">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -428,13 +428,13 @@
 				<text><![CDATA[Pastikan kesesuaian NIK]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="5" y="405" width="14" height="14" uuid="d81bdb32-5ae4-476a-b95e-a73f5cf71b0f"/>
+				<reportElement x="3" y="489" width="14" height="14" uuid="d81bdb32-5ae4-476a-b95e-a73f5cf71b0f"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="30" y="405" width="220" height="14" uuid="9cea666b-083c-4dc4-ac91-8acab92d9b9d">
+				<reportElement x="28" y="489" width="220" height="14" uuid="9cea666b-083c-4dc4-ac91-8acab92d9b9d">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -444,7 +444,7 @@
 				<text><![CDATA[Pastikan kesesuaian wajah (SIM = KTP = Foto Pasien)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="6" y="430" width="414" height="14" uuid="832642e1-a7b3-4311-bb61-d39d8c0ee3f6">
+				<reportElement x="4" y="514" width="414" height="14" uuid="832642e1-a7b3-4311-bb61-d39d8c0ee3f6">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -452,6 +452,16 @@
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[** Wajib upload foto wajah pasien; identitas pasien; identitas saksi/keluarga; dan foto wajah keluarga.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="260" width="539" height="44" uuid="43775e82-f801-4e62-8373-de5c5987a473">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font fontName="Tahoma" size="11"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Menerangkan bahwa pasien tersebut diatas, mengalami iritasi pada permukaan jari tanggan bagian dalam, dan akan berpengaruh pada kegiatan finger scan. sehingga pasien tersebut diatas tidak bisa melakukan finger scan]]></text>
 			</staticText>
 		</band>
 	</detail>
