@@ -463,6 +463,16 @@ Atas perhatian dan kerjasamanya kami ucapkan terimakasih.]]></text>
 				</textElement>
 				<text><![CDATA[Menerangkan bahwa pasien tersebut diatas, mengalami iritasi pada permukaan jari tanggan bagian dalam, dan akan berpengaruh pada kegiatan finger scan. sehingga pasien tersebut diatas tidak bisa melakukan finger scan]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="3" y="529" width="414" height="14" uuid="de47c0ff-f501-425a-a67b-83d63e180ea7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[** Wajib upload surat ke berkas digital oleh admision]]></text>
+			</staticText>
 		</band>
 	</detail>
 	<summary>
