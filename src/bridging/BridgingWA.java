@@ -297,7 +297,9 @@ public class BridgingWA {
         try {
             message = "Mengingatkan kembali, kepada saudara/i 📢\n👔 Nama: *_"+nama+"_*\n🗃️ No.RM: "+no_rkm_medis+"\n"
                     + "📆 Tgl booking:"+tanggal_booking+" "+jam_booking+"\n🚪 poliklinik: *"+poli+"*\n📆 Tgl periksa: "+tanggal+"\n🎯 No antrian: *"+no_reg+"*.\n\n"
-                    + "Untuk konfirmasi kehadiran, cukup membalas pesan ini dengan iya/tidak.\n\n\nCustomer Service "+akses.getnamars();
+                    + "Mohon konfirmasi kehadiran, dengan membalas pesan ini iya/tidak.\n"
+                    + "Terimaka kasih.\n\n\n"
+                    + "Customer Service "+akses.getnamars();
             number = Sequel.cariIsi("SELECT no_tlp FROM pasien WHERE no_rkm_medis = "+no_rkm_medis);
             sender = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'sender'");
             api_key = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'api_key'");
@@ -387,10 +389,12 @@ public class BridgingWA {
                 + "Nomor Rawat: *_" + no_rawat + "_*\n"
                 + "🗃️ No.RM: " + no_rkm_medis + "\n "
                 + "Nama: " + nama + "\n "
-                + "Hasil Baca Radiologi: \n"
+                + "Hasil Baca: \n"
                 +  hasilrad + "\n\n"
-                + "Terimakasih telah berkunjung semoga selalu sehat.\n\n\n"
-                + "Unit Radiologi Petugas : " +Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",akses.getkode());
+                + "Informasi lebih lanjut Wa. 08117251127\n"
+                + "Terimakasih, Salam sehat"
+//                + "Unit Radiologi Petugas : " +Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",akses.getkode());
+                + "Unit Radiologi "+akses.getnamars();
         
         sender = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'sender'");
          api_key = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'api_key'");
@@ -490,10 +494,11 @@ public class BridgingWA {
                     + "📆 Tgl periksa:"+tanggal+"\n"
                     + "🚪 poliklinik: *"+poli+"*\n"
                     + "🎯 No antrian: *"+no_reg+"*.\n"
-                    + "Diinformasika bahwa poli *"+poli+"* tidak buka/cuti peserta yang telah terdaftar akan dibatalkan "
-                    + "silangkan konfirmasi agar didaftarkan kembali disaat poli telah buka kembali. terimakasih\n"
-                    + "Customer Service :  " +Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",akses.getkode())
-                    + ""+akses.getnamars();
+                    + "Maaf. poli *"+poli+"* tidak *buka* Mohon konfirmasi jadwal kembali ke no WA ."
+                    + "0811725127\n "
+                    + "Terimakasih "+akses.getnamars();
+//                    + "Terimakasih:  " +Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",akses.getkode())
+//                    + ""+akses.getnamars();
             number = Sequel.cariIsi("SELECT no_tlp FROM pasien WHERE no_rkm_medis = "+no_rkm_medis);
             sender = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'sender'");
             api_key = Sequel.cariIsi("SELECT value FROM vnsimple_wa WHERE module='watzap' AND field = 'api_key'");
