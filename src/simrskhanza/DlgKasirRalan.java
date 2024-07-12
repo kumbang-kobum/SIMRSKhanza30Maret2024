@@ -765,6 +765,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnSuratSurat = new javax.swing.JMenu();
         MnSuratKontrol = new javax.swing.JMenuItem();
         MnSuratButaWarna = new javax.swing.JMenuItem();
+        MnFormulirVaksinHaji = new javax.swing.JMenuItem();//tambah chan
         MnSuratBebasTato = new javax.swing.JMenuItem();
         MnSuratKewaspadaanKesehatan = new javax.swing.JMenuItem();
         MnCetakSuratBebasTBC = new javax.swing.JMenuItem();
@@ -3325,6 +3326,22 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             }
         });
         MnSuratSurat.add(MnSuratButaWarna);
+        
+        MnFormulirVaksinHaji.setBackground(new java.awt.Color(255, 255, 254));//tambah chan
+        MnFormulirVaksinHaji.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnFormulirVaksinHaji.setForeground(new java.awt.Color(50, 50, 50));
+        MnFormulirVaksinHaji.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnFormulirVaksinHaji.setText("Formulir Vaksinasi Haji");
+        MnFormulirVaksinHaji.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnFormulirVaksinHaji.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnFormulirVaksinHaji.setName("MnFormulirVaksinHaji"); // NOI18N
+        MnFormulirVaksinHaji.setPreferredSize(new java.awt.Dimension(250, 26));
+        MnFormulirVaksinHaji.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnFormulirVaksinHajiActionPerformed(evt);
+            }
+        });
+        MnSuratSurat.add(MnFormulirVaksinHaji);//tambah chan
 
         MnSuratBebasTato.setBackground(new java.awt.Color(255, 255, 254));
         MnSuratBebasTato.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -13845,6 +13862,33 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             }
         }
     }//GEN-LAST:event_MnSkorBromagePascaAnestesiActionPerformed
+    
+        private void MnFormulirVaksinHajiActionPerformed(java.awt.event.ActionEvent evt) {                                                     
+        if(TPasienCari.getText().trim().equals("")){//tambah chan
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu pasien...!!!");
+        }else{
+            if(tbKasirRalan.getSelectedRow()!= -1){
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                Map<String, Object> param = new HashMap<>();
+                param.put("namars",akses.getnamars());
+                param.put("alamatrs",akses.getalamatrs());
+                param.put("kotars",akses.getkabupatenrs());
+                param.put("propinsirs",akses.getpropinsirs());
+                param.put("kontakrs",akses.getkontakrs());
+                param.put("emailrs",akses.getemailrs());
+                param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
+//                finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(),0).toString());
+//                param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(),1).toString()+"\nID "+(finger.equals("")?tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(),0).toString():finger)+"\n"+Valid.SetTgl3(tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(),12).toString()));  
+                Valid.MyReportqry("rptVaksinasiHaji.jasper","report","::[ Formulir Vaksinasi Haji ]::",
+                    "select reg_periksa.no_rawat,dokter.nm_dokter,pasien.no_ktp,pasien.no_tlp,pasien.tmp_lahir,pasien.tgl_lahir,pasien.jk,DATE_FORMAT(reg_periksa.tgl_registrasi,'%d-%m-%Y')as tgl_registrasi,"+
+                    " pasien.nm_pasien,pasien.pekerjaan,pasien.jk,concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur)as umur,pasien.pekerjaan,pasien.alamat "+
+                    " from reg_periksa inner join pasien inner join dokter "+
+                    " on reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_dokter=dokter.kd_dokter  "+
+                    "where pasien.no_rkm_medis='"+TNoRMCari.getText()+"' ",param);
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        }        // TODO add your handling code here://tambah chan
+    }
 
     private void MnPenilaianPreInduksiActionPerformed(java.awt.event.ActionEvent evt) {                                                       
         if(tabModekasir.getRowCount()==0){
@@ -14178,6 +14222,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnDokter;
     private javax.swing.JMenuItem MnDokumentasiTindakanESWL;
     private javax.swing.JMenuItem MnEdukasiPasienKeluarga;
+    private javax.swing.JMenuItem MnFormulirVaksinHaji;//tambah chan
     private javax.swing.JMenuItem MnGabungNoRawat;
     private javax.swing.JMenu MnGanti;
     private javax.swing.JMenuItem MnGelang1;
