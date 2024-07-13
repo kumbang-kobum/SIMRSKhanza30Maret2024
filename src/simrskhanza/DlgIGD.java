@@ -10940,7 +10940,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
             param.put("kontakrs",akses.getkontakrs());
             param.put("emailrs",akses.getemailrs());
             param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
-            Valid.MyReportqry("rptSuratTidabBisaFinger.jasper","report", "::[ Surat Tidak Bisa Finger ]::",
+            Valid.MyReportqry("rptSuratTidakBisaFinger.jasper","report", "::[ Surat Tidak Bisa Finger ]::",
             "SELECT reg_periksa.no_rawat, dokter.nm_dokter, pasien.tgl_lahir, pasien.jk, reg_periksa.tgl_registrasi, " +
             "pasien.no_tlp, pasien.no_ktp, pasien.nm_pasien, pasien.jk, " +
             "CONCAT(reg_periksa.umurdaftar, ' ', reg_periksa.sttsumur) AS umur, pasien.pekerjaan, pasien.alamat " +
