@@ -4003,7 +4003,7 @@ private void tbLabRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                             dlgro.setLocationRelativeTo(internalFrame1);
                             dlgro.emptTeks();
                             dlgro.isCek(); 
-                            dlgro.setOrderVANSLAB(NoPermintaan,NoRawat,"Ralan");
+                            dlgro.setOrderSLIMS(NoPermintaan,NoRawat,"Ralan");
                             dlgro.setDokterPerujuk(KodeDokter,DokterPerujuk);
                             TeksKosong();
                             dlgro.setVisible(true);
@@ -4034,7 +4034,7 @@ private void tbLabRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                             dlgro.setLocationRelativeTo(internalFrame1);
                             dlgro.emptTeks();
                             dlgro.isCek(); 
-                            dlgro.setOrderVANSLAB(NoPermintaan,NoRawat,"Ranap");
+                            dlgro.setOrderSLIMS(NoPermintaan,NoRawat,"Ranap");
                             dlgro.setDokterPerujuk(KodeDokter,DokterPerujuk);
                             TeksKosong();
                             dlgro.setVisible(true);
