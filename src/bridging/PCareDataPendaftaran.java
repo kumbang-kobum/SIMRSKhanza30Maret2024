@@ -2865,7 +2865,7 @@ public final class PCareDataPendaftaran extends javax.swing.JDialog {
                     simpanKunjungan();
                     emptTeks();
                 }
-            }
+            }   
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
@@ -3197,6 +3197,11 @@ public final class PCareDataPendaftaran extends javax.swing.JDialog {
                                 NmTACC.getText();
                                 alasantacc="\""+AlasanTACC.getText()+"\"";
                             }
+                        }
+                        
+                        kodesarana="null";
+                        if(!KdSarana.getText().equals("")){
+                            kodesarana="\""+KdSarana.getText()+"\"";
                         }
                         
                         requestJson ="{" +
@@ -3659,7 +3664,7 @@ public final class PCareDataPendaftaran extends javax.swing.JDialog {
             }
             @Override
             public void keyReleased(KeyEvent e) {}
-        });
+        });  
         kesadaran.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
         kesadaran.setLocationRelativeTo(internalFrame1);
         kesadaran.setVisible(true);
@@ -3709,7 +3714,7 @@ public final class PCareDataPendaftaran extends javax.swing.JDialog {
             }
             @Override
             public void keyReleased(KeyEvent e) {}
-        });
+        }); 
         statuspulang.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
         statuspulang.setLocationRelativeTo(internalFrame1);
         statuspulang.setVisible(true);
@@ -5744,6 +5749,15 @@ public final class PCareDataPendaftaran extends javax.swing.JDialog {
                 getData3();
             } catch (java.lang.NullPointerException e) {
             }
+            if(evt.getClickCount()==2){
+                pilihanedit=3;
+                chkKunjungan.setSelected(true);
+                ChkRujukLanjut.setSelected(true);
+                chkSubspesialis.setSelected(true);
+                ChkRujukLanjut.setEnabled(true);
+                chkSubspesialis.setEnabled(true);
+                TabRawat.setSelectedIndex(0);
+            }
         }
     }//GEN-LAST:event_tbSpesialisMouseClicked
 
@@ -5755,7 +5769,18 @@ public final class PCareDataPendaftaran extends javax.swing.JDialog {
                     getData3();
                 } catch (java.lang.NullPointerException e) {
                 }
-            }  
+            }else if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+                try {
+                    pilihanedit=3;
+                    chkKunjungan.setSelected(true);
+                    ChkRujukLanjut.setSelected(true);
+                    chkSubspesialis.setSelected(true);
+                    ChkRujukLanjut.setEnabled(true);
+                    chkSubspesialis.setEnabled(true);
+                    TabRawat.setSelectedIndex(0);
+                } catch (java.lang.NullPointerException e) {
+                }
+            }   
         }
     }//GEN-LAST:event_tbSpesialisKeyPressed
 
@@ -6373,7 +6398,7 @@ public final class PCareDataPendaftaran extends javax.swing.JDialog {
                 ps.setString(12,"%"+TCari1.getText().trim()+"%");
                 rs=ps.executeQuery();
                 while(rs.next()){
-                    tabMode2.addRow(new String[]{
+                    tabMode2.addRow(new Object[]{
                         rs.getString("no_rawat"),rs.getString("noKunjungan"),rs.getString("tglDaftar"),
                         rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("noKartu"),
                         rs.getString("kdPoli"),rs.getString("nmPoli"),rs.getString("keluhan"),
@@ -6444,7 +6469,7 @@ public final class PCareDataPendaftaran extends javax.swing.JDialog {
                 ps.setString(12,"%"+TCari2.getText().trim()+"%");
                 rs=ps.executeQuery();
                 while(rs.next()){
-                    tabMode3.addRow(new String[]{
+                    tabMode3.addRow(new Object[]{
                         rs.getString("no_rawat"),rs.getString("noKunjungan"),rs.getString("tglDaftar"),
                         rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("noKartu"),
                         rs.getString("kdPoli"),rs.getString("nmPoli"),rs.getString("keluhan"),
