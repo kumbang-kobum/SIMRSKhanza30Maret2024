@@ -269,7 +269,7 @@ public final class RMChecklistKriteriaKeluarICU extends javax.swing.JDialog {
         MnKriteriaKeluarICU.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnKriteriaKeluarICU.setForeground(new java.awt.Color(50, 50, 50));
         MnKriteriaKeluarICU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnKriteriaKeluarICU.setText("Formulir Checklist Kriteria Keluar ICU");
+        MnKriteriaKeluarICU.setText("Formulir Check List Kriteria Keluar ICU");
         MnKriteriaKeluarICU.setName("MnKriteriaKeluarICU"); // NOI18N
         MnKriteriaKeluarICU.setPreferredSize(new java.awt.Dimension(260, 26));
         MnKriteriaKeluarICU.addActionListener(new java.awt.event.ActionListener() {
@@ -458,7 +458,7 @@ public final class RMChecklistKriteriaKeluarICU extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-07-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-04-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -472,7 +472,7 @@ public final class RMChecklistKriteriaKeluarICU extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-07-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-04-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -621,7 +621,7 @@ public final class RMChecklistKriteriaKeluarICU extends javax.swing.JDialog {
         TglLahir.setBounds(689, 10, 100, 23);
 
         Tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-07-2023 21:34:18" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-04-2024 18:04:45" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -1414,7 +1414,7 @@ public final class RMChecklistKriteriaKeluarICU extends javax.swing.JDialog {
                 rs=ps.executeQuery();
                 while(rs.next()){
                     tabMode.addRow(new Object[]{
-                        rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("tgl_lahir"),rs.getString("jk"),
+                        rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getDate("tgl_lahir"),rs.getString("jk"),
                         rs.getString("tanggal"),rs.getString("kriteria1"),rs.getString("kriteria2"),rs.getString("kriteria3"),rs.getString("kriteria4"),
                         rs.getString("kriteria5"),rs.getString("kriteria6"),rs.getString("kriteria7"),rs.getString("kriteria8"),rs.getString("kriteria9"),
                         rs.getString("kriteria10"),rs.getString("kriteria11"),rs.getString("nik"),rs.getString("nama")

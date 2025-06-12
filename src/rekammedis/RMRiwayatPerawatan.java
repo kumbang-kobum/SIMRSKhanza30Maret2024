@@ -5147,12 +5147,11 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                         "<td valign='top' width='1%' align='center'>:</td>").append(
                         "<td valign='top' width='79%'>").append(rs.getString("hubunganpj")).append("</td>").append(
                       "</tr>").append(
-                      "<tr class='isi'>").append( 
+                        "<tr class='isi'>").append(
                         "<td valign='top' width='2%'></td>").append(        
                         "<td valign='top' width='18%'>Status</td>").append(
                         "<td valign='top' width='1%' align='center'>:</td>").append(
-                        "<td valign='top' width='79%'>").append(rs.getString("no_sep") + " / Kelas Rawat : " + rs.getString("klsrawat")).append("</td>") //tambah chan novan Penambahan Nomor SEP
-                      "</tr>"
+                        "<td valign='top' width='79%'>").append(rs.getString("no_sep") + " / Kelas Rawat : " + rs.getString("klsrawat")).append("</td>").append("</tr>"
                     );                            
                     urut++;
                     

@@ -407,7 +407,7 @@ public final class RMChecklistPemberianFibrinolitik extends javax.swing.JDialog 
         MnChecklistPemberianFibrinolitik.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnChecklistPemberianFibrinolitik.setForeground(new java.awt.Color(50, 50, 50));
         MnChecklistPemberianFibrinolitik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnChecklistPemberianFibrinolitik.setText("Formulir Checklist Pemberian Fibrinolitik");
+        MnChecklistPemberianFibrinolitik.setText("Formulir Check List Pemberian Fibrinolitik");
         MnChecklistPemberianFibrinolitik.setName("MnChecklistPemberianFibrinolitik"); // NOI18N
         MnChecklistPemberianFibrinolitik.setPreferredSize(new java.awt.Dimension(250, 26));
         MnChecklistPemberianFibrinolitik.addActionListener(new java.awt.event.ActionListener() {
@@ -597,7 +597,7 @@ public final class RMChecklistPemberianFibrinolitik extends javax.swing.JDialog 
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-11-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-03-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -611,7 +611,7 @@ public final class RMChecklistPemberianFibrinolitik extends javax.swing.JDialog 
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-11-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-03-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -732,7 +732,7 @@ public final class RMChecklistPemberianFibrinolitik extends javax.swing.JDialog 
         TPasien.setBounds(336, 10, 285, 23);
 
         Tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-11-2024" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-03-2025" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -1899,7 +1899,7 @@ public final class RMChecklistPemberianFibrinolitik extends javax.swing.JDialog 
             param.put("logo",Sequel.cariGambar("select setting.logo from setting")); 
             finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
             param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbObat.getValueAt(tbObat.getSelectedRow(),6).toString()+"\nID "+(finger.equals("")?tbObat.getValueAt(tbObat.getSelectedRow(),5).toString():finger)+"\n"+Tanggal.getSelectedItem()); 
-            Valid.MyReportqry("rptFormulirChecklistPemberianFibrinolitik.jasper","report","::[ Formulir Checklist Pemberian Fibrinolitik ]::",
+            Valid.MyReportqry("rptFormulirChecklistPemberianFibrinolitik.jasper","report","::[ Formulir Check List Pemberian Fibrinolitik ]::",
                     "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,pasien.tgl_lahir,pasien.jk,checklist_pemberian_fibrinolitik.nip,petugas.nama,checklist_pemberian_fibrinolitik.tanggal,reg_periksa.umurdaftar,reg_periksa.sttsumur,"+
                     "checklist_pemberian_fibrinolitik.kontra_indikasi1,checklist_pemberian_fibrinolitik.keterangan_kontra_indikasi1,checklist_pemberian_fibrinolitik.kontra_indikasi2,checklist_pemberian_fibrinolitik.keterangan_kontra_indikasi2,"+
                     "checklist_pemberian_fibrinolitik.kontra_indikasi3,checklist_pemberian_fibrinolitik.keterangan_kontra_indikasi3,checklist_pemberian_fibrinolitik.kontra_indikasi4,checklist_pemberian_fibrinolitik.keterangan_kontra_indikasi4,"+
@@ -2311,7 +2311,7 @@ public final class RMChecklistPemberianFibrinolitik extends javax.swing.JDialog 
                 rs=ps.executeQuery();
                 while(rs.next()){
                     tabMode.addRow(new Object[]{
-                        rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("tgl_lahir"),rs.getString("jk"),rs.getString("nip"),rs.getString("nama"),rs.getString("tanggal"),
+                        rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getDate("tgl_lahir"),rs.getString("jk"),rs.getString("nip"),rs.getString("nama"),rs.getString("tanggal"),
                         rs.getString("kontra_indikasi1"),rs.getString("keterangan_kontra_indikasi1"),rs.getString("kontra_indikasi2"),rs.getString("keterangan_kontra_indikasi2"),rs.getString("kontra_indikasi3"),
                         rs.getString("keterangan_kontra_indikasi3"),rs.getString("kontra_indikasi4"),rs.getString("keterangan_kontra_indikasi4"),rs.getString("kontra_indikasi5"),rs.getString("keterangan_kontra_indikasi5"),
                         rs.getString("kontra_indikasi6"),rs.getString("keterangan_kontra_indikasi6"),rs.getString("kontra_indikasi7"),rs.getString("keterangan_kontra_indikasi7"),rs.getString("kontra_indikasi8"),

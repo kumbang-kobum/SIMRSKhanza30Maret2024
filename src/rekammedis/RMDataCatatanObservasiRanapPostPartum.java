@@ -1381,8 +1381,8 @@ public final class RMDataCatatanObservasiRanapPostPartum extends javax.swing.JDi
                 while(rs.next()){
                     tabMode.addRow(new Object[]{
                         rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),
-                        rs.getString("umurdaftar")+" "+rs.getString("sttsumur"),rs.getString("jk"),rs.getString("tgl_lahir"),
-                        rs.getString("tgl_perawatan"),rs.getString("jam_rawat"),rs.getString("gcs"),rs.getString("td"),
+                        rs.getString("umurdaftar")+" "+rs.getString("sttsumur"),rs.getString("jk"),rs.getDate("tgl_lahir"),
+                        rs.getDate("tgl_perawatan"),rs.getTime("jam_rawat"),rs.getString("gcs"),rs.getString("td"),
                         rs.getString("hr"),rs.getString("rr"),rs.getString("suhu"),rs.getString("spo2"),rs.getString("tfu"),
                         rs.getString("kontraksi"),rs.getString("perdarahan"),rs.getString("keterangan"),rs.getString("nip"),rs.getString("nama")
                     });
