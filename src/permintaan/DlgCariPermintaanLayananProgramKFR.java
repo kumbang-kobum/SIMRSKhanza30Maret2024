@@ -560,7 +560,7 @@ public class DlgCariPermintaanLayananProgramKFR extends javax.swing.JDialog {
         });
         panelCari.add(R3);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-03-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-03-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -578,7 +578,7 @@ public class DlgCariPermintaanLayananProgramKFR extends javax.swing.JDialog {
         jLabel25.setPreferredSize(new java.awt.Dimension(25, 23));
         panelCari.add(jLabel25);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-03-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-03-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -645,7 +645,7 @@ public class DlgCariPermintaanLayananProgramKFR extends javax.swing.JDialog {
         FormMenu.add(BtnRiwayatPasien);
 
         BtnAwalFisioTerapi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
-        BtnAwalFisioTerapi.setText("Penilaian Awal Fisioterapi");
+        BtnAwalFisioTerapi.setText("Pengkajian Awal Fisioterapi");
         BtnAwalFisioTerapi.setFocusPainted(false);
         BtnAwalFisioTerapi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         BtnAwalFisioTerapi.setGlassColor(new java.awt.Color(255, 255, 255));
