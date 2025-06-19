@@ -32,6 +32,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
 import kepegawaian.DlgCariDokter;
 import kepegawaian.DlgCariPetugas;
 
@@ -48,6 +50,7 @@ public class DlgUser extends javax.swing.JDialog {
     private ResultSet rs;
     private String user="",jabatan="",copyhakakses="",userdicopy="";
     private int i=0,barisdicopy=-1;
+    private boolean ceksukses=false;
 
     /** Creates new form DlgUser
      * @param parent
@@ -152,19 +155,19 @@ public class DlgUser extends javax.swing.JDialog {
                 "[O]Laju HAIs ILO Per Ruang","[O]Laju HAIs HAP Per Ruang","[L]Mapping Poli Inhealth","[L]Mapping Dokter Inhealth","[L]Tarif Ralan Inhealth",
                 "[L]Tarif Ranap Inhealth","[L]Tarif Radiologi Inhealth","[L]Tarif Laborat Inhealth","[L]Tarif Operasi Inhealth","[D]Hibah Obat & BHP","[G]Asal Hibah",
                 "[M]Asuhan Gizi","[L]Tagihan Inhealth","[D]Sirkulasi Obat, Alkes & BHP 4","[D]Sirkulasi Obat, Alkes & BHP 5","[E]Sirkulasi Non Medis 2",
-                "[M]Monitoring Asuhan Gizi","[O]Penerimaan Obat, Alkes & BHP Per Bulan","[J]Rekap Kunjungan","[P]Surat Keterangan Sakit","[M]Penilaian Awal Keperawatan Ralan Umum",
+                "[M]Monitoring Asuhan Gizi","[O]Penerimaan Obat, Alkes & BHP Per Bulan","[J]Rekap Kunjungan","[P]Surat Keterangan Sakit","[M]Pengkajian Awal Keperawatan Ralan Umum",
                 "[A]Permintaan Diet","[M]Master Masalah Keperawatan","[C]Pengajuan Cuti","[J]Kedatangan Pasien Per Jam","[N]Data Pendonor","[R]Suplier Toko",
                 "[R]Jenis Barang Toko","[T]Set Harga Toko","[R]Barang Toko","[K]Penagihan Piutang Pasien","[K]Akun Penagihan Piutang","[R]Stok Opname Toko",
                 "[R]Riwayat Barang Toko","[R]Surat Pemesanan Toko","[R]Pengajuan Barang Toko","[R]Penerimaan Barang Toko","[R]Pengadaan Barang Toko","[R]Hutang Toko",
                 "[R]Bayar Pesan Toko","[R]Member Toko","[R]Penjualan Toko","[J]Registrasi Poli Per Tanggal","[R]Piutang Toko","[R]Retur Ke Suplier Toko",
                 "[E]Retur Ke Suplier Non Medis","[E]Riwayat Barang Non Medis","[L]Pasien Corona","[R]Pendapatan Harian Toko","[L]Diagnosa Pasien Corona",
-                "[L]Perawatan Pasien Corona","[M]Penilaian Awal Keperawatan Gigi","[M]Master Masalah Keperawatan Gigi","[R]Bayar Piutang Toko","[R]Piutang Harian Toko",
-                "[R]Penjualan Harian Toko","[A]Deteksi Dini Corona","[M]Penilaian Awal Keperawatan Ralan Kebidanan","[P]Pengumuman E-Pasien","[P]Surat Hamil","[K]Set Tarif Online",
+                "[L]Perawatan Pasien Corona","[M]Pengkajian Awal Keperawatan Gigi","[M]Master Masalah Keperawatan Gigi","[R]Bayar Piutang Toko","[R]Piutang Harian Toko",
+                "[R]Penjualan Harian Toko","[A]Deteksi Dini Corona","[M]Pengkajian Awal Keperawatan Ralan Kebidanan","[P]Pengumuman E-Pasien","[P]Surat Hamil","[K]Set Tarif Online",
                 "[A]Booking Periksa","[R]Sirkulasi Barang Toko","[R]Retur Jual Toko","[R]Retur Jual Piutang","[R]Sirkulasi Barang Toko 2","[R]Keuntungan Barang Toko",
                 "[S]Ket Pengeluaran Penerima Dankes","[S]Ket Penghasilan Penerima Dankes","[S]Ukuran Rumah Penerima Dankes","[S]Dinding Rumah Penerima Dankes",
                 "[S]Lantai Rumah Penerima Dankes","[S]Atap Rumah Penerima Dankes","[S]Kepemilikan Rumah Penerima Dankes","[S]Kamar Mandi Penerima Dankes",
                 "[S]Dapur Rumah Penerima Dankes","[S]Kursi Rumah Penerima Dankes","[S]Kategori PHBS Penerima Dankes","[S]Elektronik Penerima Dankes",
-                "[S]Ternak Penerima Dankes","[S]Jenis Simpanan Penerima Dankes","[M]Penilaian Awal Keperawatan Ralan Bayi/Anak","[S]Kategori Asnaf Penerima Dankes",
+                "[S]Ternak Penerima Dankes","[S]Jenis Simpanan Penerima Dankes","[M]Pengkajian Awal Keperawatan Ralan Bayi/Anak","[S]Kategori Asnaf Penerima Dankes",
                 "[M]Master Masalah Keperawatan Bayi/Anak","[M]Master Imunisasi","[S]Patologis Penerima Dankes","[L]Cek No.Kartu PCare","[P]Surat Bebas Narkoba",
                 "[P]Surat Keterangan Covid","[G]Pemakaian Air Tanah","[O]Pemakaian Air Tanah Per Tanggal","[O]Pemakaian Air Tanah Per Bulan",
                 "[J]Lama Pelayanan Poli","[M]Hemodialisa","[J]Laporan Tahunan IRJ","[O]Hemodialisa Per Tanggal","[O]Hemodialisa Per Bulan","[O]Hemodialisa Per Tahun",
@@ -174,7 +177,7 @@ public class DlgUser extends javax.swing.JDialog {
                 "[T]Jam Diet Pasien","[K]RVP Piutang BPJS","[D]Verifikasi Penerimaan Obat/Alkes/BHP","[E]Verifikasi Penerimaan Non Medis","[A]Periksa Lab PA",
                 "[D]Ringkasan Pengajuan Obat & BHP","[D]Ringkasan Pemesanan Obat & BHP","[D]Ringkasan Pengadaan Obat & BHP","[D]Ringkasan Penerimaan Obat & BHP",
                 "[D]Ringkasan Hibah Obat & BHP","[D]Ringkasan Penjualan Obat & BHP","[D]Ringkasan Beri Obat & BHP","[D]Ringkasan Piutang Obat & BHP",
-                "[D]Ringkasan Stok Keluar Obat & BHP","[D]Ringkasan Retur Suplier Obat & BHP","[D]Ringkasan Retur Pembeli Obat & BHP","[M]Penilaian Awal Keperawatan Ranap Kebidanan",
+                "[D]Ringkasan Stok Keluar Obat & BHP","[D]Ringkasan Retur Suplier Obat & BHP","[D]Ringkasan Retur Pembeli Obat & BHP","[M]Pengkajian Awal Keperawatan Ranap Kebidanan",
                 "[E]Ringkasan Pengajuan Non Medis","[E]Ringkasan Pemesanan Non Medis","[E]Ringkasan Pengadaan Non Medis","[E]Ringkasan Penerimaan Non Medis",
                 "[E]Ringkasan Stok Keluar Non Medis","[E]Ringkasan Retur Suplier Non Medis","[K]Penerimaan/Omset/Kas Masuk","[K]Validasi Penagihan Piutang",
                 "[A]Permintaan Rawat Inap","[L]Referensi Diagnosa PRB VClaim","[L]Referensi Obat PRB VClaim","[L]Surat Kontrol VClaim","[D]Penggunaan BHP OK/VK",
@@ -186,35 +189,35 @@ public class DlgUser extends javax.swing.JDialog {
                 "[K]Bayar Pesan Aset/Inventaris","[K]Hutang Aset/Inventaris","[G]Hibah Aset/Inventaris","[K]Titip Faktur/Tagihan Non Medis","[K]Validasi Titip Faktur/Tagihan Non Medis",
                 "[K]Titip Faktur/Tagihan Aset/Inventaris","[K]Validasi Titip Faktur/Tagihan Aset/Inventaris","[E]Hibah Non Medis","[L]Referensi TACC PCare","[D]Resep Luar",
                 "[P]Surat Bebas TBC","[P]Surat Keterangan Buta Warna","[P]Surat Bebas Tato","[P]Surat Kewaspadaan Kesehatan","[O]Porsi Diet Per Tanggal","[O]Porsi Diet Per Bulan",
-                "[O]Porsi Diet Per Tahun","[O]Porsi Diet Per Ruang","[M]Penilaian Awal Medis Ralan Umum","[M]Master Masalah Keperawatan Mata","[M]Penilaian Awal Keperawatan Ralan Mata",
-                "[M]Penilaian Awal Medis Ranap Umum","[M]Penilaian Awal Medis Ranap Kandungan","[M]Penilaian Awal Medis Ralan Kandungan","[M]Penilaian Awal Medis IGD",
-                "[M]Penilaian Awal Medis Ralan Bayi/Anak","[L]Referensi Poli HFIS","[L]Referensi Dokter HFIS","[L]Referensi Jadwal HFIS","[M]Penilaian Awal Fisioterapi",
+                "[O]Porsi Diet Per Tahun","[O]Porsi Diet Per Ruang","[M]Pengkajian Awal Medis Ralan Umum","[M]Master Masalah Keperawatan Mata","[M]Pengkajian Awal Keperawatan Ralan Mata",
+                "[M]Pengkajian Awal Medis Ranap Umum","[M]Pengkajian Awal Medis Ranap Kandungan","[M]Pengkajian Awal Medis Ralan Kandungan","[M]Pengkajian Awal Medis IGD",
+                "[M]Pengkajian Awal Medis Ralan Bayi/Anak","[L]Referensi Poli HFIS","[L]Referensi Dokter HFIS","[L]Referensi Jadwal HFIS","[M]Pengkajian Awal Fisioterapi",
                 "[L]Program PRB di VClaim","[L]Suplesi Jasa Raharja di VClaim","[L]Data Induk Kecelakaan VClaim","[L]Data SEP Internal VClaim","[L]Klaim Jaminan Jasa Raharja VClaim",
                 "[L]Pasien Finger Print VClaim","[L]Rujukan Khusus VClaim","[G]Pemeliharaan Gedung","[O]Perbaikan Inventaris Per Tanggal","[O]Perbaikan Inventaris Per Bulan",
-                "[O]Perbaikan Inventaris Per Tahun","[O]Perbaikan Inventaris Per Pelaksana & Status","[M]Penilaian MCU","[K]Peminjam Piutang","[K]Piutang Lain-lain",
-                "[K]Asuransi/Askes/Jenis Bayar","[C]Audit Kepatuhan APD","[L]Task ID Mobile JKN","[K]Bayar Piutang Lain-lain","[I]Pembayaran Per Akun Bayar 4",
+                "[O]Perbaikan Inventaris Per Tahun","[O]Perbaikan Inventaris Per Pelaksana & Status","[M]Pengkajian MCU","[K]Peminjam Piutang","[K]Piutang Peminjaman Uang",
+                "[K]Asuransi/Askes/Jenis Bayar","[C]Audit Kepatuhan APD","[L]Task ID Mobile JKN","[K]Bayar Piutang Peminjaman Uang","[I]Pembayaran Per Akun Bayar 4",
                 "[D]Stok Akhir Farmasi Per Tanggal","[M]Riwayat Kamar Pasien","[M]Uji Fungsi/Prosedur KFR","[M]Hapus Berkas Digital Perawatan","[K]Kategori Pengeluaran Harian",
                 "[K]Kategori Pemasukan Lain-lain","[I]Pembayaran Per Akun Bayar 5","[T]Ruang Operasi","[D]Telaah Resep & Obat","[I]Jasa Tindakan Pasien","[D]Permintaan Resep Pulang",
                 "[I]Rekap JM Dokter","[J]Status Data RM","[A]Ubah Petugas Lab PK","[A]Ubah Petugas Lab PA","[A]Ubah Petugas Radiologi","[A]Gabung Nomor Rawat","[M]Gabungkan Data RM",
-                "[D]Ringkasan Biaya Obat Pasien Per Tanggal","[M]Master Masalah Keperawatan IGD","[M]Penilaian Awal Keperawatan IGD","[L]Referensi DPHO Apotek BPJS",
+                "[D]Ringkasan Biaya Obat Pasien Per Tanggal","[M]Master Masalah Keperawatan IGD","[M]Pengkajian Awal Keperawatan IGD","[L]Referensi DPHO Apotek BPJS",
                 "[L]Referensi Poli Apotek BPJS","[K]Bayar JM Dokter","[L]Referensi Faskes Apotek BPJS","[L]Referensi Spesialistik Apotek BPJS","[K]Pembayaran BRIVA",
-                "[M]Penilaian Awal Keperawatan Ranap Umum","[D]Nilai Penerimaan Vendor Farmasi Per Bulan","[K]Akun Bayar Hutang","[M]Master Rencana Keperawatan",
+                "[M]Pengkajian Awal Keperawatan Ranap Umum","[D]Nilai Penerimaan Vendor Farmasi Per Bulan","[K]Akun Bayar Hutang","[M]Master Rencana Keperawatan",
                 "[J]Laporan Tahunan IGD","[D]Obat/Alkes/BHP Tidak Bergerak","[K]Ringkasan Hutang Vendor Farmasi","[E]Nilai Penerimaan Vendor Non Medis Per Bulan",
                 "[K]Ringkasan Hutang Vendor Non Medis","[M]Master Rencana Keperawatan Bayi/Anak","[J]Anggota POLRI Dirawat","[J]Daftar Pasien Ranap POLRI","[M]SOAP Ralan Anggota POLRI",
                 "[M]SOAP Ranap Anggota POLRI","[J]Laporan Penyakit POLRI","[J]Jumlah Pengunjung Ralan POLRI","[M]Catatan Observasi IGD","[M]Catatan Observasi Ranap",
-                "[M]Catatan Observasi Ranap Kebidanan","[M]Catatan Observasi Ranap Post Partum","[M]Penilaian Awal Medis Ralan THT","[M]Penilaian Psikologi",
+                "[M]Catatan Observasi Ranap Kebidanan","[M]Catatan Observasi Ranap Post Partum","[M]Pengkajian Awal Medis Ralan THT","[M]Pengkajian Psikologi",
                 "[C]Audit Cuci Tangan Medis","[C]Audit Pembuangan Limbah","[C]Ruang/Unit Audit Kepatuhan","[C]Audit Pembuangan Benda Tajam & Jarum",
                 "[C]Audit Penanganan Darah","[C]Audit Pengelolaan Linen Kotor","[C]Audit Penempatan Pasien","[C]Audit Kamar Jenazah","[C]Audit Bundle IADP",
                 "[C]Audit Bundle IDO","[C]Audit Fasilitas Kebersihan Tangan","[C]Audit Fasilitas APD","[C]Audit Pembuangan Limbah Cair Infeksius","[C]Audit Sterilisasi Alat",
-                "[M]Penilaian Awal Medis Ralan Psikiatri","[P]Persetujuan/Penolakan Tindakan","[C]Audit Bundle ISK","[C]Audit Bundle PLABSI","[C]Audit Bundle VAP",
-                "[L]Host To Host Bank Papua","[K]Pembayaran Bank Papua","[M]Penilaian Awal Medis Ralan Penyakit Dalam","[M]Penilaian Awal Medis Ralan Mata",
-                "[M]Penilaian Awal Medis Ralan Neurologi","[D]Sirkulasi Obat, Alkes & BHP 6","[M]Penilaian Awal Medis Ralan Orthopedi","[M]Penilaian Awal Medis Ralan Bedah",
+                "[M]Pengkajian Awal Medis Ralan Psikiatri","[P]Persetujuan/Penolakan Tindakan","[C]Audit Bundle ISK","[C]Audit Bundle PLABSI","[C]Audit Bundle VAP",
+                "[L]Host To Host Bank Papua","[K]Pembayaran Bank Papua","[M]Pengkajian Awal Medis Ralan Penyakit Dalam","[M]Pengkajian Awal Medis Ralan Mata",
+                "[M]Pengkajian Awal Medis Ralan Neurologi","[D]Sirkulasi Obat, Alkes & BHP 6","[M]Pengkajian Awal Medis Ralan Orthopedi","[M]Pengkajian Awal Medis Ralan Bedah",
                 "[T]Integrasi Khanza Health Services","[M]SOAP Ralan Anggota TNI","[M]SOAP Ranap Anggota TNI","[J]Jumlah Pengunjung Ralan TNI","[J]Laporan Penyakit TNI",
                 "[M]Catatan Keperawatan Ranap","[M]Master Rencana Keperawatan Gigi","[M]Master Rencana Keperawatan Mata","[M]Master Rencana Keperawatan IGD",
-                "[M]Master Masalah Keperawatan Psikiatri","[M]Master Rencana Keperawatan Psikiatri","[M]Penilaian Awal Keperawatan Ralan Psikiatri","[M]Pemantauan PEWS Pasien Anak",
+                "[M]Master Masalah Keperawatan Psikiatri","[M]Master Rencana Keperawatan Psikiatri","[M]Pengkajian Awal Keperawatan Ralan Psikiatri","[M]Pemantauan PEWS Pasien Anak",
                 "[P]Pulang Atas Permintaan Sendiri","[M]Master Template Hasil Radiologi","[J]Laporan Bulanan IRJ","[M]Master Template Pemeriksaan","[A]Periksa Lab MB",
-                "[A]Ubah Petugas Lab MB","[M]Penilaian Pre Operasi","[M]Penilaian Pre Anestesi","[M]Perencanaan Pemulangan","[M]Penilaian Lanjutan Risiko Jatuh Dewasa",
-                "[M]Penilaian Lanjutan Risiko Jatuh Anak","[M]Penilaian Awal Medis Ralan Geriatri","[M]Penilaian Tambahan Pasien Geriatri","[M]Skrining Nutrisi Pasien Dewasa",
+                "[A]Ubah Petugas Lab MB","[M]Pengkajian Pre Operasi","[M]Pengkajian Pre Anestesi","[M]Perencanaan Pemulangan","[M]Pengkajian Lanjutan Risiko Jatuh Dewasa",
+                "[M]Pengkajian Lanjutan Risiko Jatuh Anak","[M]Pengkajian Awal Medis Ralan Geriatri","[M]Pengkajian Tambahan Pasien Geriatri","[M]Skrining Nutrisi Pasien Dewasa",
                 "[M]Skrining Nutrisi Pasien Lansia","[M]Hasil USG Kandungan","[M]Skrining Nutrisi Pasien Anak","[L]Host To Host Bank Jabar","[K]Pembayaran Bank Jabar",
                 "[P]Pernyataan Pasien Umum","[M]Konseling Farmasi","[M]Pelayanan Informasi Obat","[M]Jawaban PIO Apoteker","[P]Persetujuan Umum","[M]Transfer Pasien Antar Ruang",
                 "[L]Referensi Praktisi Satu Sehat","[L]Referensi Pasien Satu Sehat","[L]Mapping Organisasi Satu Sehat","[L]Mapping Lokasi Satu Sehat","[L]Kirim Encounter Satu Sehat",
@@ -223,45 +226,49 @@ public class DlgUser extends javax.swing.JDialog {
                 "[L]Mapping Vaksin Satu Sehat","[F]Suplier Dapur","[L]Kirim Imunisasi Satu Sehat","[M]Check List Post Operasi","[F]Pengadaan Barang Dapur","[F]Stok Keluar Dapur",
                 "[F]Riwayat Barang Dapur","[F]Permintaan Barang Dapur","[M]Rekonsiliasi Obat","[F]Biaya Pengadaan Dapur","[F]Rekap Pengadaan Dapur","[G]Limbah Cair B3 Medis",
                 "[O]Limbah B3 Cair Per Tanggal","[O]Limbah B3 Cair Per Bulan","[I]Rekap Biaya Registrasi","[M]Konfirmasi Rekonsiliasi Obat","[L]Kirim Clinical Impression Satu Sehat",
-                "[M]Penilaian Pasien Terminal","[P]Persetujuan Rawat Inap","[M]Monitoring Reaksi Tranfusi","[M]Penilaian Korban Kekerasan","[M]Penilaian Lanjutan Risiko Jatuh Lansia",
-                "[M]Penilaian Pasien Penyakit Menular","[M]Skrining Manajer Pelayanan Pasien","[M]Edukasi Pasien & Keluarga Rawat Jalan","[M]Pemantauan EWS Pasien Dewasa",
-                "[M]Penilaian Tambahan Bunuh Diri","[L]Antrean Per Tanggal Mobile JKN","[M]Penilaian Tambahan Perilaku Kekerasan","[M]Penilaian Tambahan Melarikan Diri",
-                "[P]Persetujuan Penundaan Pelayanan","[J]Sisa Diet Pasien","[M]Penilaian Awal Medis Ralan Bedah Mulut","[M]Penilaian Pasien Keracunan","[M]Pemantauan MEOWS Pasien Obstetri",
-                "[M]Catatan ADIME Gizi","[K]Pengajuan Biaya","[M]Penilaian Awal Keperawatan Ralan Geriatri","[M]Master Masalah Keperawatan Geriatri","[M]Master Rencana Keperawatan Geriatri",
-                "[M]Check List Kriteria Masuk HCU","[M]Check List Kriteria Keluar HCU","[M]Penilaian Risiko Dekubitus","[P]Master Menolak Anjuran Medis","[P]Penolakan Anjuran Medis",
+                "[M]Pengkajian Pasien Terminal","[P]Persetujuan Rawat Inap","[M]Monitoring Reaksi Tranfusi","[M]Pengkajian Korban Kekerasan","[M]Pengkajian Lanjutan Risiko Jatuh Lansia",
+                "[M]Pengkajian Pasien Penyakit Menular","[M]Skrining Manajer Pelayanan Pasien","[M]Edukasi Pasien & Keluarga Rawat Jalan","[M]Pemantauan EWS Pasien Dewasa",
+                "[M]Pengkajian Tambahan Bunuh Diri","[L]Antrean Per Tanggal Mobile JKN","[M]Pengkajian Tambahan Perilaku Kekerasan","[M]Pengkajian Tambahan Melarikan Diri",
+                "[P]Persetujuan Penundaan Pelayanan","[J]Sisa Diet Pasien","[M]Pengkajian Awal Medis Ralan Bedah Mulut","[M]Pengkajian Pasien Keracunan","[M]Pemantauan MEOWS Pasien Obstetri",
+                "[M]Catatan ADIME Gizi","[K]Pengajuan Biaya","[M]Pengkajian Awal Keperawatan Ralan Geriatri","[M]Master Masalah Keperawatan Geriatri","[M]Master Rencana Keperawatan Geriatri",
+                "[M]Check List Kriteria Masuk HCU","[M]Check List Kriteria Keluar HCU","[M]Pengkajian Risiko Dekubitus","[P]Master Menolak Anjuran Medis","[P]Penolakan Anjuran Medis",
                 "[J]Laporan Tahunan Penolakan Anjuran Medis","[M]Master Template Laporan Operasi","[M]Dokumentasi Tindakan ESWL","[M]Check List Kriteria Masuk ICU",
-                "[M]Check List Kriteria Keluar ICU","[A]Akses Ke Dokter Lain Rawat Jalan","[M]Follow Up DBD","[M]Penilaian Lanjutan Risiko Jatuh Neonatus","[K]Persetujuan Pengajuan Biaya",
-                "[J]Pemeriksaan Fisik Ralan Per Penyakit","[M]Penilaian Lanjutan Risiko Jatuh Geriatri","[M]Pemantauan EWS Pasien Neonatus","[K]Validasi Persetujuan Pengajuan Biaya",
-                "[L]Riwayat Perawatan ICare BPJS","[K]Rekap Pengajuan Biaya","[M]Penilaian Awal Medis Ralan Kulit & Kelamin","[L]Host To Host Bank Mandiri","[M]Penilaian Awal Medis Pasien Hemodialisa",
-                "[M]Penilaian Level Kecemasan Ranap Anak","[M]Penilaian Lanjutan Risiko Jatuh Psikiatri","[M]Penilaian Lanjutan Skrining Fungsional","[M]Penilaian Awal Medis Ralan Fisik & Rehabilitasi",
-                "[M]Laporan Anestesi","[P]Template Persetujuan Penolakan Tindakan","[M]Penilaian Awal Medis IGD Psikiatri","[L]Referensi Setting PPK Apotek BPJS","[L]Referensi Obat Apotek BPJS",
-                "[L]Mapping Obat Apotek BPJS","[K]Pembayaran Bank Mandiri","[M]Penilaian Ulang Nyeri","[M]Penilaian Terapi Wicara","[L]Obat 23 Hari Apotek BPJS","[M]Pengkajian Restrain",
-                "[L]Pencarian SEP Apotek BPJS","[L]Monitoring Klaim Apotek BPJS","[L]Daftar Pelayanan Obat Apotek BPJS","[M]Penilaian Awal Medis Ralan Paru","[M]Catatan Keperawatan Ralan",
-                "[M]Catatan Persalinan","[M]Skor Aldrette Pasca Anestesi","[M]Skor Steward Pasca Anestesi","[M]Skor Bromage Pasca Anestesi","[M]Penilaian Pre Induksi","[M]Hasil USG Urologi",
+                "[M]Check List Kriteria Keluar ICU","[A]Akses Ke Dokter Lain Rawat Jalan","[M]Follow Up DBD","[M]Pengkajian Lanjutan Risiko Jatuh Neonatus","[K]Persetujuan Pengajuan Biaya",
+                "[J]Pemeriksaan Fisik Ralan Per Penyakit","[M]Pengkajian Lanjutan Risiko Jatuh Geriatri","[M]Pemantauan EWS Pasien Neonatus","[K]Validasi Persetujuan Pengajuan Biaya",
+                "[L]Riwayat Perawatan ICare BPJS","[K]Rekap Pengajuan Biaya","[M]Pengkajian Awal Medis Ralan Kulit & Kelamin","[L]Host To Host Bank Mandiri","[M]Pengkajian Awal Medis Pasien Hemodialisa",
+                "[M]Pengkajian Level Kecemasan Ranap Anak","[M]Pengkajian Lanjutan Risiko Jatuh Psikiatri","[M]Pengkajian Lanjutan Skrining Fungsional","[M]Pengkajian Awal Medis Ralan Fisik & Rehabilitasi",
+                "[M]Laporan Anestesi","[P]Template Persetujuan Penolakan Tindakan","[M]Pengkajian Awal Medis IGD Psikiatri","[L]Referensi Setting PPK Apotek BPJS","[L]Referensi Obat Apotek BPJS",
+                "[L]Mapping Obat Apotek BPJS","[K]Pembayaran Bank Mandiri","[M]Pengkajian Ulang Nyeri","[M]Pengkajian Terapi Wicara","[L]Obat 23 Hari Apotek BPJS","[M]Pengkajian Restrain",
+                "[L]Pencarian SEP Apotek BPJS","[L]Monitoring Klaim Apotek BPJS","[L]Daftar Pelayanan Obat Apotek BPJS","[M]Pengkajian Awal Medis Ralan Paru","[M]Catatan Keperawatan Ralan",
+                "[M]Catatan Persalinan","[M]Skor Aldrette Pasca Anestesi","[M]Skor Steward Pasca Anestesi","[M]Skor Bromage Pasca Anestesi","[M]Pengkajian Pre Induksi","[M]Hasil USG Urologi",
                 "[M]Hasil USG Gynecologi","[M]Hasil Pemeriksaan EKG","[L]Hapus/Edit SEP VClaim","[L]Kirim Diet Satu Sehat","[L]Mapping Obat/Alkes/BHP Satu Sehat","[F]Ringkasan Pengadaan Barang Dapur",
                 "[L]Kirim Medication Satu Sehat","[L]Kirim Medication Request Satu Sehat","[M]Penatalaksanaan Terapi Okupasi","[L]Kirim Medication Dispense Satu Sehat","[M]Hasil USG Neonatus",
                 "[M]Hasil Endoskopi Faring/Laring","[L]Mapping Tindakan Radiologi Satu Sehat","[L]Kirim Service Request Radiologi Satu Sehat","[M]Hasil Endoskopi Hidung",
-                "[L]Kirim Specimen Radiologi Satu Sehat","[M]Master Masalah Keperawatan Neonatus","[M]Master Rencana Keperawatan Neonatus","[M]Penilaian Awal Keperawatan Ranap Neonatus",
+                "[L]Kirim Specimen Radiologi Satu Sehat","[M]Master Masalah Keperawatan Neonatus","[M]Master Rencana Keperawatan Neonatus","[M]Pengkajian Awal Keperawatan Ranap Neonatus",
                 "[L]Kirim Observation Radiologi Satu Sehat","[L]Kirim Diagnostic Report Radiologi Satu Sehat","[M]Hasil Endoskopi Telinga","[L]Mapping Tindakan Lab PK & MB Satu Sehat",
                 "[L]Kirim Service Request Lab PK Satu Sehat","[L]Kirim Service Request Lab MB Satu Sehat","[L]Kirim Specimen Lab PK Satu Sehat","[L]Kirim Specimen Lab MB Satu Sehat",
                 "[L]Kirim Observation Lab PK Satu Sehat","[L]Kirim Observation Lab MB Satu Sehat","[L]Kirim Diagnostic Report Lab PK Satu Sehat","[L]Kirim Diagnostic Report Lab MB Satu Sehat",
-                "[J]Kepatuhan Kelengkapan Keselamatan Bedah","[K]Nilai Piutang Per Cara Bayar Per Bulan","[K]Ringkasan Piutang Per Cara Bayar","[M]Penilaian Pasien Imunitas Rendah",
-                "[M]Keseimbangan Cairan","[M]Catatan Observasi CHBP","[M]Catatan Observasi Induksi Persalinan","[C]Kategori Penilaian SKP","[C]Kriteria Penilaian SKP","[C]Penilaian SKP Petugas/Dokter",
-                "[L]Referensi Poli Mobile JKN FKTP","[L]Referensi Dokter Mobile JKN FKTP","[C]Rekapitulasi Penilaian SKP","[K]Pembayaran Pihak Ke 3 Bank Mandiri","[L]Metode Pembayaran Bank Mandiri",
+                "[J]Kepatuhan Kelengkapan Keselamatan Bedah","[K]Nilai Piutang Per Cara Bayar Per Bulan","[K]Ringkasan Piutang Per Cara Bayar","[M]Pengkajian Pasien Imunitas Rendah",
+                "[M]Keseimbangan Cairan","[M]Catatan Observasi CHBP","[M]Catatan Observasi Induksi Persalinan","[C]Kategori Pengkajian SKP","[C]Kriteria Pengkajian SKP","[C]Pengkajian SKP Petugas/Dokter",
+                "[L]Referensi Poli Mobile JKN FKTP","[L]Referensi Dokter Mobile JKN FKTP","[C]Rekapitulasi Pengkajian SKP","[K]Pembayaran Pihak Ke 3 Bank Mandiri","[L]Metode Pembayaran Bank Mandiri",
                 "[L]Bank Tujuan Transfer Bank Mandiri","[L]Kode Transaksi Tujuan Transfer Bank Mandiri","[M]Konsultasi Medik","[M]Jawaban Konsultasi Medik","[L]Referensi Alergi PCare",
                 "[L]Referensi Prognosa PCare","[J]Data Sasaran Usia Produktif","[J]Data Sasaran Usia Lansia","[M]Skrining Merokok Usia Sekolah & Remaja","[M]Skrining Kekerasan Pada Perempuan",
                 "[M]Skrining Obesitas","[M]Skrining Risiko Kanker Payudara","[M]Skrining Risiko Kanker Paru","[M]Skrining TBC","[M]Skrining Kesehatan Gigi & Mulut Remaja",
-                "[M]Penilaian Awal Keperawatan Ranap Bayi/Anak","[A]Booking MCU Perusahaan","[M]Catatan Observasi Restrain Nonfarmakologi","[M]Catatan Observasi Ventilator",
+                "[M]Pengkajian Awal Keperawatan Ranap Bayi/Anak","[A]Booking MCU Perusahaan","[M]Catatan Observasi Restrain Nonfarmakologi","[M]Catatan Observasi Ventilator",
                 "[M]Catatan Anestesi-Sedasi","[M]Skrining PUMA","[L]Kirim Care Plan Satu Sehat","[L]Kirim Medication Statement Satu Sehat","[M]Skrining Adiksi Nikotin","[M]Skrining Thalassemia",
-                "[M]Skrining Instrumen SDQ","[M]Skrining Instrumen SRQ","[M]Checklist Pemberian Fibrinolitik","[M]Skrining Kanker Kolorektal","[F]Penerimaan Barang Dapur","[K]Bayar Pesan Dapur",
+                "[M]Skrining Instrumen SDQ","[M]Skrining Instrumen SRQ","[M]Check List Pemberian Fibrinolitik","[M]Skrining Kanker Kolorektal","[F]Penerimaan Barang Dapur","[K]Bayar Pesan Dapur",
                 "[K]Hutang Barang Dapur","[K]Titip Faktur/Tagihan Dapur","[K]Validasi Titip Faktur/Tagihan Dapur","[F]Surat Pemesanan Barang Dapur","[F]Pengajuan Barang Dapur",
                 "[F]Retur Ke Suplier Dapur","[F]Hibah Barang Dapur","[F]Ringkasan Penerimaan Dapur","[F]Ringkasan Pengajuan Dapur","[F]Ringkasan Pemesanan Dapur","[F]Ringkasan Retur Suplier Dapur",
                 "[F]Ringkasan Stok Keluar Dapur","[F]Stok Keluar Dapur Per Tanggal","[F]Sirkulasi Barang Dapur","[F]Sirkulasi Barang Dapur 2","[F]Verifikasi Penerimaan Dapur",
-                "[F]Nilai Penerimaan Vendor Dapur Per Bulan","[K]Ringkasan Hutang Vendor Dapur","[M]Penilaian Psikologi Klinis","[M]Penilaian Awal Medis Ranap Neonatus","[M]Penilaian Derajat Dehidrasi",
-                "[I]Ringkasan Jasa Tindakan Pasien","[I]Pendapatan Per Akun Rekening","[M]Hasil Pemeriksaan ECHO","[M]Penilaian Bayi Baru Lahir","[J]RL 1.3 Ketersediaan Tempat Tidur",
+                "[F]Nilai Penerimaan Vendor Dapur Per Bulan","[K]Ringkasan Hutang Vendor Dapur","[M]Pengkajian Psikologi Klinis","[M]Pengkajian Awal Medis Ranap Neonatus","[M]Pengkajian Derajat Dehidrasi",
+                "[I]Ringkasan Jasa Tindakan Pasien","[I]Pendapatan Per Akun Rekening","[M]Hasil Pemeriksaan ECHO","[M]Pengkajian Bayi Baru Lahir","[J]RL 1.3 Ketersediaan Tempat Tidur",
                 "[I]Pendapatan Per Akun Closing","[K]Pengeluaran-pengeluaran/Kas Keluar","[M]Skrining Diabetes Melitus","[M]Laporan Tindakan","[M]Pelaksanaan Informasi & Edukasi",
                 "[M]Layanan Kedokteran Fisik & Rehabilitasi","[M]Skrining Kesehatan Gigi & Mulut Balita","[M]Skrining Anemia","[M]Layanan Program KFR","[M]Skrining Hipertensi",
-                "[M]Skrining Kesehatan Penglihatan","[M]Catatan Observasi Hemodialisa","[M]Skrining Kesehatan Gigi & Mulut Dewasa","[P]Persetujuan Dokter DPJP","[O]pasien PRB Per Tanggal"//tambah chan 2 diakhir
+                "[M]Skrining Kesehatan Penglihatan","[M]Catatan Observasi Hemodialisa","[M]Skrining Kesehatan Gigi & Mulut Dewasa","[M]Skrining Risiko Kanker Serviks","[M]Catatan Cairan Hemodialisa",
+                "[M]Skrining Kesehatan Gigi & Mulut Lansia","[M]Skrining Indra Pendengaran","[M]Catatan Pengkajian Paska Operasi","[M]Skrining Frailty Syndrome","[G]Sirkulasi CSSD",
+                "[J]Lama Pelayanan CSSD","[M]Catatan Observasi Bayi","[C]Riwayat Surat Peringatan","[M]Master Kesimpulan & Anjuran MCU","[K]Kategori Piutang Jasa Perusahaan",
+                "[K]Piutang Jasa Perusahaan","[K]Bayar Piutang Jasa Perusahaan","[K]Piutang Jasa Perusahaan Belum Lunas","[M]Check List Kesiapan Anestesi","[K]Piutang Peminjaman Uang Belum Lunas",
+                "[M]Hasil Pemeriksaan Slit Lamp","[M]Hasil Pemeriksaan OCT","[P]Persetujuan Dokter DPJP","[O]pasien PRB Per Tanggal"//tambah chan 2 diakhir
         };
         
         tabMode=new DefaultTableModel(null,row){
@@ -565,6 +572,10 @@ public class DlgUser extends javax.swing.JDialog {
                 java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, 
                 java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, 
                 java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class,
+                java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, 
+                java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, 
+                java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, 
+                java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class,
                 java.lang.Boolean.class, java.lang.Boolean.class//tambah chan 2
              };
              @Override
@@ -578,7 +589,7 @@ public class DlgUser extends javax.swing.JDialog {
         tbUser.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbUser.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 1118;i++) {
+        for (i = 0; i < 1137;i++) {//tambah chan 2
             TableColumn column = tbUser.getColumnModel().getColumn(i);
             switch (i) {
                 case 0:
@@ -3381,9 +3392,66 @@ public class DlgUser extends javax.swing.JDialog {
                     column.setPreferredWidth(220);
                     break;
                 case 1116:
+                    column.setPreferredWidth(168);
+                    break;
+                case 1117:
+                    column.setPreferredWidth(161);
+                    break;
+                case 1118:
+                    column.setPreferredWidth(212);
+                    break;
+                case 1119:
+                    column.setPreferredWidth(159);
+                    break;
+                case 1120:
+                    column.setPreferredWidth(191);
+                    break;
+                case 1121:
+                    column.setPreferredWidth(148);
+                    break;
+                case 1122:
+                    column.setPreferredWidth(94);
+                    break;
+                case 1123:
+                    column.setPreferredWidth(129);
+                    break;
+                case 1124:
+                    column.setPreferredWidth(136);
+                    break;
+                case 1125:
+                    column.setPreferredWidth(146);
+                    break;
+                case 1126:
+                    column.setPreferredWidth(192);
+                    break;
+                case 1127:
+                    column.setPreferredWidth(188);
+                    break;
+                case 1128:
+                    column.setPreferredWidth(144);
+                    break;
+                case 1129:
+                    column.setPreferredWidth(174);
+                    break;
+                case 1130:
+                    column.setPreferredWidth(207);
+                    break;
+                case 1131:
+                    column.setPreferredWidth(159);
+                    break;
+                case 1132:
+                    column.setPreferredWidth(214);
+                    break;
+                case 1133:
+                    column.setPreferredWidth(160);
+                    break;
+                case 1134:
+                    column.setPreferredWidth(136);
+                    break;
+                case 1135:
                     column.setPreferredWidth(217);
                     break;//tambah chan
-                case 1117:
+                case 1136:
                     column.setPreferredWidth(210);
                     break;//tambah chan    
                 default:
@@ -3868,7 +3936,7 @@ public class DlgUser extends javax.swing.JDialog {
                     "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false',"+
                     "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false',"+
                     "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false',"+
-                    "'false','false','false','false','false','false','false','false','false','false','false','false','false','false'","User")==true){//tambah chan 2 akhir
+                    "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false'","User")==true){//tambah chan 2 akhir
                 tabMode.addRow(new Object[]{
                     TKd.getText(),TNmUser.getText(),Jabatan.getText(),TPass.getText(),false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
                     false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
@@ -3896,7 +3964,8 @@ public class DlgUser extends javax.swing.JDialog {
                     false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
                     false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
                     false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
-                    false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false//tambah chan 2 akhir
+                    false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
+                    false,false,false,false,false,false,false,false,false,false//tambah chan 2 akhir
                 });
                 emptTeks();
                 LCount.setText(""+tabMode.getRowCount());
@@ -5060,8 +5129,27 @@ public class DlgUser extends javax.swing.JDialog {
                     "skrining_kesehatan_penglihatan='"+tbUser.getValueAt(i,1113).toString()+"',"+
                     "catatan_observasi_hemodialisa='"+tbUser.getValueAt(i,1114).toString()+"',"+
                     "skrining_kesehatan_gigi_mulut_dewasa='"+tbUser.getValueAt(i,1115).toString()+"',"+
-                    "persetujuan_pernyataan_pemilihan_dpjp='"+tbUser.getValueAt(i, 1116).toString()+"',"+//tambah chan
-                    "grafik_harian_pasien_prb='"+tbUser.getValueAt(i,1117).toString()+"'")==true){//tambah chan 
+                    "skrining_risiko_kanker_serviks='"+tbUser.getValueAt(i,1116).toString()+"',"+
+                    "catatan_cairan_hemodialisa='"+tbUser.getValueAt(i,1117).toString()+"',"+
+                    "skrining_kesehatan_gigi_mulut_lansia='"+tbUser.getValueAt(i,1118).toString()+"',"+
+                    "skrining_indra_pendengaran='"+tbUser.getValueAt(i,1119).toString()+"',"+
+                    "catatan_pengkajian_paska_operasi='"+tbUser.getValueAt(i,1120).toString()+"',"+
+                    "skrining_frailty_syndrome='"+tbUser.getValueAt(i,1121).toString()+"',"+
+                    "sirkulasi_cssd='"+tbUser.getValueAt(i,1122).toString()+"',"+
+                    "lama_pelayanan_cssd='"+tbUser.getValueAt(i,1123).toString()+"',"+
+                    "catatan_observasi_bayi='"+tbUser.getValueAt(i,1124).toString()+"',"+
+                    "riwayat_surat_peringatan='"+tbUser.getValueAt(i,1125).toString()+"',"+
+                    "master_kesimpulan_anjuran_mcu='"+tbUser.getValueAt(i,1126).toString()+"',"+
+                    "kategori_piutang_jasa_perusahaan='"+tbUser.getValueAt(i,1127).toString()+"',"+
+                    "piutang_jasa_perusahaan='"+tbUser.getValueAt(i,1128).toString()+"',"+
+                    "bayar_piutang_jasa_perusahaan='"+tbUser.getValueAt(i,1129).toString()+"',"+
+                    "piutang_jasa_perusahaan_belum_lunas='"+tbUser.getValueAt(i,1130).toString()+"',"+
+                    "checklist_kesiapan_anestesi='"+tbUser.getValueAt(i,1131).toString()+"',"+
+                    "piutang_peminjaman_uang_belum_lunas='"+tbUser.getValueAt(i,1132).toString()+"',"+
+                    "hasil_pemeriksaan_slit_lamp='"+tbUser.getValueAt(i,1133).toString()+"',"+
+                    "hasil_pemeriksaan_oct='"+tbUser.getValueAt(i,1134).toString()+"',"+
+                    "persetujuan_pernyataan_pemilihan_dpjp='"+tbUser.getValueAt(i, 1135).toString()+"',"+//tambah chan
+                    "grafik_harian_pasien_prb='"+tbUser.getValueAt(i,1136).toString()+"'")==true){//tambah chan
                     emptTeks();
                 }
             }         
@@ -6395,8 +6483,27 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {
                                         "skrining_kesehatan_penglihatan='"+tbUser.getValueAt(barisdicopy,1113).toString()+"',"+
                                         "catatan_observasi_hemodialisa='"+tbUser.getValueAt(barisdicopy,1114).toString()+"',"+
                                         "skrining_kesehatan_gigi_mulut_dewasa='"+tbUser.getValueAt(barisdicopy,1115).toString()+"',"+
-                                        "persetujuan_pernyataan_pemilihan_dpjp='"+tbUser.getValueAt(barisdicopy, 1116).toString()+"',"+//tambah chan
-                                        "grafik_harian_hemodialisa='"+tbUser.getValueAt(barisdicopy,1117).toString()+"'");//tambah chan
+                                        "skrining_risiko_kanker_serviks='"+tbUser.getValueAt(barisdicopy,1116).toString()+"',"+
+                                        "catatan_cairan_hemodialisa='"+tbUser.getValueAt(barisdicopy,1117).toString()+"',"+
+                                        "skrining_kesehatan_gigi_mulut_lansia='"+tbUser.getValueAt(barisdicopy,1118).toString()+"',"+
+                                        "skrining_indra_pendengaran='"+tbUser.getValueAt(barisdicopy,1119).toString()+"',"+
+                                        "catatan_pengkajian_paska_operasi='"+tbUser.getValueAt(barisdicopy,1120).toString()+"',"+
+                                        "skrining_frailty_syndrome='"+tbUser.getValueAt(barisdicopy,1121).toString()+"',"+
+                                        "sirkulasi_cssd='"+tbUser.getValueAt(barisdicopy,1122).toString()+"',"+
+                                        "lama_pelayanan_cssd='"+tbUser.getValueAt(barisdicopy,1123).toString()+"',"+
+                                        "catatan_observasi_bayi='"+tbUser.getValueAt(barisdicopy,1124).toString()+"',"+
+                                        "riwayat_surat_peringatan='"+tbUser.getValueAt(barisdicopy,1125).toString()+"',"+
+                                        "master_kesimpulan_anjuran_mcu='"+tbUser.getValueAt(barisdicopy,1126).toString()+"',"+
+                                        "kategori_piutang_jasa_perusahaan='"+tbUser.getValueAt(barisdicopy,1127).toString()+"',"+
+                                        "piutang_jasa_perusahaan='"+tbUser.getValueAt(barisdicopy,1128).toString()+"',"+
+                                        "bayar_piutang_jasa_perusahaan='"+tbUser.getValueAt(barisdicopy,1129).toString()+"',"+
+                                        "piutang_jasa_perusahaan_belum_lunas='"+tbUser.getValueAt(barisdicopy,1130).toString()+"',"+
+                                        "checklist_kesiapan_anestesi='"+tbUser.getValueAt(barisdicopy,1131).toString()+"',"+
+                                        "piutang_peminjaman_uang_belum_lunas='"+tbUser.getValueAt(barisdicopy,1132).toString()+"',"+
+                                        "hasil_pemeriksaan_slit_lamp='"+tbUser.getValueAt(barisdicopy,1133).toString()+"',"+
+                                        "hasil_pemeriksaan_oct='"+tbUser.getValueAt(barisdicopy,1134).toString()+"',"+
+                                        "persetujuan_pernyataan_pemilihan_dpjp='"+tbUser.getValueAt(barisdicopy, 1135).toString()+"',"+//tambah chan
+                                        "grafik_harian_hemodialisa='"+tbUser.getValueAt(barisdicopy,1136).toString()+"'");//tambah chan
                                 }
                                 userdicopy="";
                                 copyhakakses="";
@@ -6493,9 +6600,14 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {
     private widget.Table tbUser;
     // End of variables declaration                   
 
-    private void tampil() {        
+    private synchronized void tampil() {  
+        if(ceksukses==false){
+            ceksukses=true;
         try{    
             Valid.tabelKosong(tabMode);
+                new SwingWorker<Void, Void>() {
+                    @Override
+                    protected Void doInBackground() throws Exception {
             ps=koneksi.prepareStatement(
                 "select AES_DECRYPT(user.id_user,'nur'),AES_DECRYPT(user.password,'windi'),user.penyakit,user.obat_penyakit,user.dokter,"+
                 "user.jadwal_praktek,user.petugas,user.pasien,user.registrasi,user.tindakan_ralan,user.kamar_inap,user.tindakan_ranap,user.operasi,"+
@@ -6710,9 +6822,14 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {
                 "user.penilaian_bayi_baru_lahir,user.rl1_3_ketersediaan_kamar,user.pendapatan_per_akun_closing,user.pengeluaran_pengeluaran,user.skrining_diabetes_melitus,"+
                 "user.laporan_tindakan,user.pelaksanaan_informasi_edukasi,user.layanan_kedokteran_fisik_rehabilitasi,user.skrining_kesehatan_gigi_mulut_balita,user.skrining_anemia,"+
                 "user.layanan_program_kfr,user.skrining_hipertensi,user.skrining_kesehatan_penglihatan,user.catatan_observasi_hemodialisa,user.skrining_kesehatan_gigi_mulut_dewasa,"+
-                "user.persetujuan_pernyataan_pemilihan_dpjp,user.grafik_harian_pasien_prb from user order by AES_DECRYPT(user.id_user,'nur')");//tambah chan 2
+                "user.skrining_risiko_kanker_serviks,user.catatan_cairan_hemodialisa,user.skrining_kesehatan_gigi_mulut_lansia,user.skrining_indra_pendengaran,user.catatan_pengkajian_paska_operasi,"+
+                "user.skrining_frailty_syndrome,user.sirkulasi_cssd,user.lama_pelayanan_cssd,user.catatan_observasi_bayi,user.riwayat_surat_peringatan,user.master_kesimpulan_anjuran_mcu,"+
+                "user.kategori_piutang_jasa_perusahaan,user.piutang_jasa_perusahaan,user.bayar_piutang_jasa_perusahaan,user.piutang_jasa_perusahaan_belum_lunas,user.checklist_kesiapan_anestesi,"+
+                "user.piutang_peminjaman_uang_belum_lunas,user.hasil_pemeriksaan_slit_lamp,user.hasil_pemeriksaan_oct,"+
+                "user.persetujuan_pernyataan_pemilihan_dpjp,user.grafik_harian_pasien_prb from user order by AES_DECRYPT(user.id_user,'nur')");//tambah chan 2        
             try {
                 rs=ps.executeQuery();
+                            i=0;
                 while(rs.next()){
                     user="";
                     user=dlgdokter.tampil3(rs.getString(1));
@@ -6725,7 +6842,7 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {
                         if(rs.getString(1).toLowerCase().contains(TCari.getText().toLowerCase())||
                                 user.toLowerCase().contains(TCari.getText().toLowerCase())||
                                 jabatan.toLowerCase().contains(TCari.getText().toLowerCase())){
-                            tabMode.addRow(new Object[]{rs.getString(1),
+                                        Object[] row = new Object[]{rs.getString(1),
                                user,jabatan,rs.getString(2),
                                rs.getBoolean("penyakit"),
                                rs.getBoolean("obat_penyakit"),
@@ -7839,12 +7956,33 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {
                                rs.getBoolean("skrining_kesehatan_penglihatan"),
                                rs.getBoolean("catatan_observasi_hemodialisa"),
                                rs.getBoolean("skrining_kesehatan_gigi_mulut_dewasa"),
+                               rs.getBoolean("skrining_risiko_kanker_serviks"),
+                               rs.getBoolean("catatan_cairan_hemodialisa"),
+                               rs.getBoolean("skrining_kesehatan_gigi_mulut_lansia"),
+                               rs.getBoolean("skrining_indra_pendengaran"),
+                               rs.getBoolean("catatan_pengkajian_paska_operasi"),
+                               rs.getBoolean("skrining_frailty_syndrome"),
+                               rs.getBoolean("sirkulasi_cssd"),
+                               rs.getBoolean("lama_pelayanan_cssd"),
+                               rs.getBoolean("catatan_observasi_bayi"),
+                               rs.getBoolean("riwayat_surat_peringatan"),
+                               rs.getBoolean("master_kesimpulan_anjuran_mcu"),
+                               rs.getBoolean("kategori_piutang_jasa_perusahaan"),
+                               rs.getBoolean("piutang_jasa_perusahaan"),
+                               rs.getBoolean("bayar_piutang_jasa_perusahaan"),
+                               rs.getBoolean("piutang_jasa_perusahaan_belum_lunas"),
+                               rs.getBoolean("checklist_kesiapan_anestesi"),
+                               rs.getBoolean("piutang_peminjaman_uang_belum_lunas"),
+                               rs.getBoolean("hasil_pemeriksaan_slit_lamp"),
+                               rs.getBoolean("hasil_pemeriksaan_oct"),
                                rs.getBoolean("persetujuan_pernyataan_pemilihan_dpjp"),//tambah chan
                                rs.getBoolean("grafik_harian_pasien_prb")//tambah chan
-                            });
+                            };
+                            i++;
+                            SwingUtilities.invokeLater(() -> tabMode.addRow(row));
                         }   
                     } catch (Exception e) {
-                        tabMode.addRow(new Object[]{rs.getString(1),
+                        Object[] row = new Object[]{rs.getString(1),
                            "Turn Out","Jabatan",rs.getString(2),
                            rs.getBoolean("penyakit"),
                            rs.getBoolean("obat_penyakit"),
@@ -8958,12 +9096,32 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {
                            rs.getBoolean("skrining_kesehatan_penglihatan"),
                            rs.getBoolean("catatan_observasi_hemodialisa"),
                            rs.getBoolean("skrining_kesehatan_gigi_mulut_dewasa"),
+                           rs.getBoolean("skrining_risiko_kanker_serviks"),
+                           rs.getBoolean("catatan_cairan_hemodialisa"),
+                           rs.getBoolean("skrining_kesehatan_gigi_mulut_lansia"),
+                           rs.getBoolean("skrining_indra_pendengaran"),
+                           rs.getBoolean("catatan_pengkajian_paska_operasi"),
+                           rs.getBoolean("skrining_frailty_syndrome"),
+                           rs.getBoolean("sirkulasi_cssd"),
+                           rs.getBoolean("lama_pelayanan_cssd"),
+                           rs.getBoolean("catatan_observasi_bayi"),
+                           rs.getBoolean("riwayat_surat_peringatan"),
+                           rs.getBoolean("master_kesimpulan_anjuran_mcu"),
+                           rs.getBoolean("kategori_piutang_jasa_perusahaan"),
+                           rs.getBoolean("piutang_jasa_perusahaan"),
+                           rs.getBoolean("bayar_piutang_jasa_perusahaan"),
+                           rs.getBoolean("piutang_jasa_perusahaan_belum_lunas"),
+                           rs.getBoolean("checklist_kesiapan_anestesi"),
+                           rs.getBoolean("piutang_peminjaman_uang_belum_lunas"),
+                           rs.getBoolean("hasil_pemeriksaan_slit_lamp"),
+                           rs.getBoolean("hasil_pemeriksaan_oct"),
                            rs.getBoolean("persetujuan_pernyataan_pemilihan_dpjp"),//tambah chan
                            rs.getBoolean("grafik_harian_pasien_prb")//tambah chan
-                        });
+                                    };
+                                    i++;
+                                    SwingUtilities.invokeLater(() -> tabMode.addRow(row));
                     }                                             
                  }
-                LCount.setText(""+tabMode.getRowCount());
             } catch (Exception e) {
                 System.out.println(e);
             } finally{
@@ -8974,10 +9132,19 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {
                     ps.close();
                 }
             }
+                        return null;
+                    }
                         
+                    @Override
+                    protected void done() {
+                        LCount.setText(""+i);
+                        ceksukses = false;
+                    }
+                }.execute();
         }catch(Exception e){
             System.out.println("Notifikasi : "+e);
         }
+    }
     }
 
     public void emptTeks() {
