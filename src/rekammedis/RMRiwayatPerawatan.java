@@ -3269,34 +3269,6 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
         }
     }//GEN-LAST:event_BtnSimpanTandaTanganActionPerformed
 
-    private void tbRegistrasiKeyPressed(java.awt.event.KeyEvent evt) {                                        
-        if(tabModeRegistrasi.getRowCount()!=0){
-            if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-                try {
-                    R4.setSelected(true);
-                    NoRawat.setText(tabModeRegistrasi.getValueAt(tbRegistrasi.getSelectedRow(),1).toString());
-                    TabRawat.setSelectedIndex(2);
-                    tampilPerawatan();
-                } catch (java.lang.NullPointerException e) {
-                }
-            }
-        }
-    }
-    
-    private void tbRegistrasiMouseClicked(java.awt.event.MouseEvent evt) {                                          
-        if(tabModeRegistrasi.getRowCount()!=0){
-            if((evt.getClickCount()==2)){
-                try {
-                    R4.setSelected(true);
-                    NoRawat.setText(tabModeRegistrasi.getValueAt(tbRegistrasi.getSelectedRow(),1).toString());
-                    TabRawat.setSelectedIndex(2);
-                    tampilPerawatan();
-                } catch (java.lang.NullPointerException e) {
-                }
-            }
-        }
-    }
-    
     private void MnGeneratePDFSertiSignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnGeneratePDFSertiSignActionPerformed
         R4.setSelected(true);
         if(NoRawat.getText().equals("")){
@@ -3490,14 +3462,6 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
             System.out.println("Notifikasi : " + e);
         }
     }//GEN-LAST:event_BtnDownloadBukaFileActionPerformed
-
-    private void ChkTampilPhraseActionPerformed(java.awt.event.ActionEvent evt) {                                                
-        if(ChkTampilPhrase.isSelected()==true){
-            Phrase.setEchoChar((char) 0);
-        }else{
-            Phrase.setEchoChar('\u2022');
-        }
-    }
         
     private void ChkTampilPhraseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkTampilPhraseActionPerformed
         if(ChkTampilPhrase.isSelected()==true){

@@ -9898,7 +9898,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Mar 27, 2025 #4 v3"/>
+            <Property name="text" type="java.lang.String" value="Juni 12, 2025 #1 Versi 1"/>
             <Property name="name" type="java.lang.String" value="jLabel1" noResource="true"/>
           </Properties>
         </Component>

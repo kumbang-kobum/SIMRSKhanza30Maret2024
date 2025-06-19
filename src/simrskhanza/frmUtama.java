@@ -7621,7 +7621,7 @@ public class frmUtama extends javax.swing.JFrame {
         jLabel7.setPreferredSize(new java.awt.Dimension(287, 23));
         internalFrame4.add(jLabel7);
 
-        jLabel1.setText("Mar 27, 2025 #4 v3");
+        jLabel1.setText("Juni 12, 2025 #1 Versi 1");
         jLabel1.setName("jLabel1"); // NOI18N
         internalFrame4.add(jLabel1);
 
