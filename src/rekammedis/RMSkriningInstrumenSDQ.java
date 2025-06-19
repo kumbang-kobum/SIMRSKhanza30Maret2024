@@ -728,7 +728,7 @@ public final class RMSkriningInstrumenSDQ extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-11-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-03-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -742,7 +742,7 @@ public final class RMSkriningInstrumenSDQ extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-11-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-03-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -864,7 +864,7 @@ public final class RMSkriningInstrumenSDQ extends javax.swing.JDialog {
         TPasien.setBounds(336, 10, 285, 23);
 
         Tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-11-2024" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-03-2025" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -1789,7 +1789,7 @@ public final class RMSkriningInstrumenSDQ extends javax.swing.JDialog {
         NilaiSDQ25.setBounds(749, 810, 40, 23);
 
         jLabel272.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel272.setText("F. Penilaian Skor Kesulitan ");
+        jLabel272.setText("F. Pengkajian Skor Kesulitan ");
         jLabel272.setName("jLabel272"); // NOI18N
         FormInput.add(jLabel272);
         jLabel272.setBounds(44, 1040, 160, 23);
@@ -1890,7 +1890,7 @@ public final class RMSkriningInstrumenSDQ extends javax.swing.JDialog {
         NilaiKesimpulanKesulitan.setBounds(749, 1040, 40, 23);
 
         jLabel288.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel288.setText("A. Penilaian Gejala Emosional (E)");
+        jLabel288.setText("A. Pengkajian Gejala Emosional (E)");
         jLabel288.setName("jLabel288"); // NOI18N
         FormInput.add(jLabel288);
         jLabel288.setBounds(44, 890, 170, 23);
@@ -1908,7 +1908,7 @@ public final class RMSkriningInstrumenSDQ extends javax.swing.JDialog {
         jLabel59.setBounds(11, 873, 550, 23);
 
         jLabel291.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel291.setText("B. Penilaian Masalah Perilaku (C)");
+        jLabel291.setText("B. Pengkajian Masalah Perilaku (C)");
         jLabel291.setName("jLabel291"); // NOI18N
         FormInput.add(jLabel291);
         jLabel291.setBounds(44, 920, 170, 23);
@@ -1920,7 +1920,7 @@ public final class RMSkriningInstrumenSDQ extends javax.swing.JDialog {
         KesimpulanSkorC.setBounds(210, 920, 240, 23);
 
         jLabel293.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel293.setText("C. Penilaian Hiperaktivitas (H)");
+        jLabel293.setText("C. Pengkajian Hiperaktivitas (H)");
         jLabel293.setName("jLabel293"); // NOI18N
         FormInput.add(jLabel293);
         jLabel293.setBounds(44, 950, 170, 23);
@@ -1944,7 +1944,7 @@ public final class RMSkriningInstrumenSDQ extends javax.swing.JDialog {
         KesimpulanSkorP.setBounds(210, 980, 240, 23);
 
         jLabel297.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel297.setText("E. Penilaian Skor Kekuatan (Pr)");
+        jLabel297.setText("E. Pengkajian Skor Kekuatan (Pr)");
         jLabel297.setName("jLabel297"); // NOI18N
         FormInput.add(jLabel297);
         jLabel297.setBounds(44, 1010, 170, 23);
@@ -3453,7 +3453,7 @@ public final class RMSkriningInstrumenSDQ extends javax.swing.JDialog {
                 rs=ps.executeQuery();
                 while(rs.next()){
                     tabMode.addRow(new Object[]{
-                        rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("tgl_lahir"),rs.getString("jk"),rs.getString("nip"),rs.getString("nama"),rs.getString("tanggal"),
+                        rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getDate("tgl_lahir"),rs.getString("jk"),rs.getString("nip"),rs.getString("nama"),rs.getString("tanggal"),
                         rs.getString("pernyataansdq1"),rs.getString("nilai_sdq1"),rs.getString("pernyataansdq2"),rs.getString("nilai_sdq2"),rs.getString("pernyataansdq3"),rs.getString("nilai_sdq3"),rs.getString("pernyataansdq4"),
                         rs.getString("nilai_sdq4"),rs.getString("pernyataansdq5"),rs.getString("nilai_sdq5"),rs.getString("pernyataansdq6"),rs.getString("nilai_sdq6"),rs.getString("pernyataansdq7"),rs.getString("nilai_sdq7"),
                         rs.getString("pernyataansdq8"),rs.getString("nilai_sdq8"),rs.getString("pernyataansdq9"),rs.getString("nilai_sdq9"),rs.getString("pernyataansdq10"),rs.getString("nilai_sdq10"),rs.getString("pernyataansdq11"),

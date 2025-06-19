@@ -636,7 +636,7 @@ public final class RMSkriningSRQ extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-12-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-03-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -650,7 +650,7 @@ public final class RMSkriningSRQ extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-12-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-03-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -771,7 +771,7 @@ public final class RMSkriningSRQ extends javax.swing.JDialog {
         TPasien.setBounds(336, 10, 285, 23);
 
         Tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-12-2024" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-03-2025" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -2616,7 +2616,7 @@ public final class RMSkriningSRQ extends javax.swing.JDialog {
                 rs=ps.executeQuery();
                 while(rs.next()){
                     tabMode.addRow(new Object[]{
-                        rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("tgl_lahir"),rs.getString("jk"),rs.getString("nip"),rs.getString("nama"),rs.getString("tanggal"),
+                        rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getDate("tgl_lahir"),rs.getString("jk"),rs.getString("nip"),rs.getString("nama"),rs.getString("tanggal"),
                         rs.getString("pernyataansrq1"),rs.getString("nilai_srq1"),rs.getString("pernyataansrq2"),rs.getString("nilai_srq2"),rs.getString("pernyataansrq3"),rs.getString("nilai_srq3"),rs.getString("pernyataansrq4"),
                         rs.getString("nilai_srq4"),rs.getString("pernyataansrq5"),rs.getString("nilai_srq5"),rs.getString("pernyataansrq6"),rs.getString("nilai_srq6"),rs.getString("pernyataansrq7"),rs.getString("nilai_srq7"),
                         rs.getString("pernyataansrq8"),rs.getString("nilai_srq8"),rs.getString("pernyataansrq9"),rs.getString("nilai_srq9"),rs.getString("pernyataansrq10"),rs.getString("nilai_srq10"),rs.getString("pernyataansrq11"),
