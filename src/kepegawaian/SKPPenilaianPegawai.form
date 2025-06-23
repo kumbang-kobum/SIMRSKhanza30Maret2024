@@ -71,7 +71,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="::[ Penilaian Petugas/Dokter Dalam Implementasi Sasaran Keselamatan Pasien ]::">
+            <TitledBorder title="::[ Pengkajian Petugas/Dokter Dalam Implementasi Sasaran Keselamatan Pasien ]::">
               <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder>
                   <Color PropertyName="color" blue="eb" green="f5" red="f0" type="rgb"/>
@@ -150,7 +150,7 @@
           <SubComponents>
             <Component class="widget.Label" name="label15">
               <Properties>
-                <Property name="text" type="java.lang.String" value="No.Penilaian :"/>
+                <Property name="text" type="java.lang.String" value="No.Pengkajian :"/>
                 <Property name="name" type="java.lang.String" value="label15" noResource="true"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[80, 23]"/>

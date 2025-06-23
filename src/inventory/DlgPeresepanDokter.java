@@ -60,9 +60,6 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
     private double y=0,kenaikan=0,ttl=0,ppnobat=0,jumlahracik=0,persenracik=0,kapasitasracik=0;
     private int i=0,z=0,row2=0,r=0;
     private boolean ubah=false,copy=false,sukses=true;
-    private boolean[] pilih; 
-    private double[] jumlah,harga,beli,stok,kapasitas,p1,p2;
-    private String[] no,kodebarang,namabarang,kodesatuan,kandungan,letakbarang,namajenis,aturan,industri,komposisi;
     private WarnaTable2 warna=new WarnaTable2();
     private WarnaTable2 warna2=new WarnaTable2();
     private WarnaTable2 warna3=new WarnaTable2();
@@ -71,7 +68,6 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
             kamar="",norawatibu="",kelas,bangsaldefault=Sequel.cariIsi("select set_lokasi.kd_bangsal from set_lokasi limit 1"),RESEPRAJALKEPLAN="no";
     private File file;
     private FileWriter fileWriter;
-    private String iyem;
     private ObjectMapper mapper = new ObjectMapper();
     private JsonNode root;
     private JsonNode response;
@@ -1602,7 +1598,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             file=new File("./cache/peresepandokter.iyem");
             file.createNewFile();
             fileWriter = new FileWriter(file);
-            iyem="";
+            StringBuilder iyembuilder = new StringBuilder();
             if(kenaikan>0){
                 if(aktifkanbatch.equals("yes")){
                     qrystokkosong="";
@@ -1635,7 +1631,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                     psresepasuransi.setString(2,bangsal);
                     rsobat=psresepasuransi.executeQuery();
                     while(rsobat.next()){
-                        iyem=iyem+"{\"KodeBarang\":\""+rsobat.getString("kode_brng")+"\",\"NamaBarang\":\""+rsobat.getString("nama_brng").replaceAll("\"","")+"\",\"Satuan\":\""+rsobat.getString("kode_sat")+"\",\"Kandungan\":\""+rsobat.getString("letak_barang")+"\",\"HargaKaryawan\":\""+Valid.roundUp(rsobat.getDouble("harga"),100)+"\",\"HargaRalan\":\""+Valid.roundUp(rsobat.getDouble("harga"),100)+"\",\"HargaBeliLuar\":\""+Valid.roundUp(rsobat.getDouble("harga"),100)+"\",\"HargaKelas1\":\""+Valid.roundUp(rsobat.getDouble("harga"),100)+"\",\"HargaKelas2\":\""+Valid.roundUp(rsobat.getDouble("harga"),100)+"\",\"HargaKelas3\":\""+Valid.roundUp(rsobat.getDouble("harga"),100)+"\",\"HargaVIP\":\""+Valid.roundUp(rsobat.getDouble("harga"),100)+"\",\"HargaVVIP\":\""+Valid.roundUp(rsobat.getDouble("harga"),100)+"\",\"HargaUtama\":\""+Valid.roundUp(rsobat.getDouble("harga"),100)+"\",\"Jenis\":\""+rsobat.getString("nama")+"\",\"IndustriFarmasi\":\""+rsobat.getString("nama_industri")+"\",\"HargaBeli\":\""+rsobat.getDouble("h_beli")+"\",\"Stok\":\""+rsobat.getDouble("stok")+"\",\"Kapasitas\":\""+rsobat.getDouble("kapasitas")+"\"},";
+                        iyembuilder.append("{\"KodeBarang\":\"").append(rsobat.getString("kode_brng")).append("\",\"NamaBarang\":\"").append(rsobat.getString("nama_brng").replaceAll("\"","")).append("\",\"Satuan\":\"").append(rsobat.getString("kode_sat")).append("\",\"Kandungan\":\"").append(rsobat.getString("letak_barang")).append("\",\"HargaKaryawan\":\"").append(Valid.roundUp(rsobat.getDouble("harga"),100)).append("\",\"HargaRalan\":\"").append(Valid.roundUp(rsobat.getDouble("harga"),100)).append("\",\"HargaBeliLuar\":\"").append(Valid.roundUp(rsobat.getDouble("harga"),100)).append("\",\"HargaKelas1\":\"").append(Valid.roundUp(rsobat.getDouble("harga"),100)).append("\",\"HargaKelas2\":\"").append(Valid.roundUp(rsobat.getDouble("harga"),100)).append("\",\"HargaKelas3\":\"").append(Valid.roundUp(rsobat.getDouble("harga"),100)).append("\",\"HargaVIP\":\"").append(Valid.roundUp(rsobat.getDouble("harga"),100)).append("\",\"HargaVVIP\":\"").append(Valid.roundUp(rsobat.getDouble("harga"),100)).append("\",\"HargaUtama\":\"").append(Valid.roundUp(rsobat.getDouble("harga"),100)).append("\",\"Jenis\":\"").append(rsobat.getString("nama")).append("\",\"IndustriFarmasi\":\"").append(rsobat.getString("nama_industri")).append("\",\"HargaBeli\":\"").append(rsobat.getDouble("h_beli")).append("\",\"Stok\":\"").append(rsobat.getDouble("stok")).append("\",\"Kapasitas\":\"").append(rsobat.getDouble("kapasitas")).append("\"},");
                     }  
                 }catch(Exception e){
                     System.out.println("Notifikasi : "+e);
@@ -1685,7 +1681,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                     psresep.setString(1,bangsal);
                     rsobat=psresep.executeQuery();
                     while(rsobat.next()){
-                        iyem=iyem+"{\"KodeBarang\":\""+rsobat.getString("kode_brng")+"\",\"NamaBarang\":\""+rsobat.getString("nama_brng").replaceAll("\"","")+"\",\"Satuan\":\""+rsobat.getString("kode_sat")+"\",\"Kandungan\":\""+rsobat.getString("letak_barang")+"\",\"HargaKaryawan\":\""+Valid.roundUp(rsobat.getDouble("karyawan"),100)+"\",\"HargaRalan\":\""+Valid.roundUp(rsobat.getDouble("ralan"),100)+"\",\"HargaBeliLuar\":\""+Valid.roundUp(rsobat.getDouble("beliluar"),100)+"\",\"HargaKelas1\":\""+Valid.roundUp(rsobat.getDouble("kelas1"),100)+"\",\"HargaKelas2\":\""+Valid.roundUp(rsobat.getDouble("kelas2"),100)+"\",\"HargaKelas3\":\""+Valid.roundUp(rsobat.getDouble("kelas3"),100)+"\",\"HargaVIP\":\""+Valid.roundUp(rsobat.getDouble("vip"),100)+"\",\"HargaVVIP\":\""+Valid.roundUp(rsobat.getDouble("vvip"),100)+"\",\"HargaUtama\":\""+Valid.roundUp(rsobat.getDouble("utama"),100)+"\",\"Jenis\":\""+rsobat.getString("nama")+"\",\"IndustriFarmasi\":\""+rsobat.getString("nama_industri")+"\",\"HargaBeli\":\""+rsobat.getDouble("h_beli")+"\",\"Stok\":\""+rsobat.getDouble("stok")+"\",\"Kapasitas\":\""+rsobat.getDouble("kapasitas")+"\"},";
+                        iyembuilder.append("{\"KodeBarang\":\"").append(rsobat.getString("kode_brng")).append("\",\"NamaBarang\":\"").append(rsobat.getString("nama_brng").replaceAll("\"","")).append("\",\"Satuan\":\"").append(rsobat.getString("kode_sat")).append("\",\"Kandungan\":\"").append(rsobat.getString("letak_barang")).append("\",\"HargaKaryawan\":\"").append(Valid.roundUp(rsobat.getDouble("karyawan"),100)).append("\",\"HargaRalan\":\"").append(Valid.roundUp(rsobat.getDouble("ralan"),100)).append("\",\"HargaBeliLuar\":\"").append(Valid.roundUp(rsobat.getDouble("beliluar"),100)).append("\",\"HargaKelas1\":\"").append(Valid.roundUp(rsobat.getDouble("kelas1"),100)).append("\",\"HargaKelas2\":\"").append(Valid.roundUp(rsobat.getDouble("kelas2"),100)).append("\",\"HargaKelas3\":\"").append(Valid.roundUp(rsobat.getDouble("kelas3"),100)).append("\",\"HargaVIP\":\"").append(Valid.roundUp(rsobat.getDouble("vip"),100)).append("\",\"HargaVVIP\":\"").append(Valid.roundUp(rsobat.getDouble("vvip"),100)).append("\",\"HargaUtama\":\"").append(Valid.roundUp(rsobat.getDouble("utama"),100)).append("\",\"Jenis\":\"").append(rsobat.getString("nama")).append("\",\"IndustriFarmasi\":\"").append(rsobat.getString("nama_industri")).append("\",\"HargaBeli\":\"").append(rsobat.getDouble("h_beli")).append("\",\"Stok\":\"").append(rsobat.getDouble("stok")).append("\",\"Kapasitas\":\"").append(rsobat.getDouble("kapasitas")).append("\"},");
                     }  
                 }catch(Exception e){
                     System.out.println("Notifikasi : "+e);
@@ -1699,10 +1695,14 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                     }
                 }
             }  
-            fileWriter.write("{\"peresepandokter\":["+iyem.substring(0,iyem.length()-1)+"]}");
+            if (iyembuilder.length() > 0) {
+                iyembuilder.setLength(iyembuilder.length() - 1);
+                fileWriter.write("{\"peresepandokter\":["+iyembuilder+"]}");
             fileWriter.flush();
+            }
+            
             fileWriter.close();
-            iyem=null;          
+            iyembuilder=null;
         }catch(Exception e){
             System.out.println("Notifikasi : "+e);
         }  
@@ -1710,6 +1710,9 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     
     private void tampilcacheresep() {  
         try{
+            boolean[] pilih; 
+            double[] jumlah,harga,beli,stok;
+            String[] kodebarang,namabarang,kodesatuan,letakbarang,namajenis,aturan,industri;
         z=0;
         for(i=0;i<tbResep.getRowCount();i++){
             if(!tbResep.getValueAt(i,1).toString().equals("")){
@@ -1717,29 +1720,17 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             }
         }    
         
-        pilih=null;
         pilih=new boolean[z]; 
-        jumlah=null;
         jumlah=new double[z];
-        harga=null;
         harga=new double[z];
-        kodebarang=null;
         kodebarang=new String[z];
-        namabarang=null;
         namabarang=new String[z];
-        kodesatuan=null;
         kodesatuan=new String[z];
-        letakbarang=null;
         letakbarang=new String[z];
-        namajenis=null;
         namajenis=new String[z];                   
-        aturan=null;
         aturan=new String[z];           
-        industri=null;
         industri=new String[z];         
-        beli=null;
         beli=new double[z];
-        stok=null;
         stok=new double[z]; 
         z=0;        
         for(i=0;i<tbResep.getRowCount();i++){
@@ -1790,6 +1781,19 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             });
         }
         
+            pilih=null; 
+            jumlah=null;
+            harga=null;
+            kodebarang=null;
+            namabarang=null;
+            kodesatuan=null;
+            letakbarang=null;
+            namajenis=null;                   
+            aturan=null;          
+            industri=null;        
+            beli=null;
+            stok=null; 
+
             myObj = new FileReader("./cache/peresepandokter.iyem");
             root = mapper.readTree(myObj);
             response = root.path("peresepandokter");
@@ -2123,6 +2127,8 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     
     public void tampildetailracikanresep() {        
         try {
+            double[] jumlah,harga,beli,stok,kapasitas,p1,p2;
+            String[] no,kodebarang,namabarang,kodesatuan,kandungan,namajenis,industri,komposisi;
         z=0;
         for(i=0;i<tbDetailResepObatRacikan.getRowCount();i++){
             if(Valid.SetAngka(tbDetailResepObatRacikan.getValueAt(i,13).toString())>0){
@@ -2130,39 +2136,20 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             }
         }    
         
-        pilih=null;
-        pilih=new boolean[z]; 
-        jumlah=null;
         jumlah=new double[z];
-        harga=null;
         harga=new double[z];
-        stok=null;
         stok=new double[z];
-        p1=null;
         p1=new double[z];
-        p2=null;
         p2=new double[z];
-        kodebarang=null;
         kodebarang=new String[z];
-        namabarang=null;
         namabarang=new String[z];
-        kodesatuan=null;
         kodesatuan=new String[z];
-        letakbarang=null;
-        letakbarang=new String[z];
-        no=null;
         no=new String[z];
-        namajenis=null;
         namajenis=new String[z];        
-        industri=null;
         industri=new String[z];          
-        komposisi=null;
         komposisi=new String[z];        
-        beli=null;
         beli=new double[z];     
-        kapasitas=null;
         kapasitas=new double[z];   
-        kandungan=null;
         kandungan=new String[z];
         z=0;        
         for(i=0;i<tbDetailResepObatRacikan.getRowCount();i++){
@@ -2224,6 +2211,22 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             });
         }
         
+            jumlah=null;
+            harga=null;
+            stok=null;
+            p1=null;
+            p2=null;
+            kodebarang=null;
+            namabarang=null;
+            kodesatuan=null;
+            no=null;
+            namajenis=null;        
+            industri=null;          
+            komposisi=null;        
+            beli=null;     
+            kapasitas=null;   
+            kandungan=null;
+            
             myObj = new FileReader("./cache/peresepandokter.iyem");
             root = mapper.readTree(myObj);
             response = root.path("peresepandokter");
@@ -2839,7 +2842,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                 psresep.setString(1,no_resep);
                 rsobat=psresep.executeQuery();
                 while(rsobat.next()){
-                    tabModeResepRacikan.addRow(new String[]{
+                    tabModeResepRacikan.addRow(new Object[]{
                         rsobat.getString("no_racik"),rsobat.getString("nama_racik"),rsobat.getString("kd_racik"),
                         rsobat.getString("metode"),rsobat.getString("jml_dr"),rsobat.getString("aturan_pakai"),
                         rsobat.getString("keterangan")
@@ -3593,7 +3596,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                 psresep.setString(1,no_resep);
                 rsobat=psresep.executeQuery();
                 while(rsobat.next()){
-                    tabModeResepRacikan.addRow(new String[]{
+                    tabModeResepRacikan.addRow(new Object[]{
                         rsobat.getString("no_racik"),rsobat.getString("nama_racik"),rsobat.getString("kd_racik"),
                         rsobat.getString("metode"),rsobat.getString("jml_dr"),rsobat.getString("aturan_pakai"),
                         rsobat.getString("keterangan")

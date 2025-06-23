@@ -43,8 +43,6 @@ public class DlgPenjualan extends javax.swing.JDialog {
             status="Belum Dibayar",pilihanetiket="",hppfarmasi="",kode_akun_bayar="",tampilkan_ppnobat_ralan="",PPN_Keluaran="";
     private PreparedStatement ps,psstok,pscaribatch;
     private ResultSet rs,rsstok;
-    private String[] no,kodebarang,kandungan,namabarang,kategori,satuan,aturanpakai,nobatch,nofaktur,kadaluarsa;
-    private double[] harga,hbeli,jumlah,kps,subtotal,diskon,besardiskon,totaljual,tambahan,embalase,tuslah,stok;
     private WarnaTable2 warna=new WarnaTable2();
     private String notapenjualan="No",aktifkanbatch="no";
     private WarnaTable2 warna2=new WarnaTable2();
@@ -52,7 +50,6 @@ public class DlgPenjualan extends javax.swing.JDialog {
     private boolean sukses=true;
     private File file;
     private FileWriter fileWriter;
-    private String iyem;
     private ObjectMapper mapper = new ObjectMapper();
     private JsonNode root;
     private JsonNode response;
@@ -2546,6 +2543,8 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     // End of variables declaration//GEN-END:variables
 
     private void tampil1() {
+        String[] no,kodebarang,namabarang,kategori,satuan,aturanpakai,nobatch,nofaktur,kadaluarsa;
+        double[] harga,hbeli,jumlah,subtotal,diskon,besardiskon,totaljual,tambahan,embalase,tuslah,stok;
         row=tabMode.getRowCount();
         jml=0;
         for(i=0;i<row;i++){
@@ -2609,6 +2608,27 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         for(i=0;i<jml;i++){            
             tabMode.addRow(new Object[]{jumlah[i],kodebarang[i],namabarang[i],kategori[i],satuan[i],harga[i],subtotal[i],diskon[i],besardiskon[i],tambahan[i],embalase[i],tuslah[i],aturanpakai[i],totaljual[i],stok[i],hbeli[i],nobatch[i],nofaktur[i],kadaluarsa[i]});
         }
+        
+        kodebarang=null;
+        namabarang=null;
+        kategori=null;
+        satuan=null;
+        harga=null;
+        jumlah=null;
+        subtotal=null;
+        diskon=null;
+        besardiskon=null;
+        tambahan=null;
+        embalase=null;
+        tuslah=null;
+        aturanpakai=null;
+        totaljual=null;
+        stok=null;
+        hbeli=null;
+        nobatch=null;
+        nofaktur=null;
+        kadaluarsa=null;
+        
         try{
             ps=koneksi.prepareStatement(
                 "select databarang.kode_brng, databarang.nama_brng,jenis.nama,gudangbarang.stok, "+
@@ -2715,6 +2735,8 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     }
     
     private void tampil2() {
+        String[] no,kodebarang,namabarang,kategori,satuan,aturanpakai,nobatch,nofaktur,kadaluarsa;
+        double[] harga,hbeli,jumlah,subtotal,diskon,besardiskon,totaljual,tambahan,embalase,tuslah,stok;
         row=tabMode.getRowCount();
         jml=0;
         for(i=0;i<row;i++){
@@ -2778,6 +2800,27 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         for(i=0;i<jml;i++){            
             tabMode.addRow(new Object[]{jumlah[i],kodebarang[i],namabarang[i],kategori[i],satuan[i],harga[i],subtotal[i],diskon[i],besardiskon[i],tambahan[i],embalase[i],tuslah[i],aturanpakai[i],totaljual[i],stok[i],hbeli[i],nobatch[i],nofaktur[i],kadaluarsa[i]});
         }
+        
+        kodebarang=null;
+        namabarang=null;
+        kategori=null;
+        satuan=null;
+        harga=null;
+        jumlah=null;
+        subtotal=null;
+        diskon=null;
+        besardiskon=null;
+        tambahan=null;
+        embalase=null;
+        tuslah=null;
+        aturanpakai=null;
+        totaljual=null;
+        stok=null;
+        hbeli=null;
+        nobatch=null;
+        nofaktur=null;
+        kadaluarsa=null;
+        
         try{
             ps=koneksi.prepareStatement(
                 "select data_batch.kode_brng, databarang.nama_brng,jenis.nama, "+
@@ -2899,6 +2942,8 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     
     private void tampil3() {
         try{
+            String[] no,kodebarang,kandungan,namabarang,kategori,satuan,nobatch,nofaktur,kadaluarsa;
+            double[] harga,hbeli,jumlah,kps,subtotal,diskon,besardiskon,totaljual,tambahan,embalase,tuslah,stok;
             row=tabModeDetailRacikan.getRowCount();
             jml=0;
             for(i=0;i<row;i++){
@@ -3026,6 +3071,28 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 });
             }
             
+            no=null;
+            kodebarang=null;
+            namabarang=null;
+            kategori=null;
+            satuan=null;
+            harga=null;
+            jumlah=null;
+            subtotal=null;
+            diskon=null;
+            besardiskon=null;
+            tambahan=null;
+            embalase=null;
+            tuslah=null;
+            totaljual=null;
+            stok=null;
+            hbeli=null;
+            nobatch=null;
+            nofaktur=null;
+            kadaluarsa=null;
+            kps=null;
+            kandungan=null;
+            
             ps=koneksi.prepareStatement(
                 "select databarang.kode_brng, databarang.nama_brng,jenis.nama,gudangbarang.stok, "+
                 " databarang.kode_sat, databarang.jualbebas, databarang.karyawan,"+
@@ -3139,6 +3206,8 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     
     private void tampil4() {
         try{
+            String[] no,kodebarang,kandungan,namabarang,kategori,satuan,nobatch,nofaktur,kadaluarsa;
+            double[] harga,hbeli,jumlah,kps,subtotal,diskon,besardiskon,totaljual,tambahan,embalase,tuslah,stok;
             row=tabModeDetailRacikan.getRowCount();
             jml=0;
             for(i=0;i<row;i++){
@@ -3265,6 +3334,28 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                     nobatch[i],nofaktur[i],kadaluarsa[i]
                 });
             }
+            
+            no=null;
+            kodebarang=null;
+            namabarang=null;
+            kategori=null;
+            satuan=null;
+            harga=null;
+            jumlah=null;
+            subtotal=null;
+            diskon=null;
+            besardiskon=null;
+            tambahan=null;
+            embalase=null;
+            tuslah=null;
+            totaljual=null;
+            stok=null;
+            hbeli=null;
+            nobatch=null;
+            nofaktur=null;
+            kadaluarsa=null;
+            kps=null;
+            kandungan=null;
             
             ps=koneksi.prepareStatement(
                 "select data_batch.kode_brng, databarang.nama_brng,jenis.nama,gudangbarang.stok, "+
@@ -4246,9 +4337,11 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 if(Sequel.menyimpantf2("tampjurnal","'"+Penjualan_Obat+"','PENJUALAN OBAT BEBAS','0','"+(ttl+ongkir)+"'","Rekening")==false){
                     sukses=false;
                 } 
+                if(besarppnobat>0){
                 if(Sequel.menyimpantf2("tampjurnal","'"+PPN_Keluaran+"','PPN KELUARAN','0','"+(besarppnobat)+"'","Rekening")==false){
                     sukses=false;
                 } 
+                }   
                 if(Sequel.menyimpantf2("tampjurnal","'"+kode_akun_bayar+"','"+AkunBayar.getSelectedItem().toString()+"','"+(ttl+ongkir+besarppnobat)+"','0'","Rekening")==false){
                     sukses=false;
                 } 
@@ -4274,14 +4367,14 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
              file=new File("./cache/akunbayar.iyem");
              file.createNewFile();
              fileWriter = new FileWriter(file);
-             iyem="";
+             StringBuilder iyembuilder = new StringBuilder();
              ps=koneksi.prepareStatement("select * from akun_bayar order by akun_bayar.nama_bayar");
              try{
                  rs=ps.executeQuery();
                  AkunBayar.removeAllItems();
                  while(rs.next()){    
                      AkunBayar.addItem(rs.getString(1).replaceAll("\"",""));
-                     iyem=iyem+"{\"NamaAkun\":\""+rs.getString(1).replaceAll("\"","")+"\",\"KodeRek\":\""+rs.getString(2)+"\",\"PPN\":\""+rs.getDouble(3)+"\"},";
+                     iyembuilder.append("{\"NamaAkun\":\""+rs.getString(1).replaceAll("\"","")+"\",\"KodeRek\":\""+rs.getString(2)+"\",\"PPN\":\""+rs.getDouble(3)+"\"},");
                  }
              }catch (Exception e) {
                  System.out.println("Notifikasi : "+e);
@@ -4294,10 +4387,14 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                  } 
              }
 
-             fileWriter.write("{\"akunbayar\":["+iyem.substring(0,iyem.length()-1)+"]}");
+             if (iyembuilder.length() > 0) {
+                iyembuilder.setLength(iyembuilder.length() - 1);
+                fileWriter.write("{\"akunbayar\":["+iyembuilder+"]}");
              fileWriter.flush();
+             }
+            
              fileWriter.close();
-             iyem=null;
+             iyembuilder=null;
         } catch (Exception e) {
             System.out.println("Notifikasi : "+e);
         }

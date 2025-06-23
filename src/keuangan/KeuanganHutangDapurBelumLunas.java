@@ -34,6 +34,8 @@ import javax.swing.table.TableColumn;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
+import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
 import kepegawaian.DlgCariPetugas;
 
 /**
@@ -53,10 +55,10 @@ public final class KeuanganHutangDapurBelumLunas extends javax.swing.JDialog {
     private double sisahutang=0,cicilan=0,bayar=0;
     private Jurnal jur=new Jurnal();
     private WarnaTable3 warna=new WarnaTable3();
-    private boolean sukses=false;
+    private boolean sukses=false,ceksukses=false;
     private File file;
     private FileWriter fileWriter;
-    private String iyem,notagihan="";
+    private String notagihan="";
     private ObjectMapper mapper = new ObjectMapper();
     private JsonNode root;
     private JsonNode response;
@@ -1688,8 +1690,13 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Table tbBangsal;
     // End of variables declaration//GEN-END:variables
 
-    public void tampil(){
+    public synchronized void tampil(){
+        if(ceksukses==false){
+            ceksukses=true;
         Valid.tabelKosong(tabMode);
+            new SwingWorker<Void, Void>() {
+                @Override
+                protected Void doInBackground() throws Exception {
         try{
             tanggaldatang="";
             tanggaltempo="";
@@ -1722,18 +1729,18 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 sisahutang=0;
                 cicilan=0;
                 while(rs.next()){
-                    tabMode.addRow(new Object[]{
+                                Object[] row = new Object[]{
                         false,rs.getString("no_faktur"),rs.getString("no_order"),
                         rs.getString("nama_suplier"),rs.getString("nama"),rs.getString("tgl_faktur"),
                         rs.getString("tgl_pesan"),rs.getString("tgl_tempo"),
                         rs.getDouble("tagihan"),(rs.getDouble("tagihan")-rs.getDouble("bayar")),
                         0,(rs.getDouble("tagihan")-rs.getDouble("bayar")),rs.getString("nama_bank"),
                         rs.getString("rekening")
-                    });
+                                };
                     sisahutang=sisahutang+rs.getDouble("tagihan");
                     cicilan=cicilan+rs.getDouble("bayar");
+                                SwingUtilities.invokeLater(() -> tabMode.addRow(row));
                 }
-                LCount.setText(Valid.SetAngka(sisahutang-cicilan));
             } catch (Exception e) {
                 System.out.println("Notifikasi Data Hutang: "+e);
             } finally{
@@ -1746,6 +1753,16 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             }
         }catch(Exception e){
             System.out.println("Notifikasi : "+e);
+        }
+                    return null;
+    }
+    
+                @Override
+                protected void done() {
+                    LCount.setText(Valid.SetAngka(sisahutang-cicilan));
+                    ceksukses = false;
+                }
+            }.execute();
         }
     }
     
@@ -1811,14 +1828,14 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
              file=new File("./cache/akunbayarhutang.iyem");
              file.createNewFile();
              fileWriter = new FileWriter(file);
-             iyem="";
+             StringBuilder iyembuilder = new StringBuilder();
              ps=koneksi.prepareStatement("select * from akun_bayar_hutang order by akun_bayar_hutang.nama_bayar");
              try{
                  rs=ps.executeQuery();
                  AkunBayar.removeAllItems();
                  while(rs.next()){    
                      AkunBayar.addItem(rs.getString(1).replaceAll("\"",""));
-                     iyem=iyem+"{\"NamaAkun\":\""+rs.getString(1).replaceAll("\"","")+"\",\"KodeRek\":\""+rs.getString(2)+"\"},";
+                     iyembuilder.append("{\"NamaAkun\":\"").append(rs.getString(1).replaceAll("\"","")).append("\",\"KodeRek\":\"").append(rs.getString(2)).append("\"},");
                  }
              }catch (Exception e) {
                  System.out.println("Notifikasi : "+e);
@@ -1831,10 +1848,14 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                  } 
              }
 
-             fileWriter.write("{\"akunbayarhutang\":["+iyem.substring(0,iyem.length()-1)+"]}");
+             if (iyembuilder.length() > 0) {
+                iyembuilder.setLength(iyembuilder.length() - 1);
+                fileWriter.write("{\"akunbayarhutang\":["+iyembuilder+"]}");
              fileWriter.flush();
+             }
+            
              fileWriter.close();
-             iyem=null;
+             iyembuilder=null;
         } catch (Exception e) {
             System.out.println("Notifikasi : "+e);
         }
