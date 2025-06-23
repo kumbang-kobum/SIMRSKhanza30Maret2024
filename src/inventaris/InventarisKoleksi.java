@@ -10,7 +10,6 @@
  */
 
 package inventaris;
-import AESsecurity.EnkripsiAES;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -28,9 +27,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
+import java.time.LocalDate;//tambah chan
+import java.time.format.DateTimeFormatter;//tambah chan
+import java.time.temporal.ChronoUnit;//tambah chan
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -117,7 +116,7 @@ public final class InventarisKoleksi extends javax.swing.JDialog {
             }else if(i==15){
                 column.setPreferredWidth(60);
             }else if(i==16){
-                column.setPreferredWidth(80);//tambah chan 2
+                column.setPreferredWidth(80);//tambah chan 1
             }else if(i==17){
                 column.setPreferredWidth(70);//tambah chan 2
             }else if(i==18){
