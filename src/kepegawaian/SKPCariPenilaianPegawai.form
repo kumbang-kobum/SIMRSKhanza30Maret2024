@@ -32,7 +32,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="::[ Cari Data Penilaian Petugas/Dokter Dalam Implementasi Sasaran Keselamatan Pasien ]::">
+            <TitledBorder title="::[ Cari Data Pengkajian Petugas/Dokter Dalam Implementasi Sasaran Keselamatan Pasien ]::">
               <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder>
                   <Color PropertyName="color" blue="eb" green="f5" red="f0" type="rgb"/>
@@ -131,7 +131,7 @@
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="3">
                         <StringItem index="0" value="Semua"/>
-                        <StringItem index="1" value="Proses Penilaian"/>
+                        <StringItem index="1" value="Proses Pengkajian"/>
                         <StringItem index="2" value="Keluar Hasil"/>
                       </StringArray>
                     </Property>
