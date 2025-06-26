@@ -11,7 +11,7 @@
  Target Server Version : 100428 (10.4.28-MariaDB-log)
  File Encoding         : 65001
 
- Date: 25/06/2025 06:34:37
+ Date: 26/06/2025 16:54:10
 */
 
 SET NAMES utf8mb4;
@@ -3861,6 +3861,7 @@ CREATE TABLE `data_triase_igdprimer` (
   `plan` enum('Ruang Resusitasi','Ruang Kritis') NOT NULL,
   `tanggaltriase` datetime NOT NULL,
   `nik` varchar(20) NOT NULL,
+  `kd_dokter` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`no_rawat`) USING BTREE,
   KEY `nip` (`nik`) USING BTREE,
   CONSTRAINT `data_triase_igdprimer_ibfk_1` FOREIGN KEY (`no_rawat`) REFERENCES `data_triase_igd` (`no_rawat`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -3878,6 +3879,7 @@ CREATE TABLE `data_triase_igdsekunder` (
   `plan` enum('Zona Kuning','Zona Hijau') NOT NULL,
   `tanggaltriase` datetime NOT NULL,
   `nik` varchar(20) NOT NULL,
+  `kd_dokter` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`no_rawat`) USING BTREE,
   KEY `nip` (`nik`) USING BTREE,
   CONSTRAINT `data_triase_igdsekunder_ibfk_1` FOREIGN KEY (`nik`) REFERENCES `pegawai` (`nik`) ON DELETE CASCADE ON UPDATE CASCADE,
