@@ -4988,6 +4988,8 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
             if (rs.next()) {
                 PrimerKodeDokter.setText(rs.getString("kd_dokter"));
                 PrimerNamaDokter.setText(rs.getString("nm_dokter"));
+                SekunderKodeDokter.setText(rs.getString("kd_dokter"));
+                SekunderNamaDokter.setText(rs.getString("nm_dokter"));
             }
         } catch (Exception e) {
             System.out.println("Terjadi kesalahan saat ambil dokter tujuan: " + e);
