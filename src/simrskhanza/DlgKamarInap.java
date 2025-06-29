@@ -18551,6 +18551,8 @@ public class DlgKamarInap extends javax.swing.JDialog {
                         rs.getString("lama"),rs.getString("nm_dokter"),rs.getString("kd_kamar"),rs.getString("status_bayar"),rs.getString("agama"),//tambah chan
                         rs.getString("no_sep"),rs.getString("no_surat") //tambah chan
                     };
+                                i++;
+                                SwingUtilities.invokeLater(() -> tabMode.addRow(row));
                     psanak=koneksi.prepareStatement(
                         "select pasien.no_rkm_medis,pasien.nm_pasien,ranap_gabung.no_rawat2,concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur)as umur,pasien.no_peserta, "+
                         "concat(pasien.alamatpj,', ',pasien.kelurahanpj,', ',pasien.kecamatanpj,', ',pasien.kabupatenpj) as alamat,bridging_sep.no_sep,bridging_surat_kontrol_bpjs.no_surat "+//tambah chan
