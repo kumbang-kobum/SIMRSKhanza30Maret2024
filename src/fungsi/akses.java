@@ -247,7 +247,7 @@ public final class akses {
             catatan_pengkajian_paska_operasi=false,skrining_frailty_syndrome=false,sirkulasi_cssd=false,lama_pelayanan_cssd=false,catatan_observasi_bayi=false,
             riwayat_surat_peringatan=false,master_kesimpulan_anjuran_mcu=false,kategori_piutang_jasa_perusahaan=false,piutang_jasa_perusahaan=false,bayar_piutang_jasa_perusahaan=false,
             piutang_jasa_perusahaan_belum_lunas=false,checklist_kesiapan_anestesi=false,piutang_peminjaman_uang_belum_lunas=false,hasil_pemeriksaan_slit_lamp=false,
-            hasil_pemeriksaan_oct=false,persetujuan_pernyataan_pemilihan_dpjp=false,grafik_harian_pasien_prb=false;//tambah chan 2
+            hasil_pemeriksaan_oct=false,persetujuan_pernyataan_pemilihan_dpjp=false,grafik_harian_pasien_prb=false,pengkajian_resiko_jatuh_timeup=false;//tambah chan 2
     
     public static void setData(String user, String pass) {
         try {        
@@ -1404,6 +1404,7 @@ public final class akses {
                         akses.hasil_pemeriksaan_oct=true;
                         akses.persetujuan_pernyataan_pemilihan_dpjp=true;//tambah chan
                         akses.grafik_harian_pasien_prb=true;//tambah chan
+                        akses.pengkajian_resiko_jatuh_timeup=true;//tambah chan
                     }else if(rs2.getRow()>=1){   
                         rs2.beforeFirst();
                         rs2.next();
@@ -2544,6 +2545,7 @@ public final class akses {
                         akses.hasil_pemeriksaan_oct=rs2.getBoolean("hasil_pemeriksaan_oct");
                         akses.persetujuan_pernyataan_pemilihan_dpjp=rs2.getBoolean("persetujuan_pernyataan_pemilihan_dpjp");//tambah chan
                         akses.grafik_harian_pasien_prb=rs2.getBoolean("grafik_harian_pasien_prb");//tambah chan
+                        akses.pengkajian_resiko_jatuh_timeup=rs2.getBoolean("pengkajian_resiko_jatuh_timeup");//tambah chan
                     }else if((rs.getRow()==0)&&(rs2.getRow()==0)){
                         akses.kode="";                  
                         akses.penyakit= false;
@@ -3682,6 +3684,7 @@ public final class akses {
                         akses.hasil_pemeriksaan_oct=false;
                         akses.persetujuan_pernyataan_pemilihan_dpjp=false;//tambah chan
                         akses.grafik_harian_pasien_prb=false;//tambah chan
+                        akses.pengkajian_resiko_jatuh_timeup=false;//tambah chan
                     }
                 } catch (Exception e) {
                     System.out.println("Notifikasi : "+e);
@@ -4843,6 +4846,7 @@ public final class akses {
         akses.hasil_pemeriksaan_oct=false;
         akses.persetujuan_pernyataan_pemilihan_dpjp=false;//tambah chan
         akses.grafik_harian_pasien_prb=false;//tambah chan
+        akses.pengkajian_resiko_jatuh_timeup=false;//tambah chan
     }
     
     public static int getjml1() {return akses.jml1;}    
@@ -6020,4 +6024,5 @@ public final class akses {
     public static boolean gethasil_pemeriksaan_oct(){return akses.hasil_pemeriksaan_oct;}
     public static boolean getpersetujuan_pernyataan_pemilihan_dpjp(){return akses.persetujuan_pernyataan_pemilihan_dpjp;}//tambah chan
     public static boolean getgrafik_harian_pasien_prb(){return akses.grafik_harian_pasien_prb;}//tambah chan
+    public static boolean getpengkajian_resiko_jatuh_timeup(){return akses.pengkajian_resiko_jatuh_timeup;}//tambah chan
 }   

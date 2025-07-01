@@ -220,6 +220,7 @@ import rekammedis.RMTimeOutSebelumInsisi;
 import rekammedis.RMTransferPasienAntarRuang;
 import rekammedis.RMTriaseIGD;
 import rekammedis.RMUjiFungsiKFR;
+import rekammedis.RMPengkajianResikoJatuhTimeup;
 import surat.SuratBebasNarkoba;
 import surat.SuratBebasTato;
 import surat.SuratButaWarna;
@@ -679,6 +680,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnRMRawatJalan = new javax.swing.JMenu();
         MnAwalKeperawatan = new javax.swing.JMenu();
         MnPenilaianAwalKeperawatanRalan = new javax.swing.JMenuItem();
+        MnPengkajianResikoJatuhTimeup = new javax.swing.JMenuItem();
         MnPenilaianAwalKeperawatanGigi = new javax.swing.JMenuItem();
         MnPenilaianAwalKeperawatanKebidanan = new javax.swing.JMenuItem();
         MnPenilaianAwalKeperawatanBayiAnak = new javax.swing.JMenuItem();
@@ -1313,6 +1315,20 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnPenilaianAwalKeperawatanRalan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnPenilaianAwalKeperawatanRalanActionPerformed(evt);
+            }
+        });
+        MnPengkajianResikoJatuhTimeup.setBackground(new java.awt.Color(255, 255, 254));
+        MnPengkajianResikoJatuhTimeup.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnPengkajianResikoJatuhTimeup.setForeground(new java.awt.Color(50, 50, 50));
+        MnPengkajianResikoJatuhTimeup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnPengkajianResikoJatuhTimeup.setText("Pengkajian Resiko Jatuh Time Up");
+        MnPengkajianResikoJatuhTimeup.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnPengkajianResikoJatuhTimeup.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnPengkajianResikoJatuhTimeup.setName("MnPengkajianResikoJatuhTimeup"); // NOI18N
+        MnPengkajianResikoJatuhTimeup.setPreferredSize(new java.awt.Dimension(330, 26));
+        MnPengkajianResikoJatuhTimeup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnPengkajianResikoJatuhTimeupActionPerformed(evt);
             }
         });
 
@@ -10937,6 +10953,27 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }
     }//GEN-LAST:event_MnPenilaianAwalKeperawatanRalanActionPerformed
 
+    private void MnPengkajianResikoJatuhTimeupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPenilaianAwalKeperawatanRalanActionPerformed
+        if(tabModekasir.getRowCount()==0){
+            JOptionPane.showMessageDialog(null,"Maaf, table masih kosong...!!!!");
+            //TNoReg.requestFocus();
+        }else if(TNoRw.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
+            tbKasirRalan.requestFocus();
+        }else{
+            if(tbKasirRalan.getSelectedRow()!= -1){
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                RMPengkajianResikoJatuhTimeup form=new RMPengkajianResikoJatuhTimeup(null,false);
+                form.isCek();
+                form.setNoRm(TNoRw.getText(),DTPCari2.getDate());
+                form.emptTeks();
+                form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        }
+    }    
     private void ppPasienCoronaBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppPasienCoronaBtnPrintActionPerformed
         if(tabModekasir.getRowCount()==0){
             JOptionPane.showMessageDialog(null,"Maaf, data pasien sudah habis...!!!!");
@@ -15363,6 +15400,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnPenilaianAwalKeperawatanKebidanan;
     private javax.swing.JMenuItem MnPenilaianAwalKeperawatanPsikiatri;
     private javax.swing.JMenuItem MnPenilaianAwalKeperawatanRalan;
+    private javax.swing.JMenuItem MnPengkajianResikoJatuhTimeup;
     private javax.swing.JMenuItem MnPenilaianAwalKeperawatanRalanGeriatri;
     private javax.swing.JMenuItem MnPenilaianAwalMedisIGD;
     private javax.swing.JMenuItem MnPenilaianAwalMedisIGDPsikiatri;
@@ -15904,6 +15942,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnCetakSuratSakit.setEnabled(akses.getsurat_sakit());
         ppResume.setEnabled(akses.getdata_resume_pasien());
         MnPenilaianAwalKeperawatanRalan.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
+        MnPengkajianResikoJatuhTimeup.setEnabled(akses.getpengkajian_resiko_jatuh_timeup());
         MnPenilaianAwalKeperawatanGigi.setEnabled(akses.getpenilaian_awal_keperawatan_gigi());
         MnPenilaianAwalKeperawatanKebidanan.setEnabled(akses.getpenilaian_awal_keperawatan_kebidanan());
         MnPenilaianAwalKeperawatanBayiAnak.setEnabled(akses.getpenilaian_awal_keperawatan_anak());
@@ -17500,6 +17539,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnRMOperasi.add(MnCatatanPengkajianPaskaOperasi);
         
         MnAwalKeperawatan.add(MnPenilaianAwalKeperawatanRalan);
+        MnAwalKeperawatan.add(MnPengkajianResikoJatuhTimeup);
         MnAwalKeperawatan.add(MnPenilaianAwalKeperawatanGigi);
         MnAwalKeperawatan.add(MnPenilaianAwalKeperawatanKebidanan);
         MnAwalKeperawatan.add(MnPenilaianAwalKeperawatanBayiAnak);
