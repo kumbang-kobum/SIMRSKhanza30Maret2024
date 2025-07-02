@@ -12082,7 +12082,46 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                     }
                 }
             }
+            
+            // 🔽 Tambahan: tampilkan Time UP setelah blok try di atas selesai
+                try {
+                    PreparedStatement psTimeup = koneksi.prepareStatement(
+                        "SELECT tanggal, berjalan_a, berjalan_b, berjalan_c, hasil, lapor, ket_lapor, intervensi, nip " +
+                        "FROM pengkajian_resiko_jatuh_timeup WHERE no_rawat = ?"
+                    );
+                    psTimeup.setString(1, norawat);
+                    rs2 = psTimeup.executeQuery();
 
+                    if (rs2.next()) {
+                        htmlContent.append("<tr class='isi'><td valign='top'></td><td valign='top'>Pengkajian Resiko Jatuh Time UP</td>"
+                            + "<td valign='top' align='center'>:</td><td valign='top'>"
+                            + "<table width='100%' border='0' cellpadding='3px' cellspacing='0'>");
+
+                        int w2 = 1;
+                        do {
+                            htmlContent.append("<tr><td width='3%' valign='top' align='center'>").append(w2).append(".</td>"
+                                + "<td width='20%' valign='top'>Tanggal</td><td valign='top'>: ").append(rs2.getString("tanggal")).append("</td></tr>")
+                                .append("<tr><td></td><td>Cara Berjalan A</td><td>: ").append(rs2.getString("berjalan_a")).append("</td></tr>")
+                                .append("<tr><td></td><td>Cara Berjalan B</td><td>: ").append(rs2.getString("berjalan_b")).append("</td></tr>")
+                                .append("<tr><td></td><td>Cara Berjalan C</td><td>: ").append(rs2.getString("berjalan_c")).append("</td></tr>")
+                                .append("<tr><td></td><td>Hasil</td><td>: ").append(rs2.getString("hasil")).append("</td></tr>")
+                                .append("<tr><td></td><td>Lapor ke Dokter</td><td>: ").append(rs2.getString("lapor")).append(" / Jam :")
+                                .append(rs2.getString("ket_lapor")).append("</td></tr>")
+                                .append("<tr><td></td><td>Intervensi</td><td>: ")
+                                .append(rs2.getString("intervensi").replaceAll("(\r\n|\r|\n|\n\r)", "<br>")).append("</td></tr>")
+                                .append("<tr><td colspan='3'><hr></td></tr>");
+                            w2++;
+                        } while (rs2.next());
+
+                        htmlContent.append("</table></td></tr>");
+                    }
+
+                    if (rs2 != null) rs2.close();
+                    if (psTimeup != null) psTimeup.close();
+
+                } catch (Exception e) {
+                    System.out.println("Notifikasi TimeUP: " + e);
+                }
             //menampilkan obstetri Ralan
             if(chkPemeriksaanObstetriRalan.isSelected()==true){
                 try {
