@@ -220,7 +220,7 @@ import rekammedis.RMTimeOutSebelumInsisi;
 import rekammedis.RMTransferPasienAntarRuang;
 import rekammedis.RMTriaseIGD;
 import rekammedis.RMUjiFungsiKFR;
-import rekammedis.RMPengkajianResikoJatuhTimeup;
+import rekammedis.RMPengkajianResikoJatuhTimeup;//tambah chan
 import surat.SuratBebasNarkoba;
 import surat.SuratBebasTato;
 import surat.SuratButaWarna;
@@ -680,7 +680,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnRMRawatJalan = new javax.swing.JMenu();
         MnAwalKeperawatan = new javax.swing.JMenu();
         MnPenilaianAwalKeperawatanRalan = new javax.swing.JMenuItem();
-        MnPengkajianResikoJatuhTimeup = new javax.swing.JMenuItem();
+        MnPengkajianResikoJatuhTimeup = new javax.swing.JMenuItem();//tambah chan
         MnPenilaianAwalKeperawatanGigi = new javax.swing.JMenuItem();
         MnPenilaianAwalKeperawatanKebidanan = new javax.swing.JMenuItem();
         MnPenilaianAwalKeperawatanBayiAnak = new javax.swing.JMenuItem();
@@ -1317,7 +1317,8 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
                 MnPenilaianAwalKeperawatanRalanActionPerformed(evt);
             }
         });
-        MnPengkajianResikoJatuhTimeup.setBackground(new java.awt.Color(255, 255, 254));
+        
+        MnPengkajianResikoJatuhTimeup.setBackground(new java.awt.Color(255, 255, 254));//tambah chan
         MnPengkajianResikoJatuhTimeup.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnPengkajianResikoJatuhTimeup.setForeground(new java.awt.Color(50, 50, 50));
         MnPengkajianResikoJatuhTimeup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -10953,7 +10954,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }
     }//GEN-LAST:event_MnPenilaianAwalKeperawatanRalanActionPerformed
 
-    private void MnPengkajianResikoJatuhTimeupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPenilaianAwalKeperawatanRalanActionPerformed
+    private void MnPengkajianResikoJatuhTimeupActionPerformed(java.awt.event.ActionEvent evt) {//tambah chan
         if(tabModekasir.getRowCount()==0){
             JOptionPane.showMessageDialog(null,"Maaf, table masih kosong...!!!!");
             //TNoReg.requestFocus();
@@ -15400,7 +15401,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnPenilaianAwalKeperawatanKebidanan;
     private javax.swing.JMenuItem MnPenilaianAwalKeperawatanPsikiatri;
     private javax.swing.JMenuItem MnPenilaianAwalKeperawatanRalan;
-    private javax.swing.JMenuItem MnPengkajianResikoJatuhTimeup;
+    private javax.swing.JMenuItem MnPengkajianResikoJatuhTimeup;//tambah chan
     private javax.swing.JMenuItem MnPenilaianAwalKeperawatanRalanGeriatri;
     private javax.swing.JMenuItem MnPenilaianAwalMedisIGD;
     private javax.swing.JMenuItem MnPenilaianAwalMedisIGDPsikiatri;
@@ -15942,7 +15943,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnCetakSuratSakit.setEnabled(akses.getsurat_sakit());
         ppResume.setEnabled(akses.getdata_resume_pasien());
         MnPenilaianAwalKeperawatanRalan.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
-        MnPengkajianResikoJatuhTimeup.setEnabled(akses.getpengkajian_resiko_jatuh_timeup());
+        MnPengkajianResikoJatuhTimeup.setEnabled(akses.getpengkajian_resiko_jatuh_timeup());//tambah chan
         MnPenilaianAwalKeperawatanGigi.setEnabled(akses.getpenilaian_awal_keperawatan_gigi());
         MnPenilaianAwalKeperawatanKebidanan.setEnabled(akses.getpenilaian_awal_keperawatan_kebidanan());
         MnPenilaianAwalKeperawatanBayiAnak.setEnabled(akses.getpenilaian_awal_keperawatan_anak());
@@ -17539,7 +17540,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnRMOperasi.add(MnCatatanPengkajianPaskaOperasi);
         
         MnAwalKeperawatan.add(MnPenilaianAwalKeperawatanRalan);
-        MnAwalKeperawatan.add(MnPengkajianResikoJatuhTimeup);
+        MnRMRisikoJatuh.add(MnPengkajianResikoJatuhTimeup);//tambah chan
         MnAwalKeperawatan.add(MnPenilaianAwalKeperawatanGigi);
         MnAwalKeperawatan.add(MnPenilaianAwalKeperawatanKebidanan);
         MnAwalKeperawatan.add(MnPenilaianAwalKeperawatanBayiAnak);
