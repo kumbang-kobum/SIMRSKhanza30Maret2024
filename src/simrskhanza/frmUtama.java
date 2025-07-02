@@ -1046,6 +1046,7 @@ import rekammedis.RMSkriningTalasemia;
 import rekammedis.RMTimeOutSebelumInsisi;
 import rekammedis.RMTransferPasienAntarRuang;
 import rekammedis.RMUjiFungsiKFR;
+import rekammedis.RMPengkajianResikoJatuhTimeup;//tambahchan
 import setting.DlgJamDietPasien;
 import setting.DlgPasswordBPJS;
 import setting.DlgRuangOperasi;
@@ -2217,7 +2218,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12/06/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02/07/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -7621,7 +7622,7 @@ public class frmUtama extends javax.swing.JFrame {
         jLabel7.setPreferredSize(new java.awt.Dimension(287, 23));
         internalFrame4.add(jLabel7);
 
-        jLabel1.setText("Juni 12, 2025 #1 Versi 1");
+        jLabel1.setText("Juni 12, 2025 #1 Versi 2");
         jLabel1.setName("jLabel1"); // NOI18N
         internalFrame4.add(jLabel1);
 
@@ -19780,6 +19781,19 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         this.setCursor(Cursor.getDefaultCursor());
     }
     
+    private void btnPengkajianResikoJatuhTimeupActionPerformed(java.awt.event.ActionEvent evt) {//tambah chan  
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMPengkajianResikoJatuhTimeup aplikasi=new RMPengkajianResikoJatuhTimeup(this,false);
+        aplikasi.isCek();
+        aplikasi.tampil();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
     private void btnPenilaianRisikoJatuhAnakActionPerformed(java.awt.event.ActionEvent evt) {  
         isTutup();
         DlgHome.dispose();
@@ -23563,7 +23577,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             btnSkriningIndraPendengaran,btnCatatanPengkajianPaskaOperasi,btnSirkulasiInventarisCSSD,btnSkriningFrailtySyndrome,btnLamaPelayananCSSD,btnCatatanObservasiBayi,
             btnRiwayatSuratPeringatan,btnMasterKesimpulanAnjuranMCU,btnKategoriPiutangJasaPerusahaan,btnPiutangJasaPerusahaan,btnBayarPiutangJasaPerusahaan,btnPiutangJasaPerusahaanBelumLunas,
             btnPiutangPeminjamanUangBelumLunas,btnChecklistKesiapanAnestesi,btnHasilPemeriksaanSlitLamp,btnHasilPemeriksaanOCT,
-            btnGrafikPasienPrbPerTanggal,btnPernyataanPemilihanDokterDpjp;//tambah chan 2
+            btnGrafikPasienPrbPerTanggal,btnPernyataanPemilihanDokterDpjp,btnPengkajianResikoJatuhTimeup;//tambah chan 3
     
     public void isWall(){
         try{            
@@ -27841,7 +27855,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             }
             
             if(akses.getpenilaian_lanjutan_resiko_jatuh_dewasa()==true){
-                Panelmenu.add(btnPenilaianRisikoJatuhDewasa);
+                Panelmenu.add(btnPengkajianResikoJatuhTimeup);
                 jmlmenu++;
             }
             
@@ -27872,6 +27886,11 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             
             if(akses.getpenilaian_lanjutan_skrining_fungsional()==true){
                 Panelmenu.add(btnPenilaianLanjutanSkriningFungsional);
+                jmlmenu++;
+            }
+            
+            if(akses.getpengkajian_resiko_jatuh_timeup()==true){//tambah chan
+                Panelmenu.add(btnPengkajianResikoJatuhTimeup);
                 jmlmenu++;
             }
             
@@ -33488,6 +33507,11 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             Panelmenu.add(btnPenilaianLanjutanSkriningFungsional);
             jmlmenu++;
         }
+        
+        if(akses.getpengkajian_resiko_jatuh_timeup()==true){//tambah chan
+                Panelmenu.add(btnPengkajianResikoJatuhTimeup);
+                jmlmenu++;
+            }
         
         if(akses.getpenilaian_ulang_nyeri()==true){
             Panelmenu.add(btnPenilaianUlangNyeri);
@@ -40762,6 +40786,13 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             }                
         }
         
+        if(akses.getpengkajian_resiko_jatuh_timeup()==true){//tambah chan
+            if(btnPengkajianResikoJatuhTimeup.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnPengkajianResikoJatuhTimeup);
+                jmlmenu++;
+            }                
+        }
+        
         if(akses.getpenilaian_ulang_nyeri()==true){
             if(btnPenilaianUlangNyeri.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
                 Panelmenu.add(btnPenilaianUlangNyeri);
@@ -46163,6 +46194,14 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         btnPenilaianRisikoJatuhDewasa.setName("btnPenilaianRisikoJatuhDewasa");
         btnPenilaianRisikoJatuhDewasa.setPreferredSize(new java.awt.Dimension(200, 90));
         btnPenilaianRisikoJatuhDewasa.addActionListener(this::btnPenilaianRisikoJatuhDewasaActionPerformed);
+        
+        btnPengkajianResikoJatuhTimeup = new widget.ButtonBig();//tambah chan
+        btnPengkajianResikoJatuhTimeup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1481002123_wheelchair.png"))); 
+        btnPengkajianResikoJatuhTimeup.setText("Pengkajian Lanjutan Resiko Time UP And GO");
+        btnPengkajianResikoJatuhTimeup.setIconTextGap(0);
+        btnPengkajianResikoJatuhTimeup.setName("btnPengkajianResikoJatuhTimeup");
+        btnPengkajianResikoJatuhTimeup.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnPengkajianResikoJatuhTimeup.addActionListener(this::btnPengkajianResikoJatuhTimeupActionPerformed);
         
         btnPenilaianRisikoJatuhAnak = new widget.ButtonBig();
         btnPenilaianRisikoJatuhAnak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/5986162_disease_health_injury_medical_numb_icon.png"))); 

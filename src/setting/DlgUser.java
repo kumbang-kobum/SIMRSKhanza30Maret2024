@@ -268,7 +268,7 @@ public class DlgUser extends javax.swing.JDialog {
                 "[M]Skrining Kesehatan Gigi & Mulut Lansia","[M]Skrining Indra Pendengaran","[M]Catatan Pengkajian Paska Operasi","[M]Skrining Frailty Syndrome","[G]Sirkulasi CSSD",
                 "[J]Lama Pelayanan CSSD","[M]Catatan Observasi Bayi","[C]Riwayat Surat Peringatan","[M]Master Kesimpulan & Anjuran MCU","[K]Kategori Piutang Jasa Perusahaan",
                 "[K]Piutang Jasa Perusahaan","[K]Bayar Piutang Jasa Perusahaan","[K]Piutang Jasa Perusahaan Belum Lunas","[M]Check List Kesiapan Anestesi","[K]Piutang Peminjaman Uang Belum Lunas",
-                "[M]Hasil Pemeriksaan Slit Lamp","[M]Hasil Pemeriksaan OCT","[P]Persetujuan Dokter DPJP","[O]pasien PRB Per Tanggal"//tambah chan 2 diakhir
+                "[M]Hasil Pemeriksaan Slit Lamp","[M]Hasil Pemeriksaan OCT","[P]Persetujuan Dokter DPJP","[O]pasien PRB Per Tanggal","[M]Pengkajian Lanjutan Resiko Time UP And GO"//tambah chan 3 diakhir
         };
         
         tabMode=new DefaultTableModel(null,row){
@@ -576,7 +576,7 @@ public class DlgUser extends javax.swing.JDialog {
                 java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, 
                 java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, 
                 java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class,
-                java.lang.Boolean.class, java.lang.Boolean.class//tambah chan 2
+                java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class//tambah chan 3
              };
              @Override
              public Class getColumnClass(int columnIndex) {
@@ -589,7 +589,7 @@ public class DlgUser extends javax.swing.JDialog {
         tbUser.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbUser.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 1137;i++) {//tambah chan 2
+        for (i = 0; i < 1138;i++) {//tambah chan 3
             TableColumn column = tbUser.getColumnModel().getColumn(i);
             switch (i) {
                 case 0:
@@ -3453,6 +3453,9 @@ public class DlgUser extends javax.swing.JDialog {
                     break;//tambah chan
                 case 1136:
                     column.setPreferredWidth(210);
+                    break;//tambah chan
+                case 1137:
+                    column.setPreferredWidth(230);
                     break;//tambah chan    
                 default:
                     column.setPreferredWidth(133);
@@ -3936,7 +3939,7 @@ public class DlgUser extends javax.swing.JDialog {
                     "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false',"+
                     "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false',"+
                     "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false',"+
-                    "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false'","User")==true){//tambah chan 2 akhir
+                    "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false'","User")==true){//tambah chan 3 akhir
                 tabMode.addRow(new Object[]{
                     TKd.getText(),TNmUser.getText(),Jabatan.getText(),TPass.getText(),false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
                     false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
@@ -3965,7 +3968,7 @@ public class DlgUser extends javax.swing.JDialog {
                     false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
                     false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
                     false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
-                    false,false,false,false,false,false,false,false,false,false//tambah chan 2 akhir
+                    false,false,false,false,false,false,false,false,false,false,false//tambah chan 3 akhir
                 });
                 emptTeks();
                 LCount.setText(""+tabMode.getRowCount());
@@ -5149,7 +5152,8 @@ public class DlgUser extends javax.swing.JDialog {
                     "hasil_pemeriksaan_slit_lamp='"+tbUser.getValueAt(i,1133).toString()+"',"+
                     "hasil_pemeriksaan_oct='"+tbUser.getValueAt(i,1134).toString()+"',"+
                     "persetujuan_pernyataan_pemilihan_dpjp='"+tbUser.getValueAt(i, 1135).toString()+"',"+//tambah chan
-                    "grafik_harian_pasien_prb='"+tbUser.getValueAt(i,1136).toString()+"'")==true){//tambah chan
+                    "grafik_harian_pasien_prb='"+tbUser.getValueAt(i,1136).toString()+"',"+//tambah chan
+                    "pengkajian_resiko_jatuh_timeup='"+tbUser.getValueAt(i,1137).toString()+"'")==true){//tambah chan
                     emptTeks();
                 }
             }         
@@ -6503,7 +6507,8 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {
                                         "hasil_pemeriksaan_slit_lamp='"+tbUser.getValueAt(barisdicopy,1133).toString()+"',"+
                                         "hasil_pemeriksaan_oct='"+tbUser.getValueAt(barisdicopy,1134).toString()+"',"+
                                         "persetujuan_pernyataan_pemilihan_dpjp='"+tbUser.getValueAt(barisdicopy, 1135).toString()+"',"+//tambah chan
-                                        "grafik_harian_hemodialisa='"+tbUser.getValueAt(barisdicopy,1136).toString()+"'");//tambah chan
+                                        "grafik_harian_hemodialisa='"+tbUser.getValueAt(barisdicopy,1136).toString()+"',"+//tambah chan
+                                        "pengkajian_resiko_jatuh_timeup='"+tbUser.getValueAt(i,1137).toString()+"'");//tambah chan
                                 }
                                 userdicopy="";
                                 copyhakakses="";
@@ -6826,7 +6831,7 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {
                 "user.skrining_frailty_syndrome,user.sirkulasi_cssd,user.lama_pelayanan_cssd,user.catatan_observasi_bayi,user.riwayat_surat_peringatan,user.master_kesimpulan_anjuran_mcu,"+
                 "user.kategori_piutang_jasa_perusahaan,user.piutang_jasa_perusahaan,user.bayar_piutang_jasa_perusahaan,user.piutang_jasa_perusahaan_belum_lunas,user.checklist_kesiapan_anestesi,"+
                 "user.piutang_peminjaman_uang_belum_lunas,user.hasil_pemeriksaan_slit_lamp,user.hasil_pemeriksaan_oct,"+
-                "user.persetujuan_pernyataan_pemilihan_dpjp,user.grafik_harian_pasien_prb from user order by AES_DECRYPT(user.id_user,'nur')");//tambah chan 2        
+                "user.persetujuan_pernyataan_pemilihan_dpjp,user.grafik_harian_pasien_prb,user.pengkajian_resiko_jatuh_timeup from user order by AES_DECRYPT(user.id_user,'nur')");//tambah chan 3        
             try {
                 rs=ps.executeQuery();
                             i=0;
@@ -7976,7 +7981,8 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {
                                rs.getBoolean("hasil_pemeriksaan_slit_lamp"),
                                rs.getBoolean("hasil_pemeriksaan_oct"),
                                rs.getBoolean("persetujuan_pernyataan_pemilihan_dpjp"),//tambah chan
-                               rs.getBoolean("grafik_harian_pasien_prb")//tambah chan
+                               rs.getBoolean("grafik_harian_pasien_prb"),//tambah chan
+                               rs.getBoolean("pengkajian_resiko_jatuh_timeup")//tambah chan
                             };
                             i++;
                             SwingUtilities.invokeLater(() -> tabMode.addRow(row));
@@ -9116,7 +9122,8 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {
                            rs.getBoolean("hasil_pemeriksaan_slit_lamp"),
                            rs.getBoolean("hasil_pemeriksaan_oct"),
                            rs.getBoolean("persetujuan_pernyataan_pemilihan_dpjp"),//tambah chan
-                           rs.getBoolean("grafik_harian_pasien_prb")//tambah chan
+                           rs.getBoolean("grafik_harian_pasien_prb"),//tambah chan
+                           rs.getBoolean("pengkajian_resiko_jatuh_timeup")//tambah chan
                                     };
                                     i++;
                                     SwingUtilities.invokeLater(() -> tabMode.addRow(row));
