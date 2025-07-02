@@ -635,7 +635,7 @@ public final class RMPengkajianResikoJatuhTimeup extends javax.swing.JDialog {
         jLabel97.setBounds(380, 180, 190, 23);
 
         jLabel63.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel63.setText("VI. PENGKAJIAN RESIKO JATUH TIME UP");
+        jLabel63.setText("PENGKAJIAN RESIKO JATUH TIME UP");
         jLabel63.setName("jLabel63"); // NOI18N
         FormInput.add(jLabel63);
         jLabel63.setBounds(10, 80, 380, 23);
