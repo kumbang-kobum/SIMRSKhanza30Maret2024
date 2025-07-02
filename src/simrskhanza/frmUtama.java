@@ -27855,7 +27855,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             }
             
             if(akses.getpenilaian_lanjutan_resiko_jatuh_dewasa()==true){
-                Panelmenu.add(btnPengkajianResikoJatuhTimeup);
+                Panelmenu.add(btnPenilaianRisikoJatuhDewasa);
                 jmlmenu++;
             }
             
