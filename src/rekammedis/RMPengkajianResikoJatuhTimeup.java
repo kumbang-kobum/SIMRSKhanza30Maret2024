@@ -75,7 +75,7 @@ public final class RMPengkajianResikoJatuhTimeup extends javax.swing.JDialog {
             "No.Rawat", "No.RM", "Nama Pasien", "J.K.",
             "Cara Berjalan A", "Cara Berjalan B", "Cara Berjalan C",
             "Hasil Pengkajian Resiko Jatuh", "Ket. Lapor", "Lapor Dokter",
-            "NIP", "Nama Petugas"
+            "Intervensi","NIP", "Nama Petugas"
         }){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -96,28 +96,31 @@ public final class RMPengkajianResikoJatuhTimeup extends javax.swing.JDialog {
             }else if(i==3){
                 column.setPreferredWidth(50);
             }else if(i==4){
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(90);
             }else if(i==5){
                 column.setPreferredWidth(90);
             }else if(i==6){
                 column.setPreferredWidth(90);
             }else if(i==7){
-                column.setPreferredWidth(65);
+                column.setPreferredWidth(160);
             }else if(i==8){
                 column.setPreferredWidth(120);
             }else if(i==9){
-                column.setPreferredWidth(90);
-            }else if(i==10){
-                column.setPreferredWidth(35);
-            }else if(i==11){
                 column.setPreferredWidth(80);
+            }else if(i==10){
+                column.setPreferredWidth(180);
+            }else if(i==11){
+                column.setPreferredWidth(120);    
             }else if(i==12){
+                column.setPreferredWidth(150);
+            }else if(i==13){
                 column.setPreferredWidth(150);
             }
         }
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());
         TNoRw.setDocument(new batasInput((byte)17).getKata(TNoRw));
         KetLapor.setDocument(new batasInput((int)15).getKata(KetLapor));
+        jTextArea1.setDocument(new batasInput((int)200).getKata(jTextArea1));
         
         TCari.setDocument(new batasInput((int)100).getKata(TCari));
         
@@ -189,9 +192,6 @@ public final class RMPengkajianResikoJatuhTimeup extends javax.swing.JDialog {
         } catch (Exception e) {
             TANGGALMUNDUR="yes";
         }
-        
-        ChkAccor.setSelected(false);
-        isMenu();
     }
 
 
@@ -248,6 +248,9 @@ public final class RMPengkajianResikoJatuhTimeup extends javax.swing.JDialog {
         jLabel63 = new widget.Label();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel71 = new widget.Label();
+        jLabel73 = new widget.Label();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         internalFrame3 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbObat = new widget.Table();
@@ -261,20 +264,6 @@ public final class RMPengkajianResikoJatuhTimeup extends javax.swing.JDialog {
         BtnCari = new widget.Button();
         jLabel7 = new widget.Label();
         LCount = new widget.Label();
-        PanelAccor = new widget.PanelBiasa();
-        ChkAccor = new widget.CekBox();
-        FormMenu = new widget.PanelBiasa();
-        jLabel34 = new widget.Label();
-        TNoRM1 = new widget.TextBox();
-        TPasien1 = new widget.TextBox();
-        BtnPrint1 = new widget.Button();
-        FormMasalahRencana = new widget.PanelBiasa();
-        Scroll7 = new widget.ScrollPane();
-        tbMasalahDetail = new widget.Table();
-        Scroll9 = new widget.ScrollPane();
-        tbRencanaDetail = new widget.Table();
-        scrollPane6 = new widget.ScrollPane();
-        DetailRencana = new widget.TextArea();
 
         LoadHTML.setBorder(null);
         LoadHTML.setName("LoadHTML"); // NOI18N
@@ -658,10 +647,26 @@ public final class RMPengkajianResikoJatuhTimeup extends javax.swing.JDialog {
         FormInput.add(jSeparator1);
         jSeparator1.setBounds(0, 70, 880, 1);
 
-        jLabel71.setText("Jam dilaporkan :");
+        jLabel71.setText("Intervensi :");
         jLabel71.setName("jLabel71"); // NOI18N
         FormInput.add(jLabel71);
-        jLabel71.setBounds(680, 180, 90, 23);
+        jLabel71.setBounds(40, 210, 60, 23);
+
+        jLabel73.setText("Jam dilaporkan :");
+        jLabel73.setName("jLabel73"); // NOI18N
+        FormInput.add(jLabel73);
+        jLabel73.setBounds(680, 180, 90, 23);
+
+        jScrollPane1.setName("jScrollPane1"); // NOI18N
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jTextArea1.setRows(5);
+        jTextArea1.setName("jTextArea1"); // NOI18N
+        jScrollPane1.setViewportView(jTextArea1);
+
+        FormInput.add(jScrollPane1);
+        jScrollPane1.setBounds(110, 210, 174, 71);
 
         scrollInput.setViewportView(FormInput);
 
@@ -768,104 +773,6 @@ public final class RMPengkajianResikoJatuhTimeup extends javax.swing.JDialog {
 
         internalFrame3.add(panelGlass9, java.awt.BorderLayout.PAGE_END);
 
-        PanelAccor.setBackground(new java.awt.Color(255, 255, 255));
-        PanelAccor.setName("PanelAccor"); // NOI18N
-        PanelAccor.setPreferredSize(new java.awt.Dimension(470, 43));
-        PanelAccor.setLayout(new java.awt.BorderLayout(1, 1));
-
-        ChkAccor.setBackground(new java.awt.Color(255, 250, 250));
-        ChkAccor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/kiri.png"))); // NOI18N
-        ChkAccor.setSelected(true);
-        ChkAccor.setFocusable(false);
-        ChkAccor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ChkAccor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        ChkAccor.setName("ChkAccor"); // NOI18N
-        ChkAccor.setPreferredSize(new java.awt.Dimension(15, 20));
-        ChkAccor.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/kiri.png"))); // NOI18N
-        ChkAccor.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/kanan.png"))); // NOI18N
-        ChkAccor.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/kanan.png"))); // NOI18N
-        ChkAccor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChkAccorActionPerformed(evt);
-            }
-        });
-        PanelAccor.add(ChkAccor, java.awt.BorderLayout.WEST);
-
-        FormMenu.setBackground(new java.awt.Color(255, 255, 255));
-        FormMenu.setBorder(null);
-        FormMenu.setName("FormMenu"); // NOI18N
-        FormMenu.setPreferredSize(new java.awt.Dimension(115, 43));
-        FormMenu.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 9));
-
-        jLabel34.setText("Pasien :");
-        jLabel34.setName("jLabel34"); // NOI18N
-        jLabel34.setPreferredSize(new java.awt.Dimension(55, 23));
-        FormMenu.add(jLabel34);
-
-        TNoRM1.setEditable(false);
-        TNoRM1.setHighlighter(null);
-        TNoRM1.setName("TNoRM1"); // NOI18N
-        TNoRM1.setPreferredSize(new java.awt.Dimension(100, 23));
-        FormMenu.add(TNoRM1);
-
-        TPasien1.setEditable(false);
-        TPasien1.setBackground(new java.awt.Color(245, 250, 240));
-        TPasien1.setHighlighter(null);
-        TPasien1.setName("TPasien1"); // NOI18N
-        TPasien1.setPreferredSize(new java.awt.Dimension(250, 23));
-        FormMenu.add(TPasien1);
-
-        BtnPrint1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item (copy).png"))); // NOI18N
-        BtnPrint1.setMnemonic('T');
-        BtnPrint1.setToolTipText("Alt+T");
-        BtnPrint1.setName("BtnPrint1"); // NOI18N
-        BtnPrint1.setPreferredSize(new java.awt.Dimension(28, 23));
-        BtnPrint1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnPrint1ActionPerformed(evt);
-            }
-        });
-        FormMenu.add(BtnPrint1);
-
-        PanelAccor.add(FormMenu, java.awt.BorderLayout.NORTH);
-
-        FormMasalahRencana.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 254)));
-        FormMasalahRencana.setName("FormMasalahRencana"); // NOI18N
-        FormMasalahRencana.setLayout(new java.awt.GridLayout(3, 0, 1, 1));
-
-        Scroll7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 254)));
-        Scroll7.setName("Scroll7"); // NOI18N
-        Scroll7.setOpaque(true);
-
-        tbMasalahDetail.setName("tbMasalahDetail"); // NOI18N
-        Scroll7.setViewportView(tbMasalahDetail);
-
-        FormMasalahRencana.add(Scroll7);
-
-        Scroll9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 254)));
-        Scroll9.setName("Scroll9"); // NOI18N
-        Scroll9.setOpaque(true);
-
-        tbRencanaDetail.setName("tbRencanaDetail"); // NOI18N
-        Scroll9.setViewportView(tbRencanaDetail);
-
-        FormMasalahRencana.add(Scroll9);
-
-        scrollPane6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 254)), "Rencana Keperawatan Lainnya :", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
-        scrollPane6.setName("scrollPane6"); // NOI18N
-
-        DetailRencana.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
-        DetailRencana.setColumns(20);
-        DetailRencana.setRows(5);
-        DetailRencana.setName("DetailRencana"); // NOI18N
-        scrollPane6.setViewportView(DetailRencana);
-
-        FormMasalahRencana.add(scrollPane6);
-
-        PanelAccor.add(FormMasalahRencana, java.awt.BorderLayout.CENTER);
-
-        internalFrame3.add(PanelAccor, java.awt.BorderLayout.EAST);
-
         TabRawat.addTab("Data Pengkajian", internalFrame3);
 
         internalFrame1.add(TabRawat, java.awt.BorderLayout.CENTER);
@@ -926,7 +833,7 @@ public final class RMPengkajianResikoJatuhTimeup extends javax.swing.JDialog {
             if(akses.getkode().equals("Admin Utama")){
                 hapus();
             }else{
-                if(KdPetugas.getText().equals(tbObat.getValueAt(tbObat.getSelectedRow(),10).toString())){
+                if(KdPetugas.getText().equals(tbObat.getValueAt(tbObat.getSelectedRow(),11).toString())){
                     if(Sequel.cekTanggal48jam(tbObat.getValueAt(tbObat.getSelectedRow(),8).toString(),Sequel.ambiltanggalsekarang())==true){
                         hapus();
                     }
@@ -958,7 +865,7 @@ public final class RMPengkajianResikoJatuhTimeup extends javax.swing.JDialog {
                 if(akses.getkode().equals("Admin Utama")){
                     ganti();
                 }else{
-                    if(KdPetugas.getText().equals(tbObat.getValueAt(tbObat.getSelectedRow(),10).toString())){
+                    if(KdPetugas.getText().equals(tbObat.getValueAt(tbObat.getSelectedRow(),11).toString())){
                         if(Sequel.cekTanggal48jam(tbObat.getValueAt(tbObat.getSelectedRow(),8).toString(),Sequel.ambiltanggalsekarang())==true){
                             if(TanggalRegistrasi.getText().equals("")){
                                 TanggalRegistrasi.setText(Sequel.cariIsi("select concat(reg_periksa.tgl_registrasi,' ',reg_periksa.jam_reg) from reg_periksa where reg_periksa.no_rawat=?",TNoRw.getText()));
@@ -997,233 +904,90 @@ public final class RMPengkajianResikoJatuhTimeup extends javax.swing.JDialog {
 
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        if(tabMode.getRowCount()==0){
-            JOptionPane.showMessageDialog(null,"Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
-            BtnBatal.requestFocus();
-        }else if(tabMode.getRowCount()!=0){
-            try{
-                if(TCari.getText().equals("")){
-                    ps=koneksi.prepareStatement(
-                            "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,if(pasien.jk='L','Laki-Laki','Perempuan') as jk,pasien.tgl_lahir,pasien.agama,bahasa_pasien.nama_bahasa,cacat_fisik.nama_cacat,pengkajian_resiko_jatuh_timeup.tanggal,"+
-                        "pengkajian_resiko_jatuh_timeup.berjalan_a,pengkajian_resiko_jatuh_timeup.berjalan_b,pengkajian_resiko_jatuh_timeup.hasil,"+
-                        "pengkajian_resiko_jatuh_timeup.berjalan_c,pengkajian_resiko_jatuh_timeup.lapor,pengkajian_resiko_jatuh_timeup.ket_lapor,"+
-                        "pengkajian_resiko_jatuh_timeup.nip,petugas.nama "+
-                        "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
-                        "inner join pengkajian_resiko_jatuh_timeup on reg_periksa.no_rawat=pengkajian_resiko_jatuh_timeup.no_rawat "+
-                        "inner join petugas on pengkajian_resiko_jatuh_timeup.nip=petugas.nip "+
-                        "inner join bahasa_pasien on bahasa_pasien.id=pasien.bahasa_pasien "+
-                        "inner join cacat_fisik on cacat_fisik.id=pasien.cacat_fisik  where "+
-                            "pengkajian_resiko_jatuh_timeup.tanggal between ? and ? order by pengkajian_resiko_jatuh_timeup.tanggal");
-                }else{
-                    ps=koneksi.prepareStatement(
-                            "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,if(pasien.jk='L','Laki-Laki','Perempuan') as jk,pasien.tgl_lahir,pasien.agama,bahasa_pasien.nama_bahasa,cacat_fisik.nama_cacat,pengkajian_resiko_jatuh_timeup.tanggal,"+
-                        "pengkajian_resiko_jatuh_timeup.berjalan_a,pengkajian_resiko_jatuh_timeup.berjalan_b,pengkajian_resiko_jatuh_timeup.hasil,"+
-                        "pengkajian_resiko_jatuh_timeup.berjalan_c,pengkajian_resiko_jatuh_timeup.lapor,pengkajian_resiko_jatuh_timeup.ket_lapor,"+
-                        "pengkajian_resiko_jatuh_timeup.nip,petugas.nama "+
-                        "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
-                        "inner join pengkajian_resiko_jatuh_timeup on reg_periksa.no_rawat=pengkajian_resiko_jatuh_timeup.no_rawat "+
-                        "inner join petugas on pengkajian_resiko_jatuh_timeup.nip=petugas.nip "+
-                        "inner join bahasa_pasien on bahasa_pasien.id=pasien.bahasa_pasien "+
-                        "inner join cacat_fisik on cacat_fisik.id=pasien.cacat_fisik  where "+
-                            "pengkajian_resiko_jatuh_timeup.tanggal between ? and ? and reg_periksa.no_rawat like ? or "+
-                            "pengkajian_resiko_jatuh_timeup.tanggal between ? and ? and pasien.no_rkm_medis like ? or "+
-                            "pengkajian_resiko_jatuh_timeup.tanggal between ? and ? and pasien.nm_pasien like ? or "+
-                            "pengkajian_resiko_jatuh_timeup.tanggal between ? and ? and pengkajian_resiko_jatuh_timeup.nip like ? or "+
-                            "pengkajian_resiko_jatuh_timeup.tanggal between ? and ? and petugas.nama like ? order by pengkajian_resiko_jatuh_timeup.tanggal");
-                }
 
-                try {
-                    if(TCari.getText().equals("")){
-                        ps.setString(1,Valid.SetTgl(DTPCari1.getSelectedItem()+"")+" 00:00:00");
-                        ps.setString(2,Valid.SetTgl(DTPCari2.getSelectedItem()+"")+" 23:59:59");
-                    }else{
-                        ps.setString(1,Valid.SetTgl(DTPCari1.getSelectedItem()+"")+" 00:00:00");
-                        ps.setString(2,Valid.SetTgl(DTPCari2.getSelectedItem()+"")+" 23:59:59");
-                        ps.setString(3,"%"+TCari.getText()+"%");
-                        ps.setString(4,Valid.SetTgl(DTPCari1.getSelectedItem()+"")+" 00:00:00");
-                        ps.setString(5,Valid.SetTgl(DTPCari2.getSelectedItem()+"")+" 23:59:59");
-                        ps.setString(6,"%"+TCari.getText()+"%");
-                        ps.setString(7,Valid.SetTgl(DTPCari1.getSelectedItem()+"")+" 00:00:00");
-                        ps.setString(8,Valid.SetTgl(DTPCari2.getSelectedItem()+"")+" 23:59:59");
-                        ps.setString(9,"%"+TCari.getText()+"%");
-                        ps.setString(10,Valid.SetTgl(DTPCari1.getSelectedItem()+"")+" 00:00:00");
-                        ps.setString(11,Valid.SetTgl(DTPCari2.getSelectedItem()+"")+" 23:59:59");
-                        ps.setString(12,"%"+TCari.getText()+"%");
-                        ps.setString(13,Valid.SetTgl(DTPCari1.getSelectedItem()+"")+" 00:00:00");
-                        ps.setString(14,Valid.SetTgl(DTPCari2.getSelectedItem()+"")+" 23:59:59");
-                        ps.setString(15,"%"+TCari.getText()+"%");
-                    }   
-                    rs=ps.executeQuery();
-                    StringBuilder htmlContent = new StringBuilder();
-                    htmlContent.append(                             
-                        "<tr class='isi'>").append(
-                            "<td valign='middle' bgcolor='#FFFAFA' align='center' width='9%'><b>PASIEN & PETUGAS</b></td>").append(
-                            "<td valign='middle' bgcolor='#FFFAFA' align='center' width='16%'><b>VI. PENGKAJIAN RESIKO JATUH TIME UP</b></td>").append(
-                        "</tr>"
-                    );
-                    while(rs.next()){
-                        try {
-                            ps2.setString(1,rs.getString("no_rawat"));
-                            rs2=ps2.executeQuery();
-                            
-                        } catch (Exception e) {
-                            System.out.println("Notif : "+e);
-                        } finally{
-                            if(rs2!=null){
-                                rs2.close();
-                            }
-                            if(ps2!=null){
-                                ps2.close();
-                            }
-                        }
-                        htmlContent.append(
-                            "<tr class='isi'>").append(
-                                "<td valign='top' cellpadding='0' cellspacing='0'>").append(
-                                    "<table width='100%' border='0' cellpadding='0' cellspacing='0'align='center'>").append(
-                                        "<tr class='isi2'>").append(
-                                            "<td width='32%' valign='top'>No.Rawat</td><td valign='top'>:&nbsp;</td><td width='67%' valign='top'>").append(rs.getString("no_rawat")).append("</td>").append(
-                                        "</tr>").append(
-                                        "<tr class='isi2'>").append(
-                                            "<td width='32%' valign='top'>No.R.M.</td><td valign='top'>:&nbsp;</td><td width='67%' valign='top'>").append(rs.getString("no_rkm_medis")).append("</td>").append(
-                                        "</tr>").append(
-                                        "<tr class='isi2'>").append(
-                                            "<td width='32%' valign='top'>Nama Pasien</td><td valign='top'>:&nbsp;</td><td width='67%' valign='top'>").append(rs.getString("nm_pasien")).append("</td>").append(
-                                        "</tr>").append(
-                                        "<tr class='isi2'>").append(
-                                            "<td width='32%' valign='top'>J.K.</td><td valign='top'>:&nbsp;</td><td width='67%' valign='top'>").append(rs.getString("jk")).append("</td>").append(
-                                        "</tr>").append(
-                                        "<tr class='isi2'>").append(
-                                            "<td width='32%' valign='top'>Agama</td><td valign='top'>:&nbsp;</td><td width='67%' valign='top'>").append(rs.getString("agama")).append("</td>").append(
-                                        "</tr>").append(
-                                        "<tr class='isi2'>").append(
-                                            "<td width='32%' valign='top'>Bahasa</td><td valign='top'>:&nbsp;</td><td width='67%' valign='top'>").append(rs.getString("nama_bahasa")).append("</td>").append(
-                                        "</tr>").append(
-                                        "<tr class='isi2'>").append(
-                                            "<td width='32%' valign='top'>Cacat Fisik</td><td valign='top'>:&nbsp;</td><td width='67%' valign='top'>").append(rs.getString("tgl_lahir")).append("</td>").append(
-                                        "</tr>").append(
-                                        "<tr class='isi2'>").append(
-                                            "<td width='32%' valign='top'>Petugas</td><td valign='top'>:&nbsp;</td><td width='67%' valign='top'>").append(rs.getString("nip")).append(" ").append(rs.getString("nama")).append("</td>").append(
-                                        "</tr>").append(
-                                        "<tr class='isi2'>").append(
-                                            "<td width='32%' valign='top'>Tgl.Asuhan</td><td valign='top'>:&nbsp;</td><td width='67%' valign='top'>").append(rs.getString("tanggal")).append("</td>").append(
-                                        "</tr>").append(
-                                    "</table>").append(
-                                "</td>").append(
-                                "<td valign='top' cellpadding='0' cellspacing='0'>").append(
-                                    "<table width='100%' border='0' cellpadding='0' cellspacing='0'align='center'>").append(
-                                        "<tr class='isi2'>").append(
-                                            
-                                    "</table>").append(
-                                "</td>").append(
-                                
-                                "</td>").append(
-                                "<td valign='top' cellpadding='0' cellspacing='0'>").append(
-                                    
-                                "</td>").append(
-                                "<td valign='top' cellpadding='0' cellspacing='0'>").append(
-                                    "<table width='100%' border='0' cellpadding='0' cellspacing='0'align='center'>").append(
-                                        
-                                    "</table>").append(
-                                "</td>").append(
-                                "<td valign='top' cellpadding='0' cellspacing='0'>").append(
-                                    "<table width='100%' border='0' cellpadding='0' cellspacing='0'align='center'>").append(
-                                        "</tr>").append(
-                                    "</table>").append(
-                                "</td>").append(
-                                "<td valign='top' cellpadding='0' cellspacing='0'>").append(
-                                    "<table width='100%' border='0' cellpadding='0' cellspacing='0'align='center'>").append(
-                                        "<tr class='isi2'>").append(
-                                            "<td width='64%' valign='top'>Tidak seimbang/sempoyongan/limbung</td><td valign='top'>:&nbsp;</td><td width='35%' valign='top'>").append(rs.getString("berjalan_a")).append("</td>").append(
-                                        "</tr>").append(
-                                        "<tr class='isi2'>").append(
-                                            "<td width='64%' valign='top'>Jalan dengan menggunakan alat bantu (kruk, tripot, kursi roda, orang lain)</td><td valign='top'>:&nbsp;</td><td width='35%' valign='top'>").append(rs.getString("berjalan_b")).append("</td>").append(
-                                        "</tr>").append(
-                                        "<tr class='isi2'>").append(
-                                            "<td width='64%' valign='top'>Menopang saat akan duduk, tampak memegang pinggiran kursi atau meja/benda lain sebagai penopang</td><td valign='top'>:&nbsp;</td><td width='35%' valign='top'>").append(rs.getString("berjalan_c")).append("</td>").append(
-                                        "</tr>").append(
-                                        "<tr class='isi2'>").append(
-                                            "<td width='64%' valign='top'>Hasil</td><td valign='top'>:&nbsp;</td><td width='35%' valign='top'>").append(rs.getString("hasil")).append("</td>").append(
-                                        "</tr>").append(
-                                        "<tr class='isi2'>").append(
-                                            "<td width='64%' valign='top'>Dilaporan ke dokter?</td><td valign='top'>:&nbsp;</td><td width='35%' valign='top'>").append(rs.getString("lapor")).append("</td>").append(
-                                        "</tr>").append(
-                                        "<tr class='isi2'>").append(
-                                            "<td width='64%' valign='top'>Jam Lapor</td><td valign='top'>:&nbsp;</td><td width='35%' valign='top'>").append(rs.getString("ket_lapor")).append("</td>").append(
-                                        "</tr>").append(
-                                    "</table>").append(
-                                "</td>").append(
-                                "<td valign='top' cellpadding='0' cellspacing='0'>").append(
-                                    "<table width='100%' border='0' cellpadding='0' cellspacing='0'align='center'>").append(
-                                        
-                                    "</table>").append(
-                                "</td>").append(
-                                "<td valign='top' cellpadding='0' cellspacing='0'>").append(
-                                    "<table width='100%' border='0' cellpadding='0' cellspacing='0'align='center'>").append(
-                                        
-                                    "</table>").append(
-                                "</td>").append(
-                                "<td valign='top' cellpadding='0' cellspacing='0'>").append(
-                                "</td>").append(
-                            "</tr>"
-                        );
-                    }
-                    LoadHTML.setText(
-                        "<html>"+
-                          "<table width='1800px' border='0' align='center' cellpadding='1px' cellspacing='0' class='tbl_form'>"+
-                           htmlContent.toString()+
-                          "</table>"+
-                        "</html>"
-                    );
-                    htmlContent=null;
+    if (tabMode.getRowCount() == 0) {
+        JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
+        BtnBatal.requestFocus();
+        this.setCursor(Cursor.getDefaultCursor());
+        return;
+    }
 
-                    File g = new File("file2.css");            
-                    BufferedWriter bg = new BufferedWriter(new FileWriter(g));
-                    bg.write(
-                        ".isi td{border-right: 1px solid #e2e7dd;font: 8.5px tahoma;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"+
-                        ".isi2 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#323232;}"+
-                        ".isi3 td{border-right: 1px solid #e2e7dd;font: 8.5px tahoma;height:12px;border-top: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"+
-                        ".isi4 td{font: 11px tahoma;height:12px;border-top: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"+
-                        ".isi5 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#AA0000;}"+
-                        ".isi6 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#FF0000;}"+
-                        ".isi7 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#C8C800;}"+
-                        ".isi8 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#00AA00;}"+
-                        ".isi9 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#969696;}"
-                    );
-                    bg.close();
+    try {
+        String baseQuery =
+            "SELECT reg_periksa.no_rawat, pasien.no_rkm_medis, pasien.nm_pasien, " +
+            "IF(pasien.jk='L','Laki-Laki','Perempuan') AS jk, pasien.tgl_lahir, pasien.agama, " +
+            "bahasa_pasien.nama_bahasa, cacat_fisik.nama_cacat, pengkajian_resiko_jatuh_timeup.tanggal, " +
+            "pengkajian_resiko_jatuh_timeup.berjalan_a, pengkajian_resiko_jatuh_timeup.berjalan_b, pengkajian_resiko_jatuh_timeup.hasil, " +
+            "pengkajian_resiko_jatuh_timeup.berjalan_c, pengkajian_resiko_jatuh_timeup.lapor, pengkajian_resiko_jatuh_timeup.ket_lapor, " +
+            "pengkajian_resiko_jatuh_timeup.intervensi, pengkajian_resiko_jatuh_timeup.nip, petugas.nama " +
+            "FROM reg_periksa " +
+            "INNER JOIN pasien ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis " +
+            "INNER JOIN pengkajian_resiko_jatuh_timeup ON reg_periksa.no_rawat = pengkajian_resiko_jatuh_timeup.no_rawat " +
+            "INNER JOIN petugas ON pengkajian_resiko_jatuh_timeup.nip = petugas.nip " +
+            "INNER JOIN bahasa_pasien ON bahasa_pasien.id = pasien.bahasa_pasien " +
+            "INNER JOIN cacat_fisik ON cacat_fisik.id = pasien.cacat_fisik ";
 
-                    File f = new File("DataPenilaianAwalKeperawatanRalan.html");            
-                    BufferedWriter bw = new BufferedWriter(new FileWriter(f));            
-                    bw.write(LoadHTML.getText().replaceAll("<head>","<head>"+
-                                "<link href=\"file2.css\" rel=\"stylesheet\" type=\"text/css\" />"+
-                                "<table width='1800px' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
-                                    "<tr class='isi2'>"+
-                                        "<td valign='top' align='center'>"+
-                                            "<font size='4' face='Tahoma'>"+akses.getnamars()+"</font><br>"+
-                                            akses.getalamatrs()+", "+akses.getkabupatenrs()+", "+akses.getpropinsirs()+"<br>"+
-                                            akses.getkontakrs()+", E-mail : "+akses.getemailrs()+"<br><br>"+
-                                            "<font size='2' face='Tahoma'>DATA PENGKAJIAN AWAL KEPERAWATAN RAWAT JALAN<br><br></font>"+        
-                                        "</td>"+
-                                   "</tr>"+
-                                "</table>")
-                    );
-                    bw.close();                         
-                    Desktop.getDesktop().browse(f.toURI());
-                } catch (Exception e) {
-                    System.out.println("Notif : "+e);
-                } finally{
-                    if(rs!=null){
-                        rs.close();
-                    }
-                    if(ps!=null){
-                        ps.close();
-                    }
-                }
-
-            }catch(Exception e){
-                System.out.println("Notifikasi : "+e);
+        if (TCari.getText().equals("")) {
+            baseQuery += "WHERE pengkajian_resiko_jatuh_timeup.tanggal BETWEEN ? AND ? ORDER BY pengkajian_resiko_jatuh_timeup.tanggal";
+            ps = koneksi.prepareStatement(baseQuery);
+            ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + "") + " 00:00:00");
+            ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + "") + " 23:59:59");
+        } else {
+            baseQuery += "WHERE (" +
+                "pengkajian_resiko_jatuh_timeup.tanggal BETWEEN ? AND ? AND reg_periksa.no_rawat LIKE ? OR " +
+                "pengkajian_resiko_jatuh_timeup.tanggal BETWEEN ? AND ? AND pasien.no_rkm_medis LIKE ? OR " +
+                "pengkajian_resiko_jatuh_timeup.tanggal BETWEEN ? AND ? AND pasien.nm_pasien LIKE ? OR " +
+                "pengkajian_resiko_jatuh_timeup.tanggal BETWEEN ? AND ? AND pengkajian_resiko_jatuh_timeup.nip LIKE ? OR " +
+                "pengkajian_resiko_jatuh_timeup.tanggal BETWEEN ? AND ? AND petugas.nama LIKE ?) " +
+                "ORDER BY pengkajian_resiko_jatuh_timeup.tanggal";
+            ps = koneksi.prepareStatement(baseQuery);
+            for (int i = 0; i < 5; i++) {
+                ps.setString(i * 3 + 1, Valid.SetTgl(DTPCari1.getSelectedItem() + "") + " 00:00:00");
+                ps.setString(i * 3 + 2, Valid.SetTgl(DTPCari2.getSelectedItem() + "") + " 23:59:59");
+                ps.setString(i * 3 + 3, "%" + TCari.getText() + "%");
             }
         }
+
+        rs = ps.executeQuery();
+        StringBuilder htmlContent = new StringBuilder();
+        htmlContent.append("<tr class='isi'>")
+            .append("<td valign='middle' bgcolor='#FFFAFA' align='center' width='9%'><b>PASIEN & PETUGAS</b></td>")
+            .append("<td valign='middle' bgcolor='#FFFAFA' align='center' width='16%'><b>VI. PENGKAJIAN RESIKO JATUH TIME UP</b></td>")
+            .append("</tr>");
+
+        while (rs.next()) {
+            htmlContent.append("<tr class='isi'>")
+                .append("<td valign='top'>")
+                .append("<b>No.Rawat:</b> ").append(rs.getString("no_rawat")).append("<br>")
+                .append("<b>No.RM:</b> ").append(rs.getString("no_rkm_medis")).append("<br>")
+                .append("<b>Nama Pasien:</b> ").append(rs.getString("nm_pasien")).append("<br>")
+                .append("<b>J.K.:</b> ").append(rs.getString("jk")).append("<br>")
+                .append("<b>Petugas:</b> ").append(rs.getString("nip")).append(" - ").append(rs.getString("nama")).append("<br>")
+                .append("<b>Tgl.Asuhan:</b> ").append(rs.getString("tanggal"))
+                .append("</td><td valign='top'>")
+                .append("<b>Tidak seimbang:</b> ").append(rs.getString("berjalan_a")).append("<br>")
+                .append("<b>Jalan dg alat bantu:</b> ").append(rs.getString("berjalan_b")).append("<br>")
+                .append("<b>Menopang saat duduk:</b> ").append(rs.getString("berjalan_c")).append("<br>")
+                .append("<b>Hasil:</b> ").append(rs.getString("hasil")).append("<br>")
+                .append("<b>Lapor ke Dokter:</b> ").append(rs.getString("lapor")).append("<br>")
+                .append("<b>Jam Lapor:</b> ").append(rs.getString("ket_lapor")).append("<br>")
+                .append("<b>Intervensi:</b> ").append(rs.getString("intervensi"))
+                .append("</td></tr>");
+        }
+
+        LoadHTML.setText("<html><table width='100%' border='0' cellpadding='1px' cellspacing='0' class='tbl_form'>" + htmlContent + "</table></html>");
+
+    } catch (Exception e) {
+        System.out.println("Notifikasi Print: " + e);
+    } finally {
+        try {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+        } catch (Exception e) {
+            System.out.println("Notifikasi closing: " + e);
+        }
         this.setCursor(Cursor.getDefaultCursor());
+    }
 }//GEN-LAST:event_BtnPrintActionPerformed
 
     private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnPrintKeyPressed
@@ -1271,34 +1035,11 @@ public final class RMPengkajianResikoJatuhTimeup extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnAllKeyPressed
 
     private void tbObatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbObatMouseClicked
-        if(tabMode.getRowCount()!=0){
-            try {
-                ChkAccor.setSelected(true);
-                isMenu();
-            } catch (java.lang.NullPointerException e) {
-            }
-            if((evt.getClickCount()==2)&&(tbObat.getSelectedColumn()==0)){
-                TabRawat.setSelectedIndex(0);
-            }
-        }
+
 }//GEN-LAST:event_tbObatMouseClicked
 
     private void tbObatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbObatKeyPressed
-        if(tabMode.getRowCount()!=0){
-            if((evt.getKeyCode()==KeyEvent.VK_ENTER)||(evt.getKeyCode()==KeyEvent.VK_UP)||(evt.getKeyCode()==KeyEvent.VK_DOWN)){
-                try {
-                    ChkAccor.setSelected(true);
-                    isMenu();
-                } catch (java.lang.NullPointerException e) {
-                }
-            }else if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-                try {
-                    getData();
-                    TabRawat.setSelectedIndex(0);
-                } catch (java.lang.NullPointerException e) {
-                }
-            }
-        }
+
 }//GEN-LAST:event_tbObatKeyPressed
 
     private void KdPetugasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KdPetugasKeyPressed
@@ -1349,95 +1090,6 @@ public final class RMPengkajianResikoJatuhTimeup extends javax.swing.JDialog {
 
     }//GEN-LAST:event_formWindowOpened
 
-    private void ChkAccorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkAccorActionPerformed
-        if(tbObat.getSelectedRow()!= -1){
-            isMenu();
-        }else{
-            ChkAccor.setSelected(false);
-            JOptionPane.showMessageDialog(null,"Maaf, silahkan pilih data yang mau ditampilkan...!!!!");
-        }
-    }//GEN-LAST:event_ChkAccorActionPerformed
-
-    private void BtnPrint1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrint1ActionPerformed
-       if(tbObat.getSelectedRow()>-1){
-            Map<String, Object> param = new HashMap<>();    
-            param.put("namars",akses.getnamars());
-            param.put("alamatrs",akses.getalamatrs());
-            param.put("kotars",akses.getkabupatenrs());
-            param.put("propinsirs",akses.getpropinsirs());
-            param.put("kontakrs",akses.getkontakrs());
-            param.put("emailrs",akses.getemailrs());          
-            param.put("logo",Sequel.cariGambar("select setting.logo from setting")); 
-            param.put("nyeri",Sequel.cariGambar("select gambar.nyeri from gambar")); 
-            finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbObat.getValueAt(tbObat.getSelectedRow(),63).toString());
-            param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbObat.getValueAt(tbObat.getSelectedRow(),64).toString()+"\nID "+(finger.equals("")?tbObat.getValueAt(tbObat.getSelectedRow(),63).toString():finger)+"\n"+Valid.SetTgl3(tbObat.getValueAt(tbObat.getSelectedRow(),8).toString())); 
-            try {
-                ps2=koneksi.prepareStatement(
-                    "select master_masalah_keperawatan.kode_masalah,master_masalah_keperawatan.nama_masalah from master_masalah_keperawatan "+
-                    "inner join pengkajian_resiko_jatuh_timeup_masalah on pengkajian_resiko_jatuh_timeup_masalah.kode_masalah=master_masalah_keperawatan.kode_masalah "+
-                    "where pengkajian_resiko_jatuh_timeup_masalah.no_rawat=? order by pengkajian_resiko_jatuh_timeup_masalah.kode_masalah");
-                try {
-                    ps2.setString(1,tbObat.getValueAt(tbObat.getSelectedRow(),0).toString());
-                    rs2=ps2.executeQuery();
-                    while(rs2.next()){
-                    }
-                } catch (Exception e) {
-                    System.out.println("Notif : "+e);
-                } finally{
-                    if(rs2!=null){
-                        rs2.close();
-                    }
-                    if(ps2!=null){
-                        ps2.close();
-                    }
-                }
-            } catch (Exception e) {
-                System.out.println("Notif : "+e);
-            }
-            try {
-                ps2=koneksi.prepareStatement(
-                    "select master_rencana_keperawatan.kode_rencana,master_rencana_keperawatan.rencana_keperawatan from master_rencana_keperawatan "+
-                    "inner join pengkajian_resiko_jatuh_timeup_rencana on pengkajian_resiko_jatuh_timeup_rencana.kode_rencana=master_rencana_keperawatan.kode_rencana "+
-                    "where pengkajian_resiko_jatuh_timeup_rencana.no_rawat=? order by pengkajian_resiko_jatuh_timeup_rencana.kode_rencana");
-                try {
-                    ps2.setString(1,tbObat.getValueAt(tbObat.getSelectedRow(),0).toString());
-                    rs2=ps2.executeQuery();
-                    while(rs2.next()){
-                    }
-                } catch (Exception e) {
-                    System.out.println("Notif : "+e);
-                } finally{
-                    if(rs2!=null){
-                        rs2.close();
-                    }
-                    if(ps2!=null){
-                        ps2.close();
-                    }
-                }
-            } catch (Exception e) {
-                System.out.println("Notif : "+e);
-            }
-            Valid.MyReportqry("rptCetakPenilaianAwalKeperawatanRalan.jasper","report","::[ Laporan Pengkajian Awal Keperawatan Ralan ]::",
-                        "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,if(pasien.jk='L','Laki-Laki','Perempuan') as jk,pasien.tgl_lahir,pasien.agama,bahasa_pasien.nama_bahasa,cacat_fisik.nama_cacat,pengkajian_resiko_jatuh_timeup.tanggal,"+
-                        "pengkajian_resiko_jatuh_timeup.td,pengkajian_resiko_jatuh_timeup.nadi,pengkajian_resiko_jatuh_timeup.rr,pengkajian_resiko_jatuh_timeup.suhu,pengkajian_resiko_jatuh_timeup.bb,pengkajian_resiko_jatuh_timeup.tb,"+
-                        "pengkajian_resiko_jatuh_timeup.nadi,pengkajian_resiko_jatuh_timeup.rr,pengkajian_resiko_jatuh_timeup.suhu,pengkajian_resiko_jatuh_timeup.gcs,pengkajian_resiko_jatuh_timeup.bb,pengkajian_resiko_jatuh_timeup.tb,pengkajian_resiko_jatuh_timeup.bmi,pengkajian_resiko_jatuh_timeup.keluhan_utama,"+
-                        "pengkajian_resiko_jatuh_timeup.rpd,pengkajian_resiko_jatuh_timeup.rpk,pengkajian_resiko_jatuh_timeup.rpo,pengkajian_resiko_jatuh_timeup.alergi,pengkajian_resiko_jatuh_timeup.alat_bantu,pengkajian_resiko_jatuh_timeup.ket_bantu,pengkajian_resiko_jatuh_timeup.prothesa,"+
-                        "pengkajian_resiko_jatuh_timeup.ket_pro,pengkajian_resiko_jatuh_timeup.adl,pengkajian_resiko_jatuh_timeup.status_psiko,pengkajian_resiko_jatuh_timeup.ket_psiko,pengkajian_resiko_jatuh_timeup.hub_keluarga,pengkajian_resiko_jatuh_timeup.tinggal_dengan,"+
-                        "pengkajian_resiko_jatuh_timeup.ket_tinggal,pengkajian_resiko_jatuh_timeup.ekonomi,pengkajian_resiko_jatuh_timeup.edukasi,pengkajian_resiko_jatuh_timeup.ket_edukasi,pengkajian_resiko_jatuh_timeup.berjalan_a,pengkajian_resiko_jatuh_timeup.berjalan_b,"+
-                        "pengkajian_resiko_jatuh_timeup.berjalan_c,pengkajian_resiko_jatuh_timeup.hasil,pengkajian_resiko_jatuh_timeup.lapor,pengkajian_resiko_jatuh_timeup.ket_lapor,pengkajian_resiko_jatuh_timeup.sg1,pengkajian_resiko_jatuh_timeup.nilai1,pengkajian_resiko_jatuh_timeup.sg2,pengkajian_resiko_jatuh_timeup.nilai2,"+
-                        "pengkajian_resiko_jatuh_timeup.total_hasil,pengkajian_resiko_jatuh_timeup.nyeri,pengkajian_resiko_jatuh_timeup.provokes,pengkajian_resiko_jatuh_timeup.ket_provokes,pengkajian_resiko_jatuh_timeup.quality,pengkajian_resiko_jatuh_timeup.ket_quality,pengkajian_resiko_jatuh_timeup.lokasi,pengkajian_resiko_jatuh_timeup.menyebar,"+
-                        "pengkajian_resiko_jatuh_timeup.skala_nyeri,pengkajian_resiko_jatuh_timeup.durasi,pengkajian_resiko_jatuh_timeup.nyeri_hilang,pengkajian_resiko_jatuh_timeup.ket_nyeri,pengkajian_resiko_jatuh_timeup.pada_dokter,pengkajian_resiko_jatuh_timeup.ket_dokter,pengkajian_resiko_jatuh_timeup.rencana,"+
-                        "pengkajian_resiko_jatuh_timeup.nip,petugas.nama,pengkajian_resiko_jatuh_timeup.budaya,pengkajian_resiko_jatuh_timeup.ket_budaya "+
-                        "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
-                        "inner join pengkajian_resiko_jatuh_timeup on reg_periksa.no_rawat=pengkajian_resiko_jatuh_timeup.no_rawat "+
-                        "inner join petugas on pengkajian_resiko_jatuh_timeup.nip=petugas.nip "+
-                        "inner join bahasa_pasien on bahasa_pasien.id=pasien.bahasa_pasien "+
-                        "inner join cacat_fisik on cacat_fisik.id=pasien.cacat_fisik where reg_periksa.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
-        }else{
-            JOptionPane.showMessageDialog(null,"Maaf, silahkan pilih data terlebih dahulu..!!!!");
-        }  
-    }//GEN-LAST:event_BtnPrint1ActionPerformed
-
     /**
     * @param args the command line arguments
     */
@@ -1465,15 +1117,10 @@ public final class RMPengkajianResikoJatuhTimeup extends javax.swing.JDialog {
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
     private widget.Button BtnPrint;
-    private widget.Button BtnPrint1;
     private widget.Button BtnSimpan;
-    private widget.CekBox ChkAccor;
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
-    private widget.TextArea DetailRencana;
     private widget.PanelBiasa FormInput;
-    private widget.PanelBiasa FormMasalahRencana;
-    private widget.PanelBiasa FormMenu;
     private widget.ComboBox Hasil;
     private widget.TextBox Jk;
     private widget.TextBox KdPetugas;
@@ -1483,16 +1130,11 @@ public final class RMPengkajianResikoJatuhTimeup extends javax.swing.JDialog {
     private widget.editorpane LoadHTML;
     private widget.ComboBox MSA;
     private widget.TextBox NmPetugas;
-    private widget.PanelBiasa PanelAccor;
     private widget.ScrollPane Scroll;
-    private widget.ScrollPane Scroll7;
-    private widget.ScrollPane Scroll9;
     private widget.TextBox TCari;
     private widget.TextBox TNoRM;
-    private widget.TextBox TNoRM1;
     private widget.TextBox TNoRw;
     private widget.TextBox TPasien;
-    private widget.TextBox TPasien1;
     private javax.swing.JTabbedPane TabRawat;
     private widget.TextBox TanggalRegistrasi;
     private widget.Tanggal TglAsuhan;
@@ -1504,7 +1146,6 @@ public final class RMPengkajianResikoJatuhTimeup extends javax.swing.JDialog {
     private widget.Label jLabel11;
     private widget.Label jLabel19;
     private widget.Label jLabel21;
-    private widget.Label jLabel34;
     private widget.Label jLabel6;
     private widget.Label jLabel63;
     private widget.Label jLabel65;
@@ -1514,18 +1155,18 @@ public final class RMPengkajianResikoJatuhTimeup extends javax.swing.JDialog {
     private widget.Label jLabel70;
     private widget.Label jLabel71;
     private widget.Label jLabel72;
+    private widget.Label jLabel73;
     private widget.Label jLabel8;
     private widget.Label jLabel97;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextArea jTextArea1;
     private widget.Label label11;
     private widget.Label label14;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private widget.ScrollPane scrollInput;
-    private widget.ScrollPane scrollPane6;
-    private widget.Table tbMasalahDetail;
     private widget.Table tbObat;
-    private widget.Table tbRencanaDetail;
     // End of variables declaration//GEN-END:variables
 
     private void tampil() {
@@ -1534,7 +1175,7 @@ public final class RMPengkajianResikoJatuhTimeup extends javax.swing.JDialog {
         ps = koneksi.prepareStatement(
             "SELECT t.no_rawat, r.no_rkm_medis, p.nm_pasien, " +
             "IF(p.jk='L','Laki-Laki','Perempuan') AS jk, " +
-            "t.berjalan_a, t.berjalan_b, t.berjalan_c, t.hasil, " +
+            "t.berjalan_a, t.berjalan_b, t.berjalan_c, t.hasil,t.intervensi, " +
             "t.ket_lapor, t.lapor, t.nip, peg.nama " +
             "FROM pengkajian_resiko_jatuh_timeup t " +
             "JOIN reg_periksa r ON r.no_rawat = t.no_rawat " +
@@ -1561,6 +1202,7 @@ public final class RMPengkajianResikoJatuhTimeup extends javax.swing.JDialog {
                     rs.getString("hasil"),
                     rs.getString("ket_lapor"),
                     rs.getString("lapor"),
+                    rs.getString("intervensi") != null ? rs.getString("intervensi") : "",
                     rs.getString("nip"),
                     rs.getString("nama") != null ? rs.getString("nama") : "-"
                 });
@@ -1584,6 +1226,7 @@ public final class RMPengkajianResikoJatuhTimeup extends javax.swing.JDialog {
         Hasil.setSelectedIndex(0);
         Lapor.setSelectedIndex(0);
         KetLapor.setText("");
+        jTextArea1.setText("");
         TglAsuhan.setDate(new Date());
         TNoRw.requestFocus();
     } 
@@ -1600,13 +1243,15 @@ public final class RMPengkajianResikoJatuhTimeup extends javax.swing.JDialog {
         Hasil.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(), 7).toString());
         KetLapor.setText(tbObat.getValueAt(tbObat.getSelectedRow(), 8).toString());
         Lapor.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(), 9).toString());
-        KdPetugas.setText(tbObat.getValueAt(tbObat.getSelectedRow(), 10).toString());
-        NmPetugas.setText(tbObat.getValueAt(tbObat.getSelectedRow(), 11).toString());
 
-        // Pastikan Anda menampilkan tanggal triase dari kolom yang sesuai
-        // Jika tidak ada kolom tanggal di tbObat, maka ambil dari database berdasarkan no_rawat
-        // Misalnya:
-        // Valid.SetTgl2(TglAsuhan, Sequel.cariIsi("select tanggal from pengkajian_resiko_jatuh_timeup where no_rawat=?", TNoRw.getText()));
+        // Tambahan agar aman dari null
+        Object rawIntervensi = tbObat.getValueAt(tbObat.getSelectedRow(), 10);
+        String intervensi = rawIntervensi != null ? rawIntervensi.toString() : "";
+        jTextArea1.setText(intervensi);
+        
+        KdPetugas.setText(tbObat.getValueAt(tbObat.getSelectedRow(), 11).toString());
+        NmPetugas.setText(tbObat.getValueAt(tbObat.getSelectedRow(), 12).toString());
+
     }
 }
 
@@ -1680,28 +1325,11 @@ public final class RMPengkajianResikoJatuhTimeup extends javax.swing.JDialog {
        TabRawat.setSelectedIndex(1);
     }
     
-    private void isMenu(){
-        if(ChkAccor.isSelected()==true){
-            ChkAccor.setVisible(false);
-            PanelAccor.setPreferredSize(new Dimension(470,HEIGHT));
-            FormMenu.setVisible(true);  
-            ChkAccor.setVisible(true);
-        }else if(ChkAccor.isSelected()==false){   
-            ChkAccor.setVisible(false);
-            PanelAccor.setPreferredSize(new Dimension(15,HEIGHT));
-            FormMenu.setVisible(false);  
-            ChkAccor.setVisible(true);
-        }
-    }
 
     private void hapus() {
         if(Sequel.queryu2tf("delete from pengkajian_resiko_jatuh_timeup where no_rawat=?",1,new String[]{
             tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()
         })==true){
-            TNoRM1.setText("");
-            TPasien1.setText("");
-            ChkAccor.setSelected(false);
-            isMenu();
             tabMode.removeRow(tbObat.getSelectedRow());
             LCount.setText(""+tabMode.getRowCount());
         }else{
@@ -1719,11 +1347,10 @@ public final class RMPengkajianResikoJatuhTimeup extends javax.swing.JDialog {
         return;
     }
 
-    if (Sequel.mengedittf(
-    "pengkajian_resiko_jatuh_timeup",
+    if (Sequel.mengedittf("pengkajian_resiko_jatuh_timeup",
     "no_rawat=?",
-    "tanggal=?,berjalan_a=?,berjalan_b=?,berjalan_c=?,hasil=?,lapor=?,ket_lapor=?,nip=?",
-    9,
+    "tanggal=?,berjalan_a=?,berjalan_b=?,berjalan_c=?,hasil=?,lapor=?,ket_lapor=?,intervensi=?,nip=?",
+    10,
     new String[]{
         Valid.SetTgl(TglAsuhan.getSelectedItem() + ""), // tanggal
         ATS.getSelectedItem().toString(),              // berjalan_a
@@ -1732,6 +1359,7 @@ public final class RMPengkajianResikoJatuhTimeup extends javax.swing.JDialog {
         Hasil.getSelectedItem().toString(),            // hasil
         Lapor.getSelectedItem().toString(),            // lapor
         KetLapor.getText(),                             // ket_lapor
+        jTextArea1.getText(),                  // intervensi
         KdPetugas.getText(),                            // nip
         TNoRw.getText()                                 // <-- ini untuk WHERE no_rawat=?
     }
@@ -1743,7 +1371,7 @@ public final class RMPengkajianResikoJatuhTimeup extends javax.swing.JDialog {
     JOptionPane.showMessageDialog(null, "Gagal mengedit data.");
 }
 }
-
+        
     private void simpan() {
     if (TNoRw.getText().trim().equals("")) {
         Valid.textKosong(TNoRw, "No. Rawat");
@@ -1754,10 +1382,9 @@ public final class RMPengkajianResikoJatuhTimeup extends javax.swing.JDialog {
         return;
     }
 
-    if (Sequel.menyimpantf(
-        "pengkajian_resiko_jatuh_timeup",
-        "?,?,?,?,?,?,?,?,?",
-        "Data", 9,
+    if (Sequel.menyimpantf("pengkajian_resiko_jatuh_timeup",
+        "?,?,?,?,?,?,?,?,?,?",
+        "Data", 10,
         new String[]{
             TNoRw.getText(),
             Valid.SetTgl(TglAsuhan.getSelectedItem() + ""),
@@ -1767,6 +1394,7 @@ public final class RMPengkajianResikoJatuhTimeup extends javax.swing.JDialog {
             Hasil.getSelectedItem().toString(),
             Lapor.getSelectedItem().toString(),
             KetLapor.getText(),
+            jTextArea1.getText(),
             KdPetugas.getText()
         }
     )) {
