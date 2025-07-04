@@ -78,7 +78,7 @@ public final class ApotekBPJSDaftarPelayananObat extends javax.swing.JDialog {
 
         tabMode=new DefaultTableModel(null,new String[]{
                 "No.SEP Apotek","No.SEP Asal","No.Resep","No.Kartu","Nama Peserta","Kode Jenis","Jenis Obat","Tgl.Pelayanan",
-                "Kode Obat","Nama Obat","Tipe Obat","Signa","Hari","Permintaan","Jumlah","Harga"
+                "Kode Obat","Nama Obat","Tipe Obat","Signa 1","Signa 2","Hari","Permintaan","Jumlah","Harga"
             }){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -88,7 +88,7 @@ public final class ApotekBPJSDaftarPelayananObat extends javax.swing.JDialog {
         tbKamar.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbKamar.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 16; i++) {
+        for (i = 0; i < 17; i++) {
             TableColumn column = tbKamar.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(110);
@@ -111,17 +111,19 @@ public final class ApotekBPJSDaftarPelayananObat extends javax.swing.JDialog {
             }else if(i==9){
                 column.setPreferredWidth(150);
             }else if(i==10){
-                column.setPreferredWidth(70 );
+                column.setPreferredWidth(57);
             }else if(i==11){
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(46);
             }else if(i==12){
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(46);
             }else if(i==13){
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(35);
             }else if(i==14){
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(67);
             }else if(i==15){
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(50);
+            }else if(i==16){
+                column.setPreferredWidth(100);
             }
         }
         tbKamar.setDefaultRenderer(Object.class, new WarnaTable());
@@ -178,6 +180,7 @@ public final class ApotekBPJSDaftarPelayananObat extends javax.swing.JDialog {
         NomorSEP = new widget.TextBox();
         BtnCari = new widget.Button();
         jLabel17 = new widget.Label();
+        BtnHapus = new widget.Button();
         BtnPrint = new widget.Button();
         BtnKeluar = new widget.Button();
 
@@ -238,6 +241,24 @@ public final class ApotekBPJSDaftarPelayananObat extends javax.swing.JDialog {
         jLabel17.setName("jLabel17"); // NOI18N
         jLabel17.setPreferredSize(new java.awt.Dimension(30, 23));
         panelGlass6.add(jLabel17);
+
+        BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
+        BtnHapus.setMnemonic('H');
+        BtnHapus.setText("Hapus");
+        BtnHapus.setToolTipText("Alt+H");
+        BtnHapus.setName("BtnHapus"); // NOI18N
+        BtnHapus.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHapusActionPerformed(evt);
+            }
+        });
+        BtnHapus.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnHapusKeyPressed(evt);
+            }
+        });
+        panelGlass6.add(BtnHapus);
 
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         BtnPrint.setMnemonic('T');
@@ -359,6 +380,26 @@ public final class ApotekBPJSDaftarPelayananObat extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnCariKeyPressed
 
+    private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
+        if(tbKamar.getSelectedRow()!= -1){
+            try {
+                bodyWithDeleteRequest();
+            }catch (Exception ex) {
+                System.out.println("Notifikasi Bridging : "+ex);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null,"Silahkan pilih dulu data yang mau dihapus..!!");
+        }
+    }//GEN-LAST:event_BtnHapusActionPerformed
+
+    private void BtnHapusKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnHapusKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
+            BtnHapusActionPerformed(null);
+        }else{
+            Valid.pindah(evt, NomorSEP, BtnPrint);
+        }
+    }//GEN-LAST:event_BtnHapusKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -377,6 +418,7 @@ public final class ApotekBPJSDaftarPelayananObat extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnCari;
+    private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
     private widget.Button BtnPrint;
     private widget.TextBox NomorSEP;
@@ -391,30 +433,27 @@ public final class ApotekBPJSDaftarPelayananObat extends javax.swing.JDialog {
     public void tampil(String keyword) {
         try {
             headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-            headers.add("x-cons-id", koneksiDB.CONSIDAPIAPOTEKBPJS());
-            utc = String.valueOf(api.GetUTCdatetimeAsString());
-            headers.add("x-timestamp", utc);
-            headers.add("x-signature", api.getHmac(utc));
-            headers.add("user_key", koneksiDB.USERKEYAPIAPOTEKBPJS());
+            headers.setContentType(MediaType.APPLICATION_JSON);
+	    headers.add("x-cons-id",koneksiDB.CONSIDAPIAPOTEKBPJS());
+	    utc=String.valueOf(api.GetUTCdatetimeAsString());
+	    headers.add("x-timestamp",utc);
+	    headers.add("x-signature",api.getHmac(utc));
+	    headers.add("user_key",koneksiDB.USERKEYAPIAPOTEKBPJS());
             requestEntity = new HttpEntity(headers);
-            
-            URL = link+"/pelayanan/obat/daftar/"+keyword;	
+            URL = link+"/obat/daftar/"+keyword;	
             System.out.println(URL);
             root = mapper.readTree(api.getRest().exchange(URL, HttpMethod.GET, requestEntity, String.class).getBody());
             nameNode = root.path("metaData");
             if(nameNode.path("code").asText().equals("200")){
                 Valid.tabelKosong(tabMode);
                 response = mapper.readTree(api.Decrypt(root.path("response").asText(),utc));
-                
+                if(response.path("detailsep").path("listobat").isArray()){
+                    for(JsonNode list:response.path("detailsep").path("listobat")){
                 tabMode.addRow(new Object[]{
-                    response.path("noSepApotek").asText(), response.path("noSepAsal").asText(), response.path("noresep").asText(), response.path("nokartu").asText(), response.path("nmpst").asText(), response.path("kdjnsobat").asText(), response.path("nmjnsobat").asText(), response.path("tglpelayanan").asText(),
-                    "", ""});
-                if (response.path("listobat").isArray()) {
-                    for (JsonNode list : response.path("listobat")) {
-                        tabMode.addRow(new Object[]{
-                            "","","","","","","","",list.path("kodeobat").asText(), list.path("namaobat").asText(), list.path("tipeobat").asText(), list.path("signa1").asText() + "x" + list.path("signa2").asText(),
-                            list.path("hari").asText(), list.path("permintaan").asText(), list.path("jumlah").asText(), list.path("harga").asText(), response.path("noSepApotek").asText(), response.path("noresep").asText()
+                            list.path("noSepApotek").asText(),list.path("noSepAsal").asText(),list.path("noresep").asText(),list.path("nokartu").asText(),list.path("nmpst").asText(),
+                            list.path("kdjnsobat").asText(),list.path("nmjnsobat").asText(),list.path("tglpelayanan").asText(),list.path("kodeobat").asText(),list.path("namaobat").asText(),
+                            list.path("tipeobat").asText(),list.path("signa1").asText(),list.path("signa2").asText(),list.path("hari").asText(),list.path("permintaan").asText(),
+                            list.path("jumlah").asText(),Valid.SetAngka(list.path("harga").asDouble())
                         });
                     }
                 }
@@ -444,59 +483,59 @@ public final class ApotekBPJSDaftarPelayananObat extends javax.swing.JDialog {
             return "DELETE";
         }
     }
-//
-//    @Test
-//    public void bodyWithDeleteRequest() throws Exception {
-//        RestTemplate restTemplate = new RestTemplate();
-//        SSLContext sslContext = SSLContext.getInstance("SSL");
-//        javax.net.ssl.TrustManager[] trustManagers= {
-//            new X509TrustManager() {
-//                public X509Certificate[] getAcceptedIssuers() {return null;}
-//                public void checkServerTrusted(X509Certificate[] arg0, String arg1)throws CertificateException {}
-//                public void checkClientTrusted(X509Certificate[] arg0, String arg1)throws CertificateException {}
-//            }
-//        };
-//        sslContext.init(null,trustManagers , new SecureRandom());
-//        SSLSocketFactory sslFactory=new SSLSocketFactory(sslContext,SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
-//        Scheme scheme=new Scheme("https",443,sslFactory);
-//    
-//        HttpComponentsClientHttpRequestFactory factory=new HttpComponentsClientHttpRequestFactory(){
-//            @Override
-//            protected HttpUriRequest createHttpUriRequest(HttpMethod httpMethod, URI uri) {
-//                if (HttpMethod.DELETE == httpMethod) {
-//                    return new HttpEntityEnclosingDeleteRequest(uri);
-//                }
-//                return super.createHttpUriRequest(httpMethod, uri);
-//            }
-//        };
-//        factory.getHttpClient().getConnectionManager().getSchemeRegistry().register(scheme);
-//        restTemplate.setRequestFactory(factory);
-//        
-//        try {
-//            headers = new HttpHeaders();
-//            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-//            headers.add("X-Cons-ID",koneksiDB.CONSIDAPIBPJS());
-//            utc=String.valueOf(api.GetUTCdatetimeAsString());
-//	    headers.add("X-Timestamp",utc);
-//	    headers.add("X-Signature",api.getHmac(utc));
-//            headers.add("user_key",koneksiDB.USERKEYAPIBPJS());
-//            URL = link+"/pelayanan/obat/hapus/";
-//            requestJson ="{\"nosepapotek\":\""+tbKamar.getValueAt(tbKamar.getSelectedRow(),0).toString()+"\",\"noresep\":\""+tbKamar.getValueAt(tbKamar.getSelectedRow(),2).toString()+"\",\"kodeobat\":\""+tbKamar.getValueAt(tbKamar.getSelectedRow(),8).toString()+"\",\"tipeobat\":\""+tbKamar.getValueAt(tbKamar.getSelectedRow(),10).toString()+"\"}  ";            
-//            requestEntity = new HttpEntity(requestJson,headers);
-//            root = mapper.readTree(restTemplate.exchange(URL, HttpMethod.DELETE,requestEntity, String.class).getBody());
-//            nameNode = root.path("metaData");
-//            System.out.println("code : "+nameNode.path("code").asText());
-//            System.out.println("message : "+nameNode.path("message").asText());
-//            if(nameNode.path("code").asText().equals("200")){
-//                tabMode.removeRow(tbKamar.getSelectedRow());
-//            }else{
-//                JOptionPane.showMessageDialog(null,nameNode.path("message").asText());
-//            }
-//        } catch (Exception e) {   
-//            System.out.println("Notif : "+e);
-//            if(e.toString().contains("UnknownHostException")){
-//                JOptionPane.showMessageDialog(null,"Koneksi ke server BPJS terputus...!");
-//            }
-//        }
-//    }
+
+    @Test
+    public void bodyWithDeleteRequest() throws Exception {
+        RestTemplate restTemplate = new RestTemplate();
+        SSLContext sslContext = SSLContext.getInstance("SSL");
+        javax.net.ssl.TrustManager[] trustManagers= {
+            new X509TrustManager() {
+                public X509Certificate[] getAcceptedIssuers() {return null;}
+                public void checkServerTrusted(X509Certificate[] arg0, String arg1)throws CertificateException {}
+                public void checkClientTrusted(X509Certificate[] arg0, String arg1)throws CertificateException {}
+}
+        };
+        sslContext.init(null,trustManagers , new SecureRandom());
+        SSLSocketFactory sslFactory=new SSLSocketFactory(sslContext,SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+        Scheme scheme=new Scheme("https",443,sslFactory);
+    
+        HttpComponentsClientHttpRequestFactory factory=new HttpComponentsClientHttpRequestFactory(){
+            @Override
+            protected HttpUriRequest createHttpUriRequest(HttpMethod httpMethod, URI uri) {
+                if (HttpMethod.DELETE == httpMethod) {
+                    return new HttpEntityEnclosingDeleteRequest(uri);
+                }
+                return super.createHttpUriRequest(httpMethod, uri);
+            }
+        };
+        factory.getHttpClient().getConnectionManager().getSchemeRegistry().register(scheme);
+        restTemplate.setRequestFactory(factory);
+        
+        try {
+            headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+            headers.add("X-Cons-ID",koneksiDB.CONSIDAPIBPJS());
+            utc=String.valueOf(api.GetUTCdatetimeAsString());
+	    headers.add("X-Timestamp",utc);
+	    headers.add("X-Signature",api.getHmac(utc));
+            headers.add("user_key",koneksiDB.USERKEYAPIBPJS());
+            URL = link+"/pelayanan/obat/hapus/";
+            requestJson ="{\"nosepapotek\":\""+tbKamar.getValueAt(tbKamar.getSelectedRow(),0).toString()+"\",\"noresep\":\""+tbKamar.getValueAt(tbKamar.getSelectedRow(),2).toString()+"\",\"kodeobat\":\""+tbKamar.getValueAt(tbKamar.getSelectedRow(),8).toString()+"\",\"tipeobat\":\""+tbKamar.getValueAt(tbKamar.getSelectedRow(),10).toString()+"\"}  ";            
+            requestEntity = new HttpEntity(requestJson,headers);
+            root = mapper.readTree(restTemplate.exchange(URL, HttpMethod.DELETE,requestEntity, String.class).getBody());
+            nameNode = root.path("metaData");
+            System.out.println("code : "+nameNode.path("code").asText());
+            System.out.println("message : "+nameNode.path("message").asText());
+            if(nameNode.path("code").asText().equals("200")){
+                tabMode.removeRow(tbKamar.getSelectedRow());
+            }else{
+                JOptionPane.showMessageDialog(null,nameNode.path("message").asText());
+            }
+        } catch (Exception e) {   
+            System.out.println("Notif : "+e);
+            if(e.toString().contains("UnknownHostException")){
+                JOptionPane.showMessageDialog(null,"Koneksi ke server BPJS terputus...!");
+            }
+        }
+    }
 }
