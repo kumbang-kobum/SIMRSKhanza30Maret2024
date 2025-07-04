@@ -33,13 +33,14 @@ import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import restore.DlgRestorePemberiHutangLain;
 import restore.DlgRestorePeminjamPiutang;
 
 /**
  *
  * @author dosen
  */
-public final class KeuanganPeminjamPiutang extends javax.swing.JDialog {
+public final class KeuanganPemberiHutangLain extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
@@ -51,13 +52,13 @@ public final class KeuanganPeminjamPiutang extends javax.swing.JDialog {
     /** Creates new form DlgPenyakit
      * @param parent
      * @param modal */
-    public KeuanganPeminjamPiutang(java.awt.Frame parent, boolean modal) {
+    public KeuanganPemberiHutangLain(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocation(10,2);
         setSize(628,674);
 
-        Object[] row={"Kode","Peminjam","Alamat","No.Telp","Kode Rekening","Nama Rekening"};
+        Object[] row={"Kode","Pemberi Hutang","Alamat","No.Telp","Kode Rekening","Nama Rekening"};
         tabMode=new DefaultTableModel(null,row){
              @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -84,9 +85,9 @@ public final class KeuanganPeminjamPiutang extends javax.swing.JDialog {
         }
         tbKamar.setDefaultRenderer(Object.class, new WarnaTable());
         
-        KdPeminjam.setDocument(new batasInput((byte)5).getKata(KdPeminjam));
-        NmPeminjam.setDocument(new batasInput((byte)50).getKata(NmPeminjam));
-        AlamatPeminjam.setDocument(new batasInput((int)150).getKata(AlamatPeminjam));
+        KdPemberi.setDocument(new batasInput((byte)5).getKata(KdPemberi));
+        NmPemberi.setDocument(new batasInput((byte)50).getKata(NmPemberi));
+        AlamatPemberiHutang.setDocument(new batasInput((int)150).getKata(AlamatPemberiHutang));
         NoTelp.setDocument(new batasInput((byte)13).getKata(NoTelp));
         TCari.setDocument(new batasInput((int)100).getKata(TCari));
         if(koneksiDB.CARICEPAT().equals("aktif")){
@@ -151,11 +152,11 @@ public final class KeuanganPeminjamPiutang extends javax.swing.JDialog {
         ChkInput = new widget.CekBox();
         FormInput = new widget.PanelBiasa();
         label34 = new widget.Label();
-        AlamatPeminjam = new widget.TextBox();
+        AlamatPemberiHutang = new widget.TextBox();
         label36 = new widget.Label();
-        NmPeminjam = new widget.TextBox();
+        NmPemberi = new widget.TextBox();
         label35 = new widget.Label();
-        KdPeminjam = new widget.TextBox();
+        KdPemberi = new widget.TextBox();
         NoTelp = new widget.TextBox();
         label38 = new widget.Label();
         jLabel10 = new widget.Label();
@@ -189,7 +190,7 @@ public final class KeuanganPeminjamPiutang extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Peminjam Piutang/Perusahaan Peminjam ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pemberi Hutang Lain ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -434,49 +435,49 @@ public final class KeuanganPeminjamPiutang extends javax.swing.JDialog {
         label34.setName("label34"); // NOI18N
         label34.setPreferredSize(new java.awt.Dimension(35, 23));
         FormInput.add(label34);
-        label34.setBounds(0, 40, 65, 23);
+        label34.setBounds(0, 40, 85, 23);
 
-        AlamatPeminjam.setHighlighter(null);
-        AlamatPeminjam.setName("AlamatPeminjam"); // NOI18N
-        AlamatPeminjam.addKeyListener(new java.awt.event.KeyAdapter() {
+        AlamatPemberiHutang.setHighlighter(null);
+        AlamatPemberiHutang.setName("AlamatPemberiHutang"); // NOI18N
+        AlamatPemberiHutang.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                AlamatPeminjamKeyPressed(evt);
+                AlamatPemberiHutangKeyPressed(evt);
             }
         });
-        FormInput.add(AlamatPeminjam);
-        AlamatPeminjam.setBounds(69, 40, 548, 23);
+        FormInput.add(AlamatPemberiHutang);
+        AlamatPemberiHutang.setBounds(89, 40, 350, 23);
 
-        label36.setText("Peminjam :");
+        label36.setText("Pemberi Hutang :");
         label36.setName("label36"); // NOI18N
         label36.setPreferredSize(new java.awt.Dimension(35, 23));
         FormInput.add(label36);
-        label36.setBounds(125, 10, 85, 23);
+        label36.setBounds(175, 10, 85, 23);
 
-        NmPeminjam.setHighlighter(null);
-        NmPeminjam.setName("NmPeminjam"); // NOI18N
-        NmPeminjam.addKeyListener(new java.awt.event.KeyAdapter() {
+        NmPemberi.setHighlighter(null);
+        NmPemberi.setName("NmPemberi"); // NOI18N
+        NmPemberi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                NmPeminjamKeyPressed(evt);
+                NmPemberiKeyPressed(evt);
             }
         });
-        FormInput.add(NmPeminjam);
-        NmPeminjam.setBounds(214, 10, 220, 23);
+        FormInput.add(NmPemberi);
+        NmPemberi.setBounds(264, 10, 353, 23);
 
         label35.setText("Kode :");
         label35.setName("label35"); // NOI18N
         label35.setPreferredSize(new java.awt.Dimension(35, 23));
         FormInput.add(label35);
-        label35.setBounds(0, 10, 65, 23);
+        label35.setBounds(0, 10, 85, 23);
 
-        KdPeminjam.setHighlighter(null);
-        KdPeminjam.setName("KdPeminjam"); // NOI18N
-        KdPeminjam.addKeyListener(new java.awt.event.KeyAdapter() {
+        KdPemberi.setHighlighter(null);
+        KdPemberi.setName("KdPemberi"); // NOI18N
+        KdPemberi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                KdPeminjamKeyPressed(evt);
+                KdPemberiKeyPressed(evt);
             }
         });
-        FormInput.add(KdPeminjam);
-        KdPeminjam.setBounds(69, 10, 55, 23);
+        FormInput.add(KdPemberi);
+        KdPemberi.setBounds(89, 10, 55, 23);
 
         NoTelp.setHighlighter(null);
         NoTelp.setName("NoTelp"); // NOI18N
@@ -486,18 +487,18 @@ public final class KeuanganPeminjamPiutang extends javax.swing.JDialog {
             }
         });
         FormInput.add(NoTelp);
-        NoTelp.setBounds(502, 10, 115, 23);
+        NoTelp.setBounds(502, 40, 115, 23);
 
         label38.setText("Telp :");
         label38.setName("label38"); // NOI18N
         label38.setPreferredSize(new java.awt.Dimension(35, 23));
         FormInput.add(label38);
-        label38.setBounds(458, 10, 40, 23);
+        label38.setBounds(458, 40, 40, 23);
 
-        jLabel10.setText("Rekening :");
+        jLabel10.setText("Akun Hutang :");
         jLabel10.setName("jLabel10"); // NOI18N
         FormInput.add(jLabel10);
-        jLabel10.setBounds(0, 70, 65, 23);
+        jLabel10.setBounds(0, 70, 85, 23);
 
         KodeRekening.setEditable(false);
         KodeRekening.setHighlighter(null);
@@ -508,7 +509,7 @@ public final class KeuanganPeminjamPiutang extends javax.swing.JDialog {
             }
         });
         FormInput.add(KodeRekening);
-        KodeRekening.setBounds(69, 70, 110, 23);
+        KodeRekening.setBounds(89, 70, 110, 23);
 
         NamaRekening.setEditable(false);
         NamaRekening.setHighlighter(null);
@@ -519,7 +520,7 @@ public final class KeuanganPeminjamPiutang extends javax.swing.JDialog {
             }
         });
         FormInput.add(NamaRekening);
-        NamaRekening.setBounds(181, 70, 405, 23);
+        NamaRekening.setBounds(201, 70, 385, 23);
 
         BtnAkun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnAkun.setMnemonic('2');
@@ -547,27 +548,27 @@ public final class KeuanganPeminjamPiutang extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void AlamatPeminjamKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AlamatPeminjamKeyPressed
-        Valid.pindah(evt,NoTelp,KodeRekening);
-}//GEN-LAST:event_AlamatPeminjamKeyPressed
+    private void AlamatPemberiHutangKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AlamatPemberiHutangKeyPressed
+        Valid.pindah(evt,NmPemberi,NoTelp);
+}//GEN-LAST:event_AlamatPemberiHutangKeyPressed
 
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
-        if(KdPeminjam.getText().trim().equals("")){
-            Valid.textKosong(KdPeminjam,"Kode Penanggung/Askes/Asuransi");
-        }else if(NmPeminjam.getText().trim().equals("")){
-            Valid.textKosong(NmPeminjam,"Nama Penanggung/Askes/Asuransi");
-        }else if(AlamatPeminjam.getText().trim().equals("")){
-            Valid.textKosong(AlamatPeminjam,"Alamat Perusahaan Penanggung/Askes/Asuransi");
+        if(KdPemberi.getText().trim().equals("")){
+            Valid.textKosong(KdPemberi,"Kode Pemberi Hutang");
+        }else if(NmPemberi.getText().trim().equals("")){
+            Valid.textKosong(NmPemberi,"Nama Pemberi Hutang");
+        }else if(AlamatPemberiHutang.getText().trim().equals("")){
+            Valid.textKosong(AlamatPemberiHutang,"Alamat Perusahaan Pemberi Hutang");
         }else if(NoTelp.getText().trim().equals("")){
-            Valid.textKosong(NoTelp,"No.Telp Perusahaan Penanggung/Askes/Asuransi");
+            Valid.textKosong(NoTelp,"No.Telp Perusahaan Pemberi Hutang");
         }else if(KodeRekening.getText().trim().equals("")||NamaRekening.getText().trim().equals("")){
             Valid.textKosong(BtnAkun,"Rekening");
         }else{
-            if(Sequel.menyimpantf("peminjampiutang","?,?,?,?,?,'1'","Kode",5,new String[]{
-                KdPeminjam.getText(),NmPeminjam.getText(),AlamatPeminjam.getText(),NoTelp.getText(),KodeRekening.getText()
+            if(Sequel.menyimpantf("pemberi_hutang_lain","?,?,?,?,?,'1'","Kode",5,new String[]{
+                KdPemberi.getText(),NmPemberi.getText(),AlamatPemberiHutang.getText(),NoTelp.getText(),KodeRekening.getText()
             })==true){
                 tabMode.addRow(new Object[]{
-                    KdPeminjam.getText(),NmPeminjam.getText(),AlamatPeminjam.getText(),NoTelp.getText(),KodeRekening.getText(),NamaRekening.getText()
+                    KdPemberi.getText(),NmPemberi.getText(),AlamatPemberiHutang.getText(),NoTelp.getText(),KodeRekening.getText(),NamaRekening.getText()
                 });
                 LCount.setText(""+tabMode.getRowCount());
                 emptTeks();
@@ -579,7 +580,7 @@ public final class KeuanganPeminjamPiutang extends javax.swing.JDialog {
         if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             BtnSimpanActionPerformed(null);
         }else{
-            Valid.pindah(evt,AlamatPeminjam,BtnBatal);
+            Valid.pindah(evt,AlamatPemberiHutang,BtnBatal);
         }
 }//GEN-LAST:event_BtnSimpanKeyPressed
 
@@ -597,7 +598,7 @@ public final class KeuanganPeminjamPiutang extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if(tbKamar.getSelectedRow()>-1){
-            if(Sequel.mengedittf("peminjampiutang","kode_peminjam=?","status='0'",1,new String[]{
+            if(Sequel.mengedittf("pemberi_hutang_lain","kode_pemberi_hutang=?","status='0'",1,new String[]{
                 tbKamar.getValueAt(tbKamar.getSelectedRow(),0).toString()
             })==true){
                 tabMode.removeRow(tbKamar.getSelectedRow());
@@ -619,24 +620,24 @@ public final class KeuanganPeminjamPiutang extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnHapusKeyPressed
 
     private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditActionPerformed
-        if(KdPeminjam.getText().trim().equals("")){
-            Valid.textKosong(KdPeminjam,"Kode Penanggung/Askes/Asuransi");
-        }else if(NmPeminjam.getText().trim().equals("")){
-            Valid.textKosong(NmPeminjam,"Nama Penanggung/Askes/Asuransi");
-        }else if(AlamatPeminjam.getText().trim().equals("")){
-            Valid.textKosong(AlamatPeminjam,"Alamat Perusahaan Penanggung/Askes/Asuransi");
+        if(KdPemberi.getText().trim().equals("")){
+            Valid.textKosong(KdPemberi,"Kode Pemberi Hutang");
+        }else if(NmPemberi.getText().trim().equals("")){
+            Valid.textKosong(NmPemberi,"Nama Pemberi Hutang");
+        }else if(AlamatPemberiHutang.getText().trim().equals("")){
+            Valid.textKosong(AlamatPemberiHutang,"Alamat Perusahaan Pemberi Hutang");
         }else if(NoTelp.getText().trim().equals("")){
-            Valid.textKosong(NoTelp,"No.Telp Perusahaan Penanggung/Askes/Asuransi");
+            Valid.textKosong(NoTelp,"No.Telp Perusahaan Pemberi Hutang");
         }else if(KodeRekening.getText().trim().equals("")||NamaRekening.getText().trim().equals("")){
             Valid.textKosong(BtnAkun,"Rekening");
         }else{
             if(tbKamar.getSelectedRow()>-1){
-                if(Sequel.mengedittf("peminjampiutang","kode_peminjam=?","kode_peminjam=?,nama_peminjam=?,alamat=?,no_telp=?,kd_rek=?",6,new String[]{
-                    KdPeminjam.getText(),NmPeminjam.getText(),AlamatPeminjam.getText(),NoTelp.getText(),KodeRekening.getText(),tbKamar.getValueAt(tbKamar.getSelectedRow(),0).toString()
+                if(Sequel.mengedittf("pemberi_hutang_lain","kode_pemberi_hutang=?","kode_pemberi_hutang=?,nama_pemberi_hutang=?,alamat=?,no_telp=?,kd_rek=?",6,new String[]{
+                    KdPemberi.getText(),NmPemberi.getText(),AlamatPemberiHutang.getText(),NoTelp.getText(),KodeRekening.getText(),tbKamar.getValueAt(tbKamar.getSelectedRow(),0).toString()
                 })==true){
-                    tbKamar.setValueAt(KdPeminjam.getText(),tbKamar.getSelectedRow(),0);
-                    tbKamar.setValueAt(NmPeminjam.getText(),tbKamar.getSelectedRow(),1);
-                    tbKamar.setValueAt(AlamatPeminjam.getText(),tbKamar.getSelectedRow(),2);
+                    tbKamar.setValueAt(KdPemberi.getText(),tbKamar.getSelectedRow(),0);
+                    tbKamar.setValueAt(NmPemberi.getText(),tbKamar.getSelectedRow(),1);
+                    tbKamar.setValueAt(AlamatPemberiHutang.getText(),tbKamar.getSelectedRow(),2);
                     tbKamar.setValueAt(NoTelp.getText(),tbKamar.getSelectedRow(),3);
                     tbKamar.setValueAt(KodeRekening.getText(),tbKamar.getSelectedRow(),4);
                     tbKamar.setValueAt(NamaRekening.getText(),tbKamar.getSelectedRow(),5);
@@ -681,10 +682,10 @@ public final class KeuanganPeminjamPiutang extends javax.swing.JDialog {
             param.put("propinsirs",akses.getpropinsirs());
             param.put("kontakrs",akses.getkontakrs());
             param.put("emailrs",akses.getemailrs());       
-            Valid.MyReportqry("rptPeminjamPiutang.jasper","report","::[ Data Perusahaan/Peminjam Piutang ]::",
-                    "select peminjampiutang.kode_peminjam,peminjampiutang.nama_peminjam,peminjampiutang.alamat,peminjampiutang.no_telp, "+
-                    "peminjampiutang.kd_rek,rekening.nm_rek from peminjampiutang inner join rekening on peminjampiutang.kd_rek=rekening.kd_rek "+
-                    "where peminjampiutang.status='1' and (peminjampiutang.kode_peminjam like '%"+TCari.getText().trim()+"%' or peminjampiutang.nama_peminjam like '%"+TCari.getText().trim()+"%') order by nama_peminjam ",param);
+            Valid.MyReportqry("rptPemberiHutangLain.jasper","report","::[ Data Pemberi Hutang Lain ]::",
+                    "select pemberi_hutang_lain.kode_pemberi_hutang,pemberi_hutang_lain.nama_pemberi_hutang,pemberi_hutang_lain.alamat,pemberi_hutang_lain.no_telp, "+
+                    "pemberi_hutang_lain.kd_rek,rekening.nm_rek from pemberi_hutang_lain inner join rekening on pemberi_hutang_lain.kd_rek=rekening.kd_rek "+
+                    "where pemberi_hutang_lain.status='1' and (pemberi_hutang_lain.kode_pemberi_hutang like '%"+TCari.getText().trim()+"%' or pemberi_hutang_lain.nama_pemberi_hutang like '%"+TCari.getText().trim()+"%') order by nama_pemberi_hutang ",param);
         }
         this.setCursor(Cursor.getDefaultCursor());
 }//GEN-LAST:event_BtnPrintActionPerformed
@@ -757,9 +758,9 @@ public final class KeuanganPeminjamPiutang extends javax.swing.JDialog {
         }
 }//GEN-LAST:event_tbKamarKeyPressed
 
-private void NmPeminjamKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NmPeminjamKeyPressed
-   Valid.pindah(evt,KdPeminjam,NoTelp);
-}//GEN-LAST:event_NmPeminjamKeyPressed
+private void NmPemberiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NmPemberiKeyPressed
+   Valid.pindah(evt,KdPemberi,AlamatPemberiHutang);
+}//GEN-LAST:event_NmPemberiKeyPressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         tampil();
@@ -769,16 +770,16 @@ private void NmPeminjamKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
         isForm();
     }//GEN-LAST:event_ChkInputActionPerformed
 
-    private void KdPeminjamKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KdPeminjamKeyPressed
-        Valid.pindah(evt,TCari,NmPeminjam);
-    }//GEN-LAST:event_KdPeminjamKeyPressed
+    private void KdPemberiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KdPemberiKeyPressed
+        Valid.pindah(evt,TCari,NmPemberi);
+    }//GEN-LAST:event_KdPemberiKeyPressed
 
     private void NoTelpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NoTelpKeyPressed
-        Valid.pindah(evt,NmPeminjam,AlamatPeminjam);
+        Valid.pindah(evt,AlamatPemberiHutang,KodeRekening);
     }//GEN-LAST:event_NoTelpKeyPressed
 
     private void MnRestoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRestoreActionPerformed
-        DlgRestorePeminjamPiutang restore=new DlgRestorePeminjamPiutang(null,true);
+        DlgRestorePemberiHutangLain restore=new DlgRestorePemberiHutangLain(null,true);
         restore.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
         restore.setLocationRelativeTo(internalFrame1);
         restore.setVisible(true);
@@ -789,7 +790,7 @@ private void NmPeminjamKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
     }//GEN-LAST:event_NamaRekeningKeyPressed
 
     private void BtnAkunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAkunActionPerformed
-        akses.setform("KeuanganPinjamPiutang");
+        akses.setform("KeuanganPemberiHutangLain");
         DlgRekeningTahun rekening=new DlgRekeningTahun(null,false);
         rekening.addWindowListener(new WindowListener() {
             @Override
@@ -798,14 +799,14 @@ private void NmPeminjamKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
             public void windowClosing(WindowEvent e) {}
             @Override
             public void windowClosed(WindowEvent e) {
-                if(akses.getform().equals("KeuanganPinjamPiutang")){
+                if(akses.getform().equals("KeuanganPemberiHutangLain")){
                     if(rekening.getTabel().getSelectedRow()!= -1){      
                         if(rekening.getTabel().getValueAt(rekening.getTabel().getSelectedRow(),3).toString().equals("N")&&
-                            rekening.getTabel().getValueAt(rekening.getTabel().getSelectedRow(),4).toString().equals("D")){
+                            rekening.getTabel().getValueAt(rekening.getTabel().getSelectedRow(),4).toString().equals("K")){
                             KodeRekening.setText(rekening.getTabel().getValueAt(rekening.getTabel().getSelectedRow(),1).toString());
                             NamaRekening.setText(rekening.getTabel().getValueAt(rekening.getTabel().getSelectedRow(),2).toString()); 
                         }else{
-                            JOptionPane.showMessageDialog(rootPane,"Rekening harus Tipe N dan Balance D..!!");
+                            JOptionPane.showMessageDialog(rootPane,"Rekening harus Tipe N dan Balance K..!!");
                         }
                                                                       
                         KodeRekening.requestFocus();
@@ -827,7 +828,7 @@ private void NmPeminjamKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
             public void keyTyped(KeyEvent e) {}
             @Override
             public void keyPressed(KeyEvent e) {
-                if(akses.getform().equals("KeuanganPinjamPiutang")){
+                if(akses.getform().equals("KeuanganPemberiHutangLain")){
                     if(e.getKeyCode()==KeyEvent.VK_SPACE){
                         rekening.dispose();
                     }
@@ -845,14 +846,14 @@ private void NmPeminjamKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
     }//GEN-LAST:event_BtnAkunActionPerformed
 
     private void BtnAkunKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAkunKeyPressed
-        Valid.pindah(evt,AlamatPeminjam,BtnSimpan);
+        Valid.pindah(evt,NoTelp,BtnSimpan);
     }//GEN-LAST:event_BtnAkunKeyPressed
 
     private void KodeRekeningKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KodeRekeningKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_UP){
             BtnAkunActionPerformed(null);
         }else{            
-            Valid.pindah(evt,AlamatPeminjam,BtnSimpan);
+            Valid.pindah(evt,NoTelp,BtnSimpan);
         }
     }//GEN-LAST:event_KodeRekeningKeyPressed
 
@@ -861,7 +862,7 @@ private void NmPeminjamKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            KeuanganPeminjamPiutang dialog = new KeuanganPeminjamPiutang(new javax.swing.JFrame(), true);
+            KeuanganPemberiHutangLain dialog = new KeuanganPemberiHutangLain(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -873,7 +874,7 @@ private void NmPeminjamKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private widget.TextBox AlamatPeminjam;
+    private widget.TextBox AlamatPemberiHutang;
     private widget.Button BtnAkun;
     private widget.Button BtnAll;
     private widget.Button BtnBatal;
@@ -885,12 +886,12 @@ private void NmPeminjamKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
     private widget.Button BtnSimpan;
     private widget.CekBox ChkInput;
     private widget.PanelBiasa FormInput;
-    private widget.TextBox KdPeminjam;
+    private widget.TextBox KdPemberi;
     private widget.TextBox KodeRekening;
     private widget.Label LCount;
     private javax.swing.JMenuItem MnRestore;
     private widget.TextBox NamaRekening;
-    private widget.TextBox NmPeminjam;
+    private widget.TextBox NmPemberi;
     private widget.TextBox NoTelp;
     private javax.swing.JPanel PanelInput;
     private javax.swing.JPopupMenu Popup;
@@ -914,15 +915,16 @@ private void NmPeminjamKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
         Valid.tabelKosong(tabMode);
         try{
             ps=koneksi.prepareStatement(
-                    "select peminjampiutang.kode_peminjam,peminjampiutang.nama_peminjam,peminjampiutang.alamat,peminjampiutang.no_telp,peminjampiutang.kd_rek,"+
-                    "rekening.nm_rek from peminjampiutang inner join rekening on peminjampiutang.kd_rek=rekening.kd_rek where peminjampiutang.status='1' "+
-                    (TCari.getText().trim().equals("")?"":"and (peminjampiutang.kode_peminjam like ? or peminjampiutang.nama_peminjam like ?) ")+
-                    "order by nama_peminjam ");
+                    "select pemberi_hutang_lain.kode_pemberi_hutang,pemberi_hutang_lain.nama_pemberi_hutang,pemberi_hutang_lain.alamat,pemberi_hutang_lain.no_telp,pemberi_hutang_lain.kd_rek, "+
+                    "rekening.nm_rek from pemberi_hutang_lain inner join rekening on pemberi_hutang_lain.kd_rek=rekening.kd_rek where pemberi_hutang_lain.status='1' "+
+                    (TCari.getText().trim().equals("")?"":"and (pemberi_hutang_lain.kode_pemberi_hutang like ? or pemberi_hutang_lain.nama_pemberi_hutang like ?) ")+
+                    "order by nama_pemberi_hutang ");
             try{
                 if(!TCari.getText().trim().equals("")){
-                ps.setString(1,"%"+TCari.getText().trim()+"%");
-                ps.setString(2,"%"+TCari.getText().trim()+"%");
+                    ps.setString(1,"%"+TCari.getText().trim()+"%");
+                    ps.setString(2,"%"+TCari.getText().trim()+"%");
                 }
+                    
                 rs=ps.executeQuery();
                 while(rs.next()){
                     tabMode.addRow(new Object[]{rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)});
@@ -944,21 +946,21 @@ private void NmPeminjamKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
     }
 
     public void emptTeks() {
-        KdPeminjam.setText("");
-        NmPeminjam.setText("");
-        AlamatPeminjam.setText("");
+        KdPemberi.setText("");
+        NmPemberi.setText("");
+        AlamatPemberiHutang.setText("");
         NoTelp.setText("0");
         KodeRekening.setText("");
         NamaRekening.setText("");   
-        Valid.autoNomer("peminjampiutang","PP",3,KdPeminjam);
-        KdPeminjam.requestFocus();     
+        Valid.autoNomer("pemberi_hutang_lain","PH",3,KdPemberi);
+        KdPemberi.requestFocus();     
     }
 
     private void getData() {
         if(tbKamar.getSelectedRow()!= -1){
-            KdPeminjam.setText(tbKamar.getValueAt(tbKamar.getSelectedRow(),0).toString());
-            NmPeminjam.setText(tbKamar.getValueAt(tbKamar.getSelectedRow(),1).toString());
-            AlamatPeminjam.setText(tbKamar.getValueAt(tbKamar.getSelectedRow(),2).toString());
+            KdPemberi.setText(tbKamar.getValueAt(tbKamar.getSelectedRow(),0).toString());
+            NmPemberi.setText(tbKamar.getValueAt(tbKamar.getSelectedRow(),1).toString());
+            AlamatPemberiHutang.setText(tbKamar.getValueAt(tbKamar.getSelectedRow(),2).toString());
             NoTelp.setText(tbKamar.getValueAt(tbKamar.getSelectedRow(),3).toString());
             KodeRekening.setText(tbKamar.getValueAt(tbKamar.getSelectedRow(),4).toString());
             NamaRekening.setText(tbKamar.getValueAt(tbKamar.getSelectedRow(),5).toString());
@@ -974,10 +976,10 @@ private void NmPeminjamKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
     }
     
     public void isCek(){
-        BtnSimpan.setEnabled(akses.getpeminjam_piutang());
-        BtnHapus.setEnabled(akses.getpeminjam_piutang());
-        BtnEdit.setEnabled(akses.getpeminjam_piutang());
-        BtnPrint.setEnabled(akses.getpeminjam_piutang());
+        BtnSimpan.setEnabled(akses.getpemberi_hutang_lain());
+        BtnHapus.setEnabled(akses.getpemberi_hutang_lain());
+        BtnEdit.setEnabled(akses.getpemberi_hutang_lain());
+        BtnPrint.setEnabled(akses.getpemberi_hutang_lain());
         if(akses.getkode().equals("Admin Utama")){
             MnRestore.setEnabled(true);
         }else{
