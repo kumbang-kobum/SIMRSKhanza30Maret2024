@@ -1652,15 +1652,15 @@ public final class RMDataCatatanObservasiRanapKebidanan extends javax.swing.JDia
     }
 
     private void simpan() {
-        if(Sequel.menyimpantf("catatan_observasi_ranap_kebidanan","?,?,?,?,?,?,?,?,?,?,?,?,?,?","Data",14,new String[]{
+        if(Sequel.menyimpantf("catatan_observasi_ranap_kebidanan","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?","Data",15,new String[]{//tambah chan
             TNoRw.getText(),Valid.SetTgl(Tanggal.getSelectedItem()+""),Jam.getSelectedItem()+":"+Menit.getSelectedItem()+":"+Detik.getSelectedItem(),GCS.getText(),
-            TD.getText(),HR.getText(),RR.getText(),Suhu.getText(),SPO.getText(),Kontraksi.getText(),BJJ.getText(),PPV.getText(),VT.getText(),NIP.getText()
+            TD.getText(),HR.getText(),RR.getText(),Suhu.getText(),SPO.getText(),Kontraksi.getText(),BJJ.getText(),PPV.getText(),VT.getText(),Keterangan.getText(),NIP.getText()
         })==true){
             tabMode.addRow(new Object[]{
                 TNoRw.getText(),TNoRM.getText(),TPasien.getText(),Umur.getText(),JK.getText(),TglLahir.getText(),
                 Valid.SetTgl(Tanggal.getSelectedItem()+""),Jam.getSelectedItem()+":"+Menit.getSelectedItem()+":"+Detik.getSelectedItem(),
                 GCS.getText(),TD.getText(),HR.getText(),RR.getText(),Suhu.getText(),SPO.getText(),Kontraksi.getText(),BJJ.getText(),PPV.getText(),
-                VT.getText(),NIP.getText(),NamaPetugas.getText()
+                VT.getText(),Keterangan.getText(),NIP.getText(),NamaPetugas.getText()//tambah chan
             });
             LCount.setText(""+tabMode.getRowCount());
             emptTeks();

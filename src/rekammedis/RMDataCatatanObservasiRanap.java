@@ -1530,14 +1530,14 @@ public final class RMDataCatatanObservasiRanap extends javax.swing.JDialog {
     }
     
     private void simpan() {
-        if(Sequel.menyimpantf("catatan_observasi_ranap","?,?,?,?,?,?,?,?,?,?","Data",10,new String[]{
+        if(Sequel.menyimpantf("catatan_observasi_ranap","?,?,?,?,?,?,?,?,?,?,?","Data",11,new String[]{//tambah chan
                 TNoRw.getText(),Valid.SetTgl(Tanggal.getSelectedItem()+""),Jam.getSelectedItem()+":"+Menit.getSelectedItem()+":"+Detik.getSelectedItem(),
-                GCS.getText(),TD.getText(),HR.getText(),RR.getText(),Suhu.getText(),SPO.getText(),NIP.getText()
+                GCS.getText(),TD.getText(),HR.getText(),RR.getText(),Suhu.getText(),SPO.getText(),Keterangan.getText(),NIP.getText()//tambah chan
         })==true){
             tabMode.addRow(new Object[]{
                 TNoRw.getText(),TNoRM.getText(),TPasien.getText(),Umur.getText(),JK.getText(),TglLahir.getText(),
                 Valid.SetTgl(Tanggal.getSelectedItem()+""),Jam.getSelectedItem()+":"+Menit.getSelectedItem()+":"+Detik.getSelectedItem(),
-                GCS.getText(),TD.getText(),HR.getText(),RR.getText(),Suhu.getText(),SPO.getText(),NIP.getText(),NamaPetugas.getText()
+                GCS.getText(),TD.getText(),HR.getText(),RR.getText(),Suhu.getText(),SPO.getText(),Keterangan.getText(),NIP.getText(),NamaPetugas.getText()//tambah chan
             });
             LCount.setText(""+tabMode.getRowCount());
             emptTeks();
