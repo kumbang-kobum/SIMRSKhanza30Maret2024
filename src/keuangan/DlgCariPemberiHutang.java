@@ -36,7 +36,7 @@ import javax.swing.table.TableColumn;
  *
  * @author dosen
  */
-public final class DlgCariPeminjamPiutang extends javax.swing.JDialog {
+public final class DlgCariPemberiHutang extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private validasi Valid=new validasi();
     private Connection koneksi=koneksiDB.condb();
@@ -52,13 +52,13 @@ public final class DlgCariPeminjamPiutang extends javax.swing.JDialog {
     /** Creates new form DlgPenyakit
      * @param parent
      * @param modal */
-    public DlgCariPeminjamPiutang(java.awt.Frame parent, boolean modal) {
+    public DlgCariPemberiHutang(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocation(10,2);
         setSize(656,250);
 
-        Object[] row={"Kode","Peminjam","Alamat","No.Telp","Kode Rekening","Nama Rekening"};
+        Object[] row={"Kode","Pemberi Hutang","Alamat","No.Telp","Kode Rekening","Nama Rekening"};
         tabMode=new DefaultTableModel(null,row){
              @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -144,7 +144,7 @@ public final class DlgCariPeminjamPiutang extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Peminjam Piutang/Perusahaan Peminjam ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pemberi Hutang Lain ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -313,13 +313,13 @@ public final class DlgCariPeminjamPiutang extends javax.swing.JDialog {
 
     private void BtnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        KeuanganPeminjamPiutang peminjampiutang=new KeuanganPeminjamPiutang(null,false);
-        peminjampiutang.emptTeks();
-        peminjampiutang.isCek();
-        peminjampiutang.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-        peminjampiutang.setLocationRelativeTo(internalFrame1);
-        peminjampiutang.setAlwaysOnTop(false);
-        peminjampiutang.setVisible(true);
+        KeuanganPemberiHutangLain pemberihutang=new KeuanganPemberiHutangLain(null,false);
+        pemberihutang.emptTeks();
+        pemberihutang.isCek();
+        pemberihutang.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+        pemberihutang.setLocationRelativeTo(internalFrame1);
+        pemberihutang.setAlwaysOnTop(false);
+        pemberihutang.setVisible(true);
         this.setCursor(Cursor.getDefaultCursor());   
         
     }//GEN-LAST:event_BtnTambahActionPerformed
@@ -341,7 +341,7 @@ public final class DlgCariPeminjamPiutang extends javax.swing.JDialog {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try {
-            if(Valid.daysOld("./cache/peminjampiutang.iyem")<30){
+            if(Valid.daysOld("./cache/pemberihutang.iyem")<30){
                 tampil2();
             }else{
                 tampil();
@@ -355,7 +355,7 @@ public final class DlgCariPeminjamPiutang extends javax.swing.JDialog {
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            DlgCariPeminjamPiutang dialog = new DlgCariPeminjamPiutang(new javax.swing.JFrame(), true);
+            DlgCariPemberiHutang dialog = new DlgCariPemberiHutang(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -384,18 +384,18 @@ public final class DlgCariPeminjamPiutang extends javax.swing.JDialog {
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try {
-            file=new File("./cache/peminjampiutang.iyem");
+            file=new File("./cache/pemberihutang.iyem");
             file.createNewFile();
             fileWriter = new FileWriter(file);
             StringBuilder iyembuilder = new StringBuilder();
-            ps=koneksi.prepareStatement("select peminjampiutang.kode_peminjam,peminjampiutang.nama_peminjam,peminjampiutang.alamat,peminjampiutang.no_telp, "+
-                    "peminjampiutang.kd_rek,rekening.nm_rek from peminjampiutang inner join rekening on peminjampiutang.kd_rek=rekening.kd_rek "+
-                    "where peminjampiutang.status='1' order by nama_peminjam");
+            ps=koneksi.prepareStatement("select pemberi_hutang_lain.kode_pemberi_hutang,pemberi_hutang_lain.nama_pemberi_hutang,pemberi_hutang_lain.alamat,pemberi_hutang_lain.no_telp, "+
+                    "pemberi_hutang_lain.kd_rek,rekening.nm_rek from pemberi_hutang_lain inner join rekening on pemberi_hutang_lain.kd_rek=rekening.kd_rek "+
+                    "where pemberi_hutang_lain.status='1' order by nama_pemberi_hutang");
             try{           
                 rs=ps.executeQuery();
                 while(rs.next()){
                     tabMode.addRow(new Object[]{rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)});
-                    iyembuilder.append("{\"Kode\":\"").append(rs.getString(1)).append("\",\"Peminjam\":\"").append(rs.getString(2)).append("\",\"Alamat\":\"").append(rs.getString(3)).append("\",\"NoTelp\":\"").append(rs.getString(4)).append("\",\"KodeRekening\":\"").append(rs.getString(5)).append("\",\"NamaRekening\":\"").append(rs.getString(6)).append("\"},");
+                    iyembuilder.append("{\"Kode\":\"").append(rs.getString(1)).append("\",\"PemberiHutang\":\"").append(rs.getString(2)).append("\",\"Alamat\":\"").append(rs.getString(3)).append("\",\"NoTelp\":\"").append(rs.getString(4)).append("\",\"KodeRekening\":\"").append(rs.getString(5)).append("\",\"NamaRekening\":\"").append(rs.getString(6)).append("\"},");
                 }
             }catch(Exception e){
                 System.out.println("Notifikasi : "+e);
@@ -411,8 +411,8 @@ public final class DlgCariPeminjamPiutang extends javax.swing.JDialog {
 
             if (iyembuilder.length() > 0) {
                 iyembuilder.setLength(iyembuilder.length() - 1);
-                fileWriter.write("{\"peminjampiutang\":["+iyembuilder+"]}");
-            fileWriter.flush();
+                fileWriter.write("{\"pemberihutang\":["+iyembuilder+"]}");
+                fileWriter.flush();
             }
             
             fileWriter.close();
@@ -432,20 +432,20 @@ public final class DlgCariPeminjamPiutang extends javax.swing.JDialog {
     }
     
     public void isCek(){        
-        BtnTambah.setEnabled(akses.getpeminjam_piutang());
+        BtnTambah.setEnabled(akses.getpemberi_hutang_lain());
     }
     
     private void tampil2() {
         try {
-            myObj = new FileReader("./cache/peminjampiutang.iyem");
+            myObj = new FileReader("./cache/pemberihutang.iyem");
             root = mapper.readTree(myObj);
             Valid.tabelKosong(tabMode);
-            response = root.path("peminjampiutang");
+            response = root.path("pemberihutang");
             if(response.isArray()){
                 for(JsonNode list:response){
-                    if(list.path("Kode").asText().toLowerCase().contains(TCari.getText().toLowerCase())||list.path("Peminjam").asText().toLowerCase().contains(TCari.getText().toLowerCase())){
+                    if(list.path("Kode").asText().toLowerCase().contains(TCari.getText().toLowerCase())||list.path("PemberiHutang").asText().toLowerCase().contains(TCari.getText().toLowerCase())){
                         tabMode.addRow(new Object[]{
-                            list.path("Kode").asText(),list.path("Peminjam").asText(),list.path("Alamat").asText(),list.path("NoTelp").asText(),list.path("KodeRekening").asText(),list.path("NamaRekening").asText()
+                            list.path("Kode").asText(),list.path("PemberiHutang").asText(),list.path("Alamat").asText(),list.path("NoTelp").asText(),list.path("KodeRekening").asText(),list.path("NamaRekening").asText()
                         });
                     }
                 }

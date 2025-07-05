@@ -54,7 +54,6 @@
     <entry key="CONSIDAPIAPOTEKBPJS">Hzk7mz3P3hUs/mln+iTZKw==</entry>
     <entry key="USERKEYAPIAPOTEKBPJS">9269VlRugaYImZeduSjTctiqSQUNJzu1qE7z5BeWW8ka96Q5EnhlOoiwLvPk3Si0</entry>
     <entry key="JADIKANPIUTANGAPOTEKBPJS">yes</entry>
-    <entry key="NORESEPAKTIF">yes</entry>
     <entry key="URLAPIICARE">https://apijkn-dev.bpjs-kesehatan.go.id/ihs_dev/api/rs</entry>
     <entry key="SECRETKEYAPIICARE">l4nh5eVYrLAER/I2A4b3Tw==</entry>
     <entry key="CONSIDAPIICARE">l4nh5eVYrLAER/I2A4b3Tw==</entry>
@@ -194,6 +193,11 @@
     <entry key="URLAPISERTISIGN">https://api-stag.sertisign.id/v2/poa/signing-qr</entry>
     <entry key="APIKEYSERTISIGN">Qvbk11KTaeMu98WE5RITeYdqppEJrrfzN7HisMpfOheYGYPFOLs1CW4idp8VpXV1</entry>
     <entry key="URLDOKUMENSERTISIGN">https://sertisign.com/webhook</entry>
+    <entry key="HOSTDUTAPARKING">5k7+C7EnUw9nUv2Nix+DBA==</entry>
+    <entry key="DATABASEDUTAPARKING">PvMIHTTN+Nnyzfbt2jiUvg==</entry>
+    <entry key="PORTDUTAPARKING">nioxtijcpDaKSUiUiP5FAg==</entry>
+    <entry key="USERDUTAPARKING">kMR3WfAwUK6MbhCyydxa0g==</entry>
+    <entry key="PASDUTAPARKING">l4nh5eVYrLAER/I2A4b3Tw==</entry>
     <entry key="urlmekari">https://sandbox-api.mekari.com</entry>
     <entry key="clientIdmekari">2ZXUFzr8WyDqAKXj</entry>
     <entry key="clientSecretmekari">y4LWq6zVQrLFk2Q4iDHpi1dKIKirn0Oc</entry>
