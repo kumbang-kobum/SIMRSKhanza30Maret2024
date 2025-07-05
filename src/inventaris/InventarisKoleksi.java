@@ -98,11 +98,11 @@ public final class InventarisKoleksi extends javax.swing.JDialog {
             }else if(i==6){
                 column.setPreferredWidth(100);
             }else if(i==7){
-                column.setPreferredWidth(120);
+                column.setPreferredWidth(160);
             }else if(i==8){
                 column.setPreferredWidth(100);
             }else if(i==9){
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(150);
             }else if(i==10){
                 column.setPreferredWidth(80);
             }else if(i==11){
@@ -135,47 +135,6 @@ public final class InventarisKoleksi extends javax.swing.JDialog {
         ChkInput.setSelected(false);
         isForm(); 
         
-        barang.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {}
-            @Override
-            public void windowClosing(WindowEvent e) {}
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if(barang.getTable().getSelectedRow()!= -1){    
-                    kode_barang.setText(barang.getTable().getValueAt(barang.getTable().getSelectedRow(),0).toString());
-                    nama_barang.setText(barang.getTable().getValueAt(barang.getTable().getSelectedRow(),1).toString());
-                    nm_produsen.setText(barang.getTable().getValueAt(barang.getTable().getSelectedRow(),3).toString());
-                    nm_merk.setText(barang.getTable().getValueAt(barang.getTable().getSelectedRow(),4).toString());
-                    nm_kategori.setText(barang.getTable().getValueAt(barang.getTable().getSelectedRow(),7).toString());
-                    nm_jenis.setText(barang.getTable().getValueAt(barang.getTable().getSelectedRow(),8).toString());
-                }   
-                kode_barang.requestFocus();
-            }
-            @Override
-            public void windowIconified(WindowEvent e) {}
-            @Override
-            public void windowDeiconified(WindowEvent e) {}
-            @Override
-            public void windowActivated(WindowEvent e) {}
-            @Override
-            public void windowDeactivated(WindowEvent e) {}
-
-        });
-        
-        barang.getTable().addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {}
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if(e.getKeyCode()==KeyEvent.VK_SPACE){
-                    barang.dispose();
-                }                
-            }
-            @Override
-            public void keyReleased(KeyEvent e) {}
-        });
-              
         ruang.addWindowListener(new WindowListener() {
             @Override
             public void windowOpened(WindowEvent e) {}
@@ -263,7 +222,6 @@ public final class InventarisKoleksi extends javax.swing.JDialog {
         Document doc = kit.createDefaultDocument();
         LoadHTML.setDocument(doc);
     }
-    private InventarisBarang barang=new InventarisBarang(null,false); 
     private InventarisRuang ruang=new InventarisRuang(null,false); 
     private double nilai_inven=0;
     private int pilihan=0;
@@ -1234,6 +1192,47 @@ private void kode_barangKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:eve
 }//GEN-LAST:event_kode_barangKeyPressed
 
 private void btnBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBarangActionPerformed
+    InventarisBarang barang=new InventarisBarang(null,false);
+    barang.addWindowListener(new WindowListener() {
+        @Override
+        public void windowOpened(WindowEvent e) {}
+        @Override
+        public void windowClosing(WindowEvent e) {}
+        @Override
+        public void windowClosed(WindowEvent e) {
+            if(barang.getTable().getSelectedRow()!= -1){    
+                kode_barang.setText(barang.getTable().getValueAt(barang.getTable().getSelectedRow(),0).toString());
+                nama_barang.setText(barang.getTable().getValueAt(barang.getTable().getSelectedRow(),1).toString());
+                nm_produsen.setText(barang.getTable().getValueAt(barang.getTable().getSelectedRow(),3).toString());
+                nm_merk.setText(barang.getTable().getValueAt(barang.getTable().getSelectedRow(),4).toString());
+                nm_kategori.setText(barang.getTable().getValueAt(barang.getTable().getSelectedRow(),7).toString());
+                nm_jenis.setText(barang.getTable().getValueAt(barang.getTable().getSelectedRow(),8).toString());
+            }   
+            kode_barang.requestFocus();
+        }
+        @Override
+        public void windowIconified(WindowEvent e) {}
+        @Override
+        public void windowDeiconified(WindowEvent e) {}
+        @Override
+        public void windowActivated(WindowEvent e) {}
+        @Override
+        public void windowDeactivated(WindowEvent e) {}
+
+    });
+
+    barang.getTable().addKeyListener(new KeyListener() {
+        @Override
+        public void keyTyped(KeyEvent e) {}
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if(e.getKeyCode()==KeyEvent.VK_SPACE){
+                barang.dispose();
+            }                
+        }
+        @Override
+        public void keyReleased(KeyEvent e) {}
+    });
     barang.isCek();
     barang.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
     barang.setLocationRelativeTo(internalFrame1);
@@ -1518,7 +1517,7 @@ private void ppBarcodeBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {/
                 rs=ps.executeQuery();
                 nilai_inven=0;
                 while(rs.next()){
-                String tglExpiredStr = rs.getString("tgl_expired");
+                String tglExpiredStr = rs.getString("tgl_expired");//tambah chan
                 String statusExpired = "";
                      if (tglExpiredStr != null && !tglExpiredStr.isEmpty()) {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -1590,7 +1589,7 @@ private void ppBarcodeBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {/
         id_ruang.setText("");
         no_rak.setSelectedIndex(0);
         no_box.setSelectedIndex(0);
-        tgl_kalibrasi.setDate(new Date());//
+        tgl_kalibrasi.setDate(new Date());//tambah chan 1
         tgl_expired.setDate(new Date());//tambah chan 2
         TCari.setText("");
         no_inventaris.requestFocus();
@@ -1617,7 +1616,7 @@ private void ppBarcodeBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {/
                 no_rak.setSelectedItem(tbJnsPerawatan.getValueAt(tbJnsPerawatan.getSelectedRow(),14).toString());
                 no_box.setSelectedItem(tbJnsPerawatan.getValueAt(tbJnsPerawatan.getSelectedRow(),15).toString());
                 Valid.SetTgl(tgl_kalibrasi,tbJnsPerawatan.getValueAt(tbJnsPerawatan.getSelectedRow(),16).toString());//tambah chan 1
-                Valid.SetTgl(tgl_expired,tbJnsPerawatan.getValueAt(tbJnsPerawatan.getSelectedRow(),17).toString());//tambah chan 1
+                Valid.SetTgl(tgl_expired,tbJnsPerawatan.getValueAt(tbJnsPerawatan.getSelectedRow(),17).toString());//tambah chan 2
           }
     }
 
