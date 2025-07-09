@@ -462,7 +462,7 @@ public final class DlgCariCaraBayar extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnRefreshPhotoActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        try {
+         try {
             if(Valid.daysOld("./cache/penjab.iyem")<30){
                 tampil2();
             }else{

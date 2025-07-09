@@ -572,7 +572,7 @@ public final class DlgPoli extends javax.swing.JDialog {
                 LCount.setText(""+tabMode.getRowCount());
             emptTeks();
         }
-    }
+        }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
     private void BtnSimpanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnSimpanKeyPressed

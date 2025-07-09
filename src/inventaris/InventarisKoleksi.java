@@ -1517,7 +1517,7 @@ private void ppBarcodeBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {/
                 rs=ps.executeQuery();
                 nilai_inven=0;
                 while(rs.next()){
-                String tglExpiredStr = rs.getString("tgl_expired");//tambah chan
+                String tglExpiredStr = rs.getString("tgl_expired");
                 String statusExpired = "";
                      if (tglExpiredStr != null && !tglExpiredStr.isEmpty()) {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -1589,7 +1589,7 @@ private void ppBarcodeBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {/
         id_ruang.setText("");
         no_rak.setSelectedIndex(0);
         no_box.setSelectedIndex(0);
-        tgl_kalibrasi.setDate(new Date());//tambah chan 1
+        tgl_kalibrasi.setDate(new Date());//tambah chan
         tgl_expired.setDate(new Date());//tambah chan 2
         TCari.setText("");
         no_inventaris.requestFocus();

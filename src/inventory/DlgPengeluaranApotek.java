@@ -1111,9 +1111,9 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 try {
                     ps.setString(1,kdgudang.getText());
                     if(!TCari.getText().trim().equals("")){
-                        ps.setString(2,"%"+TCari.getText().trim()+"%");
-                        ps.setString(3,"%"+TCari.getText().trim()+"%");
-                        ps.setString(4,"%"+TCari.getText().trim()+"%");
+                    ps.setString(2,"%"+TCari.getText().trim()+"%");
+                    ps.setString(3,"%"+TCari.getText().trim()+"%");
+                    ps.setString(4,"%"+TCari.getText().trim()+"%");
                     }
                     rs=ps.executeQuery();
                     while(rs.next()){
@@ -1143,9 +1143,9 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 try {
                     ps.setString(1,kdgudang.getText());
                     if(!TCari.getText().trim().equals("")){
-                        ps.setString(2,"%"+TCari.getText().trim()+"%");
+                    ps.setString(2,"%"+TCari.getText().trim()+"%");
                         ps.setString(3,"%"+TCari.getText().trim()+"%");
-                        ps.setString(4,"%"+TCari.getText().trim()+"%");
+                    ps.setString(4,"%"+TCari.getText().trim()+"%");
                     }
                     rs=ps.executeQuery();
                     while(rs.next()){

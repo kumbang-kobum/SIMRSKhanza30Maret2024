@@ -45,8 +45,6 @@
 	<parameter name="finger" class="java.lang.String"/>
 	<parameter name="tandavital" class="java.lang.String"/>
 	<parameter name="catatan" class="java.lang.String"/>
-	<parameter name="namadokter" class="java.lang.String"/>
-	<parameter name="kodedokter" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[select * from temporary]]>
 	</queryString>
@@ -722,7 +720,7 @@
 		<band splitType="Stretch"/>
 	</columnFooter>
 	<summary>
-		<band height="190" splitType="Stretch">
+		<band height="128" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField>
 				<reportElement mode="Opaque" x="176" y="0" width="379" height="15" forecolor="#FFFFFF" backcolor="#969696" uuid="a5a32d90-8204-4271-8866-b37f73c686a4"/>
@@ -741,7 +739,7 @@
 				<text><![CDATA[PLAN]]></text>
 			</staticText>
 			<line>
-				<reportElement x="175" y="0" width="1" height="70" uuid="71d7cde8-2405-462c-84e1-fa036b04fb7d">
+				<reportElement x="175" y="0" width="1" height="127" uuid="71d7cde8-2405-462c-84e1-fa036b04fb7d">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -801,8 +799,29 @@
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
+			<staticText>
+				<reportElement mode="Transparent" x="9" y="74" width="162" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="f6ea78da-8530-4d3f-a0e0-c7abc8ac3b27">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Dokter/Petugas Jaga IGD]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Transparent" x="180" y="74" width="200" height="50" forecolor="#000000" backcolor="#F0F0DC" uuid="0d38c6ea-447e-4b8a-9eb8-6c25a094e0ef">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pegawai}]]></textFieldExpression>
+			</textField>
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="184" width="556" height="1" uuid="3fb3b8da-e6fd-4f7e-827c-29315f2c0957">
+				<reportElement positionType="FixRelativeToBottom" x="0" y="127" width="556" height="1" uuid="3fb3b8da-e6fd-4f7e-827c-29315f2c0957">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
@@ -811,7 +830,7 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="0" width="1" height="184" uuid="db5aac8b-84a0-4aba-8fdf-5b03ebeed26e">
+				<reportElement x="0" y="0" width="1" height="127" uuid="db5aac8b-84a0-4aba-8fdf-5b03ebeed26e">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -820,7 +839,7 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="556" y="0" width="1" height="184" uuid="11ee52ae-4477-4bdb-8607-5bc9130bef4f">
+				<reportElement x="555" y="0" width="1" height="127" uuid="11ee52ae-4477-4bdb-8607-5bc9130bef4f">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -829,6 +848,15 @@
 					<pen lineWidth="0.5" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
+			<componentElement>
+				<reportElement x="430" y="70" width="114" height="56" isRemoveLineWhenBlank="true" uuid="1a2920de-bf6c-46ec-90bf-5a42a5e0bd3e">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" errorCorrectionLevel="H">
+					<jr:codeExpression><![CDATA[$P{finger}]]></jr:codeExpression>
+				</jr:QRCode>
+			</componentElement>
 			<staticText>
 				<reportElement mode="Transparent" x="8" y="52" width="162" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="70be4047-a2b8-46b9-bdfa-7c65e3420cb0"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -851,54 +879,6 @@
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
-			<staticText>
-				<reportElement mode="Transparent" x="44" y="70" width="162" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="2b19fd0c-c350-4d74-9513-bef4ac6a0e7a"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Tahoma" size="8" isBold="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Petugas]]></text>
-			</staticText>
-			<componentElement>
-				<reportElement x="69" y="100" width="112" height="54" isRemoveLineWhenBlank="true" uuid="bd8ae7c0-7d7d-4bbc-bf75-65728327b0c5">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" errorCorrectionLevel="H">
-					<jr:codeExpression><![CDATA[$P{finger}]]></jr:codeExpression>
-				</jr:QRCode>
-			</componentElement>
-			<textField>
-				<reportElement mode="Transparent" x="10" y="160" width="230" height="20" forecolor="#000000" backcolor="#F0F0DC" uuid="ffe4e32a-f44f-448e-94d0-f1c8e71a9556"/>
-				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font fontName="Tahoma" size="8" isBold="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{pegawai}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement mode="Transparent" x="343" y="70" width="162" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="cd5063d6-c5cd-4330-aee0-08adfa84bb22"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Tahoma" size="8" isBold="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Dokter]]></text>
-			</staticText>
-			<componentElement>
-				<reportElement x="369" y="100" width="112" height="54" isRemoveLineWhenBlank="true" uuid="9b06d5c3-63d9-430a-967f-a6ee90cc7a1b">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" errorCorrectionLevel="H">
-					<jr:codeExpression><![CDATA[$P{kodedokter}]]></jr:codeExpression>
-				</jr:QRCode>
-			</componentElement>
-			<textField>
-				<reportElement mode="Transparent" x="318" y="160" width="230" height="20" forecolor="#000000" backcolor="#F0F0DC" uuid="62d0f8cf-7746-4515-bb24-966edd0be481"/>
-				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font fontName="Tahoma" size="8" isBold="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{namadokter}]]></textFieldExpression>
-			</textField>
 		</band>
 	</summary>
 </jasperReport>

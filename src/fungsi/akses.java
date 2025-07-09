@@ -248,7 +248,7 @@ public final class akses {
             riwayat_surat_peringatan=false,master_kesimpulan_anjuran_mcu=false,kategori_piutang_jasa_perusahaan=false,piutang_jasa_perusahaan=false,bayar_piutang_jasa_perusahaan=false,
             piutang_jasa_perusahaan_belum_lunas=false,checklist_kesiapan_anestesi=false,piutang_peminjaman_uang_belum_lunas=false,hasil_pemeriksaan_slit_lamp=false,
             hasil_pemeriksaan_oct=false,beban_hutang_lain=false,poli_asal_pasien_ranap=false,pemberi_hutang_lain=false,dokter_asal_pasien_ranap=false,duta_parkir_rekap_keluar=false,
-            surat_keterangan_layak_terbang=false,bayar_beban_hutang_lain=false,persetujuan_pernyataan_pemilihan_dpjp=false,grafik_harian_pasien_prb=false,pengkajian_resiko_jatuh_timeup=false;//tambah chan 2
+            surat_keterangan_layak_terbang=false,bayar_beban_hutang_lain=false,persetujuan_pernyataan_pemilihan_dpjp=false,grafik_harian_pasien_prb=false,pengkajian_resiko_jatuh_timeup=false;//tambah chan 3
     
     public static void setData(String user, String pass) {
         try {        

@@ -3472,15 +3472,15 @@ public class DlgUser extends javax.swing.JDialog {
                 case 1141:
                     column.setPreferredWidth(142);
                     break;
-                case 1142:    
+                case 1142:
                     column.setPreferredWidth(217);
                     break;//tambah chan
                 case 1143:
                     column.setPreferredWidth(210);
-                    break;//tambah chan
+                    break;//tambah chan    
                 case 1144:
                     column.setPreferredWidth(230);
-                    break;//tambah chan     
+                    break;//tambah chan
                 default:
                     column.setPreferredWidth(133);
                     break;
@@ -6869,8 +6869,7 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {
                 "user.skrining_frailty_syndrome,user.sirkulasi_cssd,user.lama_pelayanan_cssd,user.catatan_observasi_bayi,user.riwayat_surat_peringatan,user.master_kesimpulan_anjuran_mcu,"+
                 "user.kategori_piutang_jasa_perusahaan,user.piutang_jasa_perusahaan,user.bayar_piutang_jasa_perusahaan,user.piutang_jasa_perusahaan_belum_lunas,user.checklist_kesiapan_anestesi,"+
                 "user.piutang_peminjaman_uang_belum_lunas,user.hasil_pemeriksaan_slit_lamp,user.hasil_pemeriksaan_oct,user.beban_hutang_lain,user.poli_asal_pasien_ranap,user.pemberi_hutang_lain,"+
-                "user.dokter_asal_pasien_ranap,user.duta_parkir_rekap_keluar,user.surat_keterangan_layak_terbang,user.bayar_beban_hutang_lain,"+
-                "user.persetujuan_pernyataan_pemilihan_dpjp,user.grafik_harian_pasien_prb,user.pengkajian_resiko_jatuh_timeup from user order by AES_DECRYPT(user.id_user,'nur')");//tambah chan 3        
+                "user.dokter_asal_pasien_ranap,user.duta_parkir_rekap_keluar,user.surat_keterangan_layak_terbang,user.bayar_beban_hutang_lain,user.persetujuan_pernyataan_pemilihan_dpjp,user.grafik_harian_pasien_prb,user.pengkajian_resiko_jatuh_timeup from user order by AES_DECRYPT(user.id_user,'nur')");//tambah chan 3
             try {
                 rs=ps.executeQuery();
                             i=0;
@@ -9173,10 +9172,7 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {
                            rs.getBoolean("dokter_asal_pasien_ranap"),
                            rs.getBoolean("duta_parkir_rekap_keluar"),
                            rs.getBoolean("surat_keterangan_layak_terbang"),
-                           rs.getBoolean("bayar_beban_hutang_lain"),
-                           rs.getBoolean("persetujuan_pernyataan_pemilihan_dpjp"),//tambah chan
-                           rs.getBoolean("grafik_harian_pasien_prb"),//tambah chan
-                           rs.getBoolean("pengkajian_resiko_jatuh_timeup")//tambah chan
+                           rs.getBoolean("bayar_beban_hutang_lain")
                                     };
                                     i++;
                                     SwingUtilities.invokeLater(() -> tabMode.addRow(row));

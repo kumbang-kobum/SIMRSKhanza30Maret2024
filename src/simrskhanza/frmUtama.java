@@ -1942,7 +1942,6 @@ public class frmUtama extends javax.swing.JFrame {
         jSeparator7 = new javax.swing.JSeparator();
         BtnLog = new widget.ButtonBig();
         BtnClose = new widget.ButtonBig();
-        WA = new widget.ButtonBig();
         internalFrame4 = new widget.InternalFrame();
         lblStts = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -1953,7 +1952,7 @@ public class frmUtama extends javax.swing.JFrame {
         LblIP = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
         jLabel7 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelVersionUpdate = new javax.swing.JLabel();
         PanelUtama = new javax.swing.JPanel();
         scrollPane1 = new widget.ScrollPane();
         PanelWall = new usu.widget.glass.PanelGlass();
@@ -2225,7 +2224,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02/07/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08/07/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -7520,23 +7519,6 @@ public class frmUtama extends javax.swing.JFrame {
         });
         internalFrame1.add(BtnClose);
 
-        WA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/whatsapp.png"))); // NOI18N
-        WA.setMnemonic('U');
-        WA.setText("Aduan Bug/Error");
-        WA.setToolTipText("Alt+U");
-        WA.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        WA.setIconTextGap(2);
-        WA.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        WA.setName("WA"); // NOI18N
-        WA.setPreferredSize(new java.awt.Dimension(120, 38));
-        WA.setVerticalTextPosition(javax.swing.SwingConstants.CENTER);
-        WA.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                WAActionPerformed(evt);
-            }
-        });
-        internalFrame1.add(WA);
-
         getContentPane().add(internalFrame1, java.awt.BorderLayout.PAGE_START);
 
         internalFrame4.setBackground(new java.awt.Color(235, 215, 195));
@@ -7629,9 +7611,9 @@ public class frmUtama extends javax.swing.JFrame {
         jLabel7.setPreferredSize(new java.awt.Dimension(287, 23));
         internalFrame4.add(jLabel7);
 
-        jLabel1.setText("Juni 12, 2025 #1 Versi 2");
-        jLabel1.setName("jLabel1"); // NOI18N
-        internalFrame4.add(jLabel1);
+        jLabelVersionUpdate.setText("Juli 07, 2025 #2 Versi 1");
+        jLabelVersionUpdate.setName("jLabelVersionUpdate"); // NOI18N
+        internalFrame4.add(jLabelVersionUpdate);
 
         getContentPane().add(internalFrame4, java.awt.BorderLayout.PAGE_END);
 
@@ -14816,12 +14798,6 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         Valid.panggilUrl("antrianmobilejkn.php");
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_MnInfoMobileJKNActionPerformed
-
-    private void WAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WAActionPerformed
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        Valid.panggilUrl2("https://wa.me/6285768790777?text=Assalamualaikum..%20kaka%20ini%20ada%20eror%20dibagikan%20:");
-        this.setCursor(Cursor.getDefaultCursor());        // TODO add your handling code here:
-    }//GEN-LAST:event_WAActionPerformed
 
     private void btnKategoriPerpustakaanActionPerformed(java.awt.event.ActionEvent evt) {
         isTutup();
@@ -23039,7 +23015,6 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
     private usu.widget.glass.PanelGlass PanelWall;
     private widget.panelGlass Panelmenu;
     private widget.TextBox TCari;
-    private widget.ButtonBig WA;
     private widget.ButtonBig btnAdmin;
     private widget.ButtonBig btnAkunPiutang;
     private widget.ButtonBig btnAnalisaKamar;
@@ -23508,13 +23483,13 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
     private widget.InternalFrame internalFrame2;
     private widget.InternalFrame internalFrame3;
     private widget.InternalFrame internalFrame4;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabelVersionUpdate;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;

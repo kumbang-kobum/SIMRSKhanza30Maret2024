@@ -835,7 +835,7 @@ private void NmPeminjamKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
             }
             @Override
             public void keyReleased(KeyEvent e) {}
-        }); 
+        });
         rekening.emptTeks();
         rekening.tampil();
         rekening.isCek();

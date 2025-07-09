@@ -621,7 +621,7 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         WindowPhrase.getContentPane().add(internalFrame8, java.awt.BorderLayout.CENTER);
 
         Tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2025 14:18:17" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2025 10:34:31" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -982,7 +982,7 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         FormMenu.setBackground(new java.awt.Color(255, 255, 255));
         FormMenu.setBorder(null);
         FormMenu.setName("FormMenu"); // NOI18N
-        FormMenu.setPreferredSize(new java.awt.Dimension(255, 4419));
+        FormMenu.setPreferredSize(new java.awt.Dimension(255, 4615));
         FormMenu.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 1, 1));
 
         chkSemua.setSelected(true);
@@ -7277,7 +7277,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                             append("<td valign='middle' bgcolor='#FFFFF8' align='center' width='13%'>Objek</td>").
                                             append("<td valign='middle' bgcolor='#FFFFF8' align='center' width='13%'>Asesmen</td>").
                                             append("<td valign='middle' bgcolor='#FFFFF8' align='center' width='14%'>Plan</td>").
-                                            append("<td valign='middle' bgcolor='#FFFFF8' align='center' width='14%'>Instruksi</td>").
+                                            append("<td valign='middle' bgcolor='#FFFFF8' align='center' width='14%'>Inst/Impl</td>").
                                             append("<td valign='middle' bgcolor='#FFFFF8' align='center' width='14%'>Evaluasi</td>").
                                         append("</tr>");
                             do{
@@ -7887,10 +7887,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "data_triase_igdprimer.plan,data_triase_igdprimer.tanggaltriase,data_triase_igdprimer.nik,data_triase_igd.tekanan_darah,"+
                             "data_triase_igd.nadi,data_triase_igd.pernapasan,data_triase_igd.suhu,data_triase_igd.saturasi_o2,data_triase_igd.nyeri,"+
                             "data_triase_igd.cara_masuk,data_triase_igd.alat_transportasi,data_triase_igd.alasan_kedatangan,"+
-                            "data_triase_igd.keterangan_kedatangan,data_triase_igd.kode_kasus,master_triase_macam_kasus.macam_kasus,pegawai.nama "+
+                            "data_triase_igd.keterangan_kedatangan,data_triase_igd.kode_kasus,master_triase_macam_kasus.macam_kasus,pegawai.nama,data_triase_igdprimer.kd_dokter,dokter.nm_dokter "+//tambah chan
                             "from data_triase_igdprimer inner join data_triase_igd on data_triase_igd.no_rawat=data_triase_igdprimer.no_rawat "+
                             "inner join master_triase_macam_kasus on data_triase_igd.kode_kasus=master_triase_macam_kasus.kode_kasus "+
-                            "inner join pegawai on data_triase_igdprimer.nik=pegawai.nik where data_triase_igd.no_rawat='"+norawat+"'").executeQuery();
+                            "inner join pegawai on data_triase_igdprimer.nik=pegawai.nik left join dokter ON data_triase_igdprimer.kd_dokter=dokter.kd_dokter where data_triase_igd.no_rawat='"+norawat+"'").executeQuery();//tambah chan
                     if(rs2.next()){
                         htmlContent.append(
                             "<tr class='isi'>").append( 
@@ -8063,9 +8063,13 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     "<td valign='middle'>").append(rs2.getString("catatan")).append("</td>").append(
                                 "</tr>").append(
                                 "<tr class='isi'>").append(
-                                    "<td valign='middle'>Dokter/Petugas IGD</td>").append(
+                                    "<td valign='middle'>Petugas IGD</td>").append(
                                     "<td valign='middle'>").append(rs2.getString("nik")).append(" ").append(rs2.getString("nama")).append("</td>").append(
-                                "</tr>").append(
+                                "</tr>").append(        
+                                "<tr class='isi'>").append(//tambah chan
+                                    "<td valign='middle'>Dokter</td>").append(
+                                    "<td valign='middle'>").append(rs2.getString("kd_dokter")).append(" ").append(rs2.getString("nm_dokter")).append("</td>").append(
+                                "</tr>").append(        
                               "</table>").append(
                             "</td>").append(
                           "</tr>");
@@ -8085,10 +8089,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "data_triase_igdsekunder.plan,data_triase_igdsekunder.tanggaltriase,data_triase_igdsekunder.nik,data_triase_igd.tekanan_darah,"+
                             "data_triase_igd.nadi,data_triase_igd.pernapasan,data_triase_igd.suhu,data_triase_igd.saturasi_o2,data_triase_igd.nyeri,"+
                             "data_triase_igd.cara_masuk,data_triase_igd.alat_transportasi,data_triase_igd.alasan_kedatangan,"+
-                            "data_triase_igd.keterangan_kedatangan,data_triase_igd.kode_kasus,master_triase_macam_kasus.macam_kasus,pegawai.nama "+
+                            "data_triase_igd.keterangan_kedatangan,data_triase_igd.kode_kasus,master_triase_macam_kasus.macam_kasus,pegawai.nama,data_triase_igdsekunder.kd_dokter,dokter.nm_dokter "+//tambah chan
                             "from data_triase_igdsekunder inner join data_triase_igd on data_triase_igd.no_rawat=data_triase_igdsekunder.no_rawat "+
                             "inner join master_triase_macam_kasus on data_triase_igd.kode_kasus=master_triase_macam_kasus.kode_kasus "+
-                            "inner join pegawai on data_triase_igdsekunder.nik=pegawai.nik where data_triase_igd.no_rawat='"+norawat+"'").executeQuery();
+                            "inner join pegawai on data_triase_igdsekunder.nik=pegawai.nik left join dokter ON data_triase_igdsekunder.kd_dokter=dokter.kd_dokter where data_triase_igd.no_rawat='"+norawat+"'").executeQuery();//tambah chan
                     if(rs2.next()){
                         htmlContent.append(
                           "<tr class='isi'>").append( 
@@ -8312,9 +8316,13 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     "<td valign='middle'>").append(rs2.getString("catatan")).append("</td>").append(
                                 "</tr>").append(
                                 "<tr class='isi'>").append(
-                                    "<td valign='middle'>Dokter/Petugas IGD</td>").append(
+                                    "<td valign='middle'>Petugas IGD</td>").append(
                                     "<td valign='middle'>").append(rs2.getString("nik")).append(" ").append(rs2.getString("nama")).append("</td>").append(
                                 "</tr>").append(
+                                "<tr class='isi'>").append(//tambah chan
+                                    "<td valign='middle'>Dokter</td>").append(
+                                    "<td valign='middle'>").append(rs2.getString("kd_dokter")).append(" ").append(rs2.getString("nm_dokter")).append("</td>").append(
+                                "</tr>").append(        
                               "</table>").append(
                             "</td>").append(
                           "</tr>");
@@ -12081,7 +12089,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                     }
                 }
             }
-            
+
             // 🔽 Tambahan: tampilkan Time UP setelah blok try di atas selesai
                 try {
                     PreparedStatement psTimeup = koneksi.prepareStatement(
@@ -15958,7 +15966,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                      "<tr>").append(
                                         "<td valign='top' align='center'></td>").append(
                                         "<td valign='top' align='center'></td>").append(
-                                        "<td valign='top' colspan='2'>Instruksi</td>").append(
+                                        "<td valign='top' colspan='2'>Inst/Impl</td>").append(
                                         "<td valign='top' colspan='7'> : ").append(rs2.getString("instruksi").replaceAll("(\r\n|\r|\n|\n\r)","<br>")).append("</td>").append(
                                      "</tr>");
                             }

@@ -485,7 +485,7 @@
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
-            <StringItem index="0" value="04/07/2025"/>
+            <StringItem index="0" value="08/07/2025"/>
           </StringArray>
         </Property>
         <Property name="displayFormat" type="java.lang.String" value="dd/MM/yyyy"/>
@@ -9662,29 +9662,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnCloseActionPerformed"/>
           </Events>
         </Component>
-        <Component class="widget.ButtonBig" name="WA">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/picture/whatsapp.png"/>
-            </Property>
-            <Property name="mnemonic" type="int" value="85"/>
-            <Property name="text" type="java.lang.String" value="Aduan Bug/Error"/>
-            <Property name="toolTipText" type="java.lang.String" value="Alt+U"/>
-            <Property name="horizontalTextPosition" type="int" value="4"/>
-            <Property name="iconTextGap" type="int" value="2"/>
-            <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-              <Insets value="[0, 0, 0, 0]"/>
-            </Property>
-            <Property name="name" type="java.lang.String" value="WA" noResource="true"/>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[120, 38]"/>
-            </Property>
-            <Property name="verticalTextPosition" type="int" value="0"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="WAActionPerformed"/>
-          </Events>
-        </Component>
       </SubComponents>
     </Container>
     <Container class="widget.InternalFrame" name="internalFrame4">
@@ -9896,10 +9873,10 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="jLabelVersionUpdate">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Juni 12, 2025 #1 Versi 2"/>
-            <Property name="name" type="java.lang.String" value="jLabel1" noResource="true"/>
+            <Property name="text" type="java.lang.String" value="Juli 07, 2025 #2 Versi 1"/>
+            <Property name="name" type="java.lang.String" value="jLabelVersionUpdate" noResource="true"/>
           </Properties>
         </Component>
       </SubComponents>
