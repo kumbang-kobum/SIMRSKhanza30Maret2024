@@ -11,7 +11,7 @@
  Target Server Version : 100428 (10.4.28-MariaDB-log)
  File Encoding         : 65001
 
- Date: 08/07/2025 15:18:49
+ Date: 14/07/2025 13:14:39
 */
 
 SET NAMES utf8mb4;
@@ -4952,6 +4952,8 @@ CREATE TABLE `dokter` (
   `kd_sps` char(5) DEFAULT NULL,
   `alumni` varchar(60) DEFAULT NULL,
   `no_ijn_praktek` varchar(120) DEFAULT NULL,
+  `tgl_surat_izin` date NOT NULL,
+  `tgl_akhir_izin` date NOT NULL,
   `status` enum('0','1') NOT NULL,
   PRIMARY KEY (`kd_dokter`) USING BTREE,
   KEY `kd_sps` (`kd_sps`) USING BTREE,
