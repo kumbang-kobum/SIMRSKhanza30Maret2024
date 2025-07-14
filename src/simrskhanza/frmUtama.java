@@ -8580,6 +8580,9 @@ public class frmUtama extends javax.swing.JFrame {
                     MnLogin.setText("Log Out");
                     lblStts.setText("Admin : ");
                     lblUser.setText(akses.getkode());
+                    if (akses.getkode().equals("Kode166")) {//tambah chan SIP Berakhir
+                        frmUtama.getInstance().cekSIPDokterKadaluarsa();
+                    }//
                     MnGantiPassword.setEnabled(true);
                     MnPengajuanCutiPegawai.setEnabled(true);
                     BtnToolReg.setEnabled(akses.getregistrasi());
@@ -8661,7 +8664,32 @@ public class frmUtama extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_BtnLoginActionPerformed
+    public void cekSIPDokterKadaluarsa() {//tambah chan peringatan SIP Berakhir
+        try {
+            Connection koneksi = koneksiDB.condb();
+            PreparedStatement ps = koneksi.prepareStatement(
+                "SELECT nm_dokter, tgl_akhir_izin FROM dokter " +
+                "WHERE status='1' AND tgl_akhir_izin IS NOT NULL " +
+                "AND tgl_akhir_izin <= DATE_ADD(CURDATE(), INTERVAL 6 MONTH) " +
+                "AND tgl_akhir_izin >= CURDATE()"
+            );
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String namaDokter = rs.getString("nm_dokter");
+                String tanggalAkhir = rs.getString("tgl_akhir_izin");
 
+                JOptionPane.showMessageDialog(null,
+                    "⚠️ SIP Dokter *" + namaDokter + "* akan berakhir pada: " + tanggalAkhir,
+                    "Peringatan SIP",
+                    JOptionPane.WARNING_MESSAGE
+                );
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            System.out.println("Cek SIP Error: " + e.getMessage());
+        }
+    }
     private void BtnToolKamnapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnToolKamnapActionPerformed
         isTutup();
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
