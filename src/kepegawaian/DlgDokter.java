@@ -60,13 +60,14 @@ public class DlgDokter extends javax.swing.JDialog {
     public DlgDokter(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        System.out.println("⏰ Cek SIP dijalankan pada: " + new Date());
 
         this.setLocation(8,1);
         setSize(885,674);
 
         tabMode=new DefaultTableModel(null,new Object[]{
-                "Kode Dokter","Nama Dokter","J.K.","Tmp.Lahir","Tgl.Lahir","G.D.","Agama","Alamat Tinggal","No.HP/Telp","Email","Stts.Nikah","Spesialis","Alumni",
-                "No.Ijin Praktek","Tgl SIP","Exp SIP"
+                "Kode Dokter","Nama Dokter","J.K.","Tmp.Lahir","Tgl.Lahir","G.D.","Agama","Alamat Tinggal","No.HP/Telp","Email","Stts.Nikah","Spesialis","Alumni","No.Ijin Praktek"
+                ,"Tgl SIP", "Tgl Exp SIP"//tambah chan
             }){
             @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -78,7 +79,7 @@ public class DlgDokter extends javax.swing.JDialog {
         tbDokter.setPreferredScrollableViewportSize(new Dimension(800,800));
         tbDokter.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 16; i++) {//tambah chan 2
+        for (int i = 0; i < 16; i++) {//tambah chan
             TableColumn column = tbDokter.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(100);
@@ -108,9 +109,9 @@ public class DlgDokter extends javax.swing.JDialog {
                 column.setPreferredWidth(200);
             }else if(i==13){
                 column.setPreferredWidth(100);
-            }else if(i==14){
+            }else if(i==14){//tambah chan
                 column.setPreferredWidth(100);
-            }else if(i==15){
+            }else if(i==15){//tambah chan
                 column.setPreferredWidth(100);    
             }
         }
@@ -190,8 +191,8 @@ public class DlgDokter extends javax.swing.JDialog {
                     TTmp.setText(pegawai.tbKamar.getValueAt(pegawai.tbKamar.getSelectedRow(),11).toString());
                     TAlmt.setText(pegawai.tbKamar.getValueAt(pegawai.tbKamar.getSelectedRow(),13).toString());
                     Valid.SetTgl(DTPLahir,pegawai.tbKamar.getValueAt(pegawai.tbKamar.getSelectedRow(),12).toString());
-                    Valid.SetTgl(DTPTerbitSip,pegawai.tbKamar.getValueAt(pegawai.tbKamar.getSelectedRow(),13).toString());
-                    Valid.SetTgl(DTPHabisSip,pegawai.tbKamar.getValueAt(pegawai.tbKamar.getSelectedRow(),14).toString());
+                    Valid.SetTgl(DTPSuratIzin,pegawai.tbKamar.getValueAt(pegawai.tbKamar.getSelectedRow(),14).toString());//tambah chan
+                    Valid.SetTgl(DTPAkhirIzin,pegawai.tbKamar.getValueAt(pegawai.tbKamar.getSelectedRow(),15).toString());//tambah chan
                 }   
                 TKd.requestFocus();
             }
@@ -275,11 +276,10 @@ public class DlgDokter extends javax.swing.JDialog {
         BtnCariPegawai = new widget.Button();
         Email = new widget.TextBox();
         jLabel23 = new widget.Label();
-        DTPTerbitSip = new widget.Tanggal();
-        jLabel5 = new widget.Label();
-        jLabelTerbitSip = new widget.Label();
-        jLabelHabisSip = new widget.Label();
-        DTPHabisSip = new widget.Tanggal();
+        DTPSuratIzin = new widget.Tanggal();
+        DTPAkhirIzin = new widget.Tanggal();
+        jLabelTglSip = new javax.swing.JLabel();
+        jLabelTglAkhirSip = new javax.swing.JLabel();
         ChkInput = new widget.CekBox();
 
         Popup.setName("Popup"); // NOI18N
@@ -602,7 +602,7 @@ public class DlgDokter extends javax.swing.JDialog {
         PanelInput.setLayout(new java.awt.BorderLayout(1, 1));
 
         FormInput.setName("FormInput"); // NOI18N
-        FormInput.setPreferredSize(new java.awt.Dimension(1331, 186));
+        FormInput.setPreferredSize(new java.awt.Dimension(1331, 168));
         FormInput.setLayout(null);
 
         jLabel3.setText("Kode Dokter :");
@@ -670,7 +670,7 @@ public class DlgDokter extends javax.swing.JDialog {
         jLabel13.setBounds(2, 102, 95, 23);
 
         DTPLahir.setForeground(new java.awt.Color(50, 70, 50));
-        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-07-2025" }));
+        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-07-2025" }));
         DTPLahir.setDisplayFormat("dd-MM-yyyy");
         DTPLahir.setName("DTPLahir"); // NOI18N
         DTPLahir.setOpaque(false);
@@ -680,7 +680,7 @@ public class DlgDokter extends javax.swing.JDialog {
             }
         });
         FormInput.add(DTPLahir);
-        DTPLahir.setBounds(270, 100, 104, 23);
+        DTPLahir.setBounds(260, 100, 104, 23);
 
         jLabel18.setText("Agama :");
         jLabel18.setName("jLabel18"); // NOI18N
@@ -781,7 +781,7 @@ public class DlgDokter extends javax.swing.JDialog {
         jLabel22.setText("Alumni :");
         jLabel22.setName("jLabel22"); // NOI18N
         FormInput.add(jLabel22);
-        jLabel22.setBounds(390, 130, 90, 23);
+        jLabel22.setBounds(392, 132, 90, 23);
 
         TAlumni.setHighlighter(null);
         TAlumni.setName("TAlumni"); // NOI18N
@@ -842,46 +842,43 @@ public class DlgDokter extends javax.swing.JDialog {
         FormInput.add(jLabel23);
         jLabel23.setBounds(612, 72, 55, 23);
 
-        DTPTerbitSip.setForeground(new java.awt.Color(50, 70, 50));
-        DTPTerbitSip.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-07-2025" }));
-        DTPTerbitSip.setDisplayFormat("dd-MM-yyyy");
-        DTPTerbitSip.setName("DTPTerbitSip"); // NOI18N
-        DTPTerbitSip.setOpaque(false);
-        DTPTerbitSip.addKeyListener(new java.awt.event.KeyAdapter() {
+        DTPSuratIzin.setForeground(new java.awt.Color(50, 70, 50));
+        DTPSuratIzin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-07-2025" }));
+        DTPSuratIzin.setDisplayFormat("dd-MM-yyyy");
+        DTPSuratIzin.setName("DTPSuratIzin"); // NOI18N
+        DTPSuratIzin.setOpaque(false);
+        DTPSuratIzin.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                DTPTerbitSipKeyPressed(evt);
+                DTPSuratIzinKeyPressed(evt);
             }
         });
-        FormInput.add(DTPTerbitSip);
-        DTPTerbitSip.setBounds(960, 40, 104, 23);
+        FormInput.add(DTPSuratIzin);
+        DTPSuratIzin.setBounds(960, 20, 104, 23);
 
-        jLabel5.setText("Kode Dokter :");
-        jLabel5.setName("jLabel5"); // NOI18N
-        FormInput.add(jLabel5);
-        jLabel5.setBounds(2, 12, 95, 23);
-
-        jLabelTerbitSip.setText("Tgl Terbit SIP :");
-        jLabelTerbitSip.setName("jLabelTerbitSip"); // NOI18N
-        FormInput.add(jLabelTerbitSip);
-        jLabelTerbitSip.setBounds(870, 40, 90, 23);
-
-        jLabelHabisSip.setText("Tgl Exp SIP :");
-        jLabelHabisSip.setName("jLabelHabisSip"); // NOI18N
-        FormInput.add(jLabelHabisSip);
-        jLabelHabisSip.setBounds(890, 70, 70, 23);
-
-        DTPHabisSip.setForeground(new java.awt.Color(50, 70, 50));
-        DTPHabisSip.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-07-2025" }));
-        DTPHabisSip.setDisplayFormat("dd-MM-yyyy");
-        DTPHabisSip.setName("DTPHabisSip"); // NOI18N
-        DTPHabisSip.setOpaque(false);
-        DTPHabisSip.addKeyListener(new java.awt.event.KeyAdapter() {
+        DTPAkhirIzin.setForeground(new java.awt.Color(50, 70, 50));
+        DTPAkhirIzin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-07-2025" }));
+        DTPAkhirIzin.setDisplayFormat("dd-MM-yyyy");
+        DTPAkhirIzin.setName("DTPAkhirIzin"); // NOI18N
+        DTPAkhirIzin.setOpaque(false);
+        DTPAkhirIzin.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                DTPHabisSipKeyPressed(evt);
+                DTPAkhirIzinKeyPressed(evt);
             }
         });
-        FormInput.add(DTPHabisSip);
-        DTPHabisSip.setBounds(960, 70, 104, 23);
+        FormInput.add(DTPAkhirIzin);
+        DTPAkhirIzin.setBounds(960, 60, 104, 23);
+
+        jLabelTglSip.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        jLabelTglSip.setText("Tgl Surat SIP :");
+        jLabelTglSip.setName("jLabelTglSip"); // NOI18N
+        FormInput.add(jLabelTglSip);
+        jLabelTglSip.setBounds(880, 20, 70, 20);
+
+        jLabelTglAkhirSip.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        jLabelTglAkhirSip.setText("Tgl Akhir SIP :");
+        jLabelTglAkhirSip.setName("jLabelTglAkhirSip"); // NOI18N
+        FormInput.add(jLabelTglAkhirSip);
+        jLabelTglAkhirSip.setBounds(880, 60, 70, 14);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -987,13 +984,14 @@ public class DlgDokter extends javax.swing.JDialog {
                 Sequel.menyimpanignore("pendidikan","'-','0','0','0','0'");
                 Sequel.menyimpanignore(
                     "pegawai","'0','"+TKd.getText()+"','"+TNm.getText()+"','"+CmbJk.getSelectedItem().toString().replaceAll("PEREMPUAN","Wanita").replaceAll("LAKI-LAKI","Pria")+"',"+
-                    "'-','-','-','-','-','-','-','-','-','-','-','0','"+TTmp.getText()+"','"+Valid.SetTgl(DTPLahir.getSelectedItem()+"")+"','"+Valid.SetTgl(DTPHabisSip.getSelectedItem()+"")+"','"+Valid.SetTgl(DTPTerbitSip.getSelectedItem()+"")+"','"+TAlmt.getText()+"','-','1900-01-01',"+
+                    "'-','-','-','-','-','-','-','-','-','-','-','0','"+TTmp.getText()+"','"+Valid.SetTgl(DTPLahir.getSelectedItem()+"")+"','"+TAlmt.getText()+"','-','1900-01-01',"+
                     "'<1','-','T','-','AKTIF','0','0','0','1900-01-01','0','0','pages/pegawai/photo/','-'"
                 );        
                 Sequel.menyimpan2(
                     "dokter","'"+TKd.getText()+"','"+TNm.getText()+"','"+CmbJk.getSelectedItem().toString().replaceAll("LAKI-LAKI","L").replaceAll("PEREMPUAN","P").trim()+"','"+
-                    TTmp.getText()+"','"+Valid.SetTgl(DTPLahir.getSelectedItem()+"")+"','"+Valid.SetTgl(DTPHabisSip.getSelectedItem()+"")+"','"+Valid.SetTgl(DTPTerbitSip.getSelectedItem()+"")+"','"+CMbGd.getSelectedItem()+"','"+cmbAgama.getSelectedItem()+"','"+TAlmt.getText()+"','"+
-                    TTlp.getText()+"','"+Email.getText()+"','"+CmbStts.getSelectedItem()+"','"+KdSps.getText()+"','"+TAlumni.getText()+"','"+TNoi.getText()+"','1'","Kode Dokter"
+                    TTmp.getText()+"','"+Valid.SetTgl(DTPLahir.getSelectedItem()+"")+"','"+CMbGd.getSelectedItem()+"','"+cmbAgama.getSelectedItem()+"','"+TAlmt.getText()+"','"+
+                    TTlp.getText()+"','"+Email.getText()+"','"+CmbStts.getSelectedItem()+"','"+KdSps.getText()+"','"+TAlumni.getText()+"','"+TNoi.getText()+"','1','"+//tambah chan
+                    Valid.SetTgl(DTPSuratIzin.getSelectedItem()+"")+"','"+Valid.SetTgl(DTPAkhirIzin.getSelectedItem()+"")+"'","Kode Dokter"//tambah chan
                 );
                 Sequel.Commit();
                 Sequel.AutoComitTrue();
@@ -1134,10 +1132,13 @@ public class DlgDokter extends javax.swing.JDialog {
                     "',jk='"+CmbJk.getSelectedItem().toString().replaceAll("LAKI-LAKI","L").replaceAll("PEREMPUAN","P").trim()+"',tmp_lahir='"+TTmp.getText()+
                     "',tgl_lahir='"+Valid.SetTgl(DTPLahir.getSelectedItem()+"")+"',gol_drh='"+CMbGd.getSelectedItem()+"',agama='"+cmbAgama.getSelectedItem()+
                     "',almt_tgl='"+TAlmt.getText()+"',no_telp='"+TTlp.getText()+"',email='"+Email.getText()+"',stts_nikah='"+CmbStts.getSelectedItem()+"'"+
-                    ",kd_sps='"+KdSps.getText()+"',alumni='"+TAlumni.getText()+"',no_ijn_praktek='"+TNoi.getText()+"'"
+                    ",kd_sps='"+KdSps.getText()+"',alumni='"+TAlumni.getText()+"',no_ijn_praktek='"+TNoi.getText()+"'"+ ",tgl_surat_izin='"+Valid.SetTgl(DTPSuratIzin.getSelectedItem()+"")+//tambah chan
+                    "',tgl_akhir_izin='"+Valid.SetTgl(DTPAkhirIzin.getSelectedItem()+"")+"'"//tambah chan
                 );
                 koneksi.setAutoCommit(true);
                 if(tabMode.getRowCount()!=0){tampil();}
+                DTPSuratIzin.setDate(new Date());//tambah chan
+                DTPAkhirIzin.setDate(new Date());//tambah chan
                 emptTeks();
             } catch (SQLException ex) {
                 return;
@@ -1266,13 +1267,13 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         // TODO add your handling code here:
     }//GEN-LAST:event_EmailKeyPressed
 
-    private void DTPTerbitSipKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DTPTerbitSipKeyPressed
+    private void DTPSuratIzinKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DTPSuratIzinKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_DTPTerbitSipKeyPressed
+    }//GEN-LAST:event_DTPSuratIzinKeyPressed
 
-    private void DTPHabisSipKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DTPHabisSipKeyPressed
+    private void DTPAkhirIzinKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DTPAkhirIzinKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_DTPHabisSipKeyPressed
+    }//GEN-LAST:event_DTPAkhirIzinKeyPressed
 
     /**
     * @param args the command line arguments
@@ -1306,9 +1307,9 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.ComboBox CmbCrStts;
     private widget.ComboBox CmbJk;
     private widget.ComboBox CmbStts;
-    private widget.Tanggal DTPHabisSip;
+    private widget.Tanggal DTPAkhirIzin;
     private widget.Tanggal DTPLahir;
-    private widget.Tanggal DTPTerbitSip;
+    private widget.Tanggal DTPSuratIzin;
     private widget.TextBox Email;
     private widget.PanelBiasa FormInput;
     private widget.TextBox KdSps;
@@ -1345,12 +1346,11 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Label jLabel23;
     private widget.Label jLabel3;
     private widget.Label jLabel4;
-    private widget.Label jLabel5;
     private widget.Label jLabel6;
     private widget.Label jLabel8;
     private widget.Label jLabel9;
-    private widget.Label jLabelHabisSip;
-    private widget.Label jLabelTerbitSip;
+    private javax.swing.JLabel jLabelTglAkhirSip;
+    private javax.swing.JLabel jLabelTglSip;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator4;
     private widget.panelisi panelGlass6;
@@ -1364,7 +1364,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             stat=koneksi.prepareStatement(
                    "select dokter.kd_dokter,dokter.nm_dokter,dokter.jk,dokter.tmp_lahir, "+
                    "dokter.tgl_lahir,dokter.gol_drh,dokter.agama,dokter.almt_tgl,dokter.no_telp,dokter.email, "+
-                   "dokter.stts_nikah,spesialis.nm_sps,dokter.alumni,dokter.no_ijn_praktek "+
+                   "dokter.stts_nikah,spesialis.nm_sps,dokter.alumni,dokter.no_ijn_praktek,dokter.tgl_surat_izin,dokter.tgl_akhir_izin "+//tambah chan
                    "from dokter inner join spesialis on dokter.kd_sps=spesialis.kd_sps "+
                    "where dokter.status='1' and dokter.jk like ? and dokter.gol_drh like ? and dokter.stts_nikah like ? "+
                    (!TCari.getText().trim().equals("")?"and (dokter.kd_dokter like ? or dokter.nm_dokter like ? or "+
@@ -1387,12 +1387,15 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     stat.setString(12,"%"+TCari.getText().trim()+"%");
                     stat.setString(13,"%"+TCari.getText().trim()+"%");
                     stat.setString(14,"%"+TCari.getText().trim()+"%");
+                    stat.setString(15,"%"+TCari.getText().trim()+"%");//tambah chan
+                    stat.setString(16,"%"+TCari.getText().trim()+"%");//tambah chan
                 }
                 rs=stat.executeQuery();
                 while(rs.next()){
                     tabMode.addRow(new Object[]{
                         rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),
-                        rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14)
+                        rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14),//tambah chan
+                        rs.getString(15),rs.getString(16)//tambah chan
                     });
                 }
             }catch(Exception e){
@@ -1428,8 +1431,6 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         KdSps.setText("");
         TSpesialis.setText("");
         DTPLahir.setDate(new Date());
-        DTPTerbitSip.setDate(new Date());
-        DTPHabisSip.setDate(new Date());
         TKd.requestFocus();
         Valid.autoNomer(" dokter ","D",7,TKd);
     }
@@ -1449,7 +1450,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             TSpesialis.setText(tbDokter.getValueAt(row,11).toString());
             Sequel.cariIsi("select spesialis.kd_sps from spesialis where spesialis.nm_sps='"+tbDokter.getValueAt(row,11).toString()+"'", KdSps);
             TAlumni.setText(tbDokter.getValueAt(row,12).toString());
-            TNoi.setText(tbDokter.getValueAt(row,15).toString());
+            TNoi.setText(tbDokter.getValueAt(row,13).toString());
             
             switch (tbDokter.getValueAt(row,2).toString()) {
                 case "L":
@@ -1461,8 +1462,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             }
             
             Valid.SetTgl(DTPLahir,tbDokter.getValueAt(row,4).toString());
-            Valid.SetTgl(DTPTerbitSip,tbDokter.getValueAt(row,13).toString());
-            Valid.SetTgl(DTPHabisSip,tbDokter.getValueAt(row,14).toString());
+            Valid.SetTgl(DTPSuratIzin, tbDokter.getValueAt(row,14).toString());//tambah chan
+            Valid.SetTgl(DTPAkhirIzin, tbDokter.getValueAt(row,15).toString());//tambah chan
         }
     }
 
@@ -1500,4 +1501,4 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             MnRestore.setEnabled(false);
         } 
     }
-}
+    }
