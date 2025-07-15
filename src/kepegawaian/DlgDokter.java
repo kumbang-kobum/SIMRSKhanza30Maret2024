@@ -60,8 +60,6 @@ public class DlgDokter extends javax.swing.JDialog {
     public DlgDokter(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        System.out.println("⏰ Cek SIP dijalankan pada: " + new Date());
-
         this.setLocation(8,1);
         setSize(885,674);
 
