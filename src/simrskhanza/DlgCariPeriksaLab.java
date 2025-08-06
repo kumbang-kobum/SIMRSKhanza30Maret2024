@@ -1,5 +1,5 @@
 package simrskhanza;
-import bridging.BridgingWA;//tambah chan
+import bridging.WAKirim;//tambah chan
 import kepegawaian.DlgCariPetugas;
 import keuangan.Jurnal;
 import fungsi.WarnaTable;
@@ -46,7 +46,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
     private int i,jmlkunjungan=0,jmlpemeriksaan=0,jmlsubpemeriksaan=0;
     private PreparedStatement ps,ps2,ps3,ps4,psrekening,ps5,pspermintaan;
     private ResultSet rs,rs2,rs3,rs5,rsrekening,rspermintaan;
-    private BridgingWA kirimwa=new BridgingWA(); //tambah chan
     private String kamar,namakamar,datapasien="",finger="";
     private boolean sukses=false;
     private double ttl=0,item=0;
@@ -326,6 +325,9 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         MnCetakSuratCovid = new javax.swing.JMenuItem();
         ppBerkasDigital = new javax.swing.JMenuItem();
         ppRiwayat = new javax.swing.JMenuItem();
+        MnKirimWA = new javax.swing.JMenu();
+        MnKirimPasien = new javax.swing.JMenuItem();
+        MnKirimDokterPerujuk = new javax.swing.JMenuItem();
         WindowSaran = new javax.swing.JDialog();
         internalFrame6 = new widget.InternalFrame();
         panelGlass6 = new widget.panelisi();
@@ -361,8 +363,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         BtnAll = new widget.Button();
         BtnPrint = new widget.Button();
         BtnKeluar = new widget.Button();
-        BtnKirimWA = new widget.Button();
-        BtnKirimWA1 = new widget.Button();
         TabRawat = new javax.swing.JTabbedPane();
         scrollPane1 = new widget.ScrollPane();
         tbDokter = new widget.Table();
@@ -840,6 +840,35 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         });
         jPopupMenu1.add(ppRiwayat);
 
+        MnKirimWA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnKirimWA.setText("Kirim Whatsapp");
+        MnKirimWA.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnKirimWA.setName("MnKirimWA"); // NOI18N
+
+        MnKirimPasien.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnKirimPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnKirimPasien.setText("Kirim Hasil Pasien");
+        MnKirimPasien.setName("MnKirimPasien"); // NOI18N
+        MnKirimPasien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnKirimPasienActionPerformed(evt);
+            }
+        });
+        MnKirimWA.add(MnKirimPasien);
+
+        MnKirimDokterPerujuk.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnKirimDokterPerujuk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnKirimDokterPerujuk.setText("Kirim Dokter Perujuk");
+        MnKirimDokterPerujuk.setName("MnKirimDokterPerujuk"); // NOI18N
+        MnKirimDokterPerujuk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnKirimDokterPerujukActionPerformed(evt);
+            }
+        });
+        MnKirimWA.add(MnKirimDokterPerujuk);
+
+        jPopupMenu1.add(MnKirimWA);
+
         WindowSaran.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowSaran.setName("WindowSaran"); // NOI18N
         WindowSaran.setUndecorated(true);
@@ -1167,42 +1196,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
             }
         });
         panelisi1.add(BtnKeluar);
-
-        BtnKirimWA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/whatsapp.png"))); // NOI18N
-        BtnKirimWA.setMnemonic('H');
-        BtnKirimWA.setText("k pasien");
-        BtnKirimWA.setToolTipText("Alt+H");
-        BtnKirimWA.setName("BtnKirimWA"); // NOI18N
-        BtnKirimWA.setPreferredSize(new java.awt.Dimension(100, 30));
-        BtnKirimWA.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnKirimWAActionPerformed(evt);
-            }
-        });
-        BtnKirimWA.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnKirimWAKeyPressed(evt);
-            }
-        });
-        panelisi1.add(BtnKirimWA);
-
-        BtnKirimWA1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/whatsapp.png"))); // NOI18N
-        BtnKirimWA1.setMnemonic('H');
-        BtnKirimWA1.setText("dr perujuk");
-        BtnKirimWA1.setToolTipText("Alt+H");
-        BtnKirimWA1.setName("BtnKirimWA1"); // NOI18N
-        BtnKirimWA1.setPreferredSize(new java.awt.Dimension(100, 30));
-        BtnKirimWA1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnKirimWA1ActionPerformed(evt);
-            }
-        });
-        BtnKirimWA1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnKirimWA1KeyPressed(evt);
-            }
-        });
-        panelisi1.add(BtnKirimWA1);
 
         internalFrame1.add(panelisi1, java.awt.BorderLayout.PAGE_END);
 
@@ -3929,6 +3922,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                     rs=ps4.executeQuery();
                     while(rs.next()){
                         
+                        String noRM = rs.getString("no_rkm_medis");
                         kamar=Sequel.cariIsi("select ifnull(kamar_inap.kd_kamar,'') from kamar_inap where kamar_inap.no_rawat='"+rs.getString("no_rawat")+"' order by kamar_inap.tgl_masuk desc,kamar_inap.jam_masuk desc limit 1");
                         if(!kamar.equals("")){
                             namakamar=kamar+", "+Sequel.cariIsi("select bangsal.nm_bangsal from bangsal inner join kamar on bangsal.kd_bangsal=kamar.kd_bangsal "+
@@ -4034,9 +4028,9 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                 param.put("nopermintaan",rspermintaan.getString("noorder"));   
                                 param.put("tanggalpermintaan",rspermintaan.getString("tgl_permintaan"));  
                                 param.put("jampermintaan",rspermintaan.getString("jam_permintaan"));
-                                Valid.MyReportPDF("rptPeriksaLabPermintaan.jasper","report","::[ Pemeriksaan Laboratorium ]::",param);
+                                Valid.MyReportLabPDF("rptPeriksaLab.jasper", "report", noRM, "::[ Pemeriksaan Laboratorium ]::", param);
                             }else{
-                                Valid.MyReportPDF("rptPeriksaLab.jasper","report","::[ Pemeriksaan Laboratorium ]::",param); 
+                                Valid.MyReportLabPDF("rptPeriksaLab.jasper", "HasilLab", noRM, "::[ Pemeriksaan Laboratorium ]::", param); 
                             }
                         } catch (Exception e) {
                             System.out.println("Notif : "+e);
@@ -4064,6 +4058,12 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
             }            
         }
         this.setCursor(Cursor.getDefaultCursor());
+        File pdfHasil = new File("./HasilLab/rptPeriksaLab.pdf");
+            if (!pdfHasil.exists()) {
+                System.err.println("PDF hasil lab belum dibuat.");
+            } else {
+                System.out.println("PDF ditemukan di: " + pdfHasil.getAbsolutePath());
+            }
     }//GEN-LAST:event_MnCetakHasilLab11ActionPerformed
 
     private void MnCetakHasilLab12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCetakHasilLab12ActionPerformed
@@ -6207,29 +6207,170 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         }
     }//GEN-LAST:event_ppRiwayatBtnPrintActionPerformed
 
-    private void BtnKirimWAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKirimWAActionPerformed
-        if(tbDokter.getSelectedRow() > -1) {
-            String no_rawat = tbDokter.getValueAt(tbDokter.getSelectedRow(), 0).toString();
+    private void MnKirimPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnKirimPasienActionPerformed
+//    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));waha pro
+//
+//    if (tabMode.getRowCount() == 0 || Kd2.getText().trim().equals("")) {
+//        JOptionPane.showMessageDialog(null, "Pilih dulu data yang akan dikirim.");
+//        this.setCursor(Cursor.getDefaultCursor());
+//        return;
+//    }
+//
+//    try {
+//        String noRawat = Kd2.getText();
+//        String noRM = Sequel.cariIsi("SELECT no_rkm_medis FROM reg_periksa WHERE no_rawat=?", noRawat);
+//        String namaPasien = Sequel.cariIsi("SELECT nm_pasien FROM pasien WHERE no_rkm_medis=?", noRM);
+//        String noHP = Sequel.cariIsi("SELECT no_tlp FROM pasien WHERE no_rkm_medis=?", noRM).replaceAll("[^0-9]", "");
+//
+//        if(noHP.equals("")){
+//            JOptionPane.showMessageDialog(null, "Nomor HP pasien kosong. Tidak bisa mengirim WA.");
+//            this.setCursor(Cursor.getDefaultCursor());
+//            return;
+//        }
+//
+//        Map<String, Object> param = new HashMap<>();
+//        param.put("noperiksa", noRawat);
+//        param.put("namars", akses.getnamars());
+//        param.put("alamatrs", akses.getalamatrs());
+//
+//        // 1. Generate PDF
+//        Valid.MyReportLabPDF("rptPeriksaLab.jasper", "report", noRM, "::[ Pemeriksaan Laboratorium ]::", param);
+//        File filePDF = new File("./HasilLab/" + noRM + ".pdf");
+//
+//        if (!filePDF.exists()) {
+//            JOptionPane.showMessageDialog(null, "Gagal membuat file PDF hasil lab.");
+//            this.setCursor(Cursor.getDefaultCursor());
+//            return;
+//        }
+//
+//        // 2. Upload ke server
+//        WAKirim.uploadPDFToServer(filePDF);
+//
+//        // 3. Kirim WA
+//        String chatId = noHP.startsWith("62") ? noHP : "62" + noHP.substring(1);
+//        chatId += "@c.us"; // Format WAHA
+//        String fileUrl = "https://waha.rsuhandayani.co.id/HasilLab/" + filePDF.getName();
+//        String caption = "Halo " + namaPasien + ", berikut hasil lab Anda dari RSU Handayani.";
+//
+//        WAKirim.kirimFile(chatId, fileUrl, filePDF.getName(), caption);
+//
+//        JOptionPane.showMessageDialog(null, "✅ Hasil lab berhasil dikirim ke WhatsApp pasien.");
+//
+//    } catch (Exception e) {
+//        JOptionPane.showMessageDialog(null, "❌ Gagal mengirim hasil lab: " + e.getMessage());
+//        e.printStackTrace();
+//    }
+//
+//    this.setCursor(Cursor.getDefaultCursor());
+    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
-            kirimwa.SendHasilBacaLab(no_rawat);
+    if (tabMode.getRowCount() == 0 || Kd2.getText().trim().equals("")) {
+        JOptionPane.showMessageDialog(null, "Pilih dulu data yang akan dikirim.");
+        this.setCursor(Cursor.getDefaultCursor());
+        return;
+    }
+
+    try {
+        String noRawat = Kd2.getText();
+        String noRM = Sequel.cariIsi("SELECT no_rkm_medis FROM reg_periksa WHERE no_rawat=?", noRawat);
+        String namaPasien = Sequel.cariIsi("SELECT nm_pasien FROM pasien WHERE no_rkm_medis=?", noRM);
+        String noHP = Sequel.cariIsi("SELECT no_tlp FROM pasien WHERE no_rkm_medis=?", noRM).replaceAll("[^0-9]", "");
+
+        if(noHP.equals("")){
+            JOptionPane.showMessageDialog(null, "Nomor HP pasien kosong. Tidak bisa mengirim WA.");
+            this.setCursor(Cursor.getDefaultCursor());
+            return;
         }
-    }//GEN-LAST:event_BtnKirimWAActionPerformed
 
-    private void BtnKirimWAKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKirimWAKeyPressed
-        
-    }//GEN-LAST:event_BtnKirimWAKeyPressed
+        Map<String, Object> param = new HashMap<>();
+        param.put("noperiksa", noRawat);
+        param.put("namars", akses.getnamars());
+        param.put("alamatrs", akses.getalamatrs());
 
-    private void BtnKirimWA1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKirimWA1ActionPerformed
-        if(tbDokter.getSelectedRow() > -1) {
-            String no_rawat = tbDokter.getValueAt(tbDokter.getSelectedRow(), 0).toString();
+        // 1. Generate PDF
+        Valid.MyReportLabPDF("rptPeriksaLab.jasper", "report", noRM, "::[ Pemeriksaan Laboratorium ]::", param);
+        File filePDF = new File("./HasilLab/" + noRM + ".pdf");
 
-            kirimwa.SendHasilBacaLabdr(no_rawat);
-        }    
-    }//GEN-LAST:event_BtnKirimWA1ActionPerformed
+        if (!filePDF.exists()) {
+            JOptionPane.showMessageDialog(null, "Gagal membuat file PDF hasil lab.");
+            this.setCursor(Cursor.getDefaultCursor());
+            return;
+        }
 
-    private void BtnKirimWA1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKirimWA1KeyPressed
-        //tambah chan
-    }//GEN-LAST:event_BtnKirimWA1KeyPressed
+        // 2. Upload ke server
+        WAKirim.uploadPDFToServer(filePDF);
+
+        // 3. Kirim link via WhatsApp (gunakan sendText)
+        String chatId = noHP.startsWith("62") ? noHP : "62" + noHP.substring(1);
+        chatId += "@c.us"; // Format WAHA
+
+        String fileUrl = "https://waha.rsuhandayani.co.id/HasilLab/" + filePDF.getName();
+        String pesan = "Halo " + namaPasien + ", berikut hasil lab Anda dari RSU Handayani:\n" + fileUrl;
+
+        WAKirim.kirimTeks(chatId, pesan);
+
+        JOptionPane.showMessageDialog(null, "✅ Link hasil lab berhasil dikirim ke WhatsApp pasien.");
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "❌ Gagal mengirim hasil lab: " + e.getMessage());
+        e.printStackTrace();
+    }
+
+    this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_MnKirimPasienActionPerformed
+
+    private void MnKirimDokterPerujukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnKirimDokterPerujukActionPerformed
+    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
+    if (tabMode.getRowCount() == 0 || Kd2.getText().trim().equals("")) {
+        JOptionPane.showMessageDialog(null, "Pilih dulu data yang akan dikirim.");
+        this.setCursor(Cursor.getDefaultCursor());
+        return;
+    }
+
+    try {
+        String noRawat = Kd2.getText();
+        String noRM = Sequel.cariIsi("SELECT no_rkm_medis FROM reg_periksa WHERE no_rawat=?", noRawat);
+        String namaPasien = Sequel.cariIsi("SELECT nm_pasien FROM pasien WHERE no_rkm_medis=?", noRM);
+        String noWA = Sequel.cariIsi("SELECT ifnull(no_tlp,'') FROM pasien WHERE no_rkm_medis=?", noRM);
+
+        if (noWA.isBlank()) {
+            JOptionPane.showMessageDialog(null, "Nomor WA pasien belum tersedia.");
+            this.setCursor(Cursor.getDefaultCursor());
+            return;
+        }
+
+        // Generate PDF
+        Map<String, Object> param = new HashMap<>();
+        param.put("noperiksa", noRawat);
+        param.put("namars", akses.getnamars());
+        param.put("alamatrs", akses.getalamatrs());
+
+        Valid.MyReportLabPDF("rptPeriksaLab.jasper", "report", noRM, "::[ Pemeriksaan Laboratorium ]::", param);
+
+        // Upload PDF
+        File pdfFile = new File("./HasilLab/" + noRM + ".pdf");
+        if (!pdfFile.exists()) {
+            JOptionPane.showMessageDialog(null, "PDF hasil lab belum ditemukan.");
+            this.setCursor(Cursor.getDefaultCursor());
+            return;
+        }
+        WAKirim.uploadPDFToServer(pdfFile);
+
+        // Kirim WA
+        String chatId = "62" + noWA.replaceFirst("^0", "") + "@c.us";
+        String fileUrl = "http://192.168.4.252/HasilLab/" + noRM + ".pdf";
+        String pesan = "Berikut hasil periksa pasien " + namaPasien + " dengan rekam medis " + noRM;
+        WAKirim.kirimFile(chatId, fileUrl, noRM + ".pdf", pesan);
+
+        JOptionPane.showMessageDialog(null, "Hasil telah dikirim ke WA pasien.");
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Gagal mengirim hasil lab: " + e.getMessage());
+        e.printStackTrace();
+    }
+
+    this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_MnKirimDokterPerujukActionPerformed
 
     /**
     * @param args the command line arguments
@@ -6253,8 +6394,6 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     private widget.Button BtnCloseIn5;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
-    private widget.Button BtnKirimWA;
-    private widget.Button BtnKirimWA1;
     private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
     private widget.TextBox Kd2;
@@ -6287,6 +6426,9 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     private javax.swing.JMenu MnCetakLab;
     private javax.swing.JMenuItem MnCetakNota;
     private javax.swing.JMenuItem MnCetakSuratCovid;
+    private javax.swing.JMenuItem MnKirimDokterPerujuk;
+    private javax.swing.JMenuItem MnKirimPasien;
+    private javax.swing.JMenu MnKirimWA;
     private javax.swing.JMenu MnPDFLab;
     private javax.swing.JMenuItem MnSaranKesan;
     private javax.swing.JMenuItem MnUbah;

@@ -1468,6 +1468,7 @@ public class frmUtama extends javax.swing.JFrame {
         scrollPane2 = new widget.ScrollPane();
         Panelmenu = new widget.panelGlass();
         tanggal = new widget.Tanggal();
+        btnLaboratorium1 = new widget.ButtonBig();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
         btnDataPenyerahanDarah = new widget.ButtonBig();
@@ -2027,14 +2028,15 @@ public class frmUtama extends javax.swing.JFrame {
 
         internalFrame2.setBorder(null);
         internalFrame2.setName("internalFrame2"); // NOI18N
-        internalFrame2.setWarnaAtas(new java.awt.Color(0, 255, 255));
-        internalFrame2.setWarnaBawah(new java.awt.Color(0, 255, 255));
+        internalFrame2.setWarnaAtas(new java.awt.Color(102, 204, 255));
+        internalFrame2.setWarnaBawah(new java.awt.Color(51, 153, 255));
         internalFrame2.setLayout(null);
 
         internalFrame3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(100, 125, 90), 1, true), ":: Silahkan Anda Login ::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 2, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame3.setName("internalFrame3"); // NOI18N
         internalFrame3.setRequestFocusEnabled(false);
-        internalFrame3.setWarnaAtas(new java.awt.Color(0, 153, 204));
+        internalFrame3.setWarnaAtas(new java.awt.Color(0, 153, 255));
+        internalFrame3.setWarnaBawah(new java.awt.Color(0, 153, 255));
         internalFrame3.setLayout(null);
 
         panelGlass1.setBackground(java.awt.Color.red);
@@ -2224,10 +2226,21 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08/07/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31/07/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
+
+        btnLaboratorium1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/laboratory.png"))); // NOI18N
+        btnLaboratorium1.setText("Cetak Hasil Lab PK");
+        btnLaboratorium1.setIconTextGap(0);
+        btnLaboratorium1.setName("btnLaboratorium1"); // NOI18N
+        btnLaboratorium1.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnLaboratorium1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaboratorium1ActionPerformed(evt);
+            }
+        });
 
         btnDataPenjualan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1485357971_desktop_computer.png"))); // NOI18N
         btnDataPenjualan.setText("Data Penjualan Obat & BHP");
@@ -7305,6 +7318,7 @@ public class frmUtama extends javax.swing.JFrame {
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setPreferredSize(new java.awt.Dimension(40, 42));
         internalFrame1.setVerifyInputWhenFocusTarget(false);
+        internalFrame1.setWarnaAtas(new java.awt.Color(51, 153, 255));
         internalFrame1.setWarnaBawah(new java.awt.Color(51, 102, 255));
         internalFrame1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 2));
 
@@ -7326,8 +7340,8 @@ public class frmUtama extends javax.swing.JFrame {
         });
         internalFrame1.add(BtnMenu);
 
-        jSeparator4.setBackground(new java.awt.Color(225, 61, 142));
-        jSeparator4.setForeground(new java.awt.Color(225, 61, 142));
+        jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(217, 1, 122)));
         jSeparator4.setName("jSeparator4"); // NOI18N
@@ -7371,8 +7385,8 @@ public class frmUtama extends javax.swing.JFrame {
         });
         internalFrame1.add(btnToolIGD);
 
-        jSeparator5.setBackground(new java.awt.Color(225, 61, 142));
-        jSeparator5.setForeground(new java.awt.Color(225, 61, 142));
+        jSeparator5.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(217, 1, 122)));
         jSeparator5.setName("jSeparator5"); // NOI18N
@@ -7431,8 +7445,8 @@ public class frmUtama extends javax.swing.JFrame {
         });
         internalFrame1.add(BtnToolJualObat);
 
-        jSeparator9.setBackground(new java.awt.Color(225, 61, 142));
-        jSeparator9.setForeground(new java.awt.Color(225, 61, 142));
+        jSeparator9.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator9.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator9.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(217, 1, 122)));
         jSeparator9.setName("jSeparator9"); // NOI18N
@@ -7476,8 +7490,8 @@ public class frmUtama extends javax.swing.JFrame {
         });
         internalFrame1.add(BtnToolKasir);
 
-        jSeparator7.setBackground(new java.awt.Color(225, 61, 142));
-        jSeparator7.setForeground(new java.awt.Color(225, 61, 142));
+        jSeparator7.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator7.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator7.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(217, 1, 122)));
         jSeparator7.setName("jSeparator7"); // NOI18N
@@ -7526,6 +7540,7 @@ public class frmUtama extends javax.swing.JFrame {
         internalFrame4.setName("internalFrame4"); // NOI18N
         internalFrame4.setPreferredSize(new java.awt.Dimension(330, 25));
         internalFrame4.setWarnaAtas(new java.awt.Color(51, 102, 255));
+        internalFrame4.setWarnaBawah(new java.awt.Color(51, 153, 255));
         internalFrame4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 1));
 
         lblStts.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -7537,8 +7552,8 @@ public class frmUtama extends javax.swing.JFrame {
         lblStts.setPreferredSize(new java.awt.Dimension(100, 23));
         internalFrame4.add(lblStts);
 
-        jSeparator1.setBackground(new java.awt.Color(225, 61, 142));
-        jSeparator1.setForeground(new java.awt.Color(225, 61, 142));
+        jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(217, 1, 122)));
         jSeparator1.setName("jSeparator1"); // NOI18N
@@ -7555,8 +7570,8 @@ public class frmUtama extends javax.swing.JFrame {
         lblUser.setPreferredSize(new java.awt.Dimension(170, 23));
         internalFrame4.add(lblUser);
 
-        jSeparator2.setBackground(new java.awt.Color(225, 61, 142));
-        jSeparator2.setForeground(new java.awt.Color(225, 61, 142));
+        jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(217, 1, 122)));
         jSeparator2.setName("jSeparator2"); // NOI18N
@@ -7573,8 +7588,8 @@ public class frmUtama extends javax.swing.JFrame {
         lblTgl.setPreferredSize(new java.awt.Dimension(100, 23));
         internalFrame4.add(lblTgl);
 
-        jSeparator3.setBackground(new java.awt.Color(225, 61, 142));
-        jSeparator3.setForeground(new java.awt.Color(225, 61, 142));
+        jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(217, 1, 122)));
         jSeparator3.setName("jSeparator3"); // NOI18N
@@ -7591,8 +7606,8 @@ public class frmUtama extends javax.swing.JFrame {
         LblIP.setPreferredSize(new java.awt.Dimension(120, 23));
         internalFrame4.add(LblIP);
 
-        jSeparator6.setBackground(new java.awt.Color(225, 61, 142));
-        jSeparator6.setForeground(new java.awt.Color(225, 61, 142));
+        jSeparator6.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator6.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(217, 1, 122)));
         jSeparator6.setName("jSeparator6"); // NOI18N
@@ -8664,9 +8679,13 @@ public class frmUtama extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_BtnLoginActionPerformed
-    public void cekSIPDokterKadaluarsa() {//tambah chan peringatan SIP Berakhir
+    public void cekSIPDokterKadaluarsa() {
+        StringBuilder isiPesan = new StringBuilder("<html><body style='width: 400px;'>"
+            + "<h3>⚠️ Daftar Dokter yang SIP Akan Berakhir:</h3><ol>");
+
+        boolean adaPeringatan = false;
+
         try {
-            Connection koneksi = koneksiDB.condb();
             PreparedStatement ps = koneksi.prepareStatement(
                 "SELECT nm_dokter, tgl_akhir_izin FROM dokter " +
                 "WHERE status='1' AND tgl_akhir_izin IS NOT NULL " +
@@ -8674,22 +8693,31 @@ public class frmUtama extends javax.swing.JFrame {
                 "AND tgl_akhir_izin >= CURDATE()"
             );
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                String namaDokter = rs.getString("nm_dokter");
-                String tanggalAkhir = rs.getString("tgl_akhir_izin");
 
-                JOptionPane.showMessageDialog(null,
-                    "⚠️ SIP Dokter *" + namaDokter + "* akan berakhir pada: " + tanggalAkhir,
-                    "Peringatan SIP",
-                    JOptionPane.WARNING_MESSAGE
-                );
+            while (rs.next()) {
+                adaPeringatan = true;
+                String nama = rs.getString("nm_dokter");
+                String tgl = rs.getString("tgl_akhir_izin");
+                isiPesan.append("<li>").append(nama).append(" akan berakhir pada ").append(tgl).append("</li>");
             }
+
             rs.close();
             ps.close();
         } catch (Exception e) {
             System.out.println("Cek SIP Error: " + e.getMessage());
         }
-    }
+
+        isiPesan.append("</ol></body></html>");
+
+        if (adaPeringatan) {
+            JOptionPane.showMessageDialog(this,
+                isiPesan.toString(),
+                "Peringatan SIP Dokter",
+                JOptionPane.WARNING_MESSAGE
+            );
+        }
+}
+    
     private void BtnToolKamnapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnToolKamnapActionPerformed
         isTutup();
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -10082,14 +10110,17 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         FlayMenu.add(btnLaboratorium);
         FlayMenu.add(btnLaboratoriumPA);
         FlayMenu.add(btnLaboratoriumMB);
-        if((akses.getpermintaan_lab()==true)||(akses.getperiksa_lab()==true)||(akses.getpemeriksaan_lab_pa()==true)||(akses.getpemeriksaan_lab_mb()==true)){
+        FlayMenu.add(btnLaboratorium1);
+        if((akses.getpermintaan_lab()==true)||(akses.getperiksa_lab()==true)||(akses.getpemeriksaan_lab_pa()==true)||(akses.getpemeriksaan_lab_mb()==true)||(akses.getsoap_perawatan()==true)){
             btnPermintaanLab.setEnabled(true);
             btnPermintaanLabPA.setEnabled(true);
             btnPermintaanLabMB.setEnabled(true);
+            btnLaboratorium1.setEnabled(true);
         }else{
             btnPermintaanLab.setEnabled(akses.getpermintaan_lab());
             btnPermintaanLabPA.setEnabled(akses.getpermintaan_lab());
             btnPermintaanLabMB.setEnabled(akses.getpermintaan_lab());
+            btnLaboratorium1.setEnabled(akses.getsoap_perawatan());
         }
         btnLaboratorium.setEnabled(akses.getperiksa_lab());
         btnLaboratoriumPA.setEnabled(akses.getpemeriksaan_lab_pa());
@@ -14826,6 +14857,18 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         Valid.panggilUrl("antrianmobilejkn.php");
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_MnInfoMobileJKNActionPerformed
+
+    private void btnLaboratorium1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaboratorium1ActionPerformed
+        isTutup();
+        DlgCariPeriksaLab1 produsen=new DlgCariPeriksaLab1(this,false);
+        //produsen.emptTeks();
+        produsen.isCek();
+        produsen.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
+        produsen.setLocationRelativeTo(PanelUtama);
+        produsen.setVisible(true);
+        DlgHome.dispose();
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnLaboratorium1ActionPerformed
 
     private void btnKategoriPerpustakaanActionPerformed(java.awt.event.ActionEvent evt) {
         isTutup();
@@ -23233,6 +23276,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
     private widget.ButtonBig btnKunjunganRanap;
     private widget.ButtonBig btnLabaRugi;
     private widget.ButtonBig btnLaboratorium;
+    private widget.ButtonBig btnLaboratorium1;
     private widget.ButtonBig btnLaboratoriumMB;
     private widget.ButtonBig btnLaboratoriumPA;
     private widget.ButtonBig btnLahir;

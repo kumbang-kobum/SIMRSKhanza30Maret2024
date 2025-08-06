@@ -5923,7 +5923,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     htmlContent.append(
                                             ")</td>").append(
                                             "<td valign='top'>").append(rs2.getString("jenis_anasthesi")).append("</td>").append(
-                                            "<td valign='top' align='right'>").append(Valid.SetAngka(rs2.getDouble("kategori"))).append("</td>").append(//tambah chan
+                                            "<td valign='top' align='right'>").append(Valid.SetAngka(rs2.getString("kategori"))).append("</td>").append(//tambah chan
                                          "</tr>"); 
                                     w++;
                                     biayaperawatan=biayaperawatan+rs2.getDouble("total");

@@ -60,6 +60,7 @@ public class DlgDokter extends javax.swing.JDialog {
     public DlgDokter(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
         this.setLocation(8,1);
         setSize(885,674);
 
@@ -107,10 +108,10 @@ public class DlgDokter extends javax.swing.JDialog {
                 column.setPreferredWidth(200);
             }else if(i==13){
                 column.setPreferredWidth(100);
-            }else if(i==14){//tambah chan
-                column.setPreferredWidth(100);
-            }else if(i==15){//tambah chan
-                column.setPreferredWidth(100);    
+            }else if(i==14){
+                column.setPreferredWidth(100);//tambah chan
+            }else if(i==15){
+                column.setPreferredWidth(100);//tambah chan    
             }
         }
         tbDokter.setDefaultRenderer(Object.class, new WarnaTable());
@@ -189,9 +190,7 @@ public class DlgDokter extends javax.swing.JDialog {
                     TTmp.setText(pegawai.tbKamar.getValueAt(pegawai.tbKamar.getSelectedRow(),11).toString());
                     TAlmt.setText(pegawai.tbKamar.getValueAt(pegawai.tbKamar.getSelectedRow(),13).toString());
                     Valid.SetTgl(DTPLahir,pegawai.tbKamar.getValueAt(pegawai.tbKamar.getSelectedRow(),12).toString());
-                    Valid.SetTgl(DTPSuratIzin,pegawai.tbKamar.getValueAt(pegawai.tbKamar.getSelectedRow(),14).toString());//tambah chan
-                    Valid.SetTgl(DTPAkhirIzin,pegawai.tbKamar.getValueAt(pegawai.tbKamar.getSelectedRow(),15).toString());//tambah chan
-                }   
+                    }   
                 TKd.requestFocus();
             }
             @Override
@@ -668,7 +667,7 @@ public class DlgDokter extends javax.swing.JDialog {
         jLabel13.setBounds(2, 102, 95, 23);
 
         DTPLahir.setForeground(new java.awt.Color(50, 70, 50));
-        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-07-2025" }));
+        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-07-2025" }));
         DTPLahir.setDisplayFormat("dd-MM-yyyy");
         DTPLahir.setName("DTPLahir"); // NOI18N
         DTPLahir.setOpaque(false);
@@ -841,7 +840,7 @@ public class DlgDokter extends javax.swing.JDialog {
         jLabel23.setBounds(612, 72, 55, 23);
 
         DTPSuratIzin.setForeground(new java.awt.Color(50, 70, 50));
-        DTPSuratIzin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-07-2025" }));
+        DTPSuratIzin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-07-2025" }));
         DTPSuratIzin.setDisplayFormat("dd-MM-yyyy");
         DTPSuratIzin.setName("DTPSuratIzin"); // NOI18N
         DTPSuratIzin.setOpaque(false);
@@ -854,7 +853,7 @@ public class DlgDokter extends javax.swing.JDialog {
         DTPSuratIzin.setBounds(960, 20, 104, 23);
 
         DTPAkhirIzin.setForeground(new java.awt.Color(50, 70, 50));
-        DTPAkhirIzin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-07-2025" }));
+        DTPAkhirIzin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-07-2025" }));
         DTPAkhirIzin.setDisplayFormat("dd-MM-yyyy");
         DTPAkhirIzin.setName("DTPAkhirIzin"); // NOI18N
         DTPAkhirIzin.setOpaque(false);
@@ -984,12 +983,14 @@ public class DlgDokter extends javax.swing.JDialog {
                     "pegawai","'0','"+TKd.getText()+"','"+TNm.getText()+"','"+CmbJk.getSelectedItem().toString().replaceAll("PEREMPUAN","Wanita").replaceAll("LAKI-LAKI","Pria")+"',"+
                     "'-','-','-','-','-','-','-','-','-','-','-','0','"+TTmp.getText()+"','"+Valid.SetTgl(DTPLahir.getSelectedItem()+"")+"','"+TAlmt.getText()+"','-','1900-01-01',"+
                     "'<1','-','T','-','AKTIF','0','0','0','1900-01-01','0','0','pages/pegawai/photo/','-'"
-                );        
-                Sequel.menyimpan2(
-                    "dokter","'"+TKd.getText()+"','"+TNm.getText()+"','"+CmbJk.getSelectedItem().toString().replaceAll("LAKI-LAKI","L").replaceAll("PEREMPUAN","P").trim()+"','"+
+                );
+                //tambah chan
+                Sequel.menyimpan2("dokter",
+                    "'"+TKd.getText()+"','"+TNm.getText()+"','"+CmbJk.getSelectedItem().toString().replaceAll("LAKI-LAKI","L").replaceAll("PEREMPUAN","P").trim()+"','"+
                     TTmp.getText()+"','"+Valid.SetTgl(DTPLahir.getSelectedItem()+"")+"','"+CMbGd.getSelectedItem()+"','"+cmbAgama.getSelectedItem()+"','"+TAlmt.getText()+"','"+
-                    TTlp.getText()+"','"+Email.getText()+"','"+CmbStts.getSelectedItem()+"','"+KdSps.getText()+"','"+TAlumni.getText()+"','"+TNoi.getText()+"','1','"+//tambah chan
-                    Valid.SetTgl(DTPSuratIzin.getSelectedItem()+"")+"','"+Valid.SetTgl(DTPAkhirIzin.getSelectedItem()+"")+"'","Kode Dokter"//tambah chan
+                    TTlp.getText()+"','"+Email.getText()+"','"+CmbStts.getSelectedItem()+"','"+KdSps.getText()+"','"+TAlumni.getText()+"','"+TNoi.getText()+"','"+
+                    Valid.SetTgl(DTPSuratIzin.getSelectedItem()+"")+"','"+Valid.SetTgl(DTPAkhirIzin.getSelectedItem()+"")+"','1'",
+                    "Kode Dokter"
                 );
                 Sequel.Commit();
                 Sequel.AutoComitTrue();
@@ -1125,18 +1126,17 @@ public class DlgDokter extends javax.swing.JDialog {
                     "jk='"+CmbJk.getSelectedItem().toString().replaceAll("PEREMPUAN","Wanita").replaceAll("LAKI-LAKI","Pria")+"',"+"tmp_lahir='"+TTmp.getText()+"',"+
                     "tgl_lahir='"+Valid.SetTgl(DTPLahir.getSelectedItem()+"")+"',alamat='"+TAlmt.getText()+"'"
                 );
+                //tambah chan
                 Sequel.mengedit(
                     "dokter","kd_dokter='"+tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString()+"'","kd_dokter='"+TKd.getText()+"',nm_dokter='"+TNm.getText()+
                     "',jk='"+CmbJk.getSelectedItem().toString().replaceAll("LAKI-LAKI","L").replaceAll("PEREMPUAN","P").trim()+"',tmp_lahir='"+TTmp.getText()+
                     "',tgl_lahir='"+Valid.SetTgl(DTPLahir.getSelectedItem()+"")+"',gol_drh='"+CMbGd.getSelectedItem()+"',agama='"+cmbAgama.getSelectedItem()+
                     "',almt_tgl='"+TAlmt.getText()+"',no_telp='"+TTlp.getText()+"',email='"+Email.getText()+"',stts_nikah='"+CmbStts.getSelectedItem()+"'"+
-                    ",kd_sps='"+KdSps.getText()+"',alumni='"+TAlumni.getText()+"',no_ijn_praktek='"+TNoi.getText()+"'"+ ",tgl_surat_izin='"+Valid.SetTgl(DTPSuratIzin.getSelectedItem()+"")+//tambah chan
-                    "',tgl_akhir_izin='"+Valid.SetTgl(DTPAkhirIzin.getSelectedItem()+"")+"'"//tambah chan
+                    ",kd_sps='"+KdSps.getText()+"',alumni='"+TAlumni.getText()+"',no_ijn_praktek='"+TNoi.getText()+"'"+ ",tgl_surat_izin='"+Valid.SetTgl(DTPSuratIzin.getSelectedItem()+"")+
+                    "',tgl_akhir_izin='"+Valid.SetTgl(DTPAkhirIzin.getSelectedItem()+"")+"'"
                 );
                 koneksi.setAutoCommit(true);
                 if(tabMode.getRowCount()!=0){tampil();}
-                DTPSuratIzin.setDate(new Date());//tambah chan
-                DTPAkhirIzin.setDate(new Date());//tambah chan
                 emptTeks();
             } catch (SQLException ex) {
                 return;
@@ -1368,7 +1368,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                    (!TCari.getText().trim().equals("")?"and (dokter.kd_dokter like ? or dokter.nm_dokter like ? or "+
                    "dokter.tmp_lahir like ? or dokter.tgl_lahir like ? or dokter.agama like ? or dokter.almt_tgl like ? or "+
                    "dokter.no_telp like ? or dokter.stts_nikah like ? or spesialis.nm_sps like ? or dokter.alumni like ? or "+
-                   "dokter.no_ijn_praktek like ?)":"")+" order by dokter.kd_dokter");
+                   "dokter.no_ijn_praktek like ? or dokter.tgl_surat_izin like ? or dokter.tgl_akhir_izin like ?)":"")+" order by dokter.kd_dokter");//tambah chan
             try{
                 stat.setString(1,"%"+cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI","L").replaceAll("PEREMPUAN","P").trim()+"%");
                 stat.setString(2,"%"+CmbCrGd.getSelectedItem().toString().trim()+"%");
@@ -1386,14 +1386,13 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     stat.setString(13,"%"+TCari.getText().trim()+"%");
                     stat.setString(14,"%"+TCari.getText().trim()+"%");
                     stat.setString(15,"%"+TCari.getText().trim()+"%");//tambah chan
-                    stat.setString(16,"%"+TCari.getText().trim()+"%");//tambah chan
                 }
                 rs=stat.executeQuery();
                 while(rs.next()){
                     tabMode.addRow(new Object[]{
                         rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),
-                        rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14),//tambah chan
-                        rs.getString(15),rs.getString(16)//tambah chan
+                        rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14),
+                        rs.getString(15)//tambah chan
                     });
                 }
             }catch(Exception e){
@@ -1430,6 +1429,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         TSpesialis.setText("");
         DTPLahir.setDate(new Date());
         TKd.requestFocus();
+        DTPSuratIzin.setDate(new Date());//tambah chan
+        DTPAkhirIzin.setDate(new Date());//tambah chan
         Valid.autoNomer(" dokter ","D",7,TKd);
     }
 

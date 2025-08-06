@@ -202,4 +202,6 @@
     <entry key="clientIdmekari">2ZXUFzr8WyDqAKXj</entry>
     <entry key="clientSecretmekari">y4LWq6zVQrLFk2Q4iDHpi1dKIKirn0Oc</entry>
     <entry key="templateIdmekari">e622d2f2-1b01-4607-abfb-f3d4fdbea414</entry>
+    <entry key="UPLOADLABURL">http://192.168.4.252/upload_lab.php</entry>
+    <entry key="LABFILEURL">http://10.8.0.6/HasilLab/</entry>
 </properties>
