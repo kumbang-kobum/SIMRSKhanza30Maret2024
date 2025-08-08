@@ -202,6 +202,6 @@
     <entry key="clientIdmekari">2ZXUFzr8WyDqAKXj</entry>
     <entry key="clientSecretmekari">y4LWq6zVQrLFk2Q4iDHpi1dKIKirn0Oc</entry>
     <entry key="templateIdmekari">e622d2f2-1b01-4607-abfb-f3d4fdbea414</entry>
-    <entry key="UPLOADLABURL">https://waha.rsuhandayani.co.id/HasilLab/upload_lab.php</entry>
-    <entry key="LABFILEURL">https://waha.rsuhandayani.co.id/HasilLab/</entry>
+    <entry key="UPLOADLABURL">https://xxx.xxxx.co.id/HasilLab/upload_lab.php</entry>
+    <entry key="LABFILEURL">https://xxx.xxxx.co.id/HasilLab/</entry>
 </properties>

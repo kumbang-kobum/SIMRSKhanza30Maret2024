@@ -7,7 +7,7 @@ import java.nio.file.Files;
 
 public class WAKirim {
 
-    private static final String WAHA_URL = "https://waha.rsuhandayani.co.id";
+    private static final String WAHA_URL = "https://xxx.xxxx.co.id";
     private static final String UPLOAD_URL = WAHA_URL + "/HasilLab/upload_lab.php";
     private static final String AUTH_TOKEN = "SayangAnisaNairaNafasya"; // samakan dengan upload_lab.php
 
