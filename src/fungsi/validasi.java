@@ -674,40 +674,7 @@ public final class validasi {
             System.out.println(e);
         }
     }
-    
-    @SuppressWarnings("empty-statement")
-public void MyReportLabPDF(String reportName, String reportSearchDir, String namaFileTanpaExt, String judul, Map parameters) {
-    try {
-        // Lokasi file .jasper langsung ke folder /report/
-        String currentDir = System.getProperty("user.dir");
-        String jasperPath = currentDir + File.separator + reportSearchDir + File.separator + reportName;
-        File fileRpt = new File(jasperPath);
-
-        if (!fileRpt.exists()) {
-            JOptionPane.showMessageDialog(null, "Jasper file tidak ditemukan di: " + jasperPath);
-            return;
-        }
-
-        // Buat folder ./HasilLab jika belum ada
-        File hasilFolder = new File("./HasilLab");
-        if (!hasilFolder.exists()) {
-            hasilFolder.mkdirs();
-        }
-
-        // Path file PDF hasil
-        String pathPDF = "./HasilLab/" + namaFileTanpaExt + ".pdf";
-
-        // Generate PDF
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperPath, parameters, connect);
-        JasperExportManager.exportReportToPdfFile(jasperPrint, pathPDF);
-
-        System.out.println("PDF berhasil dibuat di: " + pathPDF);
-
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, "Report Can't view because: " + e.getMessage());
-    }
-}
-    
+      
     @SuppressWarnings("empty-statement")
     public void MyReportPDF2(String reportName,String reportDirName,String judul,Map parameters){
         Properties systemProp = System.getProperties();

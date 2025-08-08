@@ -4,32 +4,35 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.file.Files;
-import java.util.Properties;
 
 public class WAKirim {
 
-    private static final String DEFAULT_UPLOAD_URL = "http://10.8.0.6/upload_lab.php";
-    private static final String DEFAULT_WAHA_URL = "https://waha.rsuhandayani.co.id";
-    private static final String DEFAULT_AUTH_TOKEN = "SayangAnisaNairaNafasya";
+    private static final String WAHA_URL = "https://waha.rsuhandayani.co.id";
+    private static final String UPLOAD_URL = WAHA_URL + "/HasilLab/upload_lab.php";
+    private static final String AUTH_TOKEN = "SayangAnisaNairaNafasya"; // samakan dengan upload_lab.php
 
-    private static final String AUTH_TOKEN = getEnv("UPLOAD_TOKEN", DEFAULT_AUTH_TOKEN);
-    private static final String WAHA_URL = getEnv("WAHA_URL", DEFAULT_WAHA_URL);
-
-    // ================== UPLOAD PDF ==================
-    public static void uploadPDFToServer(File file) {
+    /**
+     * Upload file PDF hasil lab ke server WAHA
+     * @param file PDF yang akan diupload
+     * @return URL publik hasil upload, atau null jika gagal
+     */
+    public static String uploadPDFToServer(File file) {
+        String uploadedUrl = null;
         try {
             String boundary = Long.toHexString(System.currentTimeMillis());
             String CRLF = "\r\n";
 
-            URL url = new URL(getUploadURL());
+            URL url = new URL(UPLOAD_URL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
             conn.setRequestProperty("Authorization", "Bearer " + AUTH_TOKEN);
 
-            try (OutputStream output = conn.getOutputStream()) {
-                PrintWriter writer = new PrintWriter(new OutputStreamWriter(output, "UTF-8"), true);
+            try (OutputStream output = conn.getOutputStream();
+                 PrintWriter writer = new PrintWriter(new OutputStreamWriter(output, "UTF-8"), true)) {
+
+                // Field file
                 writer.append("--").append(boundary).append(CRLF);
                 writer.append("Content-Disposition: form-data; name=\"file\"; filename=\"")
                         .append(file.getName()).append("\"").append(CRLF);
@@ -38,155 +41,81 @@ public class WAKirim {
 
                 Files.copy(file.toPath(), output);
                 output.flush();
-
                 writer.append(CRLF).flush();
+
+                // End boundary
                 writer.append("--").append(boundary).append("--").append(CRLF).flush();
             }
 
             int responseCode = conn.getResponseCode();
+            String response = new String(conn.getInputStream().readAllBytes());
+
             if (responseCode == 200) {
-                System.out.println("✅ Upload berhasil ke: " + WAHA_URL + "/HasilLab/" + file.getName());
-            } else {
-                System.out.println("❌ Upload gagal. Kode respons: " + responseCode);
-                try (InputStream errorStream = conn.getErrorStream()) {
-                    if (errorStream != null) {
-                        String response = new String(errorStream.readAllBytes());
-                        System.out.println("Server response: " + response);
-                    }
+                // Ambil "url" dari JSON
+                uploadedUrl = extractJsonValue(response, "url");
+                if (uploadedUrl == null || uploadedUrl.isEmpty()) {
+                    uploadedUrl = WAHA_URL + "/HasilLab/" + file.getName(); // fallback
                 }
+                System.out.println("✅ Upload berhasil ke: " + uploadedUrl);
+            } else {
+                System.out.println("❌ Upload gagal: " + responseCode + " - " + response);
             }
 
         } catch (Exception e) {
-            System.out.println("❌ Gagal upload ke server: " + e.getMessage());
+            System.out.println("❌ Gagal upload PDF: " + e.getMessage());
             e.printStackTrace();
         }
+        return uploadedUrl;
     }
 
-    // ================== KIRIM TEKS UNTUK PRO ==================
-//    public static void kirimTeks(String chatId, String pesan) {
-//        try {
-//            URL url = new URL(WAHA_URL + "/api/sendText");
-//            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-//            conn.setRequestMethod("POST");
-//            conn.setRequestProperty("Content-Type", "application/json");
-//            conn.setDoOutput(true);
-//
-//            String payload = String.format(
-//                    "{\"chatId\":\"%s\",\"text\":\"%s\"}",
-//                    chatId, pesan.replace("\"", "\\\"")
-//            );
-//
-//            try (OutputStream os = conn.getOutputStream()) {
-//                os.write(payload.getBytes("utf-8"));
-//            }
-//
-//            int status = conn.getResponseCode();
-//            System.out.println("WA kirim teks, status: " + status);
-//            conn.disconnect();
-//
-//        } catch (Exception e) {
-//            System.err.println("Gagal kirim teks ke WA: " + e.getMessage());
-//        }
-//    }
-    
-    // ================== KIRIM TEKS UNTUK GRATIS DENGAN LINK ==================
+    /**
+     * Kirim teks ke WAHA
+     */
     public static void kirimTeks(String chatId, String pesan) {
-    try {
-        URL url = new URL(WAHA_URL + "/api/sendText");
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("POST");
-        conn.setRequestProperty("Content-Type", "application/json");
-        conn.setDoOutput(true);
-
-        String cleanText = escapeJson(pesan);
-
-        String payload = String.format("""
-                {
-                    "chatId": "%s",
-                    "text": "%s",
-                    "session": "default"
-                }
-                """, chatId, cleanText);
-
-        try (OutputStream os = conn.getOutputStream()) {
-            os.write(payload.getBytes("utf-8"));
-        }
-
-        int status = conn.getResponseCode();
-        System.out.println("WA kirim teks, status: " + status);
-
-        if (status >= 400) {
-            try (var err = conn.getErrorStream()) {
-                if (err != null) {
-                    System.out.println("❌ Error dari WAHA:");
-                    err.transferTo(System.out);
-                }
-            }
-        }
-
-        conn.disconnect();
-
-    } catch (Exception e) {
-        System.err.println("Gagal kirim teks ke WA: " + e.getMessage());
-    }
-}
-
-    // ================== KIRIM FILE ==================
-    public static void kirimFile(String chatId, String fileUrl, String fileName, String caption) {
         try {
-            URL url = new URL(WAHA_URL + "/api/sendFile");
+            URL url = new URL(WAHA_URL + "/api/sendText");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setDoOutput(true);
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
+            conn.setDoOutput(true);
 
-            String json = String.format("""
-            {
-              "chatId": "%s",
-              "fileName": "%s",
-              "file": "%s",
-              "caption": "%s",
-              "session": "default"
-            }
-            """,
-            chatId.replace("\"", "\\\""),
-            fileName.replace("\"", "\\\""),
-            fileUrl.replace("\"", "\\\""),
-            caption.replace("\"", "\\\"")
-            );
+            String cleanText = escapeJson(pesan);
+            String payload = String.format("""
+                    {
+                        "chatId": "%s",
+                        "text": "%s",
+                        "session": "default"
+                    }
+                    """, chatId, cleanText);
 
             try (OutputStream os = conn.getOutputStream()) {
-                os.write(json.getBytes("utf-8"));
+                os.write(payload.getBytes("utf-8"));
             }
 
-            int responseCode = conn.getResponseCode();
-            System.out.println("WA kirim file, status: " + responseCode);
+            int status = conn.getResponseCode();
+            System.out.println("WA kirim teks, status: " + status);
+
         } catch (Exception e) {
-            System.out.println("WA kirim gagal: " + e.getMessage());
+            System.err.println("Gagal kirim teks ke WA: " + e.getMessage());
         }
     }
 
-    // ================== HELPER ==================
-    public static String getUploadURL() {
-        try {
-            Properties prop = new Properties();
-            prop.loadFromXML(new FileInputStream("database.xml"));
-            return prop.getProperty("UPLOADLABURL", DEFAULT_UPLOAD_URL);
-        } catch (Exception e) {
-            return DEFAULT_UPLOAD_URL;
-        }
+    // Helper JSON parsing sederhana
+    private static String extractJsonValue(String json, String key) {
+        String pattern = "\"" + key + "\"";
+        int idx = json.indexOf(pattern);
+        if (idx == -1) return null;
+        int start = json.indexOf('"', idx + pattern.length() + 1);
+        int end = json.indexOf('"', start + 1);
+        if (start == -1 || end == -1) return null;
+        return json.substring(start + 1, end);
     }
 
-    private static String getEnv(String key, String defaultVal) {
-        String val = System.getenv(key);
-        return (val != null && !val.isEmpty()) ? val : defaultVal;
+    private static String escapeJson(String text) {
+        return text.replace("\\", "\\\\")
+                .replace("\"", "\\\"")
+                .replace("\n", "\\n")
+                .replace("\r", "\\r")
+                .replace("\t", "\\t");
     }
-    
-    public static String escapeJson(String text) {
-    return text.replace("\\", "\\\\")
-               .replace("\"", "\\\"")
-               .replace("\n", "\\n")
-               .replace("\r", "\\r")
-               .replace("\t", "\\t");
-}
 }
